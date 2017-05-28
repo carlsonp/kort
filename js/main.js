@@ -1,32 +1,24 @@
 $(document).ready(function() {
-	var drake = dragula({
+	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
 		accepts: function(el, target) {
 		  return  !el.classList.contains('no-dnd')
 		},
 		moves: function(el, container, handle) {
 			return  !el.classList.contains('no-dnd')
-		}
+		},
 	});
-	drake.containers.push(document.querySelector('#left'));
-	drake.containers.push(document.querySelector('#right'));
 	
-	createGroup = function(groupname){
-		var newElement = $("<div id='"+groupname+"' class='floating-box-right container'><div class='groupTitle no-dnd'>"+groupname+"</div></div>");
-		$('.content-area').append(newElement);
-		drake.containers.push(document.querySelector("#"+newElement.attr("id")));
-	};
-
-	
-	createDefaultGroups = function() {
-		for (var i = 1; i < 13; i++) {
-				createGroup("Group_"+i);
-		}	
+	updateContainers = function(){
+			drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
-	createDefaultGroups();
 
-
-
+	createGroup = function(groupname){
+		var newElement = $("<div class='group-box'><div class='groupTitle'>"+groupname+"</div><div id='"+groupname+"' class='group-content nested'></div></div>");
+		$('.content-area').append(newElement);
+		updateContainers();
+	};
+	
 	$('#newGroupButton').click(function() {
 		var groupname = prompt("Please enter group name:", "");
 		if (groupname != null || groupname != "") {
