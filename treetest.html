@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+
+		
+		<!-- Include JQuery -->
+		<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
+		<!-- Include Bootstrap -->
+		<script type="text/javascript" src="js/bootstrap/bootstrap-3.3.7.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.min.css" />
+
+		<!-- Include Bootstrap Treeview -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview/bootstrap-treeview.min.css"/>
+		<script type="text/javascript" src="js/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
+		<link rel="stylesheet" type="text/css" href="css/treetest.css" />
+
+		
+
+		<title>Kort Treetest</title>
+	</head>
+	
+	<body>
+		<script>
+		$(document).ready(function() {
+			function getTree() {
+			  var tree = [
+				  {
+				    text: "Parent 1",
+				    nodes: [
+				      {
+				        text: "Child 1",
+				        nodes: [
+				          {
+				            text: "Grandchild 1",
+				          },
+				          {
+				            text: "Grandchild 2",
+				          }
+				        ]
+				      },
+				      {
+				        text: "Child 2",
+				      }
+				    ]
+				  },
+				  {
+				    text: "Parent 2",
+				    checked: true,
+				  },
+				];
+
+				function setSelectable(tree) {
+					for (var i = 0; i < tree.length; i++) { 
+						if('nodes' in tree[i]){
+							tree[i].selectable = false;	
+							setSelectable(tree[i].nodes);
+						} 
+					}	
+				}
+				setSelectable(tree);
+
+
+			  return tree;
+			}
+
+			$('#tree').treeview({data: getTree()});
+			$('#tree').treeview('collapseAll', { silent: true });
+			$('#tree').on('nodeExpanded', function(event, data) {
+				var node = $('#tree').treeview('getNode', data.nodeId);
+			  	var siblings = $('#tree').treeview('getSiblings', node);
+			  	siblings.forEach(function(element) {
+				    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
+				});
+			});
+			$('#tree').on('nodeCollapsed', function(event, data) {
+				var node = $('#tree').treeview('getNode', data.nodeId);
+			  	var siblings = $('#tree').treeview('getSiblings', node);
+			  	siblings.forEach(function(element) {
+				    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
+				});
+			});
+
+			function getParent(node){
+				var parent = $('#tree').treeview('getParent', node);
+				if (parent.hasOwnProperty('text')){
+					return getParent(parent)+" | "+parent.text;
+				} else {
+					return "root";	
+				}
+			}
+
+			$('#tree').on('nodeSelected', function(event, data) {
+				var node = $('#tree').treeview('getNode', data.nodeId);
+				console.log(getParent(node)+" | "+node.text);
+				
+			});
+
+		});
+		</script>
+
+		<div id="tree"></div>
+
+	
+	</body>
+
+</html>

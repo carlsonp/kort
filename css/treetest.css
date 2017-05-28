@@ -1,0 +1,25 @@
+html,body {
+    height:100%;
+    
+}
+
+#siteTitle {
+	font-size: 1.1em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#siteHeader { 
+	min-width: 100%;
+	height: 25px;
+    background-color: #034f84;
+    color: white;
+    display: table;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.node-disabled {
+    display: none;
+}
