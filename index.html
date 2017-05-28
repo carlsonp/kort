@@ -3,54 +3,20 @@
 	<head>
 		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 		<meta content="utf-8" http-equiv="encoding">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<title>Kort Cardsort</title>
-
-		<style>
-		.floating-box-left {
-			float: left;
-			width: auto;
-			height: 100%;
-			min-width: 200px;
-			margin: 10px;
-			border: 3px solid #73AD21;
-			background-color: pink;
-		}
-		.floating-box-right {
-			float: left;
-			width: auto;
-			height: auto;
-			min-height: 100px;
-			min-width: 100px;
-			margin: 10px;
-			border: 3px solid #73AD21;  
-		}
-		.item {
-			width: auto;
-			background-color: lightgray;
-			height: auto;
-			margin: 5px;
-			border: 2px solid #000000; 
-			cursor: grab;			
-		}
-		</style>
 	</head>
-
 	<body>
-
-	
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous">
-	</script>
+		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-			  crossorigin="anonymous">
-	</script>
+			  crossorigin="anonymous"></script>
 	
 	<script type="text/javascript" language="javascript">
 		$(document).ready(function() {
-	
 			var drake = dragula({
 			  copy: false,
 			  mirrorContainer: document.querySelector('#noshow'),
@@ -62,18 +28,18 @@
 				var newElement = $("<div id='"+groupname+"' class='floating-box-right container'>"+groupname+"</div>");
 				//TODO: this assumes "groupname" is unique (as entered by the user)
 				//need to add check on group creation to ensure unique names
-				$('body').append(newElement);
+				$('.content-area').append(newElement);
 				drake.containers.push(document.querySelector("#"+newElement.attr("id")));
 			};
 			
-			$('#newGroup').click(function() {
+			$('#newGroupButton').click(function() {
 				var groupname = prompt("Please enter group name:", "");
 				if (groupname != null || groupname != "") {
 					createGroup(groupname);
 				}
 			});
 			
-			$('#exportJSON').click(function() {
+			$('#exportJSONButton').click(function() {
 				var JSONExport = new Object();
 
 				drake.containers.forEach(function (item) {
@@ -87,9 +53,13 @@
 			});
 		});
 		</script>
-		<button id="newGroup">Create New Group</button>
-		<button id="exportJSON">Export JSON</button>
 		
+		<div id="top">
+			<div id="title">Kort CardSort</div>
+			<button class="float-right" id="newGroupButton">Create New Group</button>
+			<button class="float-right" id="exportJSONButton">Export JSON</button>
+		</div>
+
 		<div id="left" class="floating-box-left container">
 			<div class="item">Alpha</div>
 			<div class="item">Leif</div>
@@ -98,9 +68,9 @@
 			<div class="item">Comedy</div>
 		</div>
 		
-		<div id="right" class="floating-box-right container">Group</div>
-		
-		
+		<div class="content-area">
+			<div id="right" class="floating-box-right container">Group</div>
+		<div>
 		<div id="noshow" hidden></div>
 	</body>
 	
