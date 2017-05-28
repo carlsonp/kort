@@ -34,9 +34,24 @@ $(document).ready(function() {
 		}
 	});
 
+	createGroup("Group_1");
+
+	$('#newColumnButton').click(function() {
+		var newElement = $('<div class="column-area nested"></div>');
+		newElement.uniqueId();
+		$('.content-area').append(newElement);
+		updateContainers();
+	});
+
+	$('#newItemButton').click(function() {
+		var itemName = prompt("Please enter item name:", "");
+		var newElement = $('<div class="item">'+itemName+'<div class="nested item-nested"></div></div>');
+		$('#initialColumn').append(newElement);
+		updateContainers();
+	});
+
 	$('#exportJSONButton').click(function() {
 		var JSONExport = new Object();
-
 		drake.containers.forEach(function (item) {
 		  var children = $('#'+item.id).children();
 		  JSONExport[item.id] = [];
