@@ -30,18 +30,19 @@
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="js/main.js"></script>
 		
-		<div id="top">
-			<div id="title">Kort CardSort</div>
+		<div id="siteHeader">
+			<div id="siteTitle">Kort CardSort</div>
 			<button class="float-right" id="newGroupButton">Create New Group</button>
 			<button class="float-right" id="exportJSONButton">Export JSON</button>
+			<button class="float-right" id="newColumnButton">Create Column</button>
+			<button class="float-right" id="newItemButton">Create Item</button>
 		</div>
 
-		<div id="left" class="floating-box-left container">
-			<div class="item">One</div>
-			<div class="item">Two</div>
-			<div class="item">Threeasdfasdfasdfasdfsd asdfasdf asdfasdf aasdfasdf </div>
-			<div class="item">Four</div>
-			<div class="item">Five</div>
+		<div id="initialColumn" class="column-area nested">
+			<div class="item">One<div class="nested item-nested"></div></div>
+			<div class="item">Two<div class="nested item-nested"></div></div>
+			<div class="item">Three<div class="nested item-nested"></div></div>
+			<div class="item">Four<div class="nested item-nested"></div></div>
 		</div>
 		
 		<div class="content-area">
