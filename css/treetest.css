@@ -3,6 +3,25 @@ html,body {
     
 }
 
+#taskArea {
+    background-color: #4d4d4d;
+    width: 100%;
+    height: auto;
+    color:white;
+    padding: 25px;
+}
+
+#taskDesc {
+    font-size: 28px;
+}
+
+#treeArea {
+    margin-top: 25px;
+    margin-left: 25px;
+    width: 400px;
+    height: auto;
+}
+
 #siteTitle {
 	font-size: 1.1em;
     display: table-cell;
