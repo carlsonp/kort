@@ -67,9 +67,32 @@ $(document).ready(function() {
 			return "root";	
 		}
 	}
+
 	//When node is selected, write history to console
 	$('#tree').on('nodeSelected', function(event, data) {
 		var node = $('#tree').treeview('getNode', data.nodeId);
 		console.log(getParent(node)+" | "+node.text);
 	});
+
+	var tasks = {
+		list: ["1. This is the first task.",
+				"2. This is the second task.",
+				"3. This is the third task."],
+		idx: 0,
+	}
+
+	$("#nextTaskButton" ).click(function() {
+		tasks.idx = tasks.idx + 1; // increase i by one
+	    tasks.idx = tasks.idx % tasks.list.length; // if we've gone too high, start from `0` again
+	    $('#taskDesc').html(tasks.list[tasks.idx]);
+	});
+
+	$("#prevTaskButton" ).click(function() {
+	    if (tasks.idx === 0) { // i would become 0
+    		tasks.idx = tasks.list.length; // so put it at the other end of the array
+	    }
+	    tasks.idx = tasks.idx - 1; // decrease by one
+	    $('#taskDesc').html(tasks.list[tasks.idx]);
+	});
+
 });
