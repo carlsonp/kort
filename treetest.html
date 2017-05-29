@@ -12,6 +12,7 @@
 		<!-- Include Bootstrap Treeview -->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview/bootstrap-treeview.min.css"/>
 		<script type="text/javascript" src="js/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
+		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="css/treetest.css" />
 
 		<title>Kort Treetest</title>
@@ -20,8 +21,19 @@
 	<body>
 		<script type="text/javascript" src="js/treetest.js"/></script>
 
-		<div id="tree"></div>
-	
+		<div id="siteHeader">
+			<div id="siteTitle">Kort TreeTest</div>
+		</div>
+
+		<div id="taskArea">
+			<div id="taskDesc"></div>
+		</div>
+			
+		<div id="treeArea">
+			<div id="tree"></div>
+			<button id="prevTaskButton">Previous Task</button>
+			<button id="nextTaskButton" style="float:right">Next Task</button>
+		</div>
 	</body>
 
 </html>
