@@ -53,16 +53,15 @@
 				  },
 				];
 
-				function setSelectable(tree) {
+				function disableSelectableOnParents(tree) {
 					for (var i = 0; i < tree.length; i++) { 
 						if('nodes' in tree[i]){
 							tree[i].selectable = false;	
-							setSelectable(tree[i].nodes);
+							disableSelectableOnParents(tree[i].nodes);
 						} 
 					}	
 				}
-				setSelectable(tree);
-
+				disableSelectableOnParents(tree);
 
 			  return tree;
 			}
