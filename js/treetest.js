@@ -81,26 +81,45 @@ $(document).ready(function() {
 		var node = $('#tree').treeview('getNode', data.nodeId);
 		console.log(getParent(node)+" | "+node.text);
 	});
-
+	
 	var tasks = {
-		list: ["1. This is the first task.",
-				"2. This is the second task.",
-				"3. This is the third task."],
+		list: [],
 		idx: 0,
+		add: function (taskStr) {
+			this.list.push((this.list.length+1)+". "+taskStr)
+			$('#taskList').append("<li>Task "+this.list.length+"</li>");
+		},
+		next:function() {
+			this.idx = this.idx + 1; // increase i by one
+		    this.idx = this.idx % this.list.length; // if we've gone too high, start from `0` again
+		    $('#taskDesc').html(this.list[this.idx]);
+		},
+		prev:function() {
+		    if (this.idx === 0) { // i would become 0
+	    		this.idx = this.list.length; // so put it at the other end of the array
+		    }
+		    this.idx = this.idx - 1; // decrease by one
+		    $('#taskDesc').html(this.list[this.idx]);
+		}
 	}
 
+	
+	tasks.add("Example task 1 find a new shopping bag.");
+	tasks.add("Example task 2 find a new xbox bag.");
+	tasks.add("Example task 3 find a new hourse.");
+
+
 	$("#nextTaskButton" ).click(function() {
-		tasks.idx = tasks.idx + 1; // increase i by one
-	    tasks.idx = tasks.idx % tasks.list.length; // if we've gone too high, start from `0` again
-	    $('#taskDesc').html(tasks.list[tasks.idx]);
+		tasks.next();
 	});
 
 	$("#prevTaskButton" ).click(function() {
-	    if (tasks.idx === 0) { // i would become 0
-    		tasks.idx = tasks.list.length; // so put it at the other end of the array
-	    }
-	    tasks.idx = tasks.idx - 1; // decrease by one
-	    $('#taskDesc').html(tasks.list[tasks.idx]);
+		tasks.prev();
+	});
+	//click on task in task list ot navigate to task
+	$('#taskList').click(function(event,data) {
+		$('#taskDesc').html(tasks.list[$( "li" ).index(event.target)]);
 	});
 
 });
+
