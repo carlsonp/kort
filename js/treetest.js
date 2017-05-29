@@ -22,7 +22,6 @@ $(document).ready(function() {
 		  },
 		  {
 		    text: "Parent 2",
-		    checked: true,
 		  },
 		];
 
@@ -39,9 +38,16 @@ $(document).ready(function() {
 	  return tree;
 	}
 
-	$('#tree').treeview({data: getTree()});
+	$('#tree').treeview({
+		data: getTree(),
+		collapseIcon: "glyphicon glyphicon-menu-down",
+		expandIcon:"glyphicon glyphicon-menu-right",
+		selectedBackColor: "#808080",
+	});
+
 	//Collapse All nodes by default 
 	$('#tree').treeview('collapseAll', { silent: true });
+
 	//Hide sibling nodes when node expands
 	$('#tree').on('nodeExpanded', function(event, data) {
 		var node = $('#tree').treeview('getNode', data.nodeId);
@@ -50,6 +56,7 @@ $(document).ready(function() {
 		    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
 		});
 	});
+
 	//Show sibling nodes when node collapses
 	$('#tree').on('nodeCollapsed', function(event, data) {
 		var node = $('#tree').treeview('getNode', data.nodeId);
@@ -58,6 +65,7 @@ $(document).ready(function() {
 		    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
 		});
 	});
+
 	//get all parent names from node (history)
 	function getParent(node){
 		var parent = $('#tree').treeview('getParent', node);
