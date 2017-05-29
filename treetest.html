@@ -3,22 +3,16 @@
 	<head>
 		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 		<meta content="utf-8" http-equiv="encoding">
-
-		
 		<!-- Include JQuery -->
 		<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
 		<!-- Include Bootstrap -->
 		<script type="text/javascript" src="js/bootstrap/bootstrap-3.3.7.min.js"></script>
-		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.min.css" />
-
 		<!-- Include Bootstrap Treeview -->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-treeview/bootstrap-treeview.min.css"/>
 		<script type="text/javascript" src="js/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
 		<link rel="stylesheet" type="text/css" href="css/treetest.css" />
-
-		
 
 		<title>Kort Treetest</title>
 	</head>
@@ -67,7 +61,9 @@
 			}
 
 			$('#tree').treeview({data: getTree()});
+			//Collapse All nodes by default 
 			$('#tree').treeview('collapseAll', { silent: true });
+			//Hide sibling nodes when node expands
 			$('#tree').on('nodeExpanded', function(event, data) {
 				var node = $('#tree').treeview('getNode', data.nodeId);
 			  	var siblings = $('#tree').treeview('getSiblings', node);
@@ -75,6 +71,7 @@
 				    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
 				});
 			});
+			//Show sibling nodes when node collapses
 			$('#tree').on('nodeCollapsed', function(event, data) {
 				var node = $('#tree').treeview('getNode', data.nodeId);
 			  	var siblings = $('#tree').treeview('getSiblings', node);
@@ -82,27 +79,25 @@
 				    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
 				});
 			});
-
+			//get all parent names from node (history)
 			function getParent(node){
 				var parent = $('#tree').treeview('getParent', node);
 				if (parent.hasOwnProperty('text')){
-					return getParent(parent)+" | "+parent.text;
+					return getParent(parent)+"-"+parent.text;
 				} else {
 					return "root";	
 				}
 			}
-
+			//When node is selected, write history to console
 			$('#tree').on('nodeSelected', function(event, data) {
 				var node = $('#tree').treeview('getNode', data.nodeId);
 				console.log(getParent(node)+" | "+node.text);
-				
 			});
 
 		});
 		</script>
 
 		<div id="tree"></div>
-
 	
 	</body>
 
