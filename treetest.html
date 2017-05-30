@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="js/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="css/treetest.css" />
-
+	
 		<title>Kort Treetest</title>
 	</head>
 	
@@ -29,7 +29,12 @@
 			<div id="taskDesc"></div>
 		</div>
 
-		<ul id="taskList"></ul>
+		<ul id="taskList">
+			<!--input field hidden-->
+			<input type="file" id="fileInput" style="display: none;"/>
+			<!--button that redirects the click (for UI purposes)-->
+			<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
+		</ul>
 		
 		<div id="treeArea">
 			<div id="tree"></div>
