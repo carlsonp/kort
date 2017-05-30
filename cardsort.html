@@ -32,27 +32,24 @@
 		
 		<div id="siteHeader">
 			<div id="siteTitle">Kort CardSort</div>
-			<button class="float-right" id="newGroupButton">Create New Group</button>
-			<button class="float-right" id="exportJSONButton">Export JSON</button>
-			<button class="float-right" id="newColumnButton">Create Column</button>
-			<button class="float-right" id="newItemButton">Create Item</button>
+			<button id="newGroupButton">Create New Group</button>
+			<button id="exportJSONButton">Export JSON</button>
+			<button id="newColumnButton">Create Column</button>
+			<button id="newItemButton">Create Item</button>
+			<button id="newBasicItemButton">Create Basic Item</button>
 		</div>
 
-		<div id="initialColumn" class="column-area nested">
-			<div class="item">One<div class="nested item-nested"></div></div>
-			<div class="item">Two<div class="nested item-nested"></div></div>
-			<div class="item">Three<div class="nested item-nested"></div></div>
-			<div class="item">Four<div class="nested item-nested"></div></div>
+		<div id="initialColumn" class="column-area-primary accepts-items nested">
+			<div class="item">One</div>
+			<div class="item">Two</div>
+			<div class="item">Three</div>
+			<div class="item">Four</div>
 		</div>
-		
-		<div class="content-area">
 
-		</div>
-		
-		<div style="text-align:center;">
-			<br><hr>
-			<a target="_blank" href="https://github.com/carlsonp/kort-cardsort">kort-cardsort</a>
-		</div>
+		<div id="groupdrop" class="column-area-secondary accepts-groups nested"></div>
+		<div class="column-area-secondary accepts-groups nested"></div>
+		<div class="column-area-secondary accepts-groups nested"></div>
+
 	
 	</body>
 </html>

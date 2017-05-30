@@ -11,7 +11,7 @@ html,body {
 }
 
 #taskDesc {
-    font-size: 28px;
+    font-size: 22px;
 }
 
 #treeArea {
@@ -71,6 +71,7 @@ html,body {
     background: #f9f9f9;
 }
 
+/* When clicked on, add a background color and strike out text */
 #taskList li.checked {
     background: #888;
     color: #fff;

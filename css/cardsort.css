@@ -4,10 +4,7 @@ html,body {
 }
 
 .nested {
-	padding: 1px;
-}
-.item-nested {
-	padding: 10px;
+	min-height: 100px;
 }
 
 .content-area {
@@ -16,7 +13,6 @@ html,body {
 	min-height: 100%;
 	min-width: 100%;
 }
-
 
 #siteTitle {
 	font-size: 1.1em;
@@ -35,45 +31,45 @@ html,body {
     padding-top: 5px;
 }
 
-button {
-	float: right;
-}
-
-.column-area {
+.column-area-primary {
 	float: left;
 	width: auto;
 	min-height: 100%;
 	min-width: 200px;
 	background-color: lightgray;
-	border-left: solid 1px black;
+	border-right: solid 1px black;
 }
-
-.groupTitle {
-	background-color: #E0E0E0;
-	min-width: auto;
-	padding: 5px;
-	font-size: 14px;
-}
-.group-box {
+.column-area-secondary {
 	float: left;
 	width: auto;
-	height: auto;
+	min-height: 100%;
+	min-width: 200px;
+	background-color: #E0E0E0;
+}
 
+.group {
+	width: auto;
+	color: white;
+	max-width: 200px;
+	min-height: 150px;
+	background-color: darkgray;
+	cursor: grab;	
 	margin: 5px;
-	background-color: white; 
-    box-shadow: 1px 1px 1px gray;
+	padding: 5px;
+	border-radius: 3px;	
+	font-size: 14px;
     border-style: solid;
     border-width: 1px;	
     border-color: gray;
+    word-wrap: break-word;
+    box-shadow: 1px 1px 1px gray;
+    border-color: gray;
 }
-.group-content {
-	min-height: 200px;
-	min-width: 200px;
-	background-color: white; 
-}
+
 .item {
 	width: auto;
 	max-width: 200px;
+	color:black;
 	background-color: white;
 	cursor: grab;	
 	margin: 5px;
