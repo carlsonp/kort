@@ -131,8 +131,10 @@ $(document).ready(function() {
 			//if the selected task has already been 
 			//  completed load the answer from the tasks obj
 			resetTree();
-			if(this.answers[this.idx]){	
-				expandToNode(this.answers[this.idx]);
+			if(this.answers[this.idx].length > 0){
+				//need to pass a copy of node path to expandToNode (or else it alters tasks.answers)
+				var copyOfHistory = $.extend(true, [], this.answers[this.idx]);
+				expandToNode(copyOfHistory);
 			}
 		}
 	}
