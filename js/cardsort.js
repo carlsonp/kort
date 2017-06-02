@@ -36,6 +36,14 @@ $(document).ready(function() {
 			event.target.classList.remove('contenteditable');
     	});
 
+		//pressing enter doesn't create a newline just leaves edit mode
+		groupTitle.keydown(function(event){
+		    if(event.keyCode == 13){
+        		event.target.contentEditable=false;
+				event.target.classList.remove('contenteditable');
+		    }
+    	});
+
     	group.append(groupTitle);
     	group.append(nestedArea);
 
