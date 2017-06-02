@@ -19,9 +19,27 @@ $(document).ready(function() {
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
 
+	//not aplying to sub div. only parent div!
 	createGroup = function(groupname){
-		var newElement = $(`<div class='group'><div class='grouptitle' ondblclick="this.contentEditable=true;this.className='inEdit';" onblur="this.contentEditable=false;this.className='';" contenteditable="false" class="">`+groupname+"</div><div class='nested accepts-items'></div></div>");
-		$('#groupdrop').append(newElement);
+		var group = $("<div class='group'></div>");
+		var groupTitle =$("<div class='grouptitle' contenteditable='false'>Groupname</div>")
+		var nestedArea = $("<div class='nested accepts-items'></div>");
+
+		groupTitle.click(function(){
+        	event.target.contentEditable=true;
+			event.target.classList.add('contenteditable')
+			this.focus();
+			document.execCommand('selectAll', false, null);
+    	});
+		groupTitle.blur(function(){
+        	event.target.contentEditable=false;
+			event.target.classList.remove('contenteditable');
+    	});
+
+    	group.append(groupTitle);
+    	group.append(nestedArea);
+
+		$('#groupdrop').append(group);
 		updateContainers();
 	};
 
@@ -40,13 +58,7 @@ $(document).ready(function() {
 	}
 	setUpSecondaryPanels();
 	
-	$('#newGroupButton').click(function() {
-		// var groupname = prompt("Please enter group name:", "");
-		// if (groupname != null || groupname != "") {
-		// 	createGroup(groupname);
-		// }
-		createGroup("Group");
-	});
+	$('#newGroupButton').click(function() {createGroup("Group");});
 	
 	$('#addItemButton').click(function() {
 		var itemName = prompt("Please enter item name:", "");
