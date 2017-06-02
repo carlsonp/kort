@@ -55,10 +55,10 @@ html,body {
 #taskList li {
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 5px 8px 5px 40px;
     background: #eee;
     font-size: 14px;
-    transition: 0.2s;
+    
     /* make the list items unselectable */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -66,26 +66,32 @@ html,body {
     user-select: none;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-#taskList li:nth-child(odd) {
-    background: #f9f9f9;
+#taskList li.selected {
+    background: gray !important;
+    color: white !important;
 }
 
-/* When clicked on, add a background color and strike out text */
+/* Set all odd list items to a different color (zebra-stripes) */
+#taskList li:nth-child(odd) {
+    background: #f9f9f9; 
+}
+
+/* When clicked on, add a background color and strike out text 
 #taskList li.checked {
     background: #888;
     color: #fff;
 }
+*/
 
 /* Add a "checked" mark when clicked on */
 #taskList li.checked::before {
     content: '';
     position: absolute;
-    border-color: #fff;
+    border-color: #000;
     border-style: solid;
     border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
+    top: 5px;
+    left: 18px;
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
