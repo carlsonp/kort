@@ -33,10 +33,11 @@
 			<!--input field hidden-->
 			<input type="file" id="fileInput" style="display: none;"/>
 			<!--button that redirects the click (for UI purposes)-->
-			<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
+			
 		</ul>
 		
 		<div id="treeArea">
+		<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
 			<div id="tree"></div>
 			<button id="prevTaskButton">Previous Task</button>
 			<button id="nextTaskButton" style="float:right">Next Task</button>
