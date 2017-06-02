@@ -12,6 +12,7 @@ html,body {
 
 #taskDesc {
     font-size: 22px;
+    min-height: 60px;
 }
 
 #treeArea {
