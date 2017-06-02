@@ -24,6 +24,7 @@ html,body {
 	color:white;
 	width:auto;
 	font-style: bold;
+	cursor: pointer;
 }
 
 #siteHeader { 
