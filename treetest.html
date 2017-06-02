@@ -29,18 +29,16 @@
 			<div id="taskDesc"></div>
 		</div>
 
-		<ul id="taskList">
+		<ul id="taskList"></ul>
+		
+		<div id="treeArea">
 			<!--input field hidden-->
 			<input type="file" id="fileInput" style="display: none;"/>
 			<!--button that redirects the click (for UI purposes)-->
-			
-		</ul>
-		
-		<div id="treeArea">
-		<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
-			<div id="tree"></div>
+			<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
 			<button id="prevTaskButton">Previous Task</button>
-			<button id="nextTaskButton" style="float:right">Next Task</button>
+			<button id="nextTaskButton">Next Task</button>
+			<div id="tree"></div>
 		</div>
 
 
