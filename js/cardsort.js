@@ -23,7 +23,7 @@ $(document).ready(function() {
 	createGroup = function(groupname){
 		var group = $("<div class='group'></div>");
 		var groupTitle =$("<div class='grouptitle' contenteditable='false'>Groupname</div>")
-		var nestedArea = $("<div class='nested accepts-items'></div>");
+		var nestedArea = $("<div class='groupArea nested accepts-items'></div>");
 
 		groupTitle.click(function(){
         	event.target.contentEditable=true;
