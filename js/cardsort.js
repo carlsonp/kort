@@ -25,10 +25,25 @@ $(document).ready(function() {
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
 
+	deleteGroup = function(group){
+		resetItemsOfGroup(group)
+		$(group).attr("id","toBeDeleted")
+		$('#toBeDeleted').fadeOut("fast","swing",function() {$(this).remove();});
+	}
+
+	resetItemsOfGroup = function(group){
+		var nestedArea = group.children()[group.children().length-1]
+		var items = $(nestedArea).children()
+		items.each(function() {
+			$('#initialColumn').append(this);
+		});
+	}
+
 	//not aplying to sub div. only parent div!
 	createGroup = function(groupname){
-		var group = $("<div class='group'></div>");
-		var groupTitle =$("<div class='grouptitle' contenteditable='false'>Groupname</div>")
+		var group = $("<div class='group' hidden></div>");
+		var groupTitle = $("<div class='grouptitle' contenteditable='false'>Groupname</div>")
+		var closeIcon = $("<i class='fa fa-times closeIcon' aria-hidden='true'></i>")
 		var nestedArea = $("<div class='groupArea nested accepts-items'></div>");
 
 		groupTitle.click(function(){
@@ -50,38 +65,42 @@ $(document).ready(function() {
 		    }
     	});
 
+		closeIcon.click(function(event){
+        	deleteGroup($(event.target).parent());
+    	});
+
+    	group.append(closeIcon);
     	group.append(groupTitle);
     	group.append(nestedArea);
 
-		$('#groupdrop').append(group);
+		// $('#groupdrop').fadeIn("fast","swing",function() { $(this)..append(group); });
+
+		$('#groupdrop').append(group)
+		group.fadeIn();
 		updateContainers();
 	};
 
-	//add add item button
-	$('#siteHeader').append('<button id="addItemButton">Add Item</button>');
 	//add add group button
-	$('#siteHeader').append('<button id="newGroupButton">Add Group</button>');
-	//add export to JSON button
-	$('#siteHeader').append('<button id="exportJSONButton">Export JSON</button>');
-	
-	function setUpSecondaryPanels(){
-		var numPanels = Math.round($(window).width()/200);
-		for (var i = 0; i < numPanels; i++) {
+	// $('#header').append('<button id="newGroupButton">Add Group</button>');
+
+	(function (){
+		for (var i = 0; i < 3; i++) {
 			$('body').append('<div class="column-area-secondary accepts-groups nested"></div>');
 		}
-	}
-	setUpSecondaryPanels();
+	})();
 	
 	$('#newGroupButton').click(function() {createGroup("Group");});
 	
-	$('#addItemButton').click(function() {
+	$('#addItem').click(function() {
+		closeMenu()
 		var itemName = prompt("Please enter item name:", "");
 		var newElement = $('<div class="item">'+itemName+'</div>');
 		$('#initialColumn').append(newElement);
 		updateContainers();
+		closeMenu()
 	});
 
-	$('#exportJSONButton').click(function() {
+	$('#exportJSON').click(function() {
 		var JSONExport = new Object();
 		drake.containers.forEach(function (item) {
 		  var children = $('#'+item.id).children();
@@ -91,5 +110,8 @@ $(document).ready(function() {
 		  }
 		})
 		console.log(JSON.stringify(JSONExport));
+		closeMenu();
 	});
+
+
 });
