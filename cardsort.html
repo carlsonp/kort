@@ -17,15 +17,27 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.min.css" />
 		<!-- Include JQuery UI for uid-->
 		<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.12.1.min.js"></script>
+		<!-- font awesome-->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 		<title>Kort Cardsort</title>
 	</head>
 	<body>
+		<div id="mySidenav" class="sidenav">
+			<a id='closeMenu' href="javascript:void(0)" class="closebtn" >&times;</a>
+			<a id='addItem' href="#">Add Item</a>
+			<a id='exportJSON' href="#">Export JSON</a>
+		</div>
+
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="js/cardsort.js"></script>
 		
-		<div id="siteHeader">
-			<div id="siteTitle">Kort CardSort</div>
+		<div id="header" class="siteHeader">
+			<p>
+				<span id='hamburger'>&#9776;</span>
+				Kort CardSort
+			</p>
+			<button id="newGroupButton">Add Group</button>
 		</div>
 
 		<div id="initialColumn" class="column-area-primary accepts-items nested">
@@ -40,7 +52,6 @@
 			<div class="item">One</div>
 			<div class="item">Two</div>
 			<div class="item">Three</div>
-			<div class="item">FourFourFourFourFour FourFourFourFourFour FourFourFourFourFourFourFourFourFourFourFourFourFour</div>
 		</div>
 		<div id="groupdrop" class="column-area-secondary accepts-groups nested"></div>
 	</body>
