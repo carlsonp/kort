@@ -4,6 +4,8 @@ html,body {
     width: 100%;
   	height: 100%;
 }
+
+
 /*Site Header*/
 .siteHeader { 
 	min-width: 100%;
@@ -53,10 +55,11 @@ html,body {
 	min-height: 150px;
 	background-color: rgb(219,221,224);
 	margin: 10px;
-	padding-bottom: 20px;
+	/*padding-bottom: 20px;*/
 	border-radius: 4px;	
     word-wrap: break-word;
     cursor: move;
+    display: table;
 }
 .group .contenteditable {
 	background-color: white;
@@ -73,6 +76,14 @@ html,body {
 	color: gray;
 	float: right;
 	margin: 5px;
+}
+
+.group .iconContainer{
+	text-align: center;
+}
+.group .grabicon {
+	cursor: move;
+	color: gray;
 }
 .group .droparea {
 	min-height: 100px;
@@ -130,4 +141,29 @@ html,body {
     right: 15px;
     font-size: 24px;
     margin-left: 10px;
+}
+
+.sidenav .textEntry {
+	padding: 10px;
+	display: table-cell;
+	/*font-size:18px;*/
+}
+.sidenav .textEntry a{
+	/*padding-bottom: 10px;*/
+	font-size:18px;
+
+}
+
+.sidenav .textEntry textarea{
+	color: black;
+	width: 90%;
+	height: 400px;
+	font-size: 12px;
+	resize: vertical;
+}
+.sidenav .textEntry button{
+ 	background-color: #4CAF50;
+    border: none;
+    font-size: 14px;
+    width: 90%;
 }
