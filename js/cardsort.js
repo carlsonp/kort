@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	//functions for slide out menu
+	openMenu = function(){document.getElementById("mySidenav").style.width = "150px";}
+	closeMenu = function(){document.getElementById("mySidenav").style.width = "0px";}
+	$('#hamburger').click(function(){openMenu();});
+	$('#closeMenu').click(function(){closeMenu();});
+
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
 		accepts: function (el, target, source, sibling) {
