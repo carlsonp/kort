@@ -2,6 +2,9 @@ $(document).ready(function() {
 	
 	var groupsArray = [];
 	var cardsArray = [];
+	var groupNum = 0;
+	var zoneNum = 5;
+
 	//Slide out menu
 	function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
 	function closeMenu(){document.getElementById("mySidenav").style.width = "0px";}
@@ -30,6 +33,7 @@ $(document).ready(function() {
 	}
 
 	function deleteGroup(group){
+		groupNum-=1;
 		//return items to initial area
 		var nestedArea = group.children()[group.children().length-2]
 		var items = $(nestedArea).children()
@@ -42,6 +46,7 @@ $(document).ready(function() {
 	}
 
 	function createGroup(groupname){
+		groupNum+=1;
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -128,15 +133,27 @@ $(document).ready(function() {
 	});
 
 	$('#exportJSON').click(function() {
-		var JSONExport = new Object();
-		drake.containers.forEach(function (item) {
-		  var children = $('#'+item.id).children();
-		  JSONExport[item.id] = [];
-		  for (var i = 0; i < children.length; i++) {
-			JSONExport[item.id].push(children[i].innerHTML);
-		  }
-		})
-		console.log(JSON.stringify(JSONExport));
-		closeMenu();
+		$('.group .droparea').each(function(index,groupObj){
+			console.log($(groupObj).text());
+			$('.item').each(function(index,itemObj){
+				console.log($(itemObj).text());
+			});
+		});
+			// var nestedAreaChild = $(groupObj).children()[2]
+			// $(nestedAreaChild).each(function(index,cardObj){
+			// 	console.log($(groupObj).text()+" : "+$(cardObj).text());
+			// });
+
+
+		// var JSONExport = new Object();
+		// drake.containers.forEach(function (item) {
+		//   var children = $('#'+item.id).children();
+		//   JSONExport[item.id] = [];
+		//   for (var i = 0; i < children.length; i++) {
+		// 	JSONExport[item.id].push(children[i].innerHTML);
+		//   }
+		// })
+		// console.log(JSON.stringify(JSONExport));
+		//closeMenu(); 
 	});
 });
