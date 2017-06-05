@@ -116,7 +116,9 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#newGroupButton').click(function() {createGroup("Group");});
+	$('#newGroupButton').click(function() {
+		createGroup("Group");
+	});
 	
 	$('#addItem').click(function() {
 		var itemName = prompt("Please enter item name:", "");
