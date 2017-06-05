@@ -73,7 +73,7 @@ $(document).ready(function() {
     	group.append(groupTitle);
     	group.append(nestedArea);
     	group.append(grabIcon);
-		$('#groupdrop').append(group)
+		$('#dropZone'+((zoneNum-1)+groupNum)%zoneNum).append(group)
 		group.fadeIn();
 		updateContainers();
 	};
@@ -91,15 +91,14 @@ $(document).ready(function() {
 	}
 	
 	function setUpDropZones(){
-		for (var i = 0; i < 3; i++) {
-			console.log("here")
-			$('body').append('<div class="column-area-secondary accepts-groups nested"></div>');
+		for (var i = 0; i < zoneNum; i++) {
+			$('body').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
 		}
 	}
 
 	//drop zones for groups need to be created before default groups
 	setUpDropZones();
-	// createGroups(['Group1','Group2','Group 3','Group 4']);
+	createGroups(['Group 1','Group 2','Group 3','Group 4']);
 	
 	$('#addCardsButton').click(function() {
 		var strArray = $('#cardsList').val().split("\n");
