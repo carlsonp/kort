@@ -1,0 +1,76 @@
+html,body {
+    height:100%;
+    /*background-color: rgb(0,158,195);*/
+    background-color: rgb(0, 107, 132);
+}
+
+button{
+    background-color: #4CAF50;
+    border: none;
+    font-size: 15px;
+    color:white;
+    padding: 10px;
+    margin: 10px;
+}
+
+#siteTitle {
+	font-size: 1.1em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#siteHeader { 
+	min-width: 100%;
+	height: 25px;
+   /* background-color: rgb(0, 107, 132);*/
+   background-color: rgb(0,158,195);
+    color: white;
+    display: table;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+/* Remove margins and padding from the list */
+#textArea {
+    margin: 15px;
+    font-size: 24px;
+    color: white;
+}
+
+#cardArea {
+    margin: 10px;
+    padding: 0;
+    width:90%;
+}
+
+
+/* Style the card items */
+#cardArea li {
+    cursor: pointer;
+    border-radius: 4px;
+    width: auto;
+    padding: 10px;
+    background: #eee;
+    font-size: 16px;
+    margin: 5px;
+    list-style: none;
+    display: inline-block;
+    position:relative;
+    background-color: #F0F0F0;
+}
+#cardArea li.disabled {
+    opacity: 0.15;
+    cursor: default;
+    pointer-events: none;
+}
+#cardArea li.selected {
+    /*background-color: rgb(0, 107, 132);*/
+    background-color: rgb(0,158,195);
+    color:white;
+}
+#cardArea li.selected::before {
+    content: "\f00c";
+    font-family: FontAwesome;
+    padding-right: 10px;
+}
