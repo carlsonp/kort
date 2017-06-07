@@ -25,23 +25,18 @@
 			<div id="siteTitle">Kort TreeTest</div>
 		</div>
 
-		<div id="taskArea">
-			<div id="taskDesc"></div>
-		</div>
-
+		<div id="taskDesc"></div>
+	
 		<ul id="taskList"></ul>
 		
 		<div id="treeArea">
 			<!--input field hidden-->
 			<input type="file" id="fileInput" style="display: none;"/>
 			<!--button that redirects the click (for UI purposes)-->
-			<input type="button" value="Add Tasks from File" onclick="document.getElementById('fileInput').click();" />
+			<button id="fileInputButton">Add Tasks from File</button>
 			<button id="prevTaskButton">Previous Task</button>
 			<button id="nextTaskButton">Next Task</button>
 			<div id="tree"></div>
 		</div>
-
-
 	</body>
-
 </html>

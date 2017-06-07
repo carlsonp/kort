@@ -31,7 +31,7 @@ $(document).ready(function() {
 		data: tree,
 		collapseIcon: "glyphicon glyphicon-menu-down",
 		expandIcon:"glyphicon glyphicon-menu-right",
-		selectedBackColor: "#808080",
+		selectedBackColor: "#009ec3",
 	});
 	resetTree();
 
@@ -58,6 +58,9 @@ $(document).ready(function() {
 		tasks.answers[tasks.idx] = setHistory(node).concat([node.nodeId]); 
 		DOMnode = $('#taskList li').get(tasks.idx) 
 		$(DOMnode).addClass("checked");
+	});
+	$('#fileInputButton').click(function(){
+		document.getElementById('fileInput').click();
 	});
 	//--------------------Treeview Functions (manual)--------------------
 	function expandToNode(history){
