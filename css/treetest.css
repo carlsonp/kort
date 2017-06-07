@@ -1,20 +1,23 @@
 html,body {
     height:100%;
+    background-color: rgb(0, 107, 132);
 }
-
-#taskArea {
-    background-color: #4d4d4d;
-    width: 100%;
-    height: auto;
+button{
+    background-color: #4CAF50;
+    border: none;
+    font-size: 15px;
     color:white;
-    padding: 25px;
+    padding: 10px;
+    margin: 10px;
 }
-
 #taskDesc {
     font-size: 22px;
-    min-height: 60px;
+    width: 100%;
+    padding: 25px;
+    background-color: rgb(0,133,164);
+    color: white;
+    vertical-align: middle;
 }
-
 #treeArea {
     margin-top: 25px;
     float:left;
@@ -23,21 +26,21 @@ html,body {
     height: auto;
 }
 
-#siteTitle {
-	font-size: 1.1em;
-    display: table-cell;
-    vertical-align: middle;
-}
-
+/*header styles*/
 #siteHeader { 
-	min-width: 100%;
-	height: 25px;
-    background-color: #034f84;
+    min-width: 100%;
+    height: 25px;
+    background-color: rgb(0,158,195);
     color: white;
     display: table;
     padding-left: 20px;
     padding-bottom: 5px;
     padding-top: 5px;
+}
+#siteHeader #siteTitle {
+    font-size: 1.1em;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .node-disabled {
@@ -50,8 +53,8 @@ html,body {
     padding: 0;
     width:150px;
     float:left;
+    height: 100%;
 }
-
 /* Style the list items */
 #taskList li {
     cursor: pointer;
@@ -59,7 +62,6 @@ html,body {
     padding: 5px 8px 5px 40px;
     background: #eee;
     font-size: 14px;
-    
     /* make the list items unselectable */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -68,7 +70,7 @@ html,body {
 }
 
 #taskList li.selected {
-    background: gray !important;
+    background: rgb(0,158,195) !important;
     color: white !important;
 }
 
@@ -76,19 +78,11 @@ html,body {
 #taskList li:nth-child(odd) {
     background: #f9f9f9; 
 }
-
-/* When clicked on, add a background color and strike out text 
-#taskList li.checked {
-    background: #888;
-    color: #fff;
-}
-*/
-
 /* Add a "checked" mark when clicked on */
 #taskList li.checked::before {
     content: '';
     position: absolute;
-    border-color: #000;
+    border-color: rgb(0, 107, 132);
     border-style: solid;
     border-width: 0 2px 2px 0;
     top: 5px;
