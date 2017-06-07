@@ -50,7 +50,7 @@ $(document).ready(function() {
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
-		var nestedArea = $("<div class='droparea nested accepts-items accepts-groups'></div>");
+		var nestedArea = $("<div class='droparea nested accepts-items'></div>");
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
 		groupTitle.click(function(){
         	event.target.contentEditable=true;
@@ -73,7 +73,6 @@ $(document).ready(function() {
 			var groupElement = $(event.target).parent();
         	deleteGroup(groupElement);
     	});
-
     	group.append(closeIcon);
     	group.append(groupTitle);
     	group.append(nestedArea);
@@ -100,7 +99,6 @@ $(document).ready(function() {
 			$('body').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
 		}
 	}
-
 	//drop zones for groups need to be created before default groups
 	setUpDropZones();
 	createGroups(['Group 1','Group 2','Group 3','Group 4']);
