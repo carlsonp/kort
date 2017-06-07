@@ -1,31 +1,3 @@
-html,body {
-    height:100%;
-    background-color: rgb(0, 107, 132);
-}
-button{
-    background-color: #4CAF50;
-    border: none;
-    font-size: 15px;
-    color:white;
-    padding: 10px;
-    margin: 10px;
-}
-/*header styles*/
-#siteHeader { 
-	min-width: 100%;
-	height: 25px;
-    background-color: rgb(0,158,195);
-    color: white;
-    display: table;
-    padding-left: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-#siteHeader #siteTitle {
-    font-size: 1.1em;
-    display: table-cell;
-    vertical-align: middle;
-}
 #textArea {
     margin: 15px;
     font-size: 24px;
