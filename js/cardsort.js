@@ -96,7 +96,7 @@ $(document).ready(function() {
 	
 	function setUpDropZones(){
 		for (var i = 0; i < zoneNum; i++) {
-			$('body').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
+			$('#dropZonesPlace').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
 		}
 	}
 	//drop zones for groups need to be created before default groups
