@@ -11,6 +11,9 @@ and more.
 
 ### Install
 
+Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
+by editing the `server/db.js` file.
+
 Run `npm install` on the commandline.  This will install the dependencies.
 
 Run `node app.js` from the main directory.  This will start the NodeJS server
