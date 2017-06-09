@@ -4,7 +4,7 @@ Kort
 ### About
 
 A web application for
-[cardsorting](https://en.wikipedia.org/wiki/Card_sorting),
+[card sorting](https://en.wikipedia.org/wiki/Card_sorting),
 [tree testing](https://en.wikipedia.org/wiki/Tree_testing),
 and more.
 
@@ -34,6 +34,10 @@ The following 3rd party libraries and services are utilized:
 * [MongoDB](https://www.mongodb.com/)
 * [Body-Parser](https://github.com/expressjs/body-parser)
 * [Font-Awesome](http://fontawesome.io/)
+
+### Support
+
+Open a Github issue.
 
 ### License
 
