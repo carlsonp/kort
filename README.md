@@ -1,10 +1,12 @@
-kort-cardsort
+Kort
 ===========
 
-A [cardsorting](https://en.wikipedia.org/wiki/Card_sorting) web application.
-
-
 ### About
+
+A web application for
+[cardsorting](https://en.wikipedia.org/wiki/Card_sorting),
+[tree testing](https://en.wikipedia.org/wiki/Tree_testing),
+and more.
 
 
 ### Install
@@ -28,8 +30,8 @@ The following 3rd party libraries and services are utilized:
 * [Mongoose](http://mongoosejs.com/)
 * [MongoDB](https://www.mongodb.com/)
 * [Body-Parser](https://github.com/expressjs/body-parser)
-
+* [Font-Awesome](http://fontawesome.io/)
 
 ### License
 
-kort-cardsort is licensed under the GPLv3.
+kort-cardsort is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
