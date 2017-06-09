@@ -6,5 +6,5 @@ var Project = new mongoose.Schema({
 mongoose.model('Project', Project);
 
 
-mongoose.connect('mongodb://192.168.1.124/kort');
+mongoose.connect('mongodb://127.0.0.1/kort');
 
