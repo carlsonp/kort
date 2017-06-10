@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<!-- Include JQuery -->
+		<script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+		<!-- Include Bootstrap -->
+		<script type="text/javascript" src="bootstrap/bootstrap-3.3.7.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-theme.min.css"/>
+
+		<title>Admin Page</title>
+	</head>
+	 
+	<h2>Admin Page</h2>
+	<form action="/createStudy" method="post">
+		<input type="text" name="title" value="Mickey"><br>
+		<input type="text" name="type" value="Cardsort"><br>
+		<textarea id="cards" rows="4" cols="50" name='cards'></textarea><br>
+		<textarea id="groups" rows="4" cols="50" name='groups'></textarea><br>
+		<input id='submit' type="submit" value="Submit"></input>
+	</form>
+	<body>
+	</body>
+</html>

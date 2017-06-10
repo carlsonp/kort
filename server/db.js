@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');  
-var Project = new mongoose.Schema({
-	name: { type: String }
+var Study = new mongoose.Schema({
+	name: String,
+	type: { type: String },
+	cards: [],
+	groups: [],
 });
 
-mongoose.model('Project', Project);
+mongoose.model('Study', Study);
 
 
 mongoose.connect('mongodb://127.0.0.1/kort');

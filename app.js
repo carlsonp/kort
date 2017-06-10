@@ -3,7 +3,7 @@ var express = require('express');
 const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db');
-var project = require('./server/project');
+var study = require('./server/study');
 
 app.set('view engine', 'ejs');
 
@@ -30,8 +30,9 @@ app.get('/treetest', function (req, res) {
 	res.render('treetest.ejs');
 });
 
-app.post('/createProject', project.createProject);
-app.get('/deleteProject/:id', project.deleteProject);
+
+app.post('/createStudy', study.createStudy);
+app.get('/deleteStudy/:id', study.deleteStudy);
 
 app.listen(3000, function () {
 	console.log('Kort running on port 3000');
