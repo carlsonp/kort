@@ -30,10 +30,7 @@
 				    url: "/deleteStudy/"+id, 
 				    type: "DELETE",
 				});
-			} else {
-			    // Do nothing!
-			}
-			
+			} 
 		}
 		function addStudy(){
 			jQuery.ajax({
@@ -42,7 +39,7 @@
 			    data: {title: $('#title').val(),
 					   type: $('#type :selected').val(),
 					   cards: $('#cards').val(),
-					   groups: $('#groups').val()
+					   groups: $('#groups').val(),
 				},
 			});
 		}
@@ -84,7 +81,7 @@
 					<td><%= studies[i].type %></td>
 					<td><%= studies[i].cards %></td>
 					<td><%= studies[i].groups %></td>
-					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a> | <a href="/editStudy/<%=studies[i]._id%>">Edit</a></td>
 				</tr>
 			<% } %>
 		<% } %>

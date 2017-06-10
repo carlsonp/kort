@@ -18,7 +18,7 @@ module.exports = {
       } else {
         console.log('Saved study to database Successfully.');
         req.method = 'GET';
-		res.redirect('/admin');
+		    res.redirect('/admin');
         res.end();
       }
     });
@@ -27,7 +27,7 @@ module.exports = {
     Study.find({}, function (err, docs) {
       if (err) {
         res.status(504);
-        console.log("Error getting studies.");
+        console.log("Error getting studies on admin page.");
         res.end(err);
       } else {
         res.render('admin.ejs',{studies: docs});
