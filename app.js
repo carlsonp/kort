@@ -41,6 +41,6 @@ app.post('/createStudy', study.createStudy);
 app.get('/deleteStudy/:id', study.deleteStudy);
 
 app.listen(3000, function () {
-	console.log('Kort running on port 3000');
+	console.log('Kort running on port: 3000');
 });
 
