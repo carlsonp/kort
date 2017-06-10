@@ -3,6 +3,9 @@ var express = require('express');
 const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db');
+
+//load in models
+require('./models/study');
 var study = require('./server/study');
 
 app.set('view engine', 'ejs');
