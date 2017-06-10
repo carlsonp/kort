@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<!-- Include JQuery -->
+		<script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+		<!-- Include Bootstrap -->
+		<script type="text/javascript" src="bootstrap/bootstrap-3.3.7.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-theme.min.css"/>
+
+		<title>Edit Page</title>
+		<style>
+			body {
+				padding-left: 25px;
+			}
+		</style>
+		
+	</head>
+	<body>
+	<script>
+		function updateStudy(){
+			jQuery.ajax({
+			    url: "/updateStudy/<%= study[0]._id %>", 
+			    type: "POST",
+			    data: {title: $('#title').val(),
+			    	   type: 'cardsort',
+					   cards: $('#cards').val(),
+					   groups: $('#groups').val()},
+			   success: function(data) {
+				    alert('Load was performed.');
+  				},
+			});
+		}
+	</script>
+	<h1>Edit</h1>
+	<!-- <h4><%= study[0]._id %></h4> -->
+	<input id='title' type="text" value="<%= study[0].title %>"></input>
+	<br>
+	<textarea id='cards'><%= study[0].cards %></textarea>
+	<br>
+	<textarea id='groups'><%= study[0].groups %></textarea>
+	<br>
+	<a href="" onclick="updateStudy()">Update Study</a>
+	<br>
+	<a href='/admin'>back to studies</a>
+	</body>
+</html>
