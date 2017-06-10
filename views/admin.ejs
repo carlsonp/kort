@@ -11,14 +11,23 @@
 		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-theme.min.css"/>
 
 		<title>Admin Page</title>
+		<style>
+			table, th, td {
+			    border: 1px solid black;
+			}
+
+			th, td {
+			    padding: 10px;
+			}
+		</style>
 	</head>
-	 
-	<h2>Admin Page</h2>
+	<body>
+	<h2>Add a Study</h2>
 	<form action="/createStudy" method="post">
 		<input type="text" name="title" value="Mickey"><br>
 		<input type="text" name="type" value="Cardsort"><br>
-		<textarea id="cards" rows="4" cols="50" name='cards'></textarea><br>
-		<textarea id="groups" rows="4" cols="50" name='groups'></textarea><br>
+		<textarea name='cards'></textarea><br>
+		<textarea name='groups'></textarea><br>
 		<input id='submit' type="submit" value="Submit"></input>
 	</form>
 	<hr>
