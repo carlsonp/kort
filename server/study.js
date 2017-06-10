@@ -28,11 +28,7 @@ module.exports = {
         console.log("Error getting studies.");
         res.end(err);
       } else {
-        for (var i = 0; i < docs.length; i++) {
-          console.log('Study:', docs[i]._id);
-        }
         res.render('admin.ejs',{studies: docs});
-        // res.end(JSON.stringify(docs));
       }
     });
   },
