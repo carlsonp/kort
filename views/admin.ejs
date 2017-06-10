@@ -12,6 +12,9 @@
 
 		<title>Admin Page</title>
 		<style>
+			body {
+				padding-left: 25px;
+			}
 			table, th, td {
 			    border: 1px solid black;
 			}
@@ -20,18 +23,50 @@
 			    padding: 10px;
 			}
 		</style>
+		<script>
+		function deleteStudy(id){
+			if (confirm('Are you sure you want to delete the study?')) {
+			    jQuery.ajax({
+				    url: "/deleteStudy/"+id, 
+				    type: "DELETE",
+				});
+			} else {
+			    // Do nothing!
+			}
+			
+		}
+		function addStudy(){
+			jQuery.ajax({
+			    url: "/createStudy", 
+			    type: "POST",
+			    data: {title: $('#title').val(),
+					   type: $('#type :selected').val(),
+					   cards: $('#cards').val(),
+					   groups: $('#groups').val()
+				},
+			});
+		}
+	</script>
 	</head>
 	<body>
-	<h2>Add a Study</h2>
-	<form action="/createStudy" method="post">
-		<input type="text" name="title" value="Mickey"><br>
-		<input type="text" name="type" value="Cardsort"><br>
-		<textarea name='cards'></textarea><br>
-		<textarea name='groups'></textarea><br>
-		<input id='submit' type="submit" value="Submit"></input>
-	</form>
-	<hr>
-	<h2>Available Studies </h2>
+	<h1>Study Management</h1>
+	<h3>Add new study</h3>
+	<table><tr>
+		<td>Create New</td>
+		<td><input id='title' type="text"></td>
+		<td>
+			<select id='type'>
+			  <option value="cardsort">Card Sort</option>
+			  <option value="treetest">Tree Test</option>
+			  <option value="reactioncards">Product Reaction Cards</option>
+			</select>
+		</td>
+		<td><textarea id='cards'></textarea></td>
+		<td><textarea id='groups'></textarea></td>
+		<td><a href="" onclick="addStudy()">Add</a></td>
+		</tr>
+	</table>
+	<h3>Card Sorts</h3>
 	 <table>
 	 	<tr>
 	 		<th>ID</th>
@@ -39,16 +74,65 @@
 	 		<th>Type</th>
 	 		<th>Cards</th>
 	 		<th>Groups</th>
+	 		<th>Action</th>
  		</tr>
 		<% for(var i=0; i<studies.length; i++) {%>
-			<tr>
-			  <td><%= studies[i]._id %></td>
-			  <td><%= studies[i].title %></td>
-			  <td><%= studies[i].type %></td>
-			  <td><%= studies[i].cards %></td>
-			  <td><%= studies[i].groups %></td>
-			   <td><a href="/deleteStudy/<%=studies[i]._id%>">delete</td>
-			</tr>
+		<%if (studies[i].type == 'cardsort') { %>
+				<tr>
+					<td><%= studies[i]._id %></td>
+					<td><%= studies[i].title %></td>
+					<td><%= studies[i].type %></td>
+					<td><%= studies[i].cards %></td>
+					<td><%= studies[i].groups %></td>
+					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+				</tr>
+			<% } %>
+		<% } %>
+  	</table>
+  	<h3>Tree Tests</h3>
+	 <table>
+	 	<tr>
+	 		<th>ID</th>
+	 		<th>Title</th>
+	 		<th>Type</th>
+	 		<th>Cards</th>
+	 		<th>Groups</th>
+	 		<th>Action</th>
+ 		</tr>
+		<% for(var i=0; i<studies.length; i++) {%>
+		<%if (studies[i].type == 'treetest') { %>
+				<tr>
+					<td><%= studies[i]._id %></td>
+					<td><%= studies[i].title %></td>
+					<td><%= studies[i].type %></td>
+					<td><%= studies[i].cards %></td>
+					<td><%= studies[i].groups %></td>
+					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+				</tr>
+			<% } %>
+		<% } %>
+  	</table>
+  	<h3>Product Reaction Cards</h3>
+	 <table>
+	 	<tr>
+	 		<th>ID</th>
+	 		<th>Title</th>
+	 		<th>Type</th>
+	 		<th>Cards</th>
+	 		<th>Groups</th>
+	 		<th>Action</th>
+ 		</tr>
+		<% for(var i=0; i<studies.length; i++) {%>
+		<%if (studies[i].type == 'reactioncards') { %>
+				<tr>
+					<td><%= studies[i]._id %></td>
+					<td><%= studies[i].title %></td>
+					<td><%= studies[i].type %></td>
+					<td><%= studies[i].cards %></td>
+					<td><%= studies[i].groups %></td>
+					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+				</tr>
+			<% } %>
 		<% } %>
   	</table>
 	</body>
