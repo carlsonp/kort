@@ -30,6 +30,9 @@ app.get('/treetest', function (req, res) {
 	res.render('treetest.ejs');
 });
 
+app.get('/admin', function (req, res) {
+	res.render('admin.ejs');
+});
 
 app.post('/createStudy', study.createStudy);
 app.get('/deleteStudy/:id', study.deleteStudy);
