@@ -17,6 +17,8 @@ module.exports = {
         res.end(err);
       } else {
         console.log('Saved study to database Successfully.');
+        req.method = 'GET';
+		res.redirect('/admin');
         res.end();
       }
     });
@@ -46,6 +48,8 @@ module.exports = {
       if (err) {
         res.end(err);            
       } else {
+		req.method = 'GET';
+		res.redirect('/admin');
         res.end();
       }
     });
