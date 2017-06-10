@@ -6,6 +6,8 @@ var db = require('./server/db');
 
 //load in models
 require('./models/study');
+
+//load in functions
 var study = require('./server/study');
 
 app.set('view engine', 'ejs');
@@ -33,11 +35,8 @@ app.get('/treetest', function (req, res) {
 	res.render('treetest.ejs');
 });
 
-app.get('/admin', function (req, res) {
-	res.render('admin.ejs');
-});
-
 app.post('/createStudy', study.createStudy);
+app.get('/admin', study.loadAdminPage);
 app.get('/deleteStudy/:id', study.deleteStudy);
 
 app.listen(3000, function () {

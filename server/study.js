@@ -3,22 +3,24 @@ require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 
-
 module.exports = {
   createStudy: function (req, res) {
-    var study = req.body;
-    new Study({ name: study.name,
-                type: study.type,
-                cards: study.cards,
-                groups: study.groups,})
-      .save(function (err) {
-        if (err) {
-          console.log('error on the dal');
-          res.status(504);
-          res.end(err);
-        } else {
-          console.log('lookinggood');
-          res.end();
+    var studyData = req.body;
+    var newStudy = new Study({ title: studyData.title,
+                type: studyData.type,
+                cards: studyData.cards,
+                groups: studyData.groups,});
+    newStudy.save(function (err) {
+      if (err) {
+        console.log('Error saving study.');
+        res.status(504);
+        res.end(err);
+      } else {
+        console.log('Saved study to database Successfully.');
+        res.end();
+      }
+    });
+  },
   loadAdminPage: function (req, res, next) {
     Study.find({}, function (err, docs) {
       if (err) {
@@ -35,11 +37,11 @@ module.exports = {
     });
   },
   deleteStudy: function(req, res, next) {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     Study.find({ _id: req.params.id}, function(err) {
       if(err) {
         req.status(504);
-		console.log("Cannot find study to delete:" + req.params.id);
+		    console.log("Cannot find study to delete:" + req.params.id);
         req.end();
         console.log(err);
       }
