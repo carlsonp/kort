@@ -19,8 +19,20 @@ module.exports = {
         } else {
           console.log('lookinggood');
           res.end();
+  loadAdminPage: function (req, res, next) {
+    Study.find({}, function (err, docs) {
+      if (err) {
+        res.status(504);
+        console.log("Error getting studies.");
+        res.end(err);
+      } else {
+        for (var i = 0; i < docs.length; i++) {
+          console.log('Study:', docs[i]._id);
         }
-      });
+        res.render('admin.ejs',{studies: docs});
+        // res.end(JSON.stringify(docs));
+      }
+    });
   },
   deleteStudy: function(req, res, next) {
     console.log(req.params.id);

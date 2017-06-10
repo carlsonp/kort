@@ -21,6 +21,26 @@
 		<textarea id="groups" rows="4" cols="50" name='groups'></textarea><br>
 		<input id='submit' type="submit" value="Submit"></input>
 	</form>
-	<body>
+	<hr>
+	<h2>Available Studies </h2>
+	 <table>
+	 	<tr>
+	 		<th>ID</th>
+	 		<th>Title</th>
+	 		<th>Type</th>
+	 		<th>Cards</th>
+	 		<th>Groups</th>
+ 		</tr>
+		<% for(var i=0; i<studies.length; i++) {%>
+			<tr>
+			  <td><%= studies[i]._id %></td>
+			  <td><%= studies[i].title %></td>
+			  <td><%= studies[i].type %></td>
+			  <td><%= studies[i].cards %></td>
+			  <td><%= studies[i].groups %></td>
+			   <td><a href="/deleteStudy/<%=studies[i]._id%>">delete</td>
+			</tr>
+		<% } %>
+  	</table>
 	</body>
 </html>
