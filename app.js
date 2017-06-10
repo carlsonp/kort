@@ -37,7 +37,7 @@ app.get('/treetest', function (req, res) {
 
 app.post('/createStudy', study.createStudy);
 app.get('/admin', study.loadAdminPage);
-app.get('/deleteStudy/:id', study.deleteStudy);
+app.delete('/deleteStudy/:id', study.deleteStudy);
 
 app.listen(3000, function () {
 	console.log('Kort running on port: 3000');
