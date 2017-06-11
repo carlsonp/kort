@@ -26,30 +26,12 @@
 	</head>
 	<body>
 	<h1>Study Management</h1>
-	<h3>Add new study</h3>
-	<form method="POST" action="/createStudy">
-	<table><tr>
-		<td>Create New</td>
-		<td><input name='title' type="text"></td>
-		<td>
-			<select name='type'>
-			  <option value="cardsort">Card Sort</option>
-			  <option value="treetest">Tree Test</option>
-			  <option value="reactioncards">Product Reaction Cards</option>
-			</select>
-		</td>
-		<td><textarea name='cards'></textarea></td>
-		<td><textarea name='groups'></textarea></td>
-		<td><input type="submit" value="Create" /></td>
-		</tr>
-	</table>
-	</form>
+	
 	<h3>Card Sorts</h3>
 	 <table>
 	 	<tr>
 	 		<th>ID</th>
 	 		<th>Title</th>
-	 		<th>Type</th>
 	 		<th>Cards</th>
 	 		<th>Groups</th>
 	 		<th>Action</th>
@@ -59,13 +41,23 @@
 				<tr>
 					<td><%= studies[i]._id %></td>
 					<td><%= studies[i].title %></td>
-					<td><%= studies[i].type %></td>
 					<td><%= studies[i].cards %></td>
 					<td><%= studies[i].groups %></td>
 					<td><a href="/deleteStudy/<%= studies[i]._id%>">Delete</a> | <a href="/editStudy/<%= studies[i]._id%>">Edit</a></td>
 				</tr>
 			<% } %>
 		<% } %>
+		<form method="POST" action="/createStudy">
+	<tr>
+		<td>Create New</td>
+		<td><input name='title' type="text"></td>
+		<input type="hidden" name="type" value="cardsort">
+		<td><textarea name='cards'></textarea></td>
+		<td><textarea name='groups'></textarea></td>
+		<td><input type="submit" value="Create" /></td>
+		</tr>
+
+	</form>
   	</table>
   	<h3>Tree Tests</h3>
 	 <table>
