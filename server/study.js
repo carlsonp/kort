@@ -80,16 +80,29 @@ module.exports = {
     });
   },
   deleteStudy: function(req, res, next) {
+	var Study;
+	console.log(req.params.type);
+	switch(req.params.type) {
+		case "cardsort":
+			Study = mongoose.model('CardSortStudy');
+			break;
+		case "treetest":
+			Study = mongoose.model('TreeTestStudy');
+			break;
+		case "productreaction":
+			Study = mongoose.model('ProductReactionStudy');
+			break;
+	}
     Study.find({ _id: req.params.id}, function(err) {
-      if(err) {
+      if (err) {
         req.status(504);
 		console.log("Cannot find study to delete:" + req.params.id);
+		console.log(err);
         req.end();
-        console.log(err);
       }
     }).remove(function (err) {
-      console.log(err);
       if (err) {
+		console.log(err);
         res.end(err);            
       } else {
 		res.redirect('/admin');
