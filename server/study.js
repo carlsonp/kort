@@ -17,8 +17,7 @@ module.exports = {
         res.end(err);
       } else {
         console.log('Saved study to database Successfully.');
-        req.method = 'GET';
-		    res.redirect('/admin');
+		res.redirect('/admin');
         res.end();
       }
     });
@@ -64,7 +63,7 @@ module.exports = {
     Study.find({ _id: req.params.id}, function(err) {
       if(err) {
         req.status(504);
-		    console.log("Cannot find study to delete:" + req.params.id);
+		console.log("Cannot find study to delete:" + req.params.id);
         req.end();
         console.log(err);
       }
@@ -73,8 +72,7 @@ module.exports = {
       if (err) {
         res.end(err);            
       } else {
-    		req.method = 'GET';
-    		res.redirect('/admin');
+		res.redirect('/admin');
         res.end();
       }
     });

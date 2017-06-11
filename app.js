@@ -37,7 +37,7 @@ app.get('/treetest', function (req, res) {
 
 app.post('/createStudy', study.createStudy);
 app.get('/admin', study.loadAdminPage);
-app.delete('/deleteStudy/:id', study.deleteStudy);
+app.get('/deleteStudy/:id', study.deleteStudy);
 app.get('/editStudy/:id', study.editStudy);
 app.post('/updateStudy/:id', study.updateStudy);
 

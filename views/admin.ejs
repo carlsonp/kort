@@ -23,46 +23,27 @@
 			    padding: 10px;
 			}
 		</style>
-		<script>
-		function deleteStudy(id){
-			if (confirm('Are you sure you want to delete the study?')) {
-			    jQuery.ajax({
-				    url: "/deleteStudy/"+id, 
-				    type: "DELETE",
-				});
-			} 
-		}
-		function addStudy(){
-			jQuery.ajax({
-			    url: "/createStudy", 
-			    type: "POST",
-			    data: {title: $('#title').val(),
-					   type: $('#type :selected').val(),
-					   cards: $('#cards').val(),
-					   groups: $('#groups').val(),
-				},
-			});
-		}
-	</script>
 	</head>
 	<body>
 	<h1>Study Management</h1>
 	<h3>Add new study</h3>
+	<form method="POST" action="/createStudy">
 	<table><tr>
 		<td>Create New</td>
-		<td><input id='title' type="text"></td>
+		<td><input name='title' type="text"></td>
 		<td>
-			<select id='type'>
+			<select name='type'>
 			  <option value="cardsort">Card Sort</option>
 			  <option value="treetest">Tree Test</option>
 			  <option value="reactioncards">Product Reaction Cards</option>
 			</select>
 		</td>
-		<td><textarea id='cards'></textarea></td>
-		<td><textarea id='groups'></textarea></td>
-		<td><a href="" onclick="addStudy()">Add</a></td>
+		<td><textarea name='cards'></textarea></td>
+		<td><textarea name='groups'></textarea></td>
+		<td><input type="submit" value="Create" /></td>
 		</tr>
 	</table>
+	</form>
 	<h3>Card Sorts</h3>
 	 <table>
 	 	<tr>
@@ -81,7 +62,7 @@
 					<td><%= studies[i].type %></td>
 					<td><%= studies[i].cards %></td>
 					<td><%= studies[i].groups %></td>
-					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a> | <a href="/editStudy/<%=studies[i]._id%>">Edit</a></td>
+					<td><a href="/deleteStudy/<%= studies[i]._id%>">Delete</a> | <a href="/editStudy/<%= studies[i]._id%>">Edit</a></td>
 				</tr>
 			<% } %>
 		<% } %>
