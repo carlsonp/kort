@@ -83,13 +83,38 @@ $(document).ready(function() {
 		$('#initialColumn').append(newElement);
 		updateContainers();
 	}
-	
+
+	function loadDatafromDB(){
+		var groups = $('#hiddenGroups').val().split(",").map(function(item) {
+			  return item.trim();
+		});
+		var cards = $('#hiddenCards').val().split(",").map(function(item) {
+			  return item.trim();
+		});
+		for (var i = 0; i < groups.length; i++) {
+			if (groups[i] != ''){
+				createGroup(groups[i]);	
+			}
+		}
+		for (var i = 0; i < cards.length; i++) {
+			if (cards[i] != ''){
+				createCard(cards[i]);
+			}
+		}
+		if ($('#hiddenType').val() == 'open'){
+			$('#newGroupButton').show();
+		}
+		$('#hiddenGroups').remove();
+		$('#hiddenCards').remove();
+		$('#hiddenType').remove();
+	}
 	function setUpDropZones(){
 		for (var i = 0; i < zoneNum; i++) {
 			$('#dropZonesPlace').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
 		}
 	}
 	//drop zones for groups need to be created before default groups
+	loadDatafromDB();
 	
 	$('#addCardsButton').click(function() {
 		var strArray = $('#cardsList').val().split("\n");
