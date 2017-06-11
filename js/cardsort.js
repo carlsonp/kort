@@ -1,7 +1,5 @@
 $(document).ready(function() {
 	
-	var groupsArray = [];
-	var cardsArray = [];
 	var groupNum = 0;
 	var zoneNum = 5;
 
