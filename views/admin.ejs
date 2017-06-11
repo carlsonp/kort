@@ -18,7 +18,6 @@
 			table, th, td {
 			    border: 1px solid black;
 			}
-
 			th, td {
 			    padding: 10px;
 			}
@@ -43,7 +42,7 @@
 					<td><%= studies[i].title %></td>
 					<td><%= studies[i].cards %></td>
 					<td><%= studies[i].groups %></td>
-					<td><a href="/deleteStudy/cardsort/<%= studies[i]._id%>">Delete</a> | <a href="/editStudy/<%= studies[i]._id%>">Edit</a></td>
+					<td><a href="/deleteStudy/cardsort/<%= studies[i]._id%>">Delete</a> | <a href="/editStudy/<%= studies[i]._id%>">Edit</a> | <a href="/cardsort/<%= studies[i]._id%>">View</a></td>
 				</tr>
 			<% } %>
 		<% } %>

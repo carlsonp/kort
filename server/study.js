@@ -22,6 +22,7 @@ module.exports = {
 			newStudy = new CardSortStudy({
 						title: studyData.title,
 						type: studyData.type,
+            studyType: 'open',
 						cards: cards,
 						groups: groups,});
 			break;
