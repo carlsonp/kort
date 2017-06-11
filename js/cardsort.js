@@ -4,10 +4,10 @@ $(document).ready(function() {
 	var zoneNum = 5;
 
 	//Slide out menu
-	function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
-	function closeMenu(){document.getElementById("mySidenav").style.width = "0px";}
-	$('#hamburger').click(function(){openMenu();});
-	$('#closeMenu').click(function(){closeMenu();});
+	// function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
+	// function closeMenu(){document.getElementById("mySidenav").style.width = "0px";}
+	// $('#hamburger').click(function(){openMenu();});
+	// $('#closeMenu').click(function(){closeMenu();});
 
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
@@ -80,12 +80,6 @@ $(document).ready(function() {
 		updateContainers();
 	};
 
-	function createGroups(groupArr){
-		for (var i = 0; i < groupArr.length; i++) {
-			createGroup(groupArr[i]);
-		}
-	}
-
 	function createCard(cardName){
 		var newElement = $('<div class="item">'+cardName+'</div>');
 		$('#initialColumn').append(newElement);
@@ -98,8 +92,6 @@ $(document).ready(function() {
 		}
 	}
 	//drop zones for groups need to be created before default groups
-	// setUpDropZones();
-	// createGroups(['Group 1','Group 2','Group 3','Group 4','Group 5']);
 	
 	$('#addCardsButton').click(function() {
 		var strArray = $('#cardsList').val().split("\n");
@@ -120,36 +112,4 @@ $(document).ready(function() {
 		createGroup("Group");
 	});
 	
-	$('#addItem').click(function() {
-		var itemName = prompt("Please enter item name:", "");
-		var newElement = $('<div class="item">'+itemName+'</div>');
-		$('#initialColumn').append(newElement);
-		updateContainers();
-		closeMenu();
-	});
-
-	$('#exportJSON').click(function() {
-		$('.group .droparea').each(function(index,groupObj){
-			console.log($(groupObj).text());
-			$('.item').each(function(index,itemObj){
-				console.log($(itemObj).text());
-			});
-		});
-			// var nestedAreaChild = $(groupObj).children()[2]
-			// $(nestedAreaChild).each(function(index,cardObj){
-			// 	console.log($(groupObj).text()+" : "+$(cardObj).text());
-			// });
-
-
-		// var JSONExport = new Object();
-		// drake.containers.forEach(function (item) {
-		//   var children = $('#'+item.id).children();
-		//   JSONExport[item.id] = [];
-		//   for (var i = 0; i < children.length; i++) {
-		// 	JSONExport[item.id].push(children[i].innerHTML);
-		//   }
-		// })
-		// console.log(JSON.stringify(JSONExport));
-		//closeMenu(); 
-	});
 });
