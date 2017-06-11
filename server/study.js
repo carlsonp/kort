@@ -81,7 +81,6 @@ module.exports = {
   },
   deleteStudy: function(req, res, next) {
 	var Study;
-	console.log(req.params.type);
 	switch(req.params.type) {
 		case "cardsort":
 			Study = mongoose.model('CardSortStudy');
