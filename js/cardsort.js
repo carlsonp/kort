@@ -114,6 +114,7 @@ $(document).ready(function() {
 		}
 	}
 	//drop zones for groups need to be created before default groups
+	setUpDropZones();
 	loadDatafromDB();
 	
 	$('#addCardsButton').click(function() {
@@ -135,4 +136,11 @@ $(document).ready(function() {
 		createGroup("Group");
 	});
 	
+	// $('#addItem').click(function() {
+	// 	var itemName = prompt("Please enter item name:", "");
+	// 	var newElement = $('<div class="item">'+itemName+'</div>');
+	// 	$('#initialColumn').append(newElement);
+	// 	updateContainers();
+	// 	closeMenu();
+	// });
 });
