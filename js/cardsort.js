@@ -100,8 +100,8 @@ $(document).ready(function() {
 		}
 	}
 	//drop zones for groups need to be created before default groups
-	setUpDropZones();
-	createGroups(['Group 1','Group 2','Group 3','Group 4','Group 5']);
+	// setUpDropZones();
+	// createGroups(['Group 1','Group 2','Group 3','Group 4','Group 5']);
 	
 	$('#addCardsButton').click(function() {
 		var strArray = $('#cardsList').val().split("\n");
