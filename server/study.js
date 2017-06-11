@@ -13,11 +13,17 @@ module.exports = {
 	var newStudy;
 	switch(studyData.type) {
 		case "cardsort":
+			var cards = studyData.cards.split(",").map(function(item) {
+			  return item.trim();
+			});
+			var groups = studyData.groups.split(",").map(function(item) {
+			  return item.trim();
+			});
 			newStudy = new CardSortStudy({
 						title: studyData.title,
 						type: studyData.type,
-						cards: studyData.cards,
-						groups: studyData.groups,});
+						cards: cards,
+						groups: groups,});
 			break;
 		case "treetest":
 			newStudy = new TreeTestStudy({
