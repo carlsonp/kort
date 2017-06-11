@@ -1,10 +1,22 @@
 var mongoose = require('mongoose');  
 
-var Study = new mongoose.Schema({
+var CardSortStudy = new mongoose.Schema({
 	title: { type: String },
-	type: { type: String },
+	type: String,
 	cards: [],
 	groups: [],
 });
 
-mongoose.model('Study', Study);
+var TreeTestStudy = new mongoose.Schema({
+	title: { type: String },
+	type: String,
+});
+
+var ProductReactionStudy = new mongoose.Schema({
+	title: { type: String },
+	type: String,
+});
+
+mongoose.model('CardSortStudy', CardSortStudy);
+mongoose.model('TreeTestStudy', TreeTestStudy);
+mongoose.model('ProductReactionStudy', ProductReactionStudy);

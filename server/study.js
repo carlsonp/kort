@@ -1,29 +1,49 @@
-require('mongoose').model('Study');
+require('mongoose').model('CardSortStudy');
+require('mongoose').model('TreeTestStudy');
+require('mongoose').model('ProductReactionStudy');
 
 var mongoose = require('mongoose');
-var Study = mongoose.model('Study');
+var CardSortStudy = mongoose.model('CardSortStudy');
+var TreeTestStudy = mongoose.model('TreeTestStudy');
+var ProductReactionStudy = mongoose.model('ProductReactionStudy');
 
 module.exports = {
   createStudy: function (req, res) {
     var studyData = req.body;
-    var newStudy = new Study({ title: studyData.title,
-                type: studyData.type,
-                cards: studyData.cards,
-                groups: studyData.groups,});
-    newStudy.save(function (err) {
-      if (err) {
-        console.log('Error saving study.');
-        res.status(504);
-        res.end(err);
-      } else {
-        console.log('Saved study to database Successfully.');
+	var newStudy;
+	switch(studyData.type) {
+		case "cardsort":
+			newStudy = new CardSortStudy({
+						title: studyData.title,
+						type: studyData.type,
+						cards: studyData.cards,
+						groups: studyData.groups,});
+			break;
+		case "treetest":
+			newStudy = new TreeTestStudy({
+						title: studyData.title,
+						type: studyData.type});
+			break;
+		case "productreaction":
+			newStudy = new ProductReactionStudy({
+						title: studyData.title,
+						type: studyData.type});
+			break;
+	}
+	newStudy.save(function (err) {
+	if (err) {
+		console.log('Error saving CardSortStudy.');
+		res.status(504);
+		res.end(err);
+	} else {
+		console.log('Saved CardSortStudy to database Successfully.');
 		res.redirect('/admin');
-        res.end();
-      }
+		res.end();
+	}
     });
   },
   loadAdminPage: function (req, res, next) {
-    Study.find({}, function (err, docs) {
+    CardSortStudy.find({}, function (err, docs) {
       if (err) {
         res.status(504);
         console.log("Error getting studies on admin page.");
@@ -34,7 +54,7 @@ module.exports = {
     });
   },
   editStudy: function (req, res, next) {
-    Study.find({_id: req.params.id}, function (err, docs) {
+    CardSortStudy.find({_id: req.params.id}, function (err, docs) {
       if (err) {
         res.status(504);
         console.log("Error getting study to edit.");
