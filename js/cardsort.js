@@ -32,13 +32,11 @@ $(document).ready(function() {
 
 	function deleteGroup(group){
 		groupNum-=1;
-		//return items to initial area
 		var nestedArea = group.children()[group.children().length-2]
 		var items = $(nestedArea).children()
 		items.each(function() {
 			$('#initialColumn').append(this);
 		});
-		//remove group div
 		$(group).attr("id","toBeDeleted")
 		$('#toBeDeleted').fadeOut("fast","swing",function() {$(this).remove();});
 	}
