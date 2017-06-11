@@ -48,6 +48,18 @@ module.exports = {
 	}
     });
   },
+  renderCardSort: function (req, res, next) {
+    CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
+      if (err) {
+        res.status(504);
+        console.log("Error getting studies on admin page.");
+        res.end(err);
+      } else {
+		console.log(docs);
+        res.render('cardsort.ejs',{singleStudy: docs});
+      }
+    });
+  },
   loadAdminPage: function (req, res, next) {
     CardSortStudy.find({}, function (err, docs) {
       if (err) {
