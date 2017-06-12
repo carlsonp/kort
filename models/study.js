@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var CardSortStudy = new mongoose.Schema({
 	title: { type: String },
 	type: String,
+	studyType: String, //open or closed
 	cards: [],
 	groups: [],
 });
