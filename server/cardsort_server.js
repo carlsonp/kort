@@ -43,25 +43,26 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        CardSortStudy.find({_id: req.params.id}, function (err, docs) {
+        CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error getting study to edit.");
                 res.end(err);
             } else {
-                res.render('editStudy.ejs',{study: docs});
+                res.render('editCardsort.ejs',{study: docs});
             }
         });
     },
     update: function (req, res, next) {
-        Study.findByIdAndUpdate({ _id: req.params.id}, {$set: req.body}, options, function (err, docs) {
+        CardSortStudy.findByIdAndUpdate({ _id: req.params.id}, {$set: req.body}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log('cardsort_server.js: error updating cardsort');
                 res.end(err);
             } 
             else {
-                res.render('editStudy.ejs',{study: docs});
+                res.render('editCardsort.ejs',{study: docs});
+                
             }
         });
     },
