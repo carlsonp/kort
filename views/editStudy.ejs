@@ -20,7 +20,7 @@
 		
 	</head>
 	<body>
-	<script>
+<!-- 	<script>
 		function updateStudy(){
 			jQuery.ajax({
 			    url: "/updateStudy/<%= study[0]._id %>", 
@@ -34,17 +34,17 @@
   				},
 			});
 		}
-	</script>
+	</script> -->
 	<h1>Edit</h1>
 	<!-- <h4><%= study[0]._id %></h4> -->
-	<input id='title' type="text" value="<%= study[0].title %>"></input>
+	<input id='title' type="text" value="<%= study.title %>"></input>
 	<br>
-	<textarea id='cards'><%= study[0].cards %></textarea>
+	<textarea id='cards'><%= study.cards %></textarea>
 	<br>
-	<textarea id='groups'><%= study[0].groups %></textarea>
+	<textarea id='groups'><%= study.groups %></textarea>
 	<br>
 	<a href="" onclick="updateStudy()">Update Study</a>
-	<br>
+	<br><br><br>
 	<a href='/admin'>back to studies</a>
 	</body>
 </html>
