@@ -35,13 +35,13 @@ app.get('/treetest', function (req, res) {
 app.post('/createCardsort', cardsort.create);
 app.get('/deleteCardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
+app.get('/editCardsort/:id', cardsort.edit);
+app.post('/updateCardsort/:id', cardsort.update);
 
 app.get('/admin', study.loadAdminPage);
-app.get('/editStudy/:id', study.editStudy);
-app.post('/updateStudy/:id', study.updateStudy);
+
 
 
 app.listen(3000, function () {
 	console.log('Kort running on port: 3000');
 });
-
