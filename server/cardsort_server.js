@@ -17,7 +17,7 @@ module.exports = {
             type: studyData.type,
             studyType: studyData.studyType,
             cards: cards,
-            groups: groups,});
+            groups: groups,
         });
     	newStudy.save(function (err) {
         	if (err) {
