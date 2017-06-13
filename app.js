@@ -9,6 +9,7 @@ require('./models/study');
 
 //load in functions
 var study = require('./server/study');
+var cardsort = require('./server/cardsort_server');
 
 app.set('view engine', 'ejs');
 
@@ -31,12 +32,14 @@ app.get('/treetest', function (req, res) {
 	res.render('treetest.ejs');
 });
 
-app.post('/createStudy', study.createStudy);
+app.post('/createCardsort', cardsort.create);
+app.get('/deleteCardsort/:id', cardsort.delete);
+app.get('/cardsort/:id', cardsort.view);
+
 app.get('/admin', study.loadAdminPage);
-app.get('/deleteStudy/:type/:id', study.deleteStudy);
 app.get('/editStudy/:id', study.editStudy);
 app.post('/updateStudy/:id', study.updateStudy);
-app.get('/cardsort/:id', study.renderCardSort);
+
 
 app.listen(3000, function () {
 	console.log('Kort running on port: 3000');
