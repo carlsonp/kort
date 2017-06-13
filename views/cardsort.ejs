@@ -26,7 +26,7 @@
 	<body>
 		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.groups.length; i++) {%><%= singleStudy.groups[i] %>,<% } %>">
 		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.cards.length; i++) {%><%= singleStudy.cards[i] %>,<% } %>">
-		<input id='hiddenType' type='text' value="open">
+		<input id='hiddenType' type='text' value="<%= singleStudy.studyType %>">
 
 		<div id="mySidenav" class="sidenav">
 			<a id='closeMenu' href="javascript:void(0)" class="closebtn" >&times;</a>

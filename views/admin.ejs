@@ -31,6 +31,7 @@
 	 	<tr>
 	 		<th>ID</th>
 	 		<th>Title</th>
+	 		<th>Study Type</th>
 	 		<th>Cards</th>
 	 		<th>Groups</th>
 	 		<th>Action</th>
@@ -40,6 +41,7 @@
 				<tr>
 					<td><%= studies[i]._id %></td>
 					<td><%= studies[i].title %></td>
+					<td><%= studies[i].studyType %></td>
 					<td><%= studies[i].cards %></td>
 					<td><%= studies[i].groups %></td>
 					<td><a href="/deleteStudy/cardsort/<%= studies[i]._id%>">Delete</a> | <a href="/editStudy/<%= studies[i]._id%>">Edit</a> | <a href="/cardsort/<%= studies[i]._id%>">View</a></td>
@@ -51,6 +53,7 @@
 		<td>Create New</td>
 		<td><input name='title' type="text"></td>
 		<input type="hidden" name="type" value="cardsort">
+		<td><input name='studyType' type="text"></td>
 		<td><textarea name='cards'></textarea></td>
 		<td><textarea name='groups'></textarea></td>
 		<td><input type="submit" value="Create" /></td>

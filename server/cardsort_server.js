@@ -15,9 +15,9 @@ module.exports = {
       	var newStudy = new CardSortStudy({
             title: studyData.title,
             type: studyData.type,
-            studyType: 'open',
+            studyType: studyData.studyType,
             cards: cards,
-            groups: groups,
+            groups: groups,});
         });
     	newStudy.save(function (err) {
         	if (err) {
