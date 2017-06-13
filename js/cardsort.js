@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
 	var groupNum = 0;
 	var zoneNum = 5;
+	var studyIsOpen = false;
 
 	//Slide out menu
 	// function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
@@ -69,7 +70,9 @@ $(document).ready(function() {
 			var groupElement = $(event.target).parent();
         	deleteGroup(groupElement);
     	});
-    	group.append(closeIcon);
+		if (studyIsOpen){
+			group.append(closeIcon);
+		}
     	group.append(groupTitle);
     	group.append(nestedArea);
     	group.append(grabIcon);
@@ -85,6 +88,10 @@ $(document).ready(function() {
 	}
 
 	function loadDatafromDB(){
+		if ($('#hiddenType').val() == 'open'){
+			$('#newGroupButton').show();
+			studyIsOpen = true;
+		}
 		var groups = $('#hiddenGroups').val().split(",").map(function(item) {
 			  return item.trim();
 		});
@@ -100,9 +107,6 @@ $(document).ready(function() {
 			if (cards[i] != ''){
 				createCard(cards[i]);
 			}
-		}
-		if ($('#hiddenType').val() == 'open'){
-			$('#newGroupButton').show();
 		}
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
