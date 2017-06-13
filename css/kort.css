@@ -2,6 +2,7 @@ html,body {
     height:100%;
     width: 100%;
     background-color: rgb(0, 107, 132);
+    color: white;
 }
 
 button {
@@ -17,6 +18,13 @@ button:hover {
 }
 button:active {
 	background-color: #3e8e41;
+}
+
+textarea {
+    color:black;
+}
+input {
+    color:black;
 }
 
 #header { 
