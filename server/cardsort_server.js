@@ -54,14 +54,15 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        CardSortStudy.findByIdAndUpdate({ _id: req.params.id}, {$set: req.body}, function (err, docs) {
+        CardSortStudy.findByIdAndUpdate({ _id: req.body.id}, {$set: req.body}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log('cardsort_server.js: error updating cardsort');
                 res.end(err);
             } 
             else {
-                res.render('editCardsort.ejs',{study: docs});
+                res.redirect('/admin');
+                res.end();
                 
             }
         });
