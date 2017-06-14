@@ -9,11 +9,11 @@ var CardSortStudy = new mongoose.Schema({
 	cards: [],
 	groups: [],
 	responses: [{
-			participantID,
-			groups: [{
-				cards: []
-			}]
+		participantID: String,
+		groups: [{
+			cards: []
 		}]
+	}]
 });
 
 var TreeTestStudy = new mongoose.Schema({
