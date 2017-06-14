@@ -36,7 +36,7 @@ app.get('/treetest', function (req, res) {
 app.post('/createCardsort', cardsort.create);
 app.get('/deleteCardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
-app.get('/editCardsort/:id', cardsort.edit);
+app.get('/cardsortResults/:id', cardsort.results);
 app.post('/updateCardsort', cardsort.update);
 
 app.get('/admin', study.loadAdminPage);

@@ -42,14 +42,14 @@ module.exports = {
             }
         });
     },
-    edit: function (req, res, next) {
+    results: function (req, res, next) {
         CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error getting study to edit.");
+                console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('editCardsort.ejs',{study: docs});
+                res.render('cardsort_results.ejs',{study: docs});
             }
         });
     },
@@ -62,8 +62,7 @@ module.exports = {
             } 
             else {
                 res.redirect('/admin');
-                res.end();
-                
+                res.end();   
             }
         });
     },
