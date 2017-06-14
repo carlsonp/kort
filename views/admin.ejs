@@ -9,102 +9,173 @@
 		<script type="text/javascript" src="bootstrap/bootstrap-3.3.7.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-theme.min.css"/>
+		<!-- Include kort css -->
+		<link rel="stylesheet" type="text/css" href="../kort.css" />
 
-		<title>Admin Page</title>
+		<title>Kort: My Studies</title>
 		<style>
-			body {
+			textarea {
+				resize: none;
+			}
+			.accordion {
+				 width: 80%;
+				 margin: 0px;
+				 margin-top: 10px;
+				 color: #444;	 
+			}
+			.accordion .accordion-title {
+			    background-color: #eee;
+			    cursor: pointer;
+			    padding: 5px;
+			    width: auto;
+			    text-align: left;
+			    font-size: 15px;  
+			}
+
+			.accordion .accordion-title .active {
+			    background-color: #ddd; 
+			    /*width:auto;*/
+			}
+			.accordion .accordion-title:hover {
+			    background-color: #ddd; 
+			}
+
+			.accordion .inner-content {
+			    padding: 15px;
+			    display: none;
+			    background-color: white;
+			    overflow: hidden;
+			}
+			.content {
 				padding-left: 25px;
 			}
-			table, th, td {
-			    border: 1px solid black;
-			}
-			th, td {
-			    padding: 10px;
-			}
 		</style>
+	  	<script>
+	  	$( document ).ready(function() {
+		    $('.accordion-title').click(function(event){
+		  		event.target.classList.toggle("active");
+		  		var panel = event.target.nextElementSibling;
+		        if (panel.style.display === "block") {
+		            panel.style.display = "none";
+		        } else {
+		            panel.style.display = "block";
+		        }
+		  	});
+		});
+		</script>
 	</head>
 	<body>
-	<h1>Study Management</h1>
 	
-	<h3>Card Sorts</h3>
-	 <table>
-	 	<tr>
-	 		<th>ID</th>
-	 		<th>Title</th>
-	 		<th>Study Type</th>
-	 		<th>Cards</th>
-	 		<th>Groups</th>
-	 		<th>Action</th>
- 		</tr>
+	<div id='header'>
+		<div id='title'><span id='hamburger'>&#9776;</span>Kort</div>
+	</div>
+
+	<div class='content'>
+		<h2>My Studies</h2>
+		<h4>Card Sorts</h4>
+
 		<% for(var i=0; i<studies.length; i++) {%>
-		<%if (studies[i].type == 'cardsort') { %>
-				<tr>
-					<td><%= studies[i]._id %></td>
-					<td><%= studies[i].title %></td>
-					<td><%= studies[i].studyType %></td>
-					<td><%= studies[i].cards %></td>
-					<td><%= studies[i].groups %></td>
-					<td><a href="/deleteCardsort/<%= studies[i]._id%>">Delete</a> | <a href="/editCardsort/<%= studies[i]._id%>">Edit</a> | <a href="/cardsort/<%= studies[i]._id%>">View</a></td>
-				</tr>
-			<% } %>
+		<div class='accordion'>
+			<div class="accordion-title"><%= studies[i].title %></div>
+			<div class="inner-content">
+				<form method="POST" action="/updateCardsort">
+					<input hidden name='id' value='<%= studies[i]._id %>' />
+					<span style="display:inline-block">
+						<label for="title" style="display:block">Title</label>
+						<input name="title" id='title' type="text" value="<%= studies[i].title %>"></input>
+					</span>
+					<br>
+					<span style="display:inline-block">
+						<label for="cards" style="display:block">Cards</label>
+						<textarea name="cards" rows="15" cols="20" id='cards'><%= studies[i].cards %></textarea>
+					</span>
+					<span style="display:inline-block">
+						<label for="groups" style="display:block">Groups</label>
+						<textarea name="groups" rows="15" cols="20" id='groups'><%= studies[i].groups %></textarea>
+					</span>
+					<br>
+					<input type="submit" value="Update" />
+				</form>
+<!-- 				<table>
+				 	<tr>
+				 		<th>ID</th>
+				 		<th>Title</th>
+				 		<th>Study Type</th>
+				 		<th>Cards</th>
+				 		<th>Groups</th>
+				 		<th>Action</th>
+			 		</tr>
+					<tr>
+						<td><%= studies[i]._id %></td>
+						<td><%= studies[i].title %></td>
+						<td><%= studies[i].studyType %></td>
+						<td><%= studies[i].cards %></td>
+						<td><%= studies[i].groups %></td>
+						<td><a href="/deleteCardsort/<%= studies[i]._id%>">Delete</a> | <a href="/editCardsort/<%= studies[i]._id%>">Edit</a> | <a href="/cardsort/<%= studies[i]._id%>">View</a></td>
+					</tr>
+				</table> -->
+			</div>
+		</div>
 		<% } %>
-	<form method="POST" action="/createCardsort">
-		<tr>
-		<td>Create New</td>
-		<td><input name='title' type="text"></td>
-		<input type="hidden" name="type" value="cardsort">
-		<td><input name='studyType' type="text"></td>
-		<td><textarea name='cards'></textarea></td>
-		<td><textarea name='groups'></textarea></td>
-		<td><input type="submit" value="Create" /></td>
-		</tr>
-	</form>
-  	</table>
-  	<h3>Tree Tests</h3>
-	 <table>
-	 	<tr>
-	 		<th>ID</th>
-	 		<th>Title</th>
-	 		<th>Type</th>
-	 		<th>Cards</th>
-	 		<th>Groups</th>
-	 		<th>Action</th>
- 		</tr>
-		<% for(var i=0; i<studies.length; i++) {%>
-		<%if (studies[i].type == 'treetest') { %>
-				<tr>
-					<td><%= studies[i]._id %></td>
-					<td><%= studies[i].title %></td>
-					<td><%= studies[i].type %></td>
-					<td><%= studies[i].cards %></td>
-					<td><%= studies[i].groups %></td>
-					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
-				</tr>
+		<form method="POST" action="/createCardsort">
+			<tr>
+			<!-- <td>Create New</td>
+			<td><input name='title' type="text"></td>
+			<input type="hidden" name="type" value="cardsort">
+			<td><input name='studyType' type="text"></td>
+			<td><textarea name='cards'></textarea></td>
+			<td><textarea name='groups'></textarea></td> -->
+			<td colspan="6"><input type="submit" value="Create New Card Sort" /></td>
+			</tr>
+		</form>
+	  	
+<!-- 	  	<h4>Tree Tests</h4>
+		 <table>
+		 	<tr>
+		 		<th>ID</th>
+		 		<th>Title</th>
+		 		<th>Type</th>
+		 		<th>Cards</th>
+		 		<th>Groups</th>
+		 		<th>Action</th>
+	 		</tr>
+			<% for(var i=0; i<studies.length; i++) {%>
+			<%if (studies[i].type == 'treetest') { %>
+					<tr>
+						<td><%= studies[i]._id %></td>
+						<td><%= studies[i].title %></td>
+						<td><%= studies[i].type %></td>
+						<td><%= studies[i].cards %></td>
+						<td><%= studies[i].groups %></td>
+						<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+					</tr>
+				<% } %>
 			<% } %>
-		<% } %>
-  	</table>
-  	<h3>Product Reaction Cards</h3>
-	 <table>
-	 	<tr>
-	 		<th>ID</th>
-	 		<th>Title</th>
-	 		<th>Type</th>
-	 		<th>Cards</th>
-	 		<th>Groups</th>
-	 		<th>Action</th>
- 		</tr>
-		<% for(var i=0; i<studies.length; i++) {%>
-		<%if (studies[i].type == 'reactioncards') { %>
-				<tr>
-					<td><%= studies[i]._id %></td>
-					<td><%= studies[i].title %></td>
-					<td><%= studies[i].type %></td>
-					<td><%= studies[i].cards %></td>
-					<td><%= studies[i].groups %></td>
-					<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
-				</tr>
+	  	</table>
+	  	<h4>Product Reaction Cards</h4>
+		 <table>
+		 	<tr>
+		 		<th>ID</th>
+		 		<th>Title</th>
+		 		<th>Type</th>
+		 		<th>Cards</th>
+		 		<th>Groups</th>
+		 		<th>Action</th>
+	 		</tr>
+			<% for(var i=0; i<studies.length; i++) {%>
+			<%if (studies[i].type == 'reactioncards') { %>
+					<tr>
+						<td><%= studies[i]._id %></td>
+						<td><%= studies[i].title %></td>
+						<td><%= studies[i].type %></td>
+						<td><%= studies[i].cards %></td>
+						<td><%= studies[i].groups %></td>
+						<td><a href="" onclick="deleteStudy('<%=studies[i]._id%>')">Delete</a></td>
+					</tr>
+				<% } %>
 			<% } %>
-		<% } %>
-  	</table>
+	  	</table> -->
+	  	</div>
+
 	</body>
 </html>
