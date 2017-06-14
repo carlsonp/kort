@@ -6,18 +6,18 @@ var CardSortStudy = mongoose.model('CardSortStudy');
 module.exports = {
     create: function (req, res) {
         var studyData = req.body;
-      	var cards = studyData.cards.split(",").map(function(item) {
-      	     return item.trim();
-      	});
-      	var groups = studyData.groups.split(",").map(function(item) {
-      	     return item.trim();
-      	});
+      	// var cards = studyData.cards.split(",").map(function(item) {
+      	//      return item.trim();
+      	// });
+      	// var groups = studyData.groups.split(",").map(function(item) {
+      	//      return item.trim();
+      	// });
       	var newStudy = new CardSortStudy({
-            title: studyData.title,
-            type: studyData.type,
-            studyType: studyData.studyType,
-            cards: cards,
-            groups: groups,
+            title: "Default Title",
+            type: "cardsort",
+            studyType: "open", //TODO: implement other type
+            cards: [],
+            groups: [],
         });
     	newStudy.save(function (err) {
         	if (err) {
