@@ -34,6 +34,7 @@ The following 3rd party libraries and services are utilized:
 * [MongoDB](https://www.mongodb.com/)
 * [Body-Parser](https://github.com/expressjs/body-parser)
 * [Font-Awesome](http://fontawesome.io/)
+* [jQuery UI](https://jqueryui.com/)
 
 ### Support
 
