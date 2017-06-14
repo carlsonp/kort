@@ -5,6 +5,31 @@ html,body {
     color: white;
 }
 
+/* unvisited link */
+a:link {
+	color: white;
+	background-color: transparent;
+	text-decoration: underline;
+}
+/* visited link */
+a:visited {
+	color: white;
+	background-color: transparent;
+	text-decoration: underline;
+}
+/* mouse over link */
+a:hover {
+	color: lightgrey;
+	background-color: transparent;
+	text-decoration: underline;
+}
+/* selected link */
+a:active {
+	color: blue;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
 button {
     background-color: #4CAF50;
     border: none;
