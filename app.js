@@ -1,3 +1,4 @@
+
 var express = require('express');
 
 const bodyParser= require('body-parser');
@@ -36,7 +37,7 @@ app.post('/createCardsort', cardsort.create);
 app.get('/deleteCardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
 app.get('/editCardsort/:id', cardsort.edit);
-app.post('/updateCardsort/:id', cardsort.update);
+app.post('/updateCardsort', cardsort.update);
 
 app.get('/admin', study.loadAdminPage);
 
