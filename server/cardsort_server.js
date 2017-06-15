@@ -54,7 +54,21 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        CardSortStudy.findByIdAndUpdate({ _id: req.body.id}, {$set: req.body}, function (err, docs) {
+        var cards = req.body.cards.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        });
+        var groups = req.body.groups.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        });
+        console.log(cards)
+        CardSortStudy.findByIdAndUpdate(
+            { _id: req.body.id}, 
+            {title: req.body.title,
+             studyType: req.body.studyType,
+             cards: cards,
+             groups: groups,
+            }, 
+            function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log('cardsort_server.js: error updating cardsort');
