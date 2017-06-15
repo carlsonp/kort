@@ -92,10 +92,10 @@ $(document).ready(function() {
 			$('#newGroupButton').show();
 			studyIsOpen = true;
 		}
-		var groups = $('#hiddenGroups').val().split(",").map(function(item) {
+		var groups = $('#hiddenGroups').val().split("-").map(function(item) {
 			  return item.trim();
 		});
-		var cards = $('#hiddenCards').val().split(",").map(function(item) {
+		var cards = $('#hiddenCards').val().split("-").map(function(item) {
 			  return item.trim();
 		});
 		for (var i = 0; i < groups.length; i++) {
