@@ -11,20 +11,20 @@
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<div class='row'>
 				<div class='col-sm-4'>
-					<label for="title">Title</label><br><input name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br><br>
-				    <label for="title">Type</label>
+					<label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br><br>
+				    <label for="title">Type</label><br>
 				    <%if (singleStudy.studyType == 'open') { %>
-				    <div class="radio">
+				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
 				    </div>
-				    <div class="radio">
+				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed'>Closed</label>
 				    </div>
 				    <% } else{ %> 
-				    <div class="radio">
+				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open'>Open</label>
 				    </div>
-				    <div class="radio">
+				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
 				    </div> 
 				    <% } %>
