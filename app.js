@@ -35,6 +35,7 @@ app.get('/treetest', function (req, res) {
 });
 
 app.post('/createcardsort', cardsort.create);
+app.get('/editcardsort/:id', cardsort.edit);
 app.get('/deletecardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
 app.get('/cardsortresults/:id', cardsort.results);
