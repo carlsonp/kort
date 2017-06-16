@@ -9,7 +9,7 @@ var db = require('./server/db');
 require('./models/study');
 
 //load in functions
-var study = require('./server/study');
+var admin = require('./server/admin');
 var cardsort = require('./server/cardsort_server');
 
 app.set('view engine', 'ejs');
@@ -39,7 +39,13 @@ app.get('/cardsort/:id', cardsort.view);
 app.get('/cardsortResults/:id', cardsort.results);
 app.post('/updateCardsort', cardsort.update);
 
-app.get('/admin', study.loadAdminPage);
+app.get('/admin', function (req, res) {
+	res.render('admin.ejs');
+});
+app.get('/admin/cardsort', admin.CardSortAdmin);
+app.get('/admin/treetest', admin.TreeTestAdmin);
+app.get('/admin/productreaction', admin.ProductReactionAdmin);
+
 
 
 

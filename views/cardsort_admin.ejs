@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+
+
+		<title>Kort: My Studies</title>
+		<style>
+			textarea {
+				resize: none;
+			}
+			td {
+			    padding: 5px;
+			    vertical-align: top;
+			}
+		</style>
+	  	<script>
+	  	$( document ).ready(function() {
+		    $('.accordion-title').click(function(event){
+		  		event.target.classList.toggle("active");
+		  		var panel = event.target.nextElementSibling;
+		        if (panel.style.display === "block") {
+		            panel.style.display = "none";
+		        } else {
+		            panel.style.display = "block";
+		        }
+		  	});
+		});
+		</script>
+	</head>
+	<body>
+	
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+		<a href ='/' class='navbar-brand'>Kort</a>
+		    <ul class='nav navbar-nav'>
+		    	<li><a href='/admin/cardsort'>Card Sorts</a></li>
+		    	<li><a href='/admin/treetest'>Tree Tests</a></li>
+		    	<li><a href='/admin/productreaction'>Product Reactions</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h4>Card Sorts</h4>
+		<% for(var i=0; i<studies.length; i++) {%>
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse<%=i%>"><%= studies[i].title %></a>
+					</h4>
+				</div>
+			<div id="collapse<%=i%>" class="panel-collapse collapse">
+				<div class="panel-body">
+					<form method="POST" action="/updateCardsort">
+						<input hidden name='id' value='<%= studies[i]._id %>' />
+						<table>
+							<tr>
+								<td>
+									<label for="title">Title</label><br><input name="title" id='title' type="text" value="<%= studies[i].title %>"></input>
+								</td>
+								<td>
+									<label for="studyType">Type</label><br><input name="studyType" id='studyType' type="text" value="<%= studies[i].studyType %>"></input>
+								</td>
+								<td><label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="20" id="cards"><% for(var j=0; j<studies[i].cards.length; j++) {%><%= studies[i].cards[j]+'\n' %><% } %></textarea></td>
+								<td><label for="groups">Groups</label><br><textarea name="groups" rows="15" cols="20" id="groups"><% for(var j=0; j<studies[i].groups.length; j++) {%><%= studies[i].groups[j]+'\n' %><% } %></textarea></td>
+							</tr>
+							<tr>
+								<td><button type="submit" class="btn btn-default">Update</button></td>
+								<td><a style='color:red' href="/deleteCardsort/<%= studies[i]._id %>">Delete</a></td>
+								<td><a href="/cardsort/<%= studies[i]._id %>">View</a></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+
+	<form method="POST" action="/createCardsort">
+		<button type="submit" class="btn btn-primary">Add Cardsort Study</button>
+	</form>
+	<script>
+		var n = 's';
+	</script>
+
+	</body>
+</html>
