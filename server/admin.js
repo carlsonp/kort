@@ -3,9 +3,11 @@ require('mongoose').model('TreeTestStudy');
 require('mongoose').model('ProductReactionStudy');
 
 var mongoose = require('mongoose');
+
 var CardSortStudy = mongoose.model('CardSortStudy');
 var TreeTestStudy = mongoose.model('TreeTestStudy');
 var ProductReactionStudy = mongoose.model('ProductReactionStudy');
+
 
 module.exports = {
   CardSortAdmin: function (req, res, next) {
@@ -40,5 +42,22 @@ module.exports = {
         res.render('productreaction_admin.ejs',{studies: docs});
       }
     });
-  }
+  },
+  AllAdmin: function (req, res, next) {
+      var cardsortQuery = CardSortStudy.find({});
+      var treetestQuery = TreeTestStudy.find({});
+
+      var resources = {
+        cardsorts: cardsortQuery.exec.bind(cardsortQuery),
+        treetests: treetestQuery.exec.bind(treetestQuery),
+      };
+      async.parallel(resources, function (error, results) {
+        if (error) {
+          res.status(500).send(error);
+          return;
+        }
+        res.render("admin-all.js", {studies: results});
+      });
+    },
 }
+

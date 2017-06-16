@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+
+		<title>Kort: Administration</title>
+
+	</head>
+	<body>
+	<div class="container">
+		<h1>Kort: Administration</h1>
+		<a href="../admin/cardsort">Card Sort Admin</a> |
+		<a href="../admin/treetest">Tree Test Admin</a> |
+		<a href="../admin/productreaction">Product Reaction Admin</a>
+		<h2>Card Sorts</h2>
+	  	<table class="table">
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Actions</th>
+				</tr>
+			</thead>
+			<% for(var i=0; i<studies.length; i++) {%>
+				<%if (studies[i].type == 'cardsort') { %>
+			<tbody>
+				<tr>
+				<td>studies[i].title</td>
+				<td>studies[i]._id</td>
+				<td></td>
+				</tr>
+			</tbody>
+				<% } %>
+			<% } %>
+  		</table>
+  		<h2>Tree Tests</h2>
+	  	<table class="table">
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				</tr>
+			</tbody>
+  		</table>
+  	</div>
+	</body>
+</html>

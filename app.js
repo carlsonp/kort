@@ -1,6 +1,6 @@
 
 var express = require('express');
-
+var async = require('async');
 const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db');
@@ -52,7 +52,7 @@ app.get('/admin', function (req, res) {
 app.get('/admin/cardsort', admin.CardSortAdmin);
 app.get('/admin/treetest', admin.TreeTestAdmin);
 app.get('/admin/productreaction', admin.ProductReactionAdmin);
-
+app.get('/admin/all', admin.AllAdmin);
 
 
 
