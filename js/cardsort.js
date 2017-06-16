@@ -1,15 +1,12 @@
 $(document).ready(function() {
-	
 	var groupNum = 0;
 	var zoneNum = 5;
 	var studyIsOpen = false;
-
 	//Slide out menu
 	// function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
 	// function closeMenu(){document.getElementById("mySidenav").style.width = "0px";}
 	// $('#hamburger').click(function(){openMenu();});
 	// $('#closeMenu').click(function(){closeMenu();});
-
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
@@ -26,11 +23,9 @@ $(document).ready(function() {
 			return  !el.classList.contains('no-dnd')
 		},
 	});
-	
 	function updateContainers(){
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
-
 	function deleteGroup(group){
 		groupNum-=1;
 		var nestedArea = group.children()[group.children().length-2]
@@ -41,7 +36,6 @@ $(document).ready(function() {
 		$(group).attr("id","toBeDeleted")
 		$('#toBeDeleted').fadeOut("fast","swing",function() {$(this).remove();});
 	}
-
 	function createGroup(groupname){
 		groupNum+=1;
 		var group = $("<div class='group' hidden></div>");
@@ -80,13 +74,11 @@ $(document).ready(function() {
 		group.fadeIn();
 		updateContainers();
 	};
-
 	function createCard(cardName){
 		var newElement = $('<div class="item">'+cardName+'</div>');
 		$('#initialColumn').append(newElement);
 		updateContainers();
 	}
-
 	function loadDatafromDB(){
 		if ($('#hiddenType').val() == 'open'){
 			$('#newGroupButton').show();
@@ -117,34 +109,24 @@ $(document).ready(function() {
 			$('#dropZonesPlace').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
 		}
 	}
-	//drop zones for groups need to be created before default groups
+	//dropzones for groups need to be created before default groups
 	setUpDropZones();
 	loadDatafromDB();
-	
-	$('#addCardsButton').click(function() {
-		var strArray = $('#cardsList').val().split("\n");
-		for (var i = 0; i < strArray.length; i++) {
-			if(strArray[i] != ''){
-				createCard(strArray[i]);
-			}
-		}
-	});
-	$('#addGroupsButton').click(function() {
-		var strArray = $('#groupsList').val().split("\n");
-		for (var i = 0; i < strArray.length; i++) {
-			createGroup(strArray[i]);
-		}
-	});
-
+	// $('#addCardsButton').click(function() {
+	// 	var strArray = $('#cardsList').val().split("\n");
+	// 	for (var i = 0; i < strArray.length; i++) {
+	// 		if(strArray[i] != ''){
+	// 			createCard(strArray[i]);
+	// 		}
+	// 	}
+	// });
+	// $('#addGroupsButton').click(function() {
+	// 	var strArray = $('#groupsList').val().split("\n");
+	// 	for (var i = 0; i < strArray.length; i++) {
+	// 		createGroup(strArray[i]);
+	// 	}
+	// });
 	$('#newGroupButton').click(function() {
 		createGroup("Group");
 	});
-	
-	// $('#addItem').click(function() {
-	// 	var itemName = prompt("Please enter item name:", "");
-	// 	var newElement = $('<div class="item">'+itemName+'</div>');
-	// 	$('#initialColumn').append(newElement);
-	// 	updateContainers();
-	// 	closeMenu();
-	// });
 });
