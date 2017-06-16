@@ -3,7 +3,7 @@ require('mongoose').model('TreeTestStudy');
 require('mongoose').model('ProductReactionStudy');
 
 var mongoose = require('mongoose');
-
+var async = require('async');
 var CardSortStudy = mongoose.model('CardSortStudy');
 var TreeTestStudy = mongoose.model('TreeTestStudy');
 var ProductReactionStudy = mongoose.model('ProductReactionStudy');
@@ -51,12 +51,13 @@ module.exports = {
         cardsorts: cardsortQuery.exec.bind(cardsortQuery),
         treetests: treetestQuery.exec.bind(treetestQuery),
       };
-      async.parallel(resources, function (error, results) {
-        if (error) {
-          res.status(500).send(error);
+
+      async.parallel(resources, function (err, results) {
+        if (err) {
+          res.status(500)
           return;
         }
-        res.render("admin-all.js", {studies: results});
+        res.render("adminall.ejs", {studies: results});
       });
     },
 }
