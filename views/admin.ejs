@@ -2,18 +2,17 @@
 <html lang="en">
 	<head>
 		<%- include('partials/header.ejs') %>
-
-
 		<title>Kort: Administration</title>
-
 	</head>
 	<body>
-	
-	<h1>Kort: Administration</h1>
-	<a href="../admin/cardsort">Card Sort Admin</a> |
-	<a href="../admin/treetest">Tree Test Admin</a> |
-	<a href="../admin/productreaction">Product Reaction Admin</a>
-
-
+		<%- include('partials/admin_header.ejs') %>
+		<div class='container'>
+			<h1>Administration</h1>
+			<ul>
+			<li>Set Up User Account Scheme</li>
+			<li>Set Up System for Sharing Studies with multiple users</li>
+			</ul>
+		</div>
+		
 	</body>
 </html>
