@@ -67,11 +67,11 @@ module.exports = {
     update: function (req, res, next) {
         var cards = req.body.cards.split(/\r?\n/).map(function(item) {
              return item.trim();
-        });
+        }).filter(function(n){ return n != '' });
         var groups = req.body.groups.split(/\r?\n/).map(function(item) {
              return item.trim();
-        });
-        console.log(cards)
+        }).filter(function(n){ return n != '' });
+
         CardSortStudy.findByIdAndUpdate(
             { _id: req.body.id}, 
             {title: req.body.title,
