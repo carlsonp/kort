@@ -11,6 +11,7 @@ require('./models/study');
 //load in functions
 var admin = require('./server/admin');
 var cardsort = require('./server/cardsort_server');
+var treetest = require('./server/treetest_server');
 
 app.set('view engine', 'ejs');
 
@@ -38,6 +39,12 @@ app.get('/deletecardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
 app.get('/cardsortresults/:id', cardsort.results);
 app.post('/updatecardsort', cardsort.update);
+
+app.post('/createtreetest', treetest.create);
+app.get('/deletetreetest/:id', treetest.delete);
+app.get('/treetest/:id', treetest.view);
+app.get('/treetestresults/:id', treetest.results);
+app.post('/updatetreetest', treetest.update);
 
 app.get('/admin', function (req, res) {
 	res.render('admin.ejs');
