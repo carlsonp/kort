@@ -1,9 +1,9 @@
 
 var express = require('express');
-var async = require('async');
 const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db');
+var async = require('async');
 
 //load in models
 require('./models/study');
