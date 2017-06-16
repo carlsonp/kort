@@ -42,6 +42,17 @@ module.exports = {
             }
         });
     },
+    edit: function (req, res, next) {
+        CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error edit cardsort.");
+                res.end(err);
+            } else {
+                res.render('editcardsort.ejs',{singleStudy: docs});
+            }
+        });
+    },
     results: function (req, res, next) {
         CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
