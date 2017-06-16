@@ -28,7 +28,6 @@
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
 				    </div> 
 				    <% } %>
-					<!-- <label for="studyType">Type</label><br><input name="studyType" id='studyType' type="text" value="<%= singleStudy.studyType %>"></input> -->
 				</div>
 				<div class='col-sm-4'>
 					<label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.cards.length; j++) {%><%= singleStudy.cards[j]+'\n' %><% } %></textarea>
