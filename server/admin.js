@@ -10,46 +10,15 @@ var ProductReactionStudy = mongoose.model('ProductReactionStudy');
 
 
 module.exports = {
-  CardSortAdmin: function (req, res, next) {
-    CardSortStudy.find({}, function (err, docs) {
-      if (err) {
-        res.status(504);
-        console.log("Error getting studies on admin page.");
-        res.end(err);
-      } else {
-        res.render('cardsort_admin.ejs',{studies: docs});
-      }
-    });
-  },
-  TreeTestAdmin: function (req, res, next) {
-    TreeTestStudy.find({}, function (err, docs) {
-      if (err) {
-        res.status(504);
-        console.log("Error getting studies on admin page.");
-        res.end(err);
-      } else {
-        res.render('treetest_admin.ejs',{studies: docs});
-      }
-    });
-  },
-  ProductReactionAdmin: function (req, res, next) {
-    ProductReactionStudy.find({}, function (err, docs) {
-      if (err) {
-        res.status(504);
-        console.log("Error getting studies on admin page.");
-        res.end(err);
-      } else {
-        res.render('productreaction_admin.ejs',{studies: docs});
-      }
-    });
-  },
-  AllAdmin: function (req, res, next) {
+  Studies: function (req, res, next) {
       var cardsortQuery = CardSortStudy.find({});
       var treetestQuery = TreeTestStudy.find({});
+      // var productreactionQuery = ProductReactionStudy.find({});
 
       var resources = {
         cardsorts: cardsortQuery.exec.bind(cardsortQuery),
         treetests: treetestQuery.exec.bind(treetestQuery),
+        // productreactions: treetestQuery.exec.bind(productreactionQuery),
       };
 
       async.parallel(resources, function (err, results) {
@@ -57,7 +26,7 @@ module.exports = {
           res.status(500)
           return;
         }
-        res.render("adminall.ejs", {studies: results});
+        res.render("studies.ejs", {studies: results});
       });
     },
 }

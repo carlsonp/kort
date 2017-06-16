@@ -5,17 +5,10 @@ var CardSortStudy = mongoose.model('CardSortStudy');
 
 module.exports = {
     create: function (req, res) {
-        var studyData = req.body;
-      	// var cards = studyData.cards.split(",").map(function(item) {
-      	//      return item.trim();
-      	// });
-      	// var groups = studyData.groups.split(",").map(function(item) {
-      	//      return item.trim();
-      	// });
       	var newStudy = new CardSortStudy({
-            title: "Default Title",
+            title: "New Cardsort",
             type: "cardsort",
-            studyType: "open", //TODO: implement other type
+            studyType: "open",
             cards: [],
             groups: [],
         });
@@ -26,7 +19,7 @@ module.exports = {
         		res.end(err);
         	} else {
         		console.log('cardsort_server.js: Created new cardsort successfully.');
-        		res.redirect('/admin/all');
+        		res.redirect('/studies');
         		res.end();
         	}
         });
@@ -49,7 +42,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('editcardsort.ejs',{singleStudy: docs});
+                res.render('edit_cardsort.ejs',{singleStudy: docs});
             }
         });
     },
@@ -71,7 +64,6 @@ module.exports = {
         var groups = req.body.groups.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-
         CardSortStudy.findByIdAndUpdate(
             { _id: req.body.id}, 
             {title: req.body.title,
@@ -86,7 +78,7 @@ module.exports = {
                 res.end(err);
             } 
             else {
-                res.redirect('/admin/all');
+                res.redirect('/studies');
                 res.end();   
             }
         });
@@ -104,7 +96,7 @@ module.exports = {
                 console.log(err);
                 res.end(err);            
             } else {
-                res.redirect('/admin/all');
+                res.redirect('/studies');
                 res.end();
             }
         });

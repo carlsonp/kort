@@ -50,10 +50,8 @@ app.post('/updatetreetest', treetest.update);
 app.get('/admin', function (req, res) {
 	res.render('admin.ejs');
 });
-app.get('/admin/cardsort', admin.CardSortAdmin);
-app.get('/admin/treetest', admin.TreeTestAdmin);
-app.get('/admin/productreaction', admin.ProductReactionAdmin);
-app.get('/admin/all', admin.AllAdmin);
+
+app.get('/studies', admin.Studies);
 
 
 
