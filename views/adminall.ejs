@@ -23,19 +23,14 @@
 				<%if (studies.cardsorts[i].type == 'cardsort') { %>
 			<tbody>
 				<tr>
-				<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><%=studies.cardsorts[i].title %></a></td>
-				<td><%=studies.cardsorts[i].studyType %></td>
-				<td><%=studies.cardsorts[i].cards.length %></td>
-				<td><%=studies.cardsorts[i].groups.length %></td>
-				<td><%=studies.cardsorts[i].responses.length %></td>
-				<td><a style='color:red' href="/deletecardsort/<%= studies.cardsorts[i]._id %>">Delete</a>
-				</td>
-				<td> 
-					<a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a>
-				</td>
-				<td> 
-					<a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a>
-				</td>
+					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><%=studies.cardsorts[i].title %></a></td>
+					<td><%=studies.cardsorts[i].studyType %></td>
+					<td><%=studies.cardsorts[i].cards.length %></td>
+					<td><%=studies.cardsorts[i].groups.length %></td>
+					<td><%=studies.cardsorts[i].responses.length %></td>
+					<td><a style='color:red' href="/deletecardsort/<%= studies.cardsorts[i]._id %>">Delete</a></td>
+					<td><a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a></td>
+					<td><a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a></td>
 				</tr>
 			</tbody>
 				<% } %>
