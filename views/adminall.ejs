@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+		<title>Kort: Studies</title>
+	</head>
+	<body>
+	<%- include('partials/admin_header.ejs') %>
+	<div class="container">
+		<h1>Studies</h1>
+		<h3>Card Sorts</h3>
+	  	<table class="table">
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Actions</th>
+				</tr>
+			</thead>
+			<% for(var i=0; i<studies.cardsorts.length; i++) {%>
+				<%if (studies.cardsorts[i].type == 'cardsort') { %>
+			<tbody>
+				<tr>
+				<td><%=studies.cardsorts[i].title %></td>
+				<td><%=studies.cardsorts[i]._id %></td>
+				<td><a style='color:red' href="/deletecardsort/<%= studies.cardsorts[i]._id %>">Delete</a> | 
+					<a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a> | 
+					<a href="/editcardsort/<%= studies.cardsorts[i]._id %>">Edit</a>
+				</td>
+				</tr>
+			</tbody>
+				<% } %>
+			<% } %>
+			<tbody>
+				<tr>
+					<td>	
+						<form method="POST" action="/createcardsort">
+							<button type="submit" class="btn btn-default">Add</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+  		</table>
+  		<h3>Tree Tests</h3>
+	  	<table class="table">
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Actions</th>
+				</tr>
+			</thead>
+			<% for(var i=0; i<studies.treetests.length; i++) {%>
+				<%if (studies.treetests[i].type == 'treetest') { %>
+			<tbody>
+				<tr>
+				<td><%=studies.treetests[i].title %></td>
+				<td><%=studies.treetests[i]._id %></td>
+				<td><a style='color:red' href="/deletetreetest/<%= studies.treetests[i]._id %>">Delete</a> | 
+					<a href="/treetest/<%= studies.treetests[i]._id %>">View</a> | 
+					<a href="/edittreetest/<%= studies.treetests[i]._id %>">Edit</a>
+				</td>
+				</tr>
+			</tbody>
+				<% } %>
+			<% } %>
+			<tbody>
+				<tr>
+					<td>	
+						<form method="POST" action="/createtreetest">
+							<button type="submit" class="btn btn-default">Add</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+  		</table>
+  	</div>
+	</body>
+</html>

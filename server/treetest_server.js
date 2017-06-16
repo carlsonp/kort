@@ -17,7 +17,7 @@ module.exports = {
         		res.end(err);
         	} else {
         		console.log('treetest_server.js: Created new treetest successfully.');
-        		res.redirect('/admin/treetest');
+        		res.redirect('/admin/all');
         		res.end();
         	}
         });
@@ -57,7 +57,7 @@ module.exports = {
                 res.end(err);
             } 
             else {
-                res.redirect('/admin/treetest');
+                res.redirect('/admin/all');
                 res.end();   
             }
         });
@@ -75,7 +75,7 @@ module.exports = {
                 console.log(err);
                 res.end(err);            
             } else {
-                res.redirect('/admin/treetest');
+                res.redirect('/admin/all');
                 res.end();
             }
         });

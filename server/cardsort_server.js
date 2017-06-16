@@ -26,7 +26,7 @@ module.exports = {
         		res.end(err);
         	} else {
         		console.log('cardsort_server.js: Created new cardsort successfully.');
-        		res.redirect('/admin/cardsort');
+        		res.redirect('/admin/all');
         		res.end();
         	}
         });
@@ -75,7 +75,7 @@ module.exports = {
                 res.end(err);
             } 
             else {
-                res.redirect('/admin/cardsort');
+                res.redirect('/admin/all');
                 res.end();   
             }
         });
@@ -93,7 +93,7 @@ module.exports = {
                 console.log(err);
                 res.end(err);            
             } else {
-                res.redirect('/admin/cardsort');
+                res.redirect('/admin/all');
                 res.end();
             }
         });
