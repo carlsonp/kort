@@ -9,19 +9,36 @@
 	<div class="container">
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
-			<table class='table'>
-				<tr>
-					<td>
-						<label for="title">Title</label><br><input name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br>
-						<label for="studyType">Type</label><br><input name="studyType" id='studyType' type="text" value="<%= singleStudy.studyType %>"></input>
-					</td>
-					<td><label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="20" id="cards"><% for(var j=0; j<singleStudy.cards.length; j++) {%><%= singleStudy.cards[j]+'\n' %><% } %></textarea></td>
-					<td><label for="groups">Groups</label><br><textarea name="groups" rows="15" cols="20" id="groups"><% for(var j=0; j<singleStudy.groups.length; j++) {%><%= singleStudy.groups[j]+'\n' %><% } %></textarea></td>
-				</tr>
-				<tr>
-					<td><button type="submit" class="btn btn-primary">Save</button></td>
-				</tr>
-			</table>
-				
+			<div class='row'>
+				<div class='col-sm-4'>
+					<label for="title">Title</label><br><input name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br><br>
+				    <label for="title">Type</label>
+				    <%if (singleStudy.studyType == 'open') { %>
+				    <div class="radio">
+				     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
+				    </div>
+				    <div class="radio">
+						<label><input type="radio" name="studyType" value='closed'>Closed</label>
+				    </div>
+				    <% } else{ %> 
+				    <div class="radio">
+				     	<label><input type="radio" name="studyType" value='open'>Open</label>
+				    </div>
+				    <div class="radio">
+						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
+				    </div> 
+				    <% } %>
+					<!-- <label for="studyType">Type</label><br><input name="studyType" id='studyType' type="text" value="<%= singleStudy.studyType %>"></input> -->
+				</div>
+				<div class='col-sm-4'>
+					<label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.cards.length; j++) {%><%= singleStudy.cards[j]+'\n' %><% } %></textarea>
+				</div>
+				<div class='col-sm-4'>
+					<label for="groups">Groups</label><br><textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.groups.length; j++) {%><%= singleStudy.groups[j]+'\n' %><% } %></textarea>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>			
 	</body>
 </html>
