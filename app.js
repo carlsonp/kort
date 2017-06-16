@@ -33,11 +33,11 @@ app.get('/treetest', function (req, res) {
 	res.render('treetest.ejs');
 });
 
-app.post('/createCardsort', cardsort.create);
-app.get('/deleteCardsort/:id', cardsort.delete);
+app.post('/createcardsort', cardsort.create);
+app.get('/deletecardsort/:id', cardsort.delete);
 app.get('/cardsort/:id', cardsort.view);
-app.get('/cardsortResults/:id', cardsort.results);
-app.post('/updateCardsort', cardsort.update);
+app.get('/cardsortresults/:id', cardsort.results);
+app.post('/updatecardsort', cardsort.update);
 
 app.get('/admin', function (req, res) {
 	res.render('admin.ejs');
