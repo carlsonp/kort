@@ -1,4 +1,67 @@
 $(document).ready(function() {
+	function addTasksFromFile(filetext){
+	    arr = filetext.split("\n");
+	    for (var i = 0; i < arr.length; i++) {
+    		tasks.add(arr[i]);
+		}
+		tasks.set(0);
+	}
+  	function readInTextFile(tasksOrTree){  
+		var file = $('#fileInput').prop('files')[0];
+		if (file.type.match(/text.*/)) {
+			var reader = new FileReader();
+			reader.onload = function() {
+				if(tasksOrTree === "tree"){
+					//do tree stuff
+				} else {
+					addTasksFromFile(reader.result);		
+				}
+			}
+			reader.readAsText(file);  
+		}
+	}
+	$('#fileInput').change(function(){
+		readInTextFile("tasks");
+	});
+	
+	function addNodeByPath(myroot,path){
+		if (path.length == 1){
+			myroot.nodes.push({text: path[0], nodes: []})
+		} else {
+			var next = path.shift();
+			for (var i = 0; i < myroot.nodes.length; i++) {
+				if (myroot.nodes[i].text == next){
+					addNodeByPath(myroot.nodes[i],path)
+				}
+			}
+		}
+	}
+	function removeEmptyLists(myroot){
+		for (var i = 0; i < myroot.nodes.length; i++) {
+			if (myroot.nodes[i].nodes.length == 0){
+				delete myroot.nodes[i].nodes
+			} else {
+				removeEmptyLists(myroot.nodes[i])
+			}
+		}
+	}   
+	function makeTree(myroot){
+		var newTree = [];
+		for (var i = 0; i < root.nodes.length; i++) {
+		  newTree.push(root.nodes[i]);
+		}
+		return newTree;
+	}
+	var root = {text: 'root', nodes: []}
+	addNodeByPath(root,['Parent 1'])
+	addNodeByPath(root,['Parent 1','Child 1'])
+	addNodeByPath(root,['Parent 1','Child 1','Grandchild 1'])
+	addNodeByPath(root,['Parent 1','Child 1','Grandchild 2'])
+	addNodeByPath(root,['Parent 1','Child 2'])
+	addNodeByPath(root,['Parent 2'])
+	removeEmptyLists(root)
+	var myTree = makeTree(root)
+
   	var tree = [
 	  {
 	    text: "Parent 1",
@@ -155,30 +218,8 @@ $(document).ready(function() {
 		tasks.set($("li").index(event.target));
 	});
 	//------------------------------File IO------------------------------
-  	function addTasksFromFile(filetext){
-	    arr = filetext.split("\n");
-	    for (var i = 0; i < arr.length; i++) {
-    		tasks.add(arr[i]);
-		}
-		tasks.set(0);
-	}
-  	function readInTextFile(tasksOrTree){  
-		var file = $('#fileInput').prop('files')[0];
-		if (file.type.match(/text.*/)) {
-			var reader = new FileReader();
-			reader.onload = function() {
-				if(tasksOrTree === "tree"){
-					//do tree stuff
-				} else {
-					addTasksFromFile(reader.result);		
-				}
-			}
-			reader.readAsText(file);  
-		}
-	}
-	$('#fileInput').change(function(){
-		readInTextFile("tasks");
-	});
+
+  // console.log(myTree)
 	//-------------------------------------------------------------------
 });
 
