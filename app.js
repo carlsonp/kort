@@ -23,7 +23,8 @@ app.use(express.static('js'))
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
-
+app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
+app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
 
 
 app.use(bodyParser.urlencoded({extended: true}));
