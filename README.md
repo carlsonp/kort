@@ -35,6 +35,7 @@ The following 3rd party libraries and services are utilized:
 * [Body-Parser](https://github.com/expressjs/body-parser)
 * [Font-Awesome](http://fontawesome.io/)
 * [jQuery UI](https://jqueryui.com/)
+* [D3.js](https://d3js.org/)
 
 ### Support
 
@@ -42,4 +43,8 @@ Open a Github issue.
 
 ### License
 
-kort-cardsort is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+Kort is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+### Where did the name Kort come from?
+
+Kort means "card" in Norwegian.
