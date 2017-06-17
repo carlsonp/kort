@@ -53,12 +53,12 @@ $(document).ready(function() {
 		return newTree;
 	}
 	var root = {text: 'root', nodes: []}
-	addNodeByPath(root,['Parent 1'])
-	addNodeByPath(root,['Parent 1','Child 1'])
-	addNodeByPath(root,['Parent 1','Child 1','Grandchild 1'])
-	addNodeByPath(root,['Parent 1','Child 1','Grandchild 2'])
-	addNodeByPath(root,['Parent 1','Child 2'])
-	addNodeByPath(root,['Parent 2'])
+	addNodeByPath(root,['Ducks'])
+	addNodeByPath(root,['Ducks','Cats'])
+	addNodeByPath(root,['Ducks','Cats','Beavers'])
+	addNodeByPath(root,['Ducks','Cats','Grandchild-2'])
+	addNodeByPath(root,['Ducks','Child-2'])
+	addNodeByPath(root,['Parent-2'])
 	removeEmptyLists(root)
 	var myTree = makeTree(root)
 
@@ -88,10 +88,10 @@ $(document).ready(function() {
 	];
 
 	//--------------------Initialize Treeview Object---------------------
-	disableSelectableOnParents(tree);
+	disableSelectableOnParents(myTree);
 	//create treeview object
 	$('#tree').treeview({
-		data: tree,
+		data: myTree,
 		collapseIcon: "glyphicon glyphicon-menu-down",
 		expandIcon:"glyphicon glyphicon-menu-right",
 		selectedBackColor: "#009ec3",
