@@ -25,6 +25,7 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'
 app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
 app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
 app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
+app.use('/d3', express.static(__dirname + '/node_modules/d3/build/'));
 
 
 app.use(bodyParser.urlencoded({extended: true}));
