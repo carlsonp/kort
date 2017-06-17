@@ -112,6 +112,21 @@ $(document).ready(function() {
 	//dropzones for groups need to be created before default groups
 	setUpDropZones();
 	loadDatafromDB();
+
+	function getResults(){
+		var results = []
+		$('.group').each(function(index) {
+			var title = $(this).children('.title')
+			var groupname = $(title).text();
+			var nestedArea = $(this).children('.droparea')
+			var cards = []
+			$(nestedArea).children().each(function(){
+				cards.push($(this).text())
+			});
+			results.push({groupname: groupname ,cards: cards})
+		});
+		return results;
+	}
 	// $('#addCardsButton').click(function() {
 	// 	var strArray = $('#cardsList').val().split("\n");
 	// 	for (var i = 0; i < strArray.length; i++) {
