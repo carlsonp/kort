@@ -19,6 +19,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('css'))
 app.use(express.static('js'))
 
+//https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
+
+
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
