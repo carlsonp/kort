@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+
+
+		<title>Create User</title>
+	</head>
+	<body>
+		<h1>Create User</h1>
+		
+		
+	<br><br>
+	<form action="/createuser" method="post">
+		<div>
+			Email:
+			<input type="text" name="email"/><br/>
+		</div>
+		<div>
+			Name:
+			<input type="text" name="name"/><br/>
+		</div>
+		<div>
+			Password:
+			<input type="password" name="password"/>
+		</div>
+		<div>
+			<input type="submit" value="Create User"/>
+		</div>
+	</form>
+
+	</body>
+</html>
