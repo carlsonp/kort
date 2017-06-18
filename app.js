@@ -1,4 +1,6 @@
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
+const adminUser = "admin";
+const adminPassword = "admin";
 
 var express = require('express');
 var mongoose = require('mongoose');
@@ -9,12 +11,14 @@ const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db');
 var async = require('async');
+var flash = require('connect-flash');
 
 //load in models
 require('./models/study');
 require('./models/user');
 
-var auth = require('./server/passport');
+//setup a default admin account in Mongo
+require('./server/createadmin_user')(adminUser, adminPassword);
 
 
 app.set('view engine', 'ejs');
@@ -25,6 +29,8 @@ app.use(express.static('js'))
 
 //app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+
+app.use(flash());
 
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
@@ -40,8 +46,10 @@ const MongoStore = require('connect-mongo')(session);
 app.use(session({
     secret: 'secret',
     //TODO: use our existing mongodb connection in db.js instead of opening a new one
-    store: new MongoStore({ url: 'mongodb://localhost/kort',
-          collection: 'session', }),
+    store: new MongoStore({ url: 'mongodb://192.168.1.124/kort',
+          collection: 'session',
+		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
+		}),
 	resave: false,
 	saveUninitialized: false
 }));
@@ -50,11 +58,12 @@ app.use(session({
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
+require('./server/passport')(passport, flash);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport);
+require('./server/routes.js')(app, passport, flash);
 
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
