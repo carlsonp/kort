@@ -2,13 +2,14 @@
 <html lang="en">
 	<head>
 		<%- include('partials/header.ejs') %>
-
 		<!-- custom css -->
+		<link rel="stylesheet" type="text/css" href="../kort.css" />
 		<link rel="stylesheet" type="text/css" href="../productcards.css" />
 		
 		<title>Product Reaction Cards</title>
 	</head>
 	<body>
+		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.words.length; i++) {%><%= singleStudy.words[i] %>;<% } %>">
 		<script type="text/javascript" src="../productcards.js"/></script>
 		<div id="header">
 			<div id="title">Product Reaction Cards</div>

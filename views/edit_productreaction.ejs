@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+		<title>Edit Product Reaction Study</title>
+	</head>
+	<body>
+	<%- include('partials/admin_header.ejs') %>
+	<div class="container">
+		<form method="POST" action="/updateproductreaction">
+			<input hidden name='id' value='<%= singleStudy._id %>' />
+			<div class='row'>
+				<div class='col-sm-4'>
+					<label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input>
+				</div>
+				<div class='col-sm-8'>
+					<label for="words">Words</label><br><textarea style='width:100%' name="words" rows="15" cols="30" id="words"><% for(var j=0; j<singleStudy.words.length; j++) {%><%= singleStudy.words[j]+'\n' %><% } %></textarea>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>			
+	</body>
+</html>
