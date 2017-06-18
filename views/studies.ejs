@@ -80,6 +80,41 @@
 				</tr>
 			</tbody>
   		</table>
+  		<h3>Product Reaction Cards</h3>
+	  	<table class="table">
+			<thead>
+				<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Words</th>
+				<th>Actions</th>
+				</tr>
+			</thead>
+			<% for(var i=0; i<studies.productreactions.length; i++) {%>
+				<%if (studies.productreactions[i].type == 'productreaction') { %>
+			<tbody>
+				<tr>
+				<td><%=studies.productreactions[i].title %></td>
+				<td><%=studies.productreactions[i]._id %></td>
+				<td><%=studies.productreactions[i].words.length %></td>
+				<td><a style='color:red' href="/deleteproductreaction/<%= studies.productreactions[i]._id %>">Delete</a> | 
+					<a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a> | 
+					<a href="/editproductreaction/<%= studies.productreactions[i]._id %>">Edit</a>
+				</td>
+				</tr>
+			</tbody>
+				<% } %>
+			<% } %>
+			<tbody>
+				<tr>
+					<td>	
+						<form method="POST" action="/createproductreaction">
+							<button type="submit" class="btn btn-default">Add</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+  		</table>
   	</div>
 	</body>
 </html>
