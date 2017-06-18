@@ -33,6 +33,17 @@ module.exports = {
             }
         });
     },
+    edit: function (req, res, next) {
+        TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error edit cardsort.");
+                res.end(err);
+            } else {
+                res.render('edit_treetest.ejs',{singleStudy: docs});
+            }
+        });
+    },
     results: function (req, res, next) {
         TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
