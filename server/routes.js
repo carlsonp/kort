@@ -2,6 +2,7 @@
 var admin = require('./admin');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
+var productreaction = require('./productreaction_server');
 
 
 module.exports = function(app, passport) {
@@ -31,6 +32,13 @@ module.exports = function(app, passport) {
 	app.get('/treetest/:id', treetest.view);
 	app.get('/treetestresults/:id', treetest.results);
 	app.post('/updatetreetest', treetest.update);
+
+	app.post('/createproductreaction', productreaction.create);
+	app.get('/editproductreaction/:id', productreaction.edit);
+	app.get('/deleteproductreaction/:id', productreaction.delete);
+	app.get('/productreaction/:id', productreaction.view);
+	app.get('/productreactionresults/:id', productreaction.results);
+	app.post('/updateproductreaction', productreaction.update);
 
 	app.get('/admin', function (req, res) {
 		res.render('admin.ejs');
