@@ -36,6 +36,7 @@ The following 3rd party libraries and services are utilized:
 * [Font-Awesome](http://fontawesome.io/)
 * [jQuery UI](https://jqueryui.com/)
 * [D3.js](https://d3js.org/)
+* [async](https://caolan.github.io/async/)
 
 ### Support
 
