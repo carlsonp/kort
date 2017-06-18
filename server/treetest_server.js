@@ -61,14 +61,14 @@ module.exports = {
         var tasks = req.body.tasks.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        // var groups = req.body.groups.split(/\r?\n/).map(function(item) {
-        //      return item.trim();
-        // }).filter(function(n){ return n != '' });
+        var tree = req.body.tree.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        }).filter(function(n){ return n != '' });
         TreeTestStudy.findByIdAndUpdate(
             { _id: req.body.id}, 
             {title: req.body.title,
              tasks: tasks,
-             tree: req.body.tree,
+             tree: tree,
             }, 
             function (err, docs) {
             if (err) {

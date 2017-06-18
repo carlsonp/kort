@@ -29,12 +29,15 @@ $(document).ready(function() {
 			return newTree;
 		}
 		var root = {text: 'root', nodes: []}
-		addNodeByPath(root,['Ducks'])
-		addNodeByPath(root,['Ducks','Cats'])
-		addNodeByPath(root,['Ducks','Cats','Beavers'])
-		addNodeByPath(root,['Ducks','Cats','Grandchild-2'])
-		addNodeByPath(root,['Ducks','Child-2'])
-		addNodeByPath(root,['Parent-2'])
+		var nodes = $('#hiddenTree').val().split(";").map(function(item) {
+			  return item.trim();
+		});
+		for (var i = 0; i < nodes.length; i++) {
+			var nodepath = nodes[i].split("/").map(function(item) {
+			  return item.trim();
+			}).filter(function(n){ return n != '' });
+			addNodeByPath(root,nodepath);
+		}
 		removeEmptyLists(root)
 		var myTree = makeTree(root)
 		return myTree;
@@ -166,7 +169,10 @@ $(document).ready(function() {
 				tasks.add(tasksDB[i]);	
 			}
 		}
+		createTreeviewObject();
+		
 		$('#hiddenTasks').remove();
+		$('#hiddenTree').remove();
 	}
 	loadDatafromDB();
 	tasks.set(0);
