@@ -13,12 +13,12 @@ module.exports = {
   Studies: function (req, res, next) {
       var cardsortQuery = CardSortStudy.find({});
       var treetestQuery = TreeTestStudy.find({});
-      // var productreactionQuery = ProductReactionStudy.find({});
+      var productreactionQuery = ProductReactionStudy.find({});
 
       var resources = {
         cardsorts: cardsortQuery.exec.bind(cardsortQuery),
         treetests: treetestQuery.exec.bind(treetestQuery),
-        // productreactions: treetestQuery.exec.bind(productreactionQuery),
+        productreactions: treetestQuery.exec.bind(productreactionQuery),
       };
 
       async.parallel(resources, function (err, results) {
