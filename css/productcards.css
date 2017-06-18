@@ -10,17 +10,17 @@
 }
 /* Style the card items */
 #cardArea li {
+    color:black;
     cursor: pointer;
     border-radius: 4px;
     width: auto;
     padding: 10px;
-    background: #eee;
+    background-color: #F0F0F0;
     font-size: 16px;
     margin: 5px;
     list-style: none;
     display: inline-block;
     position:relative;
-    background-color: #F0F0F0;
 }
 #cardArea li.disabled {
     opacity: 0.15;
