@@ -7,6 +7,7 @@ $(document).ready(function() {
 		selectedNum: 0,
 		init: function(){
 			$('#next').hide();
+			this.loadDatafromDB();
 			this.addWords();
 			this.bindNextButton();
 			this.bindCardClick();
@@ -39,7 +40,7 @@ $(document).ready(function() {
 				if(this.selectedNum === this.wordSelectionLimit){
 					$( "#cardArea li:not(.selected)").toggleClass('disabled');
 					$('#textArea').html('All Done!');
-					printSelectedToConsole();
+					// printSelectedToConsole();
 				} else {
 					$( "#cardArea li").removeClass('disabled');
 					$('#textArea').html('Select your top 5 cards.');
@@ -49,6 +50,12 @@ $(document).ready(function() {
 				if(this.selectedNum > 9){$('#next').show();} 
 				else {$('#next').hide();}
 			}
+		},
+		loadDatafromDB: function(){
+			this.words = $('#hiddenWords').val().split(";").map(function(item) {
+				  return item.trim();
+			}).filter(function(n){ return n != ''});
+			$('#hiddenWords').remove();
 		}
 	}
 	c.init();
