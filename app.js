@@ -1,6 +1,8 @@
 const port = process.env.PORT || 3000;
+const mongoURL = 'mongodb://127.0.0.1/kort'
 const adminUser = "admin";
 const adminPassword = "admin";
+const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
 
 var express = require('express');
 var mongoose = require('mongoose');
@@ -9,7 +11,7 @@ var cookieParser = require('cookie-parser')
 var morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
-var db = require('./server/db');
+var db = require('./server/db')(mongoURL, mongoose);
 var async = require('async');
 var flash = require('connect-flash');
 
@@ -44,9 +46,9 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
  
 app.use(session({
-    secret: 'secret',
-    //TODO: use our existing mongodb connection in db.js instead of opening a new one
-    store: new MongoStore({ url: 'mongodb://192.168.1.124/kort',
+    secret: secretHash,
+	//TODO: look into using our existing single Mongo connection instead of opening up a new one
+    store: new MongoStore({ url: mongoURL,
           collection: 'session',
 		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
 		}),

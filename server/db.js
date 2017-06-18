@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
-//use default ES6 for promises, potential
-//for using bluebird for increased performance
-//https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
-mongoose.Promise = global.Promise;
 
+module.exports = function(mongoURL, mongoose) {
+	//use default ES6 for promises, potential
+	//for using bluebird for increased performance
+	//https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
+	mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://127.0.0.1/kort');
+	mongoose.connect(mongoURL);
+}
