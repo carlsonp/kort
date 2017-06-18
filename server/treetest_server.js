@@ -9,6 +9,8 @@ module.exports = {
       	var newStudy = new TreeTestStudy({
             title: "Default Tree Test Title",
             type: "treetest",
+            tasks: [],
+            tree: [],
         });
     	newStudy.save(function (err) {
         	if (err) {
@@ -56,10 +58,17 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        CardSortStudy.findByIdAndUpdate(
+        var tasks = req.body.tasks.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        }).filter(function(n){ return n != '' });
+        // var groups = req.body.groups.split(/\r?\n/).map(function(item) {
+        //      return item.trim();
+        // }).filter(function(n){ return n != '' });
+        TreeTestStudy.findByIdAndUpdate(
             { _id: req.body.id}, 
             {title: req.body.title,
-             // studyType: req.body.studyType,
+             tasks: tasks,
+             tree: req.body.tree,
             }, 
             function (err, docs) {
             if (err) {

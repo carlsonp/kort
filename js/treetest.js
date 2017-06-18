@@ -1,93 +1,46 @@
 $(document).ready(function() {
-	function addTasksFromFile(filetext){
-	    arr = filetext.split("\n");
-	    for (var i = 0; i < arr.length; i++) {
-    		tasks.add(arr[i]);
-		}
-		tasks.set(0);
-	}
-  	function readInTextFile(tasksOrTree){  
-		var file = $('#fileInput').prop('files')[0];
-		if (file.type.match(/text.*/)) {
-			var reader = new FileReader();
-			reader.onload = function() {
-				if(tasksOrTree === "tree"){
-					//do tree stuff
-				} else {
-					addTasksFromFile(reader.result);		
-				}
-			}
-			reader.readAsText(file);  
-		}
-	}
-	$('#fileInput').change(function(){
-		readInTextFile("tasks");
-	});
-	
-	function addNodeByPath(myroot,path){
-		if (path.length == 1){
-			myroot.nodes.push({text: path[0], nodes: []})
-		} else {
-			var next = path.shift();
-			for (var i = 0; i < myroot.nodes.length; i++) {
-				if (myroot.nodes[i].text == next){
-					addNodeByPath(myroot.nodes[i],path)
-				}
-			}
-		}
-	}
-	function removeEmptyLists(myroot){
-		for (var i = 0; i < myroot.nodes.length; i++) {
-			if (myroot.nodes[i].nodes.length == 0){
-				delete myroot.nodes[i].nodes
+	function createTreeviewObject(){
+		function addNodeByPath(myroot,path){
+			if (path.length == 1){
+				myroot.nodes.push({text: path[0], nodes: []})
 			} else {
-				removeEmptyLists(myroot.nodes[i])
+				var next = path.shift();
+				for (var i = 0; i < myroot.nodes.length; i++) {
+					if (myroot.nodes[i].text == next){
+						addNodeByPath(myroot.nodes[i],path)
+					}
+				}
 			}
 		}
-	}   
-	function makeTree(myroot){
-		var newTree = [];
-		for (var i = 0; i < root.nodes.length; i++) {
-		  newTree.push(root.nodes[i]);
+		function removeEmptyLists(myroot){
+			for (var i = 0; i < myroot.nodes.length; i++) {
+				if (myroot.nodes[i].nodes.length == 0){
+					delete myroot.nodes[i].nodes
+				} else {
+					removeEmptyLists(myroot.nodes[i])
+				}
+			}
+		}   
+		function makeTree(myroot){
+			var newTree = [];
+			for (var i = 0; i < root.nodes.length; i++) {
+			  newTree.push(root.nodes[i]);
+			}
+			return newTree;
 		}
-		return newTree;
+		var root = {text: 'root', nodes: []}
+		addNodeByPath(root,['Ducks'])
+		addNodeByPath(root,['Ducks','Cats'])
+		addNodeByPath(root,['Ducks','Cats','Beavers'])
+		addNodeByPath(root,['Ducks','Cats','Grandchild-2'])
+		addNodeByPath(root,['Ducks','Child-2'])
+		addNodeByPath(root,['Parent-2'])
+		removeEmptyLists(root)
+		var myTree = makeTree(root)
+		return myTree;
 	}
-	var root = {text: 'root', nodes: []}
-	addNodeByPath(root,['Ducks'])
-	addNodeByPath(root,['Ducks','Cats'])
-	addNodeByPath(root,['Ducks','Cats','Beavers'])
-	addNodeByPath(root,['Ducks','Cats','Grandchild-2'])
-	addNodeByPath(root,['Ducks','Child-2'])
-	addNodeByPath(root,['Parent-2'])
-	removeEmptyLists(root)
-	var myTree = makeTree(root)
-
-  	var tree = [
-	  {
-	    text: "Parent 1",
-	    nodes: [
-	      {
-	        text: "Child 1",
-	        nodes: [
-	          {
-	            text: "Grandchild 1",
-	          },
-	          {
-	            text: "Grandchild 2",
-	          }
-	        ]
-	      },
-	      {
-	        text: "Child 2",
-	      }
-	    ]
-	  },
-	  {
-	    text: "Parent 2",
-	  },
-	];
-
 	//--------------------Initialize Treeview Object---------------------
+	var myTree = createTreeviewObject()
 	disableSelectableOnParents(myTree);
 	//create treeview object
 	$('#tree').treeview({
@@ -97,7 +50,6 @@ $(document).ready(function() {
 		selectedBackColor: "#009ec3",
 	});
 	resetTree();
-
 	//--------------------Treeview Event Handlers---------------------
 	//Hide sibling nodes when node expands
 	$('#tree').on('nodeExpanded', function(event, data) {
@@ -205,10 +157,18 @@ $(document).ready(function() {
 		}
 	}
 	//---------------------Task List Initialization----------------------
-	//adding tasks manually - for testing only
-	tasks.add("1. Sample Task");
-	tasks.add("2. Sample Task");
-	tasks.add("3. Sample Task");
+	function loadDatafromDB(){
+		var tasksDB = $('#hiddenTasks').val().split(";").map(function(item) {
+			  return item.trim();
+		});
+		for (var i = 0; i < tasksDB.length; i++) {
+			if (tasksDB[i] != ''){
+				tasks.add(tasksDB[i]);	
+			}
+		}
+		$('#hiddenTasks').remove();
+	}
+	loadDatafromDB();
 	tasks.set(0);
 	//-----------------------------Task List-----------------------------
 	$("#nextTaskButton" ).click(function() {tasks.next();});
@@ -218,8 +178,31 @@ $(document).ready(function() {
 		tasks.set($("li").index(event.target));
 	});
 	//------------------------------File IO------------------------------
+	function addTasksFromFile(filetext){
+	    arr = filetext.split("\n");
+	    for (var i = 0; i < arr.length; i++) {
+    		tasks.add(arr[i]);
+		}
+		tasks.set(0);
+	}
+  	function readInTextFile(tasksOrTree){  
+		var file = $('#fileInput').prop('files')[0];
+		if (file.type.match(/text.*/)) {
+			var reader = new FileReader();
+			reader.onload = function() {
+				if(tasksOrTree === "tree"){
+					//do tree stuff
+				} else {
+					addTasksFromFile(reader.result);		
+				}
+			}
+			reader.readAsText(file);  
+		}
+	}
+	$('#fileInput').change(function(){
+		readInTextFile("tasks");
+	});
 
-  // console.log(myTree)
 	//-------------------------------------------------------------------
 });
 

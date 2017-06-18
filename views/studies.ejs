@@ -51,6 +51,7 @@
 				<tr>
 				<th>Name</th>
 				<th>ID</th>
+				<th>Tasks</th>
 				<th>Actions</th>
 				</tr>
 			</thead>
@@ -60,6 +61,7 @@
 				<tr>
 				<td><%=studies.treetests[i].title %></td>
 				<td><%=studies.treetests[i]._id %></td>
+				<td><%=studies.treetests[i].tasks.length %></td>
 				<td><a style='color:red' href="/deletetreetest/<%= studies.treetests[i]._id %>">Delete</a> | 
 					<a href="/treetest/<%= studies.treetests[i]._id %>">View</a> | 
 					<a href="/edittreetest/<%= studies.treetests[i]._id %>">Edit</a>
