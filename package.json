@@ -2,11 +2,20 @@
   "name": "Kort",
   "version": "0.1.0",
   "description": "A web application that provides UX card sorting, tree testing, and more.",
+  "keywords": [
+    "card sort",
+    "UX",
+    "tree testing"
+  ],
   "main": "app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/carlsonp/kort.git"
   },
+  "bugs": {
+    "url": "https://github.com/carlsonp/kort/issues"
+  },
+  "homepage": "https://github.com/carlsonp/kort",
   "dependencies": {
     "async": "^2.4.1",
     "body-parser": "^1.17.2",
