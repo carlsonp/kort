@@ -4,16 +4,16 @@ const adminUser = "admin";
 const adminPassword = "admin";
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
 
-var express = require('express');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var cookieParser = require('cookie-parser')
-var morgan = require('morgan');
+const express = require('express');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
 var db = require('./server/db')(mongoURL, mongoose);
-var async = require('async');
-var flash = require('connect-flash');
+const async = require('async');
+const flash = require('connect-flash');
 
 //load in models
 require('./models/study');
