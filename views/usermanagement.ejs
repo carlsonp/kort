@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/header.ejs') %>
+		<title>Kort: User Management</title>
+	</head>
+	<body>
+	<%- include('partials/admin_header.ejs') %>
+	<div class="container">
+		<h1>User Management</h1>
+		<% for(var i=0; i<users.length; i++) {%>
+			<td><%=users[i].email %></td>
+			<td><%=users[i].name %></td>
+		<% } %>
+	<div>
+	
+	
+	<br><br>
+	<form action="/createuser" method="post">
+		<div>
+			Email:
+			<input type="text" name="email"/><br/>
+		</div>
+		<div>
+			Name:
+			<input type="text" name="name"/><br/>
+		</div>
+		<div>
+			Password:
+			<input type="password" name="password"/>
+		</div>
+		<div>
+			<input type="submit" value="Create User"/>
+		</div>
+	</form>
+	
+	</body>
+</html>
