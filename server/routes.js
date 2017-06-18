@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
 	app.get('/studies', admin.Studies);
 
 
-	app.get('/login/', function(req, res) {
+	app.get('/login', function(req, res) {
 		res.render('login.ejs');
 	});
 	  
@@ -51,6 +51,16 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+	
+	app.get('/createuser', function(req, res) {
+		res.render('createuser.ejs');
+	});
+	
+	app.post('/createuser', passport.authenticate('local-signup', {
+		successRedirect : '/profile',
+		failureRedirect : '/createuser',
+		failureFlash : true
+	}));
 }
 
 function isLoggedIn(req, res, next) {
