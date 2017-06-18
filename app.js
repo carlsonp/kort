@@ -51,6 +51,7 @@ app.get('/cardsortresults/:id', cardsort.results);
 app.post('/updatecardsort', cardsort.update);
 
 app.post('/createtreetest', treetest.create);
+app.get('/edittreetest/:id', treetest.edit);
 app.get('/deletetreetest/:id', treetest.delete);
 app.get('/treetest/:id', treetest.view);
 app.get('/treetestresults/:id', treetest.results);

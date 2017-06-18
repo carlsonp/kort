@@ -9,6 +9,8 @@ module.exports = {
       	var newStudy = new TreeTestStudy({
             title: "Default Tree Test Title",
             type: "treetest",
+            tasks: [],
+            tree: [],
         });
     	newStudy.save(function (err) {
         	if (err) {
@@ -33,6 +35,17 @@ module.exports = {
             }
         });
     },
+    edit: function (req, res, next) {
+        TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error edit cardsort.");
+                res.end(err);
+            } else {
+                res.render('edit_treetest.ejs',{singleStudy: docs});
+            }
+        });
+    },
     results: function (req, res, next) {
         TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
@@ -45,10 +58,17 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        CardSortStudy.findByIdAndUpdate(
+        var tasks = req.body.tasks.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        }).filter(function(n){ return n != '' });
+        var tree = req.body.tree.split(/\r?\n/).map(function(item) {
+             return item.trim();
+        }).filter(function(n){ return n != '' });
+        TreeTestStudy.findByIdAndUpdate(
             { _id: req.body.id}, 
             {title: req.body.title,
-             // studyType: req.body.studyType,
+             tasks: tasks,
+             tree: tree,
             }, 
             function (err, docs) {
             if (err) {

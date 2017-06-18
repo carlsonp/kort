@@ -14,6 +14,8 @@
 	</head>
 	
 	<body>
+		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.tasks.length; i++) {%><%= singleStudy.tasks[i] %>;<% } %>">
+		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.tree.length; i++) {%><%= singleStudy.tree[i] %>;<% } %>">
 		<script type="text/javascript" src="../treetest.js"/></script>
 
 		<div id="header">
@@ -28,7 +30,7 @@
 			<!--input field hidden-->
 			<input type="file" id="fileInput" style="display: none;"/>
 			<!--button that redirects the click (for UI purposes)-->
-			<button id="fileInputButton">Add Tasks from File</button>
+			<!-- <button id="fileInputButton">Add Tasks from File</button> -->
 			<button id="prevTaskButton">Previous Task</button>
 			<button id="nextTaskButton">Next Task</button>
 			<div id="tree"></div>

@@ -19,6 +19,8 @@ var CardSortStudy = new mongoose.Schema({
 var TreeTestStudy = new mongoose.Schema({
 	title: String,
 	type: String,
+	tasks: [],
+    tree: [],
 });
 
 var ProductReactionStudy = new mongoose.Schema({
