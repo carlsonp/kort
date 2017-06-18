@@ -28,6 +28,6 @@ var ProductReactionStudy = new mongoose.Schema({
 	type: String,
 });
 
-mongoose.model('CardSortStudy', CardSortStudy);
-mongoose.model('TreeTestStudy', TreeTestStudy);
-mongoose.model('ProductReactionStudy', ProductReactionStudy);
+module.exports = mongoose.model('CardSortStudy', CardSortStudy);
+module.exports = mongoose.model('TreeTestStudy', TreeTestStudy);
+module.exports = mongoose.model('ProductReactionStudy', ProductReactionStudy);
