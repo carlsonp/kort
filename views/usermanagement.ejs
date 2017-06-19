@@ -16,21 +16,42 @@
 	
 	
 	<br><br>
-	<form action="/createuser" method="post">
+	<form class="well form-horizontal" action="/createuser" method="post">
 		<div>
-			Email:
-			<input type="text" name="email"/><br/>
+			<div class="form-group">
+			  <label class="col-md-4 control-label">Email</label>
+				<div class="col-md-4 inputGroupContainer">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+					<input name="email" placeholder="Email Address" class="form-control" type="text" />
+				</div>
+			  </div>
+			</div>
 		</div>
 		<div>
-			Name:
-			<input type="text" name="name"/><br/>
+			<div class="form-group">
+			  <label class="col-md-4 control-label">Name</label>
+				<div class="col-md-4 inputGroupContainer">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input name="name" placeholder="Name" class="form-control" type="text" />
+				</div>
+			  </div>
+			</div>
 		</div>
 		<div>
-			Password:
-			<input type="password" name="password"/>
+			<div class="form-group">
+			  <label class="col-md-4 control-label">Password</label>
+				<div class="col-md-4 inputGroupContainer">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input name="password" placeholder="Password" class="form-control" type="password" />
+				</div>
+			  </div>
+			</div>
 		</div>
 		<div>
-			<input type="submit" value="Create User"/>
+			<button type="submit" class="btn btn-primary" value="Create User">Create User</button>
 		</div>
 	</form>
 	
