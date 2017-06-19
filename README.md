@@ -12,12 +12,16 @@ and more.
 ### Install
 
 Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
-by editing the `server/db.js` file.
+by editing the `app.js` file.
+
+Edit the secretHash value in `app.js` and provide your own unique value.
 
 Run `npm install` on the commandline.  This will install the dependencies.
 
 Run `node app.js` from the main directory.  This will start the NodeJS server
-on port 3000.  You can connect via http://localhost:3000
+on the default port 3000.  You can connect via http://localhost:3000
+
+The default admin user in `app.js` will be created upon first launch.
 
 
 ### Libraries
@@ -37,6 +41,16 @@ The following 3rd party libraries and services are utilized:
 * [jQuery UI](https://jqueryui.com/)
 * [D3.js](https://d3js.org/)
 * [async](https://caolan.github.io/async/)
+* [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
+* [connect-flash](https://www.npmjs.com/package/connect-flash)
+* [connect-mongo](https://www.npmjs.com/package/connect-mongo)
+* [cookie-parser](https://www.npmjs.com/package/cookie-parser)
+* [express-session](https://www.npmjs.com/package/express-session)
+* [morgan](https://www.npmjs.com/package/morgan)
+* [passport](https://github.com/jaredhanson/passport)
+* [passport-local](https://github.com/jaredhanson/passport-local)
+
+
 
 ### Support
 
