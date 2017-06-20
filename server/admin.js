@@ -11,7 +11,7 @@ var ProductReactionStudy = mongoose.model('ProductReactionStudy');
 var User = mongoose.model('User');
 
 module.exports = {
-  Studies: function (req, res, next) {
+	Studies: function (req, res, next) {
       var cardsortQuery = CardSortStudy.find({});
       var treetestQuery = TreeTestStudy.find({});
       var productreactionQuery = ProductReactionStudy.find({});
@@ -40,13 +40,12 @@ module.exports = {
             }
       });
 	},
-  deleteUser: function(req, res, next) {
+	deleteUser: function(req, res, next) {
         User.findOne({_id: req.params.id}, function(err) {
             if (err) {
                 req.status(504);
-            console.log("cardsort_server.js: Cannot find study to delete:" + req.params.id);
-            console.log(err);
-                req.end();
+				console.log(err);
+				req.end();
             }
         }).remove(function (err) {
             if (err) {
