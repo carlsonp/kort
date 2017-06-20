@@ -24,32 +24,34 @@
 				<% } %>
 			</tbody>
 		</table>
-	<div>
-
-	<form class="form-horizontal" action="/createuser" method="post">
-
-		<div class="form-group">
-		  <label class="col-md-4 control-label">Email</label>
-			<div class="col-md-4 inputGroupContainer">
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				<input name="email" placeholder="Email Address" class="form-control" type="text" />
-			</div>
-		  </div>
-		</div>
-
-		<div class="form-group">
-		  <label class="col-md-4 control-label">Password</label>
-			<div class="col-md-4 inputGroupContainer">
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input name="password" placeholder="Password" class="form-control" type="password" />
-			</div>
-		  </div>
-		</div>
-		<button type="submit" class="btn btn-primary" value="Create User">Create User</button>
-
-	</form>
 	
+
+		<hr>
+		<h1>Add a User</h1>
+		<form class="form-horizontal" action="/createuser" method="post">
+
+			<div class="form-group row">
+			  <label class="col-sm-1 control-label" style='text-align: left'>Email</label>
+				<div class="col-sm-3 inputGroupContainer">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+					<input name="email" placeholder="Email Address" class="form-control" type="text" />
+				</div>
+			  </div>
+			</div>
+
+			<div class="form-group row">
+			  <label class="col-sm-1 control-label " style='text-align: left'>Password</label>
+				<div class="col-sm-3 inputGroupContainer">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input name="password" placeholder="Password" class="form-control" type="password" />
+				</div>
+			  </div>
+			</div>
+			<button type="submit" class="btn btn-default" value="Create User">Create User</button>
+
+		</form>
+	</div>
 	</body>
 </html>
