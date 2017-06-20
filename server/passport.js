@@ -7,7 +7,7 @@ var db = require('./db');
 var User = mongoose.model('User');
 
 
-module.exports = function(passport) {
+module.exports = function(passport, flash) {
 
 	// used to serialize the user for the session
     passport.serializeUser(function(user, done) {
@@ -26,10 +26,9 @@ module.exports = function(passport) {
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
-		name : 'name',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, name, done) {
+    function(req, email, password, done) {
 
         // asynchronous
         // User.findOne wont fire unless data is sent back
@@ -53,7 +52,6 @@ module.exports = function(passport) {
 					// set the user's local credentials
 					newUser.email = email;
 					newUser.password = newUser.generateHash(password);
-					newUser.name = name;
 
 					// save the user
 					newUser.save(function(err) {

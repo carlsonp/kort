@@ -12,14 +12,13 @@
 			<thead>
 				<tr>
 				<th>Email</th>
-				<th>Name</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% for(var i=0; i<users.length; i++) {%>
 				<tr>
 					<td><%= users[i].email %></td>
-					<td><%= users[i].name %></td>
+					<!-- Number of studies, TODO -->
 				</tr>
 				<% } %>
 			</tbody>
@@ -34,16 +33,6 @@
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 				<input name="email" placeholder="Email Address" class="form-control" type="text" />
-			</div>
-		  </div>
-		</div>
-
-		<div class="form-group">
-		  <label class="col-md-4 control-label">Name</label>
-			<div class="col-md-4 inputGroupContainer">
-			<div class="input-group">
-				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input name="name" placeholder="Name" class="form-control" type="text" />
 			</div>
 		  </div>
 		</div>
