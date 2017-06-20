@@ -8,51 +8,57 @@
 	<%- include('partials/admin_header.ejs') %>
 	<div class="container">
 		<h1>User Management</h1>
-		<% for(var i=0; i<users.length; i++) {%>
-			<td><%=users[i].email %></td>
-			<td><%=users[i].name %></td>
-		<% } %>
+		<table class='table'>
+			<thead>
+				<tr>
+				<th>Email</th>
+				<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var i=0; i<users.length; i++) {%>
+				<tr>
+					<td><%= users[i].email %></td>
+					<td><%= users[i].name %></td>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
 	<div>
-	
-	
-	<br><br>
-	<form class="well form-horizontal" action="/createuser" method="post">
-		<div>
-			<div class="form-group">
-			  <label class="col-md-4 control-label">Email</label>
-				<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					<input name="email" placeholder="Email Address" class="form-control" type="text" />
-				</div>
-			  </div>
+
+	<form class="form-horizontal" action="/createuser" method="post">
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Email</label>
+			<div class="col-md-4 inputGroupContainer">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input name="email" placeholder="Email Address" class="form-control" type="text" />
 			</div>
+		  </div>
 		</div>
-		<div>
-			<div class="form-group">
-			  <label class="col-md-4 control-label">Name</label>
-				<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input name="name" placeholder="Name" class="form-control" type="text" />
-				</div>
-			  </div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Name</label>
+			<div class="col-md-4 inputGroupContainer">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input name="name" placeholder="Name" class="form-control" type="text" />
 			</div>
+		  </div>
 		</div>
-		<div>
-			<div class="form-group">
-			  <label class="col-md-4 control-label">Password</label>
-				<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input name="password" placeholder="Password" class="form-control" type="password" />
-				</div>
-			  </div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Password</label>
+			<div class="col-md-4 inputGroupContainer">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input name="password" placeholder="Password" class="form-control" type="password" />
 			</div>
+		  </div>
 		</div>
-		<div>
-			<button type="submit" class="btn btn-primary" value="Create User">Create User</button>
-		</div>
+		<button type="submit" class="btn btn-primary" value="Create User">Create User</button>
+
 	</form>
 	
 	</body>
