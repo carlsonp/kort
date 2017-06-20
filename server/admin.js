@@ -39,6 +39,24 @@ module.exports = {
                 res.render("usermanagement.ejs", {users: docs});
             }
       });
-	}
+	},
+  deleteUser: function(req, res, next) {
+        User.findOne({_id: req.params.id}, function(err) {
+            if (err) {
+                req.status(504);
+            console.log("cardsort_server.js: Cannot find study to delete:" + req.params.id);
+            console.log(err);
+                req.end();
+            }
+        }).remove(function (err) {
+            if (err) {
+                console.log(err);
+                res.end(err);            
+            } else {
+                res.redirect('/usermanagement');
+                res.end();
+            }
+        });
+    },
 }
 
