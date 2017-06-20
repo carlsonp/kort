@@ -41,20 +41,15 @@ module.exports = {
       });
 	},
 	deleteUser: function(req, res, next) {
-        User.findOne({_id: req.params.id}, function(err) {
+        User.findOneAndRemove({_id: req.params.id}, function(err) {
             if (err) {
                 req.status(504);
 				console.log(err);
 				req.end();
-            }
-        }).remove(function (err) {
-            if (err) {
-                console.log(err);
-                res.end(err);            
             } else {
-                res.redirect('/usermanagement');
+				res.redirect('/usermanagement');
                 res.end();
-            }
+			}
         });
     },
 }
