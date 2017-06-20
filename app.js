@@ -24,7 +24,6 @@ require('./models/productreaction');
 //setup a default admin account in Mongo
 require('./server/createadmin_user')(adminUser, adminPassword);
 
-
 app.set('view engine', 'ejs');
 
 //https://expressjs.com/en/starter/static-files.html
@@ -57,7 +56,6 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
-
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
