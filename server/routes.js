@@ -4,7 +4,6 @@ var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
 var productreaction = require('./productreaction_server');
 
-
 module.exports = function(app, passport, flash) {
 
 	app.get('/', function (req, res) {
@@ -69,6 +68,5 @@ module.exports = function(app, passport, flash) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-
     res.redirect('/login');
 }

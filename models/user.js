@@ -7,7 +7,6 @@ var User = new mongoose.Schema({
 	studies: []
 });
 
-
 // generating a hash
 User.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -17,6 +16,5 @@ User.methods.generateHash = function(password) {
 User.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
-
 
 module.exports = mongoose.model('User', User);
