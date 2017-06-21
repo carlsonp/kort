@@ -3,8 +3,20 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports = {
+	UserManagement: function (req, res, next) {
+		User.find({}, function (err, docs) {
+			if (err) {
+                res.status(504);
+                res.end(err);
+            } else {
+                res.render("usermanagement.ejs", {users: docs});
+            }
+      });
+	},
+	
 	deleteUser: function(req, res, next) {
-        User.findOneAndRemove({_id: req.params.id}, function(err) {
+		console.log("top of method");
+        User.findOneAndRemove({email: req.params.email}, function(err) {
             if (err) {
                 req.status(504);
 				console.log(err);
