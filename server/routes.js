@@ -3,6 +3,7 @@ var admin = require('./admin');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
 var productreaction = require('./productreaction_server');
+var user = require('./user_server');
 
 module.exports = function(app, passport, flash) {
 
@@ -62,7 +63,7 @@ module.exports = function(app, passport, flash) {
 		failureFlash : true
 	}));
 
-	app.get('/deleteuser/:id', isLoggedIn, admin.deleteUser);
+	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
 }
 
 function isLoggedIn(req, res, next) {
