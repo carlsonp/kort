@@ -34,6 +34,7 @@ module.exports = function(app, passport, flash) {
 
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {
+			//TODO: do we even need to pass this?
             user : req.user // get the user out of session and pass to template
         });
 	});

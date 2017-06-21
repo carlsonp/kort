@@ -15,7 +15,7 @@ module.exports = {
 	},
 	
 	deleteUser: function(req, res, next) {
-		console.log("top of method");
+		//TODO: use MongoStore.destroy(id) to remove the session from the database
         User.findOneAndRemove({_id: req.params.id}, function(err) {
             if (err) {
                 req.status(504);
