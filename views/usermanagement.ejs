@@ -19,7 +19,7 @@
 				<% for(var i=0; i<users.length; i++) {%>
 				<tr>
 					<td><%= users[i].email %></td>
-					<td><a href='/deleteuser/<%= users[i]._id %>/'>Delete</td>
+					<td><a href='/deleteuser/<%= users[i].email %>/'>Delete</a></td>
 				</tr>
 				<% } %>
 			</tbody>
