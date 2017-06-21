@@ -16,7 +16,7 @@ module.exports = {
 	
 	deleteUser: function(req, res, next) {
 		console.log("top of method");
-        User.findOneAndRemove({email: req.params.email}, function(err) {
+        User.findOneAndRemove({_id: req.params.id}, function(err) {
             if (err) {
                 req.status(504);
 				console.log(err);
