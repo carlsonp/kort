@@ -57,7 +57,7 @@ module.exports = function(passport, flash) {
 					newUser.save(function(err) {
 						if (err)
 							throw err;
-						return done(null, newUser, req.flash('createUserMessage', 'Account created successfully.'));
+						return done(null, user, req.flash('createUserMessage', 'Account created successfully.'));
 					});
 				}
 			});    
