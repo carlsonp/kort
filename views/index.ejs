@@ -2,14 +2,48 @@
 <html lang="en">
 	<head>
 		<%- include('partials/header.ejs') %>
-
-
 		<title>Kort</title>
+		<style>
+		.siteTitle {
+			font-size: 125px;
+			letter-spacing: 20px;
+		}
+		.container {
+			margin-top: 50px;
+		}
+		</style>
 	</head>
 	<body>
-		<h1>Kort Homepage</h1>		
-
-		<a href="admin">Admin page</a> |
-		<a href="login">Login</a>
+		<div class="container">
+			<div class='well well-lg'>
+				<div class='row'>
+					<div class='col-md-6 text-center'>
+						<span class='siteTitle'>Kort</span>
+					</div>
+					<div class='col-md-6'>
+						<%- include('partials/login.ejs') %>
+					</div>	
+				</div>
+			</div>
+			<Br>
+			<div class='row'>
+				<div class='col-md-4 text-center'>
+					<b>What is Kort?</b>
+					<br>
+					<span>This is a description of what it could be to answer the question within this area.</span>
+				</div>
+				<div class='col-md-4 text-center'>
+					<b>What is Card Sorting?</b>
+					<br>
+					<span>This is a description of what it could be to answer the question within this area.</span>
+				</div>	
+				<div class='col-md-4 text-center'>
+					<b>What is Tree Testing?</b>
+					<br>
+					<span>This is a description of what it could be to answer the question within this area.</span>
+				</div>	
+			</div>
+								
+		</div>
 	</body>
 </html>
