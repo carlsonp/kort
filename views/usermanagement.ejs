@@ -13,6 +13,7 @@
 				<tr>
 				<th>Email</th>
 				<th>Delete</th>
+				<th>Reset Password</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,6 +21,7 @@
 				<tr>
 					<td><%= users[i].email %></td>
 					<td><a href='/deleteuser/<%= users[i]._id %>/'>Delete</a></td>
+					<td>TODO</td>
 				</tr>
 				<% } %>
 			</tbody>
@@ -29,10 +31,17 @@
 		<hr>
 		<h1>Add a User</h1>
 		<form class="form-horizontal" action="/createuser" method="post">
+			
+			<% if (typeof createUserErrorMessage == 'object' && createUserErrorMessage) { %>
+				<p><%= createUserErrorMessage %></p>
+			<% } %>
+			<% if (typeof createUserSuccessMessage == 'object' && createUserSuccessMessage) { %>
+				<p><%= createUserSuccessMessage %></p>
+			<% } %>
 
 			<div class="form-group row">
 			  <label class="col-sm-1 control-label" style='text-align: left'>Email</label>
-				<div class="col-sm-3 inputGroupContainer">
+				<div class="col-sm-4 inputGroupContainer">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 					<input name="email" placeholder="Email Address" class="form-control" type="text" />

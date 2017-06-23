@@ -9,7 +9,7 @@ module.exports = {
                 res.status(504);
                 res.end(err);
             } else {
-                res.render("usermanagement.ejs", {users: docs});
+                res.render("usermanagement.ejs", {users: docs, createUserErrorMessage: req.flash('createUserErrorMessage'), createUserSuccessMessage: req.flash('createUserSuccessMessage')});
             }
       });
 	},

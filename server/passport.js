@@ -43,7 +43,11 @@ module.exports = function(passport, flash) {
 
 				// check to see if theres already a user with that email
 				if (user) {
-					return done(null, false, req.flash('createUserMessage', 'That email is already taken.'));
+					return done(null, false, req.flash('createUserErrorMessage', 'That email is already taken.'));
+				} else if (password.length === 0) {
+					return done(null, false, req.flash('createUserErrorMessage', 'The password field is blank.'));
+				} else if (email.length === 0) {
+					return done(null, false, req.flash('createUserErrorMessage', 'The email field is blank.'));
 				} else {
 
 					// if there is no user with that email, create new user
@@ -57,7 +61,7 @@ module.exports = function(passport, flash) {
 					newUser.save(function(err) {
 						if (err)
 							throw err;
-						return done(null, user, req.flash('createUserMessage', 'Account created successfully.'));
+						return done(null, user, req.flash('createUserSuccessMessage', 'Account created successfully.'));
 					});
 				}
 			});    
