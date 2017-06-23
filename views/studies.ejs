@@ -3,6 +3,16 @@
 	<head>
 		<%- include('partials/header.ejs') %>
 		<title>Kort: Studies</title>
+		<style type="text/css">
+			.linkButton { 
+			     background: none;
+			     border: none;
+			     /*color: #0066ff;*/
+			     font-weight: bold;
+			     /*text-decoration: underline;*/
+			     cursor: pointer; 
+			}
+		</style>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
@@ -59,12 +69,11 @@
 				<%if (studies.treetests[i].type == 'treetest') { %>
 			<tbody>
 				<tr>
-				<td><%=studies.treetests[i].title %></td>
+				<td><a href="/edittreetest/<%= studies.treetests[i]._id %>"><%=studies.treetests[i].title %></a></td>
 				<td><%=studies.treetests[i]._id %></td>
 				<td><%=studies.treetests[i].tasks.length %></td>
 				<td><a style='color:red' href="/deletetreetest/<%= studies.treetests[i]._id %>">Delete</a> | 
-					<a href="/treetest/<%= studies.treetests[i]._id %>">View</a> | 
-					<a href="/edittreetest/<%= studies.treetests[i]._id %>">Edit</a>
+					<a href="/treetest/<%= studies.treetests[i]._id %>">View</a>
 				</td>
 				</tr>
 			</tbody>
@@ -94,12 +103,11 @@
 				<%if (studies.productreactions[i].type == 'productreaction') { %>
 			<tbody>
 				<tr>
-				<td><%=studies.productreactions[i].title %></td>
+				<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><%=studies.productreactions[i].title %></a></td>
 				<td><%=studies.productreactions[i]._id %></td>
 				<td><%=studies.productreactions[i].words.length %></td>
 				<td><a style='color:red' href="/deleteproductreaction/<%= studies.productreactions[i]._id %>">Delete</a> | 
-					<a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a> | 
-					<a href="/editproductreaction/<%= studies.productreactions[i]._id %>">Edit</a>
+					<a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a>
 				</td>
 				</tr>
 			</tbody>
