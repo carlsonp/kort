@@ -3,11 +3,32 @@
 	<head>
 		<%- include('partials/header.ejs') %>
 		<title>Kort: User Management</title>
+		<style>
+		.errorMessage, .successMessage {
+			display:none;
+		}
+		</style>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			    $( ".successMessage" ).slideDown(300).delay(2000).slideUp(300);
+			    $( ".errorMessage" ).slideDown(300);
+			});
+		</script>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
 	<div class="container">
-		<h1>User Management</h1>
+		<% if (createUserErrorMessage.length > 0) { %>
+			<div class="alert alert-danger errorMessage">
+			  <%= createUserErrorMessage %>
+			</div>
+		<% } %>
+		<% if (createUserSuccessMessage.length > 0) { %>
+			<div class="alert alert-success successMessage">
+			  <strong>Success!</strong> <%= createUserSuccessMessage %>
+			</div>
+		<% } %>
+		<h1>Users</h1>
 		<table class='table table-condensed'>
 			<thead>
 				<tr>
@@ -31,13 +52,6 @@
 		<hr>
 		<h1>Add a User</h1>
 		<form class="form-horizontal" action="/createuser" method="post">
-			
-			<% if (typeof createUserErrorMessage == 'object' && createUserErrorMessage) { %>
-				<p><%= createUserErrorMessage %></p>
-			<% } %>
-			<% if (typeof createUserSuccessMessage == 'object' && createUserSuccessMessage) { %>
-				<p><%= createUserSuccessMessage %></p>
-			<% } %>
 
 			<div class="form-group row">
 			  <label class="col-sm-1 control-label" style='text-align: left'>Email</label>
