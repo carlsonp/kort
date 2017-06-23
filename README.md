@@ -38,7 +38,6 @@ The following 3rd party libraries and services are utilized:
 * [MongoDB](https://www.mongodb.com/)
 * [Body-Parser](https://github.com/expressjs/body-parser)
 * [Font-Awesome](http://fontawesome.io/)
-* [jQuery UI](https://jqueryui.com/)
 * [D3.js](https://d3js.org/)
 * [async](https://caolan.github.io/async/)
 * [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
