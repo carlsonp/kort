@@ -8,7 +8,8 @@ var user = require('./user_server');
 module.exports = function(app, passport, flash) {
 
 	app.get('/', function (req, res) {
-		res.render('index.ejs');
+		// res.render('index.ejs');
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage') });
 	});
 
 	app.post('/createcardsort', isLoggedIn, cardsort.create);
@@ -49,7 +50,7 @@ module.exports = function(app, passport, flash) {
 	  
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/admin',
-		failureRedirect: '/login',
+		failureRedirect: '/',
 		failureFlash : true
 	}));
 	  

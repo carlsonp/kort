@@ -3,7 +3,16 @@
 	<head>
 		<%- include('partials/header.ejs') %>
 		<title>Kort</title>
+
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			    $( ".loginMessage" ).slideDown(300);
+			});
+		</script>
 		<style>
+		.loginMessage {
+			display:none;
+		}
 		.siteTitle {
 			font-size: 125px;
 			letter-spacing: 20px;
@@ -26,6 +35,11 @@
 						<span class='siteTitle'>Kort</span>
 					</div>
 					<div class='col-md-6'>
+						<% if (loginMessage.length > 0) { %>
+							<div class="alert alert-danger loginMessage">
+							  <%= loginMessage %>
+							</div>
+						<% } %>
 						<%- include('partials/login.ejs') %>
 					</div>	
 				</div>
