@@ -34,8 +34,8 @@ module.exports = function(app, passport, flash) {
 
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {
-			//TODO: do we even need to pass this?
-            user : req.user // get the user out of session and pass to template
+			//TODO: do we even need to pass this? I do not think so.
+            //user : req.user 
         });
 	});
 
@@ -67,5 +67,5 @@ module.exports = function(app, passport, flash) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-    res.redirect('/login');
+    res.redirect('/');
 }
