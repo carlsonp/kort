@@ -43,10 +43,6 @@ module.exports = function(app, passport, flash) {
 	app.get('/studies', isLoggedIn, admin.Studies);
 
 	app.get('/usermanagement', isLoggedIn, user.UserManagement);
-
-	app.get('/login', function(req, res) {
-		res.render('login.ejs', { message: req.flash('loginMessage') });
-	});
 	  
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/admin',
