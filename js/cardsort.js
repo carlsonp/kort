@@ -43,12 +43,7 @@ $(document).ready(function() {
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
 		var nestedArea = $("<div class='droparea nested accepts-items'></div>");
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
-		groupTitle.click(function(){
-        	event.target.contentEditable=true;
-			event.target.classList.add('contenteditable')
-			this.focus();
-			document.execCommand('selectAll', false, null);
-    	});
+		
 		groupTitle.blur(function(){
         	event.target.contentEditable=false;
 			event.target.classList.remove('contenteditable');
@@ -66,6 +61,12 @@ $(document).ready(function() {
     	});
 		if (studyIsOpen){
 			group.append(closeIcon);
+			groupTitle.click(function(){
+	        	event.target.contentEditable=true;
+				event.target.classList.add('contenteditable')
+				this.focus();
+				document.execCommand('selectAll', false, null);
+	    	});
 		}
     	group.append(groupTitle);
     	group.append(nestedArea);
@@ -107,7 +108,7 @@ $(document).ready(function() {
 	}
 	function setUpDropZones(){
 		for (var i = 0; i < zoneNum; i++) {
-			$('#dropZonesPlace').append('<div id="dropZone'+i+'"class="column-area-secondary accepts-groups nested"></div>');
+			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
 		}
 	}
 	//dropzones for groups need to be created before default groups
@@ -146,7 +147,11 @@ $(document).ready(function() {
 		createGroup("New Group");
 	});
 	$('#done').click(function() {
-		$('#hiddenResults').val(JSON.stringify(getResults()));
-		$('#submitForm').click();
+		if ($('#initialColumn').children().length == 0){
+			$('#hiddenResults').val(JSON.stringify(getResults()));
+			$('#submitForm').click();
+		} else {
+			alert('Please place all items into groups.');
+		}
 	});
 });
