@@ -19,7 +19,13 @@
 		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.cards.length; i++) {%><%= singleStudy.cards[i] %>;<% } %>">
 		<input id='hiddenType' type='text' value="<%= singleStudy.studyType %>">
 
-		<div id="mySidenav" class="sidenav">
+		<form method="POST" action="/submitCardsortResult">
+			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+			<input name="result" id='hiddenResults' type='text' hidden></input>
+			<button type="submit" id='submitForm' hidden>Add</button>
+		</form>
+		
+<!-- 		<div id="mySidenav" class="sidenav">
 			<a id='closeMenu' href="javascript:void(0)" class="closebtn" >&times;</a>
 			<a id='addItem' href="#">Add Item</a>
 			<a id='exportJSON' href="#">Export JSON</a>
@@ -33,7 +39,7 @@
 				<textarea id='groupsList'></textarea>
 				<button id="addGroupsButton">Add Groups</button>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="../cardsort.js"></script>

@@ -8,13 +8,9 @@ var CardSortStudy = new mongoose.Schema({
 			},
 	cards: [],
 	groups: [],
-	responses: [{
-		participantID: String,
-		groups: [{
-			cards: []
-		}]
-	}]
-});
+	responses: [],
+	}
+);
 
 module.exports = mongoose.model('CardSortStudy', CardSortStudy);
 

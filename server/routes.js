@@ -17,6 +17,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/cardsort/:id', cardsort.view);
 	app.get('/cardsortresults/:id', isLoggedIn, cardsort.results);
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
+	app.post('/submitCardsortResult', isLoggedIn, cardsort.submitResult);
 
 	app.post('/createtreetest', isLoggedIn, treetest.create);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);

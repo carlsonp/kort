@@ -144,4 +144,8 @@ $(document).ready(function() {
 	$('#newGroupButton').click(function() {
 		createGroup("Group");
 	});
+	$('#done').click(function() {
+		$('#hiddenResults').val(JSON.stringify(getResults()));
+		$('#submitForm').click();
+	});
 });

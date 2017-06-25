@@ -83,6 +83,23 @@ module.exports = {
             }
         });
     },
+    submitResult: function (req, res, next) {
+        CardSortStudy.findOne({ _id: req.body.id}, 
+            function (err, study) {
+                if (err) {
+                    res.status(504);
+                    console.log('cardsort_server.js: error submitting result');
+                    res.end(err);
+                } 
+                else {
+                    study.responses.push(req.body.result)
+                    console.log(study.responses.length);
+                    study.save();
+                    res.redirect('/studies');
+                    res.end();   
+                }
+        });
+    },
     delete: function(req, res, next) {
         CardSortStudy.find({ _id: req.params.id}, function(err) {
             if (err) {
