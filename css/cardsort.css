@@ -2,13 +2,14 @@
 #hamburger{
 	padding-right: 10px;
 }
+
 #dropZoneParent{
 	height: 100%;
 	width: auto;
 	overflow: auto;
 	background-color: rgb(0, 107, 132);
 }
-/*Group Drop Areas*/
+
 #initialColumn {
 	float: left;
 	height: 100%;
@@ -16,6 +17,7 @@
 	background-color: 	#C8C8C8;
 	padding:10px;
 }
+
 .dropZone {
 	float: left;
 	height: 100%;
@@ -24,7 +26,6 @@
 	background-color: white;
 }
 
-/*Groups*/
 .group {
 	width: 90%;
 	color: black;
@@ -37,16 +38,19 @@
     display: table;
     border: solid 1px darkgray;
 }
+
 .group .contenteditable {
 	background-color: white;
 	color: black !important;
 }
+
 .group .title {
 	color: black;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
 }
+
 .group .closeicon {
 	cursor: pointer;
 	color: gray;
@@ -57,10 +61,12 @@
 .group .iconContainer{
 	text-align: center;
 }
+
 .group .grabicon {
 	cursor: move;
 	color: gray;
 }
+
 .group .droparea {
 	min-height: 100px;
 	background-color: #B0B0B0;
@@ -68,11 +74,10 @@
 	cursor: default;
 	min-height: 150px;
 }
-/*Items*/
+
 .item {
 	width: auto;
 	cursor: move;
-	/*max-width: 200px;*/
 	color: black;
 	background-color: white;
 	cursor: grab;	
