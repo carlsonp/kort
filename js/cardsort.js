@@ -81,7 +81,8 @@ $(document).ready(function() {
 	}
 	function loadDatafromDB(){
 		if ($('#hiddenType').val() == 'open'){
-			$('#newGroupButton').show();
+			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
+			// $('#newGroupButton').show();
 			studyIsOpen = true;
 		}
 		var groups = $('#hiddenGroups').val().split(";").map(function(item) {
@@ -142,7 +143,7 @@ $(document).ready(function() {
 	// 	}
 	// });
 	$('#newGroupButton').click(function() {
-		createGroup("Group");
+		createGroup("New Group");
 	});
 	$('#done').click(function() {
 		$('#hiddenResults').val(JSON.stringify(getResults()));
