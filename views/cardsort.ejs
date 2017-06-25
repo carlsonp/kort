@@ -44,13 +44,16 @@
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="../cardsort.js"></script>
 		
-		<div id='header'>
-			<div id='title'>
-				<span id='hamburger'>&#9776;</span>
-				CardSort
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+			<span class='navbar-brand'>Cardsort</span>
+			    <ul class='nav navbar-nav' id='cardsort-navbar'>
+				</ul>
+				<ul class='nav navbar-nav' style='float:right'>
+					<li><a href='#' id='done'>I'm Done</a></li>
+				</ul>
 			</div>
-			<button id="newGroupButton" hidden>Add Group</button>
-		</div>
+		</nav>
 
 		<div id="initialColumn" class="column-area-primary accepts-items nested">
 			<!-- <div class="item">One</div> -->
