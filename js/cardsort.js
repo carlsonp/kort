@@ -125,8 +125,9 @@ $(document).ready(function() {
 			$(nestedArea).children().each(function(){
 				cards.push($(this).text())
 			});
-			results.push({groupname: groupname ,cards: cards})
+			results.push({groupname: groupname ,cards: cards});
 		});
+		results.unshift(Date())
 		return results;
 	}
 	// $('#addCardsButton').click(function() {
