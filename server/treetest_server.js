@@ -31,7 +31,7 @@ module.exports = {
                 console.log("treetest_server.js: Error viewing treetest.");
                 res.end(err);
             } else {
-                res.render('treetest.ejs',{singleStudy: docs});
+                res.render('treetest/view.ejs',{singleStudy: docs});
             }
         });
     },
@@ -42,7 +42,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('edit_treetest.ejs',{singleStudy: docs});
+                res.render('treetest/edit.ejs',{singleStudy: docs});
             }
         });
     },
@@ -53,7 +53,7 @@ module.exports = {
                 console.log("treetest_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('treetest_results.ejs',{study: docs});
+                res.render('treetest/results.ejs',{study: docs});
             }
         });
     },

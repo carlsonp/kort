@@ -30,7 +30,7 @@ module.exports = {
                 console.log("productreaction_server.js: Error viewing.");
                 res.end(err);
             } else {
-                res.render('productreaction.ejs',{singleStudy: docs});
+                res.render('desirability/view.ejs',{singleStudy: docs});
             }
         });
     },
@@ -41,7 +41,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('edit_productreaction.ejs',{singleStudy: docs});
+                res.render('desirability/edit.ejs',{singleStudy: docs});
             }
         });
     },
@@ -52,7 +52,7 @@ module.exports = {
                 console.log("productreaction_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('productreaction_results.ejs',{study: docs});
+                res.render('desirability/results.ejs',{study: docs});
             }
         });
     },

@@ -31,7 +31,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                res.render('cardsort.ejs',{singleStudy: docs});
+                res.render('cardsort/view.ejs',{singleStudy: docs});
             }
         });
     },
@@ -42,7 +42,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('edit_cardsort.ejs',{singleStudy: docs});
+                res.render('cardsort/edit.ejs',{singleStudy: docs});
             }
         });
     },
@@ -53,7 +53,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('cardsort_results.ejs',{study: docs});
+                res.render('cardsort/results.ejs',{study: docs});
             }
         });
     },
