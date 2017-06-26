@@ -10,8 +10,9 @@
 		
 	</head>
 	<body>
-		<a href='/admin'>Back to studies</a>
-
-
+		<a href='/admin'>Back to studies</a><br>
+		<% for(var j=0; j<study.responses.length; j++) {%>
+			<%= study.responses[j]+'\n' %><br>
+		<% } %>
 	</body>
 </html>
