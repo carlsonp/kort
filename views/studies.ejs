@@ -18,13 +18,18 @@
 				});
 	    	}
 	    </script>
+	    <style>
+/*		    body {
+				font-family: 'Open Sans', sans-serif;
+		    }*/
+	    </style>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
 	<div class="container">
 		<h1>Studies</h1>
 		<h3>Card Sorts</h3>
-	  	<table class="table">
+	  	<table class="table table-striped">
 			<thead>
 				<tr>
 				<th>Name</th>
@@ -34,24 +39,24 @@
 				<th>Responses</th>
 				</tr>
 			</thead>
+			<tbody>
 			<% for(var i=0; i<studies.cardsorts.length; i++) {%>
 				<%if (studies.cardsorts[i].type == 'cardsort') { %>
-			<tbody>
 				<tr>
 					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><%=studies.cardsorts[i].title %></a></td>
 					<td><%=studies.cardsorts[i].studyType %></td>
 					<td><%=studies.cardsorts[i].cards.length %></td>
 					<td><%=studies.cardsorts[i].groups.length %></td>
 					<td><%=studies.cardsorts[i].responses.length %></td>
-					<td><a href='#' style='color:red' onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')">Delete</a></td>
+					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')">Delete</a></td>
 					<td><a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a></td>
 					<td><a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a></td>
 				</tr>
-			</tbody>
 				<% } %>
 			<% } %>
+			</tbody>
 			<tbody>
-				<tr>
+				<tr style="background-color: white">
 					<td>	
 						<form method="POST" action="/createcardsort">
 							<button type="submit" class="btn-link text-success">Add</button>
@@ -61,42 +66,41 @@
 			</tbody>
   		</table>
   		<h3>Tree Tests</h3>
-	  	<table class="table">
+	  	<table class="table table-striped">
 			<thead>
 				<tr>
 				<th>Name</th>
-				<th>ID</th>
 				<th>Tasks</th>
 				<th>Actions</th>
 				</tr>
 			</thead>
+			<tbody>
 			<% for(var i=0; i<studies.treetests.length; i++) {%>
 				<%if (studies.treetests[i].type == 'treetest') { %>
-			<tbody>
 				<tr>
 				<td><a href="/edittreetest/<%= studies.treetests[i]._id %>"><%=studies.treetests[i].title %></a></td>
-				<td><%=studies.treetests[i]._id %></td>
 				<td><%=studies.treetests[i].tasks.length %></td>
-				<td><a href='#' style='color:red' onclick="confirmDeleteStudy('/deletetreetest/<%= studies.treetests[i]._id %>','<%=studies.treetests[i].title %>')">Delete</a></td>
+				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/<%= studies.treetests[i]._id %>','<%=studies.treetests[i].title %>')">Delete</a></td>
 				</td>
 				<td><a href="/treetest/<%= studies.treetests[i]._id %>">View</a></td>
 				<td><a href="/treetestresults/<%= studies.treetests[i]._id %>">Results</a></td>
 				</tr>
-			</tbody>
+			
 				<% } %>
 			<% } %>
+			</tbody>
 			<tbody>
-				<tr>
+				<tr style="background-color: white">
 					<td>	
 						<form method="POST" action="/createtreetest">
-							<button type="submit" class="linkButton text-success">Add</button>
+							<button type="submit" class="btn-link text-success">Add</button>
 						</form>
 					</td>
 				</tr>
 			</tbody>
   		</table>
   		<h3>Product Reaction Cards</h3>
-	  	<table class="table">
+	  	<table class="table table-striped">
 			<thead>
 				<tr>
 				<th>Name</th>
@@ -105,27 +109,24 @@
 				<th>Actions</th>
 				</tr>
 			</thead>
+			<tbody>
 			<% for(var i=0; i<studies.productreactions.length; i++) {%>
 				<%if (studies.productreactions[i].type == 'productreaction') { %>
-			<tbody>
 				<tr>
 				<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><%=studies.productreactions[i].title %></a></td>
 				<td><%=studies.productreactions[i]._id %></td>
 				<td><%=studies.productreactions[i].words.length %></td>
-				<td><a href='#' style='color:red' onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')">Delete</a></td>
-				</td>
-				<td> 
-					<a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a>
-				</td>
+				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')">Delete</a></td>
+				<td> <a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a></td>
 				</tr>
-			</tbody>
 				<% } %>
 			<% } %>
+			</tbody>
 			<tbody>
-				<tr>
+				<tr style="background-color: white">
 					<td>	
 						<form method="POST" action="/createproductreaction">
-							<button type="submit" class="linkButton text-success">Add</button>
+							<button type="submit" class="btn-link text-success">Add</button>
 						</form>
 					</td>
 				</tr>

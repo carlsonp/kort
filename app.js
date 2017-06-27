@@ -36,6 +36,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(flash());
 
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
+app.use('/css', express.static(__dirname + '/css/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
