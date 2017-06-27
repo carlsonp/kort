@@ -38,6 +38,7 @@ app.use(flash());
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
 app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
 app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
 app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
