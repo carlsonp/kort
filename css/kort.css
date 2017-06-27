@@ -1,29 +1,33 @@
 html,body {
-    font-family: 'Open Sans', sans-serif;
+    height:100%;
+    width: 100%;
+    background-color: rgb(0, 107, 132);
+    color: white;
 }
 
-/*a:link {
-	color: white;
-	background-color: transparent;
-	text-decoration: underline;
-}*/
+/* unvisited link */
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+}
 /* visited link */
-/*a:visited {
-	color: white;
-	background-color: transparent;
-	text-decoration: underline;
-}*/
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+}
 /* mouse over link */
-/*a:hover {
-	color: lightgrey;
-	background-color: transparent;
-	text-decoration: underline;
-}*/
+a:hover {
+    color: lightgrey;
+    background-color: transparent;
+    text-decoration: underline;
+}
 /* selected link */
-/*a:active {
-	color: blue;
-	background-color: transparent;
-	text-decoration: underline;
+a:active {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
 }
 
 button {
@@ -35,10 +39,10 @@ button {
     margin: 5px;
 }
 button:hover {
-	background-color: #3e8e41;
+    background-color: #3e8e41;
 }
 button:active {
-	background-color: #3e8e41;
+    background-color: #3e8e41;
 }
 
 textarea {
@@ -109,20 +113,20 @@ th, td {
     margin-left: 10px;
 }
 .sidenav .textEntry {
-	padding: 10px;
-	display: table-cell;
+    padding: 10px;
+    display: table-cell;
 }
 .sidenav .textEntry a{
-	font-size:18px;
+    font-size:18px;
 }
 
 .sidenav .textEntry textarea{
-	color: black;
-	width: 90%;
-	height: 400px;
-	font-size: 12px;
-	resize: vertical;
+    color: black;
+    width: 90%;
+    height: 400px;
+    font-size: 12px;
+    resize: vertical;
 }
 .sidenav .textEntry button{
     width: 90%;
-}*/
+}
