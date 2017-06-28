@@ -43,7 +43,7 @@ app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
 app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
 app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
 app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
-app.use('/d3', express.static(__dirname + '/node_modules/d3/build/'));
+app.use('/plotlyjs', express.static(__dirname + '/node_modules/plotly.js/dist/'));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
