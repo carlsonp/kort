@@ -123,9 +123,11 @@ $(document).ready(function() {
 			var nestedArea = $(this).children('.droparea')
 			var cards = []
 			$(nestedArea).children().each(function(){
-				cards.push($(this).text())
+				var cardname = $(this).text();
+				// cards.push($(this).text())
+				results.push({groupname,cardname})
 			});
-			results.push({groupname: groupname ,cards: cards});
+			// results.push({groupname: groupname ,cards: cards});
 		});
 		results.unshift(Date())
 		return results;
