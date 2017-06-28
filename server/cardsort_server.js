@@ -9,8 +9,8 @@ module.exports = {
             title: "New Cardsort",
             type: "cardsort",
             studyType: "open",
-            cards: [],
-            groups: [],
+            cards: ['card1','card2','card3'],
+            groups: ['group1','group2','group3'],
         });
     	newStudy.save(function (err) {
         	if (err) {
