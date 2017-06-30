@@ -101,6 +101,7 @@
 				<th>Name</th>
 				<th>ID</th>
 				<th>Words</th>
+				<th>Responses</th>
 				<th>Actions</th>
 				</tr>
 			</thead>
@@ -111,8 +112,10 @@
 				<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><%=studies.productreactions[i].title %></a></td>
 				<td><%=studies.productreactions[i]._id %></td>
 				<td><%=studies.productreactions[i].words.length %></td>
+				<td><%=studies.productreactions[i].responses.length %></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')">Delete</a></td>
 				<td> <a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a></td>
+				<td> <a href="/productreactionresults/<%= studies.productreactions[i]._id %>">Results</a></td>
 				</tr>
 				<% } %>
 			<% } %>
