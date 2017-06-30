@@ -4,10 +4,7 @@ var ProductReactionStudy = new mongoose.Schema({
 	title: String,
 	type: String,
 	words: [],
-	responses: [{
-		participantID: String,
-		words: [],
-	}]
+	responses: []
 });
 
 module.exports = mongoose.model('ProductReactionStudy', ProductReactionStudy);

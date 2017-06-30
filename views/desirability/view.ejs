@@ -6,14 +6,25 @@
 		<link rel="stylesheet" type="text/css" href="../kort.css" />
 		<link rel="stylesheet" type="text/css" href="../productcards.css" />
 		
-		<title>Product Reaction Cards</title>
+		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<span class='navbar-brand'>Desirability Exercise</span>
+			    <ul class='nav navbar-nav' id='cardsort-navbar'></ul>
+				<ul hidden class='nav navbar-nav' style='float:right' id='doneParent'>
+					<li ><a href='#' id='done'>I'm Done</a></li>
+				</ul>
+			</div>
+		</nav>
 	</head>
 	<body>
 		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.words.length; i++) {%><%= singleStudy.words[i] %>;<% } %>">
 		<script type="text/javascript" src="../productcards.js"/></script>
-		<div id="header">
-			<div id="title">Product Reaction Cards</div>
-		</div>
+
+		<form method="POST" action="/submitDesireability">
+			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+			<input name="result" id='hiddenResults' type='text' hidden></input>
+			<button type="submit" id='submitForm' hidden>Add</button>
+		</form>
 		
 		<div id="textArea">Select at least 10 cards that represent your experience with the system.</div>
 		

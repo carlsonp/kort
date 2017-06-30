@@ -45,6 +45,22 @@ module.exports = {
             }
         });
     },
+    submitResult: function (req, res, next) {
+        ProductReactionStudy.findOne({ _id: req.body.id}, 
+            function (err, study) {
+                if (err) {
+                    res.status(504);
+                    console.log('cardsort_server.js: error submitting result');
+                    res.end(err);
+                } 
+                else {
+                    study.responses.push(JSON.parse(req.body.result));
+                    study.save();
+                    res.redirect('/studies');
+                    res.end();   
+                }
+        });
+    },
     results: function (req, res, next) {
         ProductReactionStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
