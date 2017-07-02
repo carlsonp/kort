@@ -24,6 +24,26 @@ module.exports = {
         	}
         });
     },
+    create_ajax: function (req, res) {
+        var studyData = req.body;
+        var newStudy = new TreeTestStudy({
+            title: "Default Tree Test Title",
+            type: "treetest",
+            tasks: [],
+            tree: [],
+        });
+        newStudy.save(function (err) {
+            if (err) {
+                console.log('treetest_server.js: Error creating new treetest.');
+                res.status(504);
+                res.end(err);
+            } else {
+                console.log('treetest_server.js: Created new treetest successfully.');
+                res.send(newStudy);
+                res.end();
+            }
+        });
+    },
     view: function (req, res, next) {
         TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {

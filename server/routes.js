@@ -20,6 +20,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
 	app.post('/submitCardsortResult', isLoggedIn, cardsort.submitResult);
 
+	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.post('/createtreetest', isLoggedIn, treetest.create);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
 	app.get('/deletetreetest/:id', isLoggedIn, treetest.delete);
