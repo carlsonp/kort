@@ -24,6 +24,35 @@ module.exports = {
         	}
         });
     },
+    create_ajax: function (req, res) {
+        console.log('here')
+        var newStudy = new CardSortStudy({
+            title: "New Cardsort",
+            type: "cardsort",
+            studyType: "open",
+            cards: ['card1','card2','card3'],
+            groups: ['group1','group2','group3'],
+            responses: [],
+        });
+        newStudy.save(function (err) {
+            if (err) {
+                console.log('cardsort_server.js: Error creating new cardsort via POST.');
+                res.status(504);
+                res.end(err);
+            } else {
+                console.log('cardsort_server.js: Created new cardsort via POST successfully.');
+                res.send({id:newStudy._id,
+                         title: newStudy.title,
+                         studyType: newStudy.studyType,
+                         type: newStudy.type,
+                         cards: newStudy.cards,
+                         groups: newStudy.groups,
+                         responses: newStudy.responses,
+                        });
+                res.end();
+            }
+        });
+    },
     view: function (req, res, next) {
         CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {

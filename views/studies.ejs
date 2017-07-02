@@ -4,6 +4,35 @@
 		<%- include('partials/header.ejs') %>
 		<title>Kort: Studies</title>
 		 <script>
+			$(document).ready(function() {
+			  $('#createNewCardSortBtn').on('click', function(event) {
+			      $.ajax({
+			        url: '/createcardsort_ajax',
+			        type: "POST",
+			        contentType: "application/json",
+			        success: function(data) {
+			          $('#cardsort_table_body').append(`<tr>
+						<td>`+data.title+`</td>
+						<td>`+data.studyType+`</td>
+						<td>`+data.cards.length+`</td>
+						<td>`+data.groups.length+`</td>
+						<td>`+data.responses.length+`</td>
+						<td><a href="/cardsort/`+data.id+`">View</a></td>
+						<td><a href="/cardsortresults/`+data.id+`">Results</a></td>
+						<td><a href="/editcardsort/`+data.id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/`+data.id+`','`+data.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+						</tr>`)
+			        },
+			        error:   function(xhr, text, err) {
+			          console.log('error: ',err);
+			          console.log('text: ', text);
+			          console.log('xhr: ',xhr);
+			          console.log("there is a problem whit your request, please check ajax request");
+			        }
+			      });
+			    });  
+			});
+
 	    	function confirmDeleteStudy(href,studyTitle){
 	    		 bootbox.confirm({
 	            	size: 'small',
@@ -34,18 +63,19 @@
 				<th>Responses</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="cardsort_table_body">
 			<% for(var i=0; i<studies.cardsorts.length; i++) {%>
 				<%if (studies.cardsorts[i].type == 'cardsort') { %>
 				<tr>
-					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><%=studies.cardsorts[i].title %></a></td>
+					<td><%=studies.cardsorts[i].title %></td>
 					<td><%=studies.cardsorts[i].studyType %></td>
 					<td><%=studies.cardsorts[i].cards.length %></td>
 					<td><%=studies.cardsorts[i].groups.length %></td>
 					<td><%=studies.cardsorts[i].responses.length %></td>
-					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')">Delete</a></td>
 					<td><a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a></td>
 					<td><a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a></td>
+					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 				</tr>
 				<% } %>
 			<% } %>
@@ -53,9 +83,7 @@
 			<tbody>
 				<tr style="background-color: white">
 					<td>	
-						<form method="POST" action="/createcardsort">
-							<button type="submit" class="btn-link text-success">Add</button>
-						</form>
+						<button type="button" id='createNewCardSortBtn' class="btn-link text-success">Post New User</button>
 					</td>
 				</tr>
 			</tbody>

@@ -11,6 +11,7 @@ module.exports = function(app, passport, flash) {
 		res.render('index.ejs', { loginMessage: req.flash('loginMessage') });
 	});
 
+	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.post('/createcardsort', isLoggedIn, cardsort.create);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
 	app.get('/deletecardsort/:id', isLoggedIn, cardsort.delete);
