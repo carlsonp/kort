@@ -41,14 +41,7 @@ module.exports = {
                 res.end(err);
             } else {
                 console.log('cardsort_server.js: Created new cardsort via POST successfully.');
-                res.send({id:newStudy._id,
-                         title: newStudy.title,
-                         studyType: newStudy.studyType,
-                         type: newStudy.type,
-                         cards: newStudy.cards,
-                         groups: newStudy.groups,
-                         responses: newStudy.responses,
-                        });
+                res.send(newStudy);
                 res.end();
             }
         });
