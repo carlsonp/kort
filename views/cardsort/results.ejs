@@ -16,6 +16,7 @@
 		
 		<script>
 		
+		//https://plot.ly/javascript/heatmaps/
 		var xValues = <%- JSON.stringify(study.cards) %>;
 		var yValues = <%- JSON.stringify(study.groups) %>;
 
@@ -36,18 +37,14 @@
 		}];
 
 		var layout = {
-		  title: 'Annotated Heatmap',
+		  title: 'Cardsort Heatmap',
 		  annotations: [],
 		  xaxis: {
 			ticks: '',
 			side: 'top'
 		  },
 		  yaxis: {
-			ticks: '',
-			ticksuffix: ' ',
-			width: 700,
-			height: 700,
-			autosize: false
+			ticks: ''
 		  }
 		};
 
@@ -79,7 +76,7 @@
 		  }
 		}
 
-		Plotly.newPlot('heatmap', data, layout);
+		Plotly.newPlot('heatmap', data, layout, {displayModeBar: false});
 
 		
 		</script>
