@@ -28,6 +28,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
 
+	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
 	app.post('/createproductreaction', isLoggedIn, productreaction.create);
 	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);
 	app.get('/deleteproductreaction/:id', isLoggedIn, productreaction.delete);
