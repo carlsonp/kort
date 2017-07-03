@@ -36,10 +36,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/submitDesireability', isLoggedIn, productreaction.submitResult);
 
 	app.get('/admin', isLoggedIn, function (req, res) {
-		res.render('admin.ejs', {
-			//TODO: do we even need to pass this? I do not think so.
-            //user : req.user 
-        });
+		res.render('admin.ejs');
 	});
 
 	app.get('/studies', isLoggedIn, admin.Studies);
