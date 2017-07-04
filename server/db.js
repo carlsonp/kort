@@ -5,5 +5,6 @@ module.exports = function(mongoURL, mongoose) {
 	//https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
 	mongoose.Promise = global.Promise;
 
-	mongoose.connect(mongoURL);
+	//https://stackoverflow.com/questions/44749700/how-to-set-usemongoclient-mongoose-4-11-0
+	mongoose.connect(mongoURL, { useMongoClient: true });
 }

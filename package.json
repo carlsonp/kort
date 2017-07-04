@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/carlsonp/kort",
   "dependencies": {
-    "async": "^2.4.1",
+    "async": "^2.5.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "bootbox": "^4.4.0",
@@ -32,7 +32,7 @@
     "express-session": "^1.15.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
-    "mongoose": "^4.10.6",
+    "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
