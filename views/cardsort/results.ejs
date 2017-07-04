@@ -10,7 +10,7 @@
 		
 	</head>
 	<body>
-		<a href='/admin'>Back to studies</a><br>
+		<%- include('../partials/admin_header.ejs') %>
 		
 		<div id='heatmap'></div>
 		
@@ -26,6 +26,9 @@
 		  [0, '#3D9970'],
 		  [1, '#001f3f']
 		];
+		
+		var text = xValues.map((xi, i) => yValues.map((yi, j) =>
+		`Card: ${xi}<br>Group: ${yi}<br>Number: ${zValues[i][j]}`));
 
 		var data = [{
 		  x: xValues,
@@ -33,18 +36,22 @@
 		  z: zValues,
 		  type: 'heatmap',
 		  colorscale: colorscaleValue,
-		  showscale: false
+		  showscale: false,
+		  text: text,
+		  hoverinfo: 'text',
 		}];
-
+		
 		var layout = {
 		  title: 'Cardsort Heatmap',
 		  annotations: [],
 		  xaxis: {
 			ticks: '',
-			side: 'top'
+			side: 'top',
+			fixedrange: true
 		  },
 		  yaxis: {
-			ticks: ''
+			ticks: '',
+			fixedrange: true
 		  }
 		};
 
