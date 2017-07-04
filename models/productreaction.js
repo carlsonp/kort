@@ -5,7 +5,9 @@ var ProductReactionStudy = new mongoose.Schema({
 	type: String,
 	words: [],
 	responses: [],
-	active: Boolean
+	active: Boolean,
+	ownerID: String,
+	sharedUserIDs: []
 });
 
 module.exports = mongoose.model('ProductReactionStudy', ProductReactionStudy);

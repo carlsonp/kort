@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 
 var CardSortStudy = mongoose.model('CardSortStudy');
 
+
 module.exports = {
     create_ajax: function (req, res) {
-        console.log('here')
         var newStudy = new CardSortStudy({
             title: "New Cardsort",
             type: "cardsort",
@@ -13,7 +13,8 @@ module.exports = {
             cards: ['card1','card2','card3'],
             groups: ['group1','group2','group3'],
             responses: [],
-            active: false
+            active: false,
+            ownerID: req.user._id
         });
         newStudy.save(function (err) {
             if (err) {

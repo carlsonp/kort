@@ -10,7 +10,9 @@ var TreeTestStudy = new mongoose.Schema({
 		tasks: [],
 		paths: [],
 	}],
-	active: Boolean
+	active: Boolean,
+	ownerID: String,
+	sharedUserIDs: []
 });
 
 module.exports = mongoose.model('TreeTestStudy', TreeTestStudy);

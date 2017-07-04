@@ -11,7 +11,8 @@ module.exports = {
             type: "treetest",
             tasks: [],
             tree: [],
-            active: false
+            active: false,
+            ownerID: req.user._id
         });
         newStudy.save(function (err) {
             if (err) {

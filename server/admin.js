@@ -10,9 +10,9 @@ var ProductReactionStudy = mongoose.model('ProductReactionStudy');
 
 module.exports = {
 	Studies: function (req, res, next) {
-      var cardsortQuery = CardSortStudy.find({});
-      var treetestQuery = TreeTestStudy.find({});
-      var productreactionQuery = ProductReactionStudy.find({});
+      var cardsortQuery = CardSortStudy.find({ownerID: req.user._id});
+      var treetestQuery = TreeTestStudy.find({ownerID: req.user._id});
+      var productreactionQuery = ProductReactionStudy.find({ownerID: req.user._id});
 
       var resources = {
         cardsorts: cardsortQuery.exec.bind(cardsortQuery),
