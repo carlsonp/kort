@@ -12,16 +12,23 @@
 			<div id='myDiv'></div>
 		</div>
 		<script>
-
 		var data = [{
 			type: 'bar',
 			x: <%- JSON.stringify(counts) %>,
 			y: <%- JSON.stringify(words) %>,
-			orientation: 'h'
+			orientation: 'h',
 		}];
+		var layout = {
+			title: '<%=study.title %> Results',
+			autosize: true,
+			margin: {
+				l: 150,
+				pad: 5,
+			},
+		};
 
-		Plotly.newPlot('myDiv', data);
-		
+		Plotly.newPlot('myDiv', data, layout);
+
 		</script>
 	</body>
 </html>
