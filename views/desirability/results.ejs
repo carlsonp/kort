@@ -4,12 +4,24 @@
 		<%- include('../partials/header.ejs') %>
 
 		<title>Desire Results</title>
-		
+		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
 	</head>
 	<body>
 		<a href='/admin'>Back to studies</a><br>
+		<div class='container'>
+			<div id='myDiv'></div>
+		</div>
+		<script>
+
+		var data = [{
+			type: 'bar',
+			x: <%- JSON.stringify(counts) %>,
+			y: <%- JSON.stringify(words) %>,
+			orientation: 'h'
+		}];
+
+		Plotly.newPlot('myDiv', data);
 		
-		<%- JSON.stringify(study.responses) %>
-		
+		</script>
 	</body>
 </html>
