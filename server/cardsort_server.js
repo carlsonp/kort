@@ -4,27 +4,6 @@ var mongoose = require('mongoose');
 var CardSortStudy = mongoose.model('CardSortStudy');
 
 module.exports = {
-    create: function (req, res) {
-      	var newStudy = new CardSortStudy({
-            title: "New Cardsort",
-            type: "cardsort",
-            studyType: "open",
-            cards: ['card1','card2','card3'],
-            groups: ['group1','group2','group3'],
-            active: false
-        });
-    	newStudy.save(function (err) {
-        	if (err) {
-        		console.log('cardsort_server.js: Error creating new cardsort.');
-        		res.status(504);
-        		res.end(err);
-        	} else {
-        		console.log('cardsort_server.js: Created new cardsort successfully.');
-        		res.redirect('/studies');
-        		res.end();
-        	}
-        });
-    },
     create_ajax: function (req, res) {
         console.log('here')
         var newStudy = new CardSortStudy({

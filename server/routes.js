@@ -12,7 +12,6 @@ module.exports = function(app, passport, flash) {
 	});
 
 	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
-	app.post('/createcardsort', isLoggedIn, cardsort.create);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
 	app.get('/deletecardsort/:id', isLoggedIn, cardsort.delete);
 	app.get('/cardsort/:id', cardsort.view);
@@ -21,7 +20,6 @@ module.exports = function(app, passport, flash) {
 	app.post('/submitCardsortResult', isLoggedIn, cardsort.submitResult);
 
 	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
-	app.post('/createtreetest', isLoggedIn, treetest.create);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
 	app.get('/deletetreetest/:id', isLoggedIn, treetest.delete);
 	app.get('/treetest/:id', treetest.view);
@@ -29,7 +27,6 @@ module.exports = function(app, passport, flash) {
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
 
 	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
-	app.post('/createproductreaction', isLoggedIn, productreaction.create);
 	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);
 	app.get('/deleteproductreaction/:id', isLoggedIn, productreaction.delete);
 	app.get('/productreaction/:id', productreaction.view);

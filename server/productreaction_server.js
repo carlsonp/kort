@@ -4,27 +4,6 @@ var mongoose = require('mongoose');
 var ProductReactionStudy = mongoose.model('ProductReactionStudy');
 
 module.exports = {
-    create: function (req, res) {
-        var studyData = req.body;
-      	var newStudy = new ProductReactionStudy({
-            title: "Desirability Exercise",
-            type: "productreaction",
-            words: ['Accessible', 'Desirable', 'Gets in the way', 'Patronizing', 'Stressful', 'Appealing', 'Easy to use', 'Hard to use', 'Personal', 'Time-consuming', 'Attractive', 'Efficient', 'High quality', 'Predictable', 'Time-saving', 'Busy', 'Empowering', 'Inconsistent', 'Relevant', 'Too technical', 'Collaborative', 'Exciting', 'Intimidating', 'Reliable', 'Trustworthy', 'Complex', 'Familiar', 'Inviting', 'Rigid', 'Uncontrollable', 'Comprehensive', 'Fast', 'Motivating', 'Simplistic', 'Unconventional', 'Confusing', 'Flexible', 'Not valuable', 'Slow', 'Unpredictable', 'Connected', 'Fresh', 'Organized', 'Sophisticated', 'Usable', 'Consistent', 'Frustrating', 'Overbearing', 'Stimulating', 'Useful', 'Customizable', 'Fun', 'Overwhelming', 'Straight Forward', 'Valuable'],
-            responses: [],
-            active: false
-        });
-    	newStudy.save(function (err) {
-        	if (err) {
-        		console.log('productreaction_server.js: Error creating new.');
-        		res.status(504);
-        		res.end(err);
-        	} else {
-        		console.log('productreaction_server.js: Created new successfully.');
-        		res.redirect('/studies');
-        		res.end();
-        	}
-        });
-    },
     create_ajax: function (req, res) {
         var studyData = req.body;
         var newStudy = new ProductReactionStudy({
