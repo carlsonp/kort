@@ -38,7 +38,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id}, function (err, docs) {
+        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -65,7 +65,7 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id}, function (err, study) {
+        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("productreaction_server.js: Error getting study to see results.");
@@ -98,26 +98,26 @@ module.exports = {
         var words = req.body.words.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != ''});
-        ProductReactionStudy.findByIdAndUpdate(
-            { _id: req.body.id}, 
-            {title: req.body.title,
-            words: words,
-            active: active
-            }, 
-            function (err, docs) {
+        ProductReactionStudy.findOne({_id: req.body.id, ownerID: req.user._id}, 
+            function (err, study) {
             if (err) {
                 res.status(504);
                 console.log('productreaction_server.js: error updating');
                 res.end(err);
             } 
             else {
+				study.title = req.body.title;
+				study.words = words;
+				study.active = req.body.active;
+
+				study.save();
                 res.redirect('/studies');
                 res.end();   
             }
         });
     },
     delete: function(req, res, next) {
-        ProductReactionStudy.find({ _id: req.params.id}, function(err) {
+        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
         		console.log("productreaction_server.js: Cannot find study to delete:" + req.params.id);
