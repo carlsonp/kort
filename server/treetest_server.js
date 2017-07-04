@@ -11,6 +11,7 @@ module.exports = {
             type: "treetest",
             tasks: [],
             tree: [],
+            active: false
         });
     	newStudy.save(function (err) {
         	if (err) {
@@ -31,6 +32,7 @@ module.exports = {
             type: "treetest",
             tasks: [],
             tree: [],
+            active: false
         });
         newStudy.save(function (err) {
             if (err) {

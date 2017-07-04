@@ -11,6 +11,7 @@ module.exports = {
             studyType: "open",
             cards: ['card1','card2','card3'],
             groups: ['group1','group2','group3'],
+            active: false
         });
     	newStudy.save(function (err) {
         	if (err) {
@@ -33,6 +34,7 @@ module.exports = {
             cards: ['card1','card2','card3'],
             groups: ['group1','group2','group3'],
             responses: [],
+            active: false
         });
         newStudy.save(function (err) {
             if (err) {
@@ -107,6 +109,7 @@ module.exports = {
              studyType: req.body.studyType,
              cards: cards,
              groups: groups,
+             active: active
             }, 
             function (err, docs) {
             if (err) {

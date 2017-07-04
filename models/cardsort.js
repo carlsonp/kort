@@ -9,6 +9,7 @@ var CardSortStudy = new mongoose.Schema({
 	cards: [],
 	groups: [],
 	responses: [],
+	active: Boolean
 	}
 );
 

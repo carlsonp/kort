@@ -7,6 +7,7 @@ $(document).ready(function() {
 	        success: function(study) {
 	          	$(`<tr>
 				<td>`+study.title+`</td>
+				<td>`+study.active+`</td>
 				<td>`+study.studyType+`</td>
 				<td>`+study.cards.length+`</td>
 				<td>`+study.groups.length+`</td>
@@ -31,6 +32,7 @@ $(document).ready(function() {
 	        success: function(study) {
 	          $(`<tr>
 				<td>`+study.title+`</td>
+				<td>`+study.active+`</td>
 				<td>`+study.tasks.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>
 				<td style='color:gray;' onclick="return false;" >Results</td>
@@ -51,6 +53,7 @@ $(document).ready(function() {
         success: function(study) {
       	$(`<tr>
 				<td>`+study.title+`</td>
+				<td>`+study.active+`</td>
 				<td>`+study.words.length+`</td>
 				<td>`+study.responses.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>

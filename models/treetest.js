@@ -9,7 +9,8 @@ var TreeTestStudy = new mongoose.Schema({
 		participantID: String,
 		tasks: [],
 		paths: [],
-	}]
+	}],
+	active: Boolean
 });
 
 module.exports = mongoose.model('TreeTestStudy', TreeTestStudy);
