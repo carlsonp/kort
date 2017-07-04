@@ -3,8 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var User = new mongoose.Schema({
 	password: String,
-	email: String,
-	studies: []
+	email: String
 });
 
 // generating a hash
