@@ -38,7 +38,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
+        TreeTestStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -49,7 +49,7 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
+        TreeTestStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error getting study to see results.");
@@ -66,26 +66,27 @@ module.exports = {
         var tree = req.body.tree.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        TreeTestStudy.findByIdAndUpdate(
-            { _id: req.body.id}, 
-            {title: req.body.title,
-             tasks: tasks,
-             tree: tree,
-            }, 
-            function (err, docs) {
+        TreeTestStudy.findOne({_id: req.body.id, ownerID: req.user._id},
+            function (err, study) {
             if (err) {
                 res.status(504);
                 console.log('treetest_server.js: error updating treetest');
                 res.end(err);
             } 
             else {
+				study.title = req.body.title;
+				study.tasks = tasks;
+				study.tree = tree;
+				study.active = req.body.active;
+				
+				study.save();
                 res.redirect('/studies');
                 res.end();   
             }
         });
     },
     delete: function(req, res, next) {
-        TreeTestStudy.find({ _id: req.params.id}, function(err) {
+        TreeTestStudy.find({_id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
         		console.log("treetest_server.js: Cannot find study to delete:" + req.params.id);
