@@ -12,7 +12,7 @@ $(document).ready(function() {
 				<td>`+study.groups.length+`</td>
 				<td>`+study.responses.length+`</td>
 				<td><a href="/cardsort/`+study._id+`">View</a></td>
-				<td><a href="/cardsortresults/`+study._id+`">Results</a></td>
+				<td style='color:gray;' onclick="return false;" >Results</td>
 				<td><a href="/editcardsort/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 				</tr>`).appendTo($('#cardsort_table_body'));
@@ -33,7 +33,7 @@ $(document).ready(function() {
 				<td>`+study.title+`</td>
 				<td>`+study.tasks.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>
-				<td><a href="/treetestresults/`+study._id+`">Results</a></td>
+				<td style='color:gray;' onclick="return false;" >Results</td>
 				<td><a href="/edittreetest/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 				</tr>`).appendTo($('#treetest_table_body'));
@@ -54,7 +54,7 @@ $(document).ready(function() {
 				<td>`+study.words.length+`</td>
 				<td>`+study.responses.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>
-				<td><a href="/treetestresults/`+study._id+`">Results</a></td>
+				<td style='color:gray;' onclick="return false;" >Results</td>
 				<td><a href="/edittreetest/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 		</tr>`).appendTo($('#productreaction_table_body'));
