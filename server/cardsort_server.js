@@ -75,23 +75,21 @@ module.exports = {
                 console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-				if (study.studyType == "closed") {
-					//results matrix for heatmap
-					var matrix = new Array(study.groups.length);
-					for (var i = 0; i < study.groups.length; i++) {
-						matrix[i] = new Array(study.cards.length);
-						matrix[i].fill(0);
-					}
-
-					study.responses.forEach(function(response){
-						response.shift(); //remove date (first item)
-						response.forEach(function(pair){
-							var groupIndex = study.groups.indexOf(pair.groupname);
-							var cardIndex = study.cards.indexOf(pair.cardname);
-							matrix[groupIndex][cardIndex]+=1;
-						})
-					})
+				//results matrix for heatmap
+				var matrix = new Array(study.groups.length);
+				for (var i = 0; i < study.groups.length; i++) {
+					matrix[i] = new Array(study.cards.length);
+					matrix[i].fill(0);
 				}
+
+				study.responses.forEach(function(response){
+					response.shift(); //remove date (first item)
+					response.forEach(function(pair){
+						var groupIndex = study.groups.indexOf(pair.groupname);
+						var cardIndex = study.cards.indexOf(pair.cardname);
+						matrix[groupIndex][cardIndex]+=1;
+					})
+				})
 				res.render('cardsort/results.ejs',{study: study, matrix: matrix});
             }
         });
