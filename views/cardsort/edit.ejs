@@ -20,12 +20,29 @@
 				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed'>Closed</label>
 				    </div>
-				    <% } else{ %> 
+				    <% } else { %> 
 				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open'>Open</label>
 				    </div>
 				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
+				    </div>
+				    <% } %>
+				    <br>
+				    <label for="title">Active</label><br>
+				    <%if (singleStudy.active == true) { %>
+				    <div class="radio-inline">
+				     	<label><input type="radio" name="active" value='true' checked>True</label>
+				    </div>
+				    <div class="radio-inline">
+						<label><input type="radio" name="active" value='false'>False</label>
+				    </div>
+				    <% } else { %> 
+				    <div class="radio-inline">
+				     	<label><input type="radio" name="active" value='true'>True</label>
+				    </div>
+				    <div class="radio-inline">
+						<label><input type="radio" name="active" value='false' checked>False</label>
 				    </div> 
 				    <% } %>
 				</div>

@@ -40,7 +40,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
+        CardSortStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -51,7 +51,7 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        CardSortStudy.findOne({_id: req.params.id}, function (err, study) {
+        CardSortStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error getting study to see results.");
@@ -83,21 +83,21 @@ module.exports = {
         var groups = req.body.groups.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        CardSortStudy.findByIdAndUpdate(
-            { _id: req.body.id}, 
-            {title: req.body.title,
-             studyType: req.body.studyType,
-             cards: cards,
-             groups: groups,
-             active: active
-            }, 
-            function (err, docs) {
+        CardSortStudy.findOne({ _id: req.body.id, ownerID: req.user._id},
+            function (err, study) {
             if (err) {
                 res.status(504);
                 console.log('cardsort_server.js: error updating cardsort');
                 res.end(err);
             } 
             else {
+				study.title = req.body.title;
+				study.studyType = req.body.studyType;
+				study.cards = cards;
+				study.groups = groups;
+				study.active = req.body.active;
+					 
+				study.save();
                 res.redirect('/studies');
                 res.end();   
             }
@@ -113,7 +113,6 @@ module.exports = {
                 } 
                 else {
                     study.responses.push(JSON.parse(req.body.result));
-                    console.log(study.responses.length);
                     study.save();
                     res.redirect('/studies');
                     res.end();   
@@ -121,7 +120,7 @@ module.exports = {
         });
     },
     delete: function(req, res, next) {
-        CardSortStudy.find({ _id: req.params.id}, function(err) {
+        CardSortStudy.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
         		console.log("cardsort_server.js: Cannot find study to delete:" + req.params.id);
