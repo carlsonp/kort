@@ -1,4 +1,4 @@
-require('mongoose').model('CardSortStudy');
+require('mongoose').model('TreeTestStudy');
 var mongoose = require('mongoose');
 
 var TreeTestStudy = mongoose.model('TreeTestStudy');
