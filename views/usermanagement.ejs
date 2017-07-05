@@ -43,59 +43,60 @@
 			  <strong>Success!</strong> <%= createUserSuccessMessage %>
 			</div>
 		<% } %>
-		<h3>Users</h3>
-		<table class='table table-condensed'>
-			<thead>
-				<tr>
-				<th>Email</th>
-				<th></th>
-				<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for(var i=0; i<users.length; i++) {%>
-				<tr>
-					<td><%= users[i].email %></td>
-					<td></td>
-					<td><a href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')"><i class="fa fa-trash-o fa-lg text-danger" aria-hidden="true" title="Delete User"></i></a></td>
-					
-				</tr>
-				<% } %>
-			
-				<tr>
-					<form class="form-inline" action="/createuser" method="post">
-					<td>
-						<div class="form-group">
-							<div class="inputGroupContainer">
-								<div class="input-group" style='width:100%'>
-									<input name="email" autocomplete="off" placeholder="Email Address" class="form-control" type="text" />
-								</div>
-						  </div>
-						</div>
-					</td>
-					<td>
-						<div class="form-group">
-							<div class="inputGroupContainer">
-								<div class="input-group" style='width:100%'>
-									<input  name="password" autocomplete="off" placeholder="Password" class="form-control" type="password" />
-								</div>
-						  </div>
-						</div>
-					</td>
-					<td>
-						<div class="form-group">
-							<div class="inputGroupContainer">
-								<div class="input-group">
-									<button type="submit" class="btn btn-default" value="Create User">Create User</button>
-								</div>
-						  	</div>
-						</div>
-					</td>
-					</form>
-				</tr>
-
-			</tbody>
-		</table>
+		<div class='well'>
+			<span class='studyTitle'>Users</span>
+			<table class='table'>
+				<thead>
+					<tr>
+					<th>Email</th>
+					<th></th>
+					<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i=0; i<users.length; i++) {%>
+					<tr>
+						<td><%= users[i].email %></td>
+						<td></td>
+						<td><a href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')"><i class="fa fa-trash-o fa-lg text-danger" aria-hidden="true" title="Delete User"></i></a></td>
+						
+					</tr>
+					<% } %>
+				
+					<tr>
+						<form class="form-inline" action="/createuser" method="post">
+						<td>
+							<div class="form-group">
+								<div class="inputGroupContainer">
+									<div class="input-group" style='width:100%'>
+										<input name="email" autocomplete="off" placeholder="Email Address" class="form-control" type="text" />
+									</div>
+							  </div>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
+								<div class="inputGroupContainer">
+									<div class="input-group" style='width:100%'>
+										<input  name="password" autocomplete="off" placeholder="Password" class="form-control" type="password" />
+									</div>
+							  </div>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
+								<div class="inputGroupContainer">
+									<div class="input-group">
+										<button type="submit" class="btn btn-default" value="Create User">Create User</button>
+									</div>
+							  	</div>
+							</div>
+						</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
 	</div>
 	</body>
 </html>
