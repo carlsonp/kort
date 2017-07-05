@@ -57,7 +57,7 @@
 				<tr>
 					<td><%= users[i].email %></td>
 					<td></td>
-					<td><a href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')"><i class="fa fa-trash-o fa-lg text-danger" aria-hidden="true"></i></a></td>
+					<td><a href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')"><i class="fa fa-trash-o fa-lg text-danger" aria-hidden="true" title="Delete User"></i></a></td>
 					
 				</tr>
 				<% } %>

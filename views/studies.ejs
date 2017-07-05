@@ -41,8 +41,8 @@
 					<% } else { %>
 						<td style='color:gray;' onclick="return false;" >Results</td>
 					<% } %>
-					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 				</tr>
 				<% } %>
 			<% } %>
@@ -81,8 +81,8 @@
 					<% } else { %>
 						<td style='color:gray;' onclick="return false;" >Results</td>
 					<% } %>
-					<td><a href="/edittreetest/<%= studies.treetests[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/<%= studies.treetests[i]._id %>','<%=studies.treetests[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+					<td><a href="/edittreetest/<%= studies.treetests[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/<%= studies.treetests[i]._id %>','<%=studies.treetests[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 				</tr>
 				<% } %>
 			<% } %>
@@ -123,8 +123,8 @@
 					<% } else { %>
 						<td style='color:gray;' onclick="return false;" >Results</td>
 					<% } %>
-					<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+					<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 				</tr>
 				<% } %>
 			<% } %>
