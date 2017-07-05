@@ -37,9 +37,9 @@
 					<td><%=studies.cardsorts[i].responses.length %></td>
 					<td><a href="/cardsort/<%= studies.cardsorts[i]._id %>">View</a></td>
 					<%if (studies.cardsorts[i].responses.length > 0) { %>
-					<td><a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a></td>
+						<td><a href="/cardsortresults/<%= studies.cardsorts[i]._id %>">Results</a></td>
 					<% } else { %>
-					<td style='color:gray;' onclick="return false;" >Results</td>
+						<td style='color:gray;' onclick="return false;" >Results</td>
 					<% } %>
 					<td><a href="/editcardsort/<%= studies.cardsorts[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies.cardsorts[i]._id %>','<%=studies.cardsorts[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
@@ -76,7 +76,11 @@
 					<td><%=studies.treetests[i].active %></td>
 					<td><%=studies.treetests[i].tasks.length %></td>
 					<td><a href="/treetest/<%= studies.treetests[i]._id %>">View</a></td>
-					<td><a href="/treetestresults/<%= studies.treetests[i]._id %>">Results</a></td>
+					<%if (studies.treetests[i].responses.length > 0) { %>
+						<td><a href="/treetestresults/<%= studies.treetests[i]._id %>">Results</a></td>
+					<% } else { %>
+						<td style='color:gray;' onclick="return false;" >Results</td>
+					<% } %>
 					<td><a href="/edittreetest/<%= studies.treetests[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/<%= studies.treetests[i]._id %>','<%=studies.treetests[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 				</tr>
@@ -114,7 +118,11 @@
 					<td><%=studies.productreactions[i].words.length %></td>
 					<td><%=studies.productreactions[i].responses.length %></td>
 					<td><a href="/productreaction/<%= studies.productreactions[i]._id %>">View</a></td>
-					<td><a href="/productreactionresults/<%= studies.productreactions[i]._id %>">Results</a></td>
+					<%if (studies.productreactions[i].responses.length > 0) { %>
+						<td><a href="/productreactionresults/<%= studies.productreactions[i]._id %>">Results</a></td>
+					<% } else { %>
+						<td style='color:gray;' onclick="return false;" >Results</td>
+					<% } %>
 					<td><a href="/editproductreaction/<%= studies.productreactions[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
 					<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies.productreactions[i]._id %>','<%=studies.productreactions[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
 				</tr>
