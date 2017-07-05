@@ -46,7 +46,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('cardsort/edit.ejs',{singleStudy: docs});
+                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email});
             }
         });
     },
@@ -72,7 +72,7 @@ module.exports = {
 						matrix[groupIndex][cardIndex]+=1;
 					})
 				})
-				res.render('cardsort/results.ejs',{study: study, matrix: matrix});
+				res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
             }
         });
     },

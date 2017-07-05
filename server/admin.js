@@ -25,7 +25,7 @@ module.exports = {
           res.status(500)
           return;
         }
-        res.render("studies.ejs", {studies: results});
+        res.render("studies.ejs", {studies: results, email: req.user.email});
       });
     },
 }

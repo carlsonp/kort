@@ -10,6 +10,7 @@ module.exports = {
                 res.end(err);
             } else {
                 res.render("usermanagement.ejs", {users: docs,
+												email: req.user.email,
                                                 createUserErrorMessage: req.flash('createUserErrorMessage'), 
                                                 createUserSuccessMessage: req.flash('createUserSuccessMessage')});
             }

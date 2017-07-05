@@ -44,7 +44,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('desirability/edit.ejs',{singleStudy: docs});
+                res.render('desirability/edit.ejs',{singleStudy: docs, email: req.user.email});
             }
         });
     },
@@ -90,7 +90,7 @@ module.exports = {
                     counts.push(combined[words[i]]);
                 }
 
-                res.render('desirability/results.ejs',{study: study, words: words, counts: counts});
+                res.render('desirability/results.ejs',{study: study, words: words, counts: counts, email: req.user.email});
             }
         });
     },

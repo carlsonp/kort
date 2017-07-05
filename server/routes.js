@@ -35,7 +35,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/submitDesireability', isLoggedIn, productreaction.submitResult);
 
 	app.get('/admin', isLoggedIn, function (req, res) {
-		res.render('admin.ejs');
+		res.render('admin.ejs', {email: req.user.email});
 	});
 
 	app.get('/studies', isLoggedIn, admin.Studies);
