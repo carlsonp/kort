@@ -10,6 +10,20 @@ html,body {
 .studyTitle {
     font-size: 26px;
 }
+.errorMessage, .successMessage {
+    display:none;
+}
+.loginMessage {
+    display:none;
+}
+.siteTitle {
+    font-size: 125px;
+    letter-spacing: 20px;
+    color:rgb(0,158,195);
+}
+.container {
+    margin-top: 50px;
+}
 /*
 a:link {
     color: white;
