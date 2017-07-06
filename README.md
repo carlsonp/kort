@@ -58,7 +58,3 @@ Open a Github issue.
 ### License
 
 Kort is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
-
-### Where did the name Kort come from?
-
-Kort means "card" in Norwegian.
