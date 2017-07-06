@@ -1,14 +1,14 @@
 html,body {
     height:100%;
     width: 100%;
-    background-color: #F5F5F5;
+    background-color: #F8F8F8;
 }
 
 .well {
     background: white;
 }
 .studyTitle {
-    font-size: 26px;
+    font-size: 18px;
 }
 .errorMessage, .successMessage {
     display:none;
