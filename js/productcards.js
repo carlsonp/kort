@@ -5,7 +5,8 @@ $(document).ready(function() {
 		onStageTwo: false,
 		selectedNum: 0,
 		init: function(){
-			$('#next').hide();
+			$('#nextBtn').hide();
+			$('#done').hide();
 			this.loadDatafromDB();
 			this.addWords();
 			this.bindNextButton();
@@ -18,7 +19,7 @@ $(document).ready(function() {
 			}
 		},
 		bindNextButton: function(){
-		  	$("#next").click(function() {
+		  	$("#nextBtn").click(function() {
 				$( "#cardArea li:not(.selected)").each(function( index ) {
 					$(this).remove();
 				});
@@ -50,7 +51,7 @@ $(document).ready(function() {
 			if(this.onStageTwo){
 				if(this.selectedNum === this.secondSelectionLimit){
 					$( "#cardArea li:not(.selected)").toggleClass('disabled');
-					$('#doneParent').show();
+					$('#done').show();
 				} else {
 					$( "#cardArea li").removeClass('disabled');
 					$('#textArea').html('Select your top 5 cards.');
@@ -58,9 +59,9 @@ $(document).ready(function() {
 			} else {
 				$('#textArea').html('Select at least 10 cards that represent your experience with the system. ('+this.selectedNum+' selected)');
 				if(this.selectedNum >= this.firstSelectionLimit){
-					$('#next').show();
+					$('#nextBtn').show();
 				} else {
-					$('#next').hide();
+					$('#nextBtn').hide();
 				}
 			}
 		},

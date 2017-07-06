@@ -1,22 +1,21 @@
 #textArea {
     margin: 15px;
     font-size: 24px;
-    color: white;
 }
 #cardArea {
     margin: 10px;
     padding: 0;
     width:90%;
 }
-/* Style the card items */
+
 #cardArea li {
-    color:black;
+    color: black;
     cursor: pointer;
     border-radius: 4px;
     width: auto;
     padding: 10px;
-    background-color: #F0F0F0;
-    font-size: 16px;
+    background-color: #DCDCDC;
+    font-size: 18px;
     margin: 5px;
     list-style: none;
     display: inline-block;
@@ -28,12 +27,15 @@
     pointer-events: none;
 }
 #cardArea li.selected {
-    /*background-color: rgb(0, 107, 132);*/
-    background-color: rgb(0,158,195);
+    background-color: #585858;
     color:white;
 }
 #cardArea li.selected::before {
     content: "\f00c";
     font-family: FontAwesome;
     padding-right: 10px;
+}
+
+.btn-right {
+    float:right;
 }
