@@ -6,9 +6,12 @@ html,body {
 
 .well {
     background: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    border-radius: 2px;
 }
 .studyTitle {
-    font-size: 18px;
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 .errorMessage, .successMessage {
     display:none;
@@ -19,7 +22,7 @@ html,body {
 .siteTitle {
     font-size: 125px;
     letter-spacing: 20px;
-    color:rgb(0,158,195);
+    color:darkgray;
 }
 .container {
     margin-top: 50px;
