@@ -1,77 +1,92 @@
 $(document).ready(function() {
-	var c = {
+	pc = {
 		secondSelectionLimit: 5,
 		firstSelectionLimit: 10,
 		onStageTwo: false,
 		selectedNum: 0,
-		init: function(){
-			$('#nextBtn').hide();
-			$('#done').hide();
-			this.loadDatafromDB();
-			this.addWords();
-			this.bindNextButton();
-			this.bindCardClick();
-			this.bindSendResults();
-		},
-		addWords: function(){
-			for (var i = 0; i < this.words.length; i++) {
-				$('#cardArea').append("<li>"+this.words[i]+"</li>");
-			}
-		},
-		bindNextButton: function(){
-		  	$("#nextBtn").click(function() {
-				$( "#cardArea li:not(.selected)").each(function( index ) {
-					$(this).remove();
-				});
-				$("#cardArea li.selected").toggleClass('selected');
-				c.onStageTwo = true;
-				c.updateView();
-				$(this).remove();
-			});
-		},
-		bindCardClick: function(){
-	  		$("#cardArea li").click(function() {
-				$(this).toggleClass("selected");
-				c.updateView();
-			});
-		},
-		bindSendResults: function(){
-	  		$("#done").click(function() {
-	  			var words = []
-	  			$('#cardArea li.selected').each(function(idx,word){
-	  				words.push($(word).text());
-	  			});
-	  			words.push(Date());
-	  			$('#hiddenResults').val(JSON.stringify(words));
-				$('#submitForm').click();
-			});
-		},
-		updateView: function(){
-			this.selectedNum = $('#cardArea li.selected').length;
-			if(this.onStageTwo){
-				if(this.selectedNum === this.secondSelectionLimit){
-					$( "#cardArea li:not(.selected)").toggleClass('disabled');
-					$('#done').show();
-				} else {
-					$( "#cardArea li").removeClass('disabled');
-					$('#textArea').html('Select your top 5 cards.');
-				}
-			} else {
-				$('#textArea').html('Select at least 10 cards that represent your experience with the system. ('+this.selectedNum+' selected)');
-				if(this.selectedNum >= this.firstSelectionLimit){
-					$('#nextBtn').show();
-				} else {
-					$('#nextBtn').hide();
-				}
-			}
-		},
-		loadDatafromDB: function(){
-			this.words = $('#hiddenWords').val().split(";").map(function(item) {
-				  return item.trim();
-			}).filter(function(n){ return n != ''});
-			$('#hiddenWords').remove();
+	}
+
+	function loadDatafromDB(){
+		pc.words = $('#hiddenWords').val().split(";").map(function(item) {
+			  return item.trim();
+		}).filter(function(n){ return n != ''});
+		$('#hiddenWords').remove();
+		for (var i = 0; i < pc.words.length; i++) {
+			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
 		}
 	}
-	c.init();
+	function enableButton(buttonID){
+		$(buttonID).removeClass('btn-default')
+		$(buttonID).removeClass('disabled')
+		$(buttonID).addClass('btn-primary');
+	}
+
+	function disableButton(buttonID){
+		$(buttonID).removeClass('btn-primary')
+		$(buttonID).addClass('disabled','btn-default');
+	}
+
+	function setInstructions(str){
+		$('#textArea').html(str);
+	}
+
+	function updateView(){
+		pc.selectedNum = $('#cardArea li.selected').length;
+		if (pc.onStageTwo) {
+			if(pc.selectedNum === pc.secondSelectionLimit){
+				$( "#cardArea li:not(.selected)").toggleClass('disabled');
+				enableButton('#done');
+			} else {
+				$( "#cardArea li").removeClass('disabled');
+				setInstructions('Select your top 5 cards.');
+				disableButton('#done');
+			}
+		} else {
+			setInstructions('Select at least 10 cards that represent your experience with the system. ('+pc.selectedNum+' selected)');
+			if(pc.selectedNum >= pc.firstSelectionLimit){
+				enableButton('#nextBtn');
+			} else {
+				disableButton('#nextBtn');
+			}
+		}
+	}
+	
+	$("#done").click(function() {
+		if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
+			pc.results = []
+			$('#cardArea li.selected').each(function(idx,word){
+				pc.results.push($(word).text());
+			});
+			pc.results.push(Date());
+			$('#hiddenResults').val(JSON.stringify(pc.results));
+			$('#submitForm').click();
+		}
+	});
+
+	$("#nextBtn").click(function() {
+  		if ($("#cardArea li.selected").length >= pc.firstSelectionLimit) {
+				$( "#cardArea li:not(.selected)").each(function(index) {
+				$(this).remove();
+			});
+			$("#cardArea li.selected").toggleClass('selected');
+			pc.onStageTwo = true;
+			updateView();
+			$('#done').show();
+			$(this).remove();
+  		}		
+	});
+
+	function init(){
+		disableButton('#nextBtn');
+		disableButton('#done');
+		$('#done').hide();
+		loadDatafromDB();
+	}	
+	init()
+
+	$("#cardArea li").click(function() {
+		$(this).toggleClass("selected");
+		updateView();
+	});
 });
 
