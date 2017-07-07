@@ -2,8 +2,8 @@
     font-size: 22px;
     width: 100%;
     padding: 25px;
-    background-color: rgb(0,133,164);
-    color: white;
+    background-color:   #484848;
+    color:white;
     vertical-align: middle;
 }
 #treeArea {
@@ -25,13 +25,14 @@
     width:150px;
     float:left;
     height: 100%;
+    background-color:   #D8D8D8;
 }
 /* Style the list items */
 #taskList li {
     cursor: pointer;
     position: relative;
     padding: 5px 8px 5px 40px;
-    background: #eee;
+    /*background: #eee;*/
     font-size: 14px;
     /* make the list items unselectable */
     -webkit-user-select: none;
@@ -41,19 +42,19 @@
 }
 
 #taskList li.selected {
-    background: rgb(0,158,195) !important;
+    background: #808080 !important;
     color: white !important;
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-#taskList li:nth-child(odd) {
+/*#taskList li:nth-child(odd) {
     background: #f9f9f9; 
-}
+}*/
 /* Add a "checked" mark when clicked on */
 #taskList li.checked::before {
     content: '';
     position: absolute;
-    border-color: rgb(0, 107, 132);
+    border-color: white;
     border-style: solid;
     border-width: 0 2px 2px 0;
     top: 5px;

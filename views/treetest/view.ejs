@@ -14,13 +14,17 @@
 	</head>
 	
 	<body>
+
+
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.tasks.length; i++) {%><%= singleStudy.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.tree.length; i++) {%><%= singleStudy.tree[i] %>;<% } %>">
 		<script type="text/javascript" src="../treetest.js"/></script>
 
-		<div id="header">
-			<div id="title">Kort TreeTest</div>
-		</div>
+		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<span class='navbar-brand'>Tree Test</span>
+			</div>
+		</nav>
 
 		<div id="taskDesc"></div>
 	
