@@ -27,7 +27,13 @@
 					<label for="words">Words</label><br><textarea style='width:100%' name="words" rows="15" cols="30" id="words"><% for(var j=0; j<singleStudy.words.length; j++) {%><%= singleStudy.words[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Save</button>
+			<div class='row'>
+				<div class='col-sm-4'>
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
+				</div>
+			</div>
+
 		</form>
 	</div>			
 	</body>
