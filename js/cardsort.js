@@ -23,6 +23,15 @@ $(document).ready(function() {
 			return  !el.classList.contains('no-dnd')
 		},
 	});
+
+	drake.on("drop", function(event){
+		if ($('#initialColumn').children().length == 0){
+			$('#done').removeClass('disabled')
+		} else {
+			$('#done').addClass('disabled')
+		}
+	});
+
 	function updateContainers(){
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
@@ -149,12 +158,10 @@ $(document).ready(function() {
 	$('#newGroupButton').click(function() {
 		createGroup("New Group");
 	});
-	$('#done').click(function() {
-		if ($('#initialColumn').children().length == 0){
+	$('#done').click(function() {	
+		if(!$('#done').hasClass('disabled')){
 			$('#hiddenResults').val(JSON.stringify(getResults()));
 			$('#submitForm').click();
-		} else {
-			alert('Please place all items into groups.');
 		}
 	});
 });
