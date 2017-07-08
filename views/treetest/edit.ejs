@@ -13,58 +13,38 @@
 				<div class='col-sm-4'>
 					<p><label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input>
 					</p>
-					<label for="active">Active</label><br>
+					<p><label>Options</label></p>
 				    <%if (singleStudy.active == true) { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="active" value='true' checked>Yes</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="active" value='false'>No</label>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="active" checked>Study Active</label>
 				    </div>
 				    <% } else { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="active" value='true'>Yes</label>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="active">Study Active</label>
 				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="active" value='false' checked>No</label>
-				    </div> 
 				    <% } %>
-					<br>
-				    <label for="selectableParents">Parents are selectable</label><br>
+
 				    <%if (singleStudy.selectableParents == true) { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="selectableParents" value='true' checked>Yes</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="selectableParents" value='false'>No</label>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
 				    </div>
 				    <% } else { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="selectableParents" value='true'>Yes</label>
+				   <div class="checkbox">
+				      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
 				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="selectableParents" value='false' checked>No</label>
-				    </div> 
 				    <% } %>
-				    <br>
-				    <label for="showSiblings">Show siblings when selected</label><br>
+			
 				    <%if (singleStudy.showSiblings == true) { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="showSiblings" value='true' checked>Yes</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="showSiblings" value='false'>No</label>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
 				    </div>
 				    <% } else { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="showSiblings" value='true'>Yes</label>
+				   <div class="checkbox">
+				      <label><input type="checkbox" name="showSiblings">Hide Siblings</label>
 				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="showSiblings" value='false' checked>No</label>
-				    </div> 
 				    <% } %>
 				</div>
-				<div class='col-sm-8'>
+				<div class='col-sm-4'>
 					<label for="tasks">Tasks</label><br><textarea style='width:100%' name="tasks" rows="15" cols="30" id="tasks"><% for(var j=0; j<singleStudy.tasks.length; j++) {%><%= singleStudy.tasks[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
