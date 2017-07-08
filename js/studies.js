@@ -46,28 +46,27 @@ $(document).ready(function() {
       	});
     });
     $('#createNewProductReactionBtn').on('click', function(event) {
-  	$.ajax({
-        url: '/createproductreaction_ajax',
-        type: "POST",
-        contentType: "application/json",
-        success: function(study) {
-      	$(`<tr>
-				<td>`+study.title+`</td>
-				<td>`+study.active+`</td>
-				<td>`+study.words.length+`</td>
-				<td>`+study.responses.length+`</td>
-				<td><a href="/treetest/`+study._id+`">View</a></td>
-				<td style='color:gray;' onclick="return false;" >Results</td>
-				<td><a href="/edittreetest/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
-		</tr>`).appendTo($('#productreaction_table_body'));
-  
-        },
-        error:   function(xhr, text, err) {
-          console.log("productreactions: Please check ajax request");
-        }
-      });
-    });
+	  	$.ajax({
+	        url: '/createproductreaction_ajax',
+	        type: "POST",
+	        contentType: "application/json",
+	        success: function(study) {
+		      	$(`<tr>
+						<td>`+study.title+`</td>
+						<td>`+study.active+`</td>
+						<td>`+study.words.length+`</td>
+						<td>`+study.responses.length+`</td>
+						<td><a href="/productreaction/`+study._id+`">View</a></td>
+						<td style='color:gray;' onclick="return false;">Results</td>
+						<td><a href="/editproductreaction/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+				</tr>`).appendTo($('#productreaction_table_body'));
+	        },
+	        error:   function(xhr, text, err) {
+	          console.log("productreactions: Please check ajax request");
+	        }
+	      });
+	    });
 });
 function confirmDeleteStudy(href,studyTitle){
 	 bootbox.confirm({
