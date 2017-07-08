@@ -12,6 +12,16 @@
 			<div class='row'>
 				<div class='col-sm-4'>
 					<label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br><br>
+					<p><label>Options</label></p>
+				    <%if (singleStudy.active == true) { %>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="active" checked>Preview Only (responses cannot be submitted).</label>
+				    </div>
+				    <% } else { %>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="active">Preview Only (responses cannot be submitted).</label>
+				    </div>
+				    <% } %>
 				    <label for="title">Type</label><br>
 				    <%if (singleStudy.studyType == 'open') { %>
 				    <div class="radio-inline">
@@ -28,23 +38,7 @@
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
 				    </div>
 				    <% } %>
-				    <br>
-				    <label for="title">Active</label><br>
-				    <%if (singleStudy.active == true) { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="active" value='true' checked>True</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="active" value='false'>False</label>
-				    </div>
-				    <% } else { %> 
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="active" value='true'>True</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="active" value='false' checked>False</label>
-				    </div> 
-				    <% } %>
+				 
 				</div>
 				<div class='col-sm-4'>
 					<label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.cards.length; j++) {%><%= singleStudy.cards[j]+'\n' %><% } %></textarea>
