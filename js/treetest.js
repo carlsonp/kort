@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	function createTreeviewObject(){
+	function createTreeViewStructure(){
 		function addNodeByPath(myroot,path){
 			if (path.length == 1){
 				myroot.nodes.push({text: path[0], nodes: []})
@@ -43,33 +43,42 @@ $(document).ready(function() {
 		return myTree;
 	}
 	//--------------------Initialize Treeview Object---------------------
-	var myTree = createTreeviewObject()
-	disableSelectableOnParents(myTree);
+	
+	
+	function initializeTreeViewObject(treeStructure){
+		$('#tree').treeview({
+			data: treeStructure,
+			collapseIcon: "glyphicon glyphicon-menu-down",
+			expandIcon:"glyphicon glyphicon-menu-right",
+			selectedBackColor: "gray",
+			onhoverColor: "white"
+		});
+		resetTree();
+	}
+
 	//create treeview object
-	$('#tree').treeview({
-		data: myTree,
-		collapseIcon: "glyphicon glyphicon-menu-down",
-		expandIcon:"glyphicon glyphicon-menu-right",
-		selectedBackColor: "#009ec3",
-	});
-	resetTree();
+
 	//--------------------Treeview Event Handlers---------------------
-	//Hide sibling nodes when node expands
-	$('#tree').on('nodeExpanded', function(event, data) {
-		var node = $('#tree').treeview('getNode', data.nodeId);
-	  	var siblings = $('#tree').treeview('getSiblings', node);
-	  	siblings.forEach(function(element) {
-		    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
+	
+	function bindToHideSiblings(){
+		//Hide sibling nodes when node expands
+		$('#tree').on('nodeExpanded', function(event, data) {
+			var node = $('#tree').treeview('getNode', data.nodeId);
+		  	var siblings = $('#tree').treeview('getSiblings', node);
+		  	siblings.forEach(function(element) {
+			    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
+			});
 		});
-	});
-	//Show sibling nodes when node collapses
-	$('#tree').on('nodeCollapsed', function(event, data) {
-		var node = $('#tree').treeview('getNode', data.nodeId);
-	  	var siblings = $('#tree').treeview('getSiblings', node);
-	  	siblings.forEach(function(element) {
-		    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
+		//Show sibling nodes when node collapses
+		$('#tree').on('nodeCollapsed', function(event, data) {
+			var node = $('#tree').treeview('getNode', data.nodeId);
+		  	var siblings = $('#tree').treeview('getSiblings', node);
+		  	siblings.forEach(function(element) {
+			    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
+			});
 		});
-	});
+	}
+	
 	//When node is selected (clicked), write full path of node ids
 	$('#tree').on('nodeSelected', function(event, data) {
 		var node = $('#tree').treeview('getNode', data.nodeId);
@@ -169,10 +178,25 @@ $(document).ready(function() {
 				tasks.add(tasksDB[i]);	
 			}
 		}
-		createTreeviewObject();
+		//create treeview structure from database information
+		var myTree = createTreeViewStructure()
 		
+		//parents are selectable by default, only disable when value is false
+		if(!$('#hiddenSelectableParents').val()){
+			disableSelectableOnParents(myTree);
+		}
+
+		initializeTreeViewObject(myTree)
+
+		//initialize treeview event after treeview object created
+		if($('#hiddenShowSiblings').val()){
+			bindToHideSiblings()
+		}
+
 		$('#hiddenTasks').remove();
 		$('#hiddenTree').remove();
+		$('#hiddenSelectableParents').remove();
+		$('#hiddenShowSiblings').remove();
 	}
 	loadDatafromDB();
 	tasks.set(0);
@@ -184,30 +208,30 @@ $(document).ready(function() {
 		tasks.set($("li").index(event.target));
 	});
 	//------------------------------File IO------------------------------
-	function addTasksFromFile(filetext){
-	    arr = filetext.split("\n");
-	    for (var i = 0; i < arr.length; i++) {
-    		tasks.add(arr[i]);
-		}
-		tasks.set(0);
-	}
-  	function readInTextFile(tasksOrTree){  
-		var file = $('#fileInput').prop('files')[0];
-		if (file.type.match(/text.*/)) {
-			var reader = new FileReader();
-			reader.onload = function() {
-				if(tasksOrTree === "tree"){
-					//do tree stuff
-				} else {
-					addTasksFromFile(reader.result);		
-				}
-			}
-			reader.readAsText(file);  
-		}
-	}
-	$('#fileInput').change(function(){
-		readInTextFile("tasks");
-	});
+	// function addTasksFromFile(filetext){
+	//     arr = filetext.split("\n");
+	//     for (var i = 0; i < arr.length; i++) {
+ //    		tasks.add(arr[i]);
+	// 	}
+	// 	tasks.set(0);
+	// }
+ //  	function readInTextFile(tasksOrTree){  
+	// 	var file = $('#fileInput').prop('files')[0];
+	// 	if (file.type.match(/text.*/)) {
+	// 		var reader = new FileReader();
+	// 		reader.onload = function() {
+	// 			if(tasksOrTree === "tree"){
+	// 				//do tree stuff
+	// 			} else {
+	// 				addTasksFromFile(reader.result);		
+	// 			}
+	// 		}
+	// 		reader.readAsText(file);  
+	// 	}
+	// }
+	// $('#fileInput').change(function(){
+	// 	readInTextFile("tasks");
+	// });
 
 	//-------------------------------------------------------------------
 });
