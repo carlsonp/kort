@@ -133,10 +133,8 @@ $(document).ready(function() {
 			var cards = []
 			$(nestedArea).children().each(function(){
 				var cardname = $(this).text();
-				// cards.push($(this).text())
 				results.push({groupname,cardname})
 			});
-			// results.push({groupname: groupname ,cards: cards});
 		});
 		results.unshift(Date())
 		return results;
