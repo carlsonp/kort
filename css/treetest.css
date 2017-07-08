@@ -32,7 +32,6 @@
     cursor: pointer;
     position: relative;
     padding: 5px 8px 5px 40px;
-    /*background: #eee;*/
     font-size: 14px;
     /* make the list items unselectable */
     -webkit-user-select: none;
@@ -46,10 +45,7 @@
     color: white !important;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-/*#taskList li:nth-child(odd) {
-    background: #f9f9f9; 
-}*/
+
 /* Add a "checked" mark when clicked on */
 #taskList li.checked::before {
     content: '';
