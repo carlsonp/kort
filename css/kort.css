@@ -21,11 +21,15 @@ html,body {
 }
 .siteTitle {
     font-size: 125px;
-    letter-spacing: 20px;
+    letter-spacing: 30px;
     color:darkgray;
 }
 .container {
     margin-top: 50px;
+}
+
+.float-right {
+    float: right;
 }
 /*
 a:link {
