@@ -18,6 +18,9 @@
 
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.tasks.length; i++) {%><%= singleStudy.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.tree.length; i++) {%><%= singleStudy.tree[i] %>;<% } %>">
+		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.selectableParents %>">
+		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.showSiblings %>">
+
 		<script type="text/javascript" src="../treetest.js"/></script>
 
 		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">

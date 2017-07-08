@@ -9,6 +9,8 @@ module.exports = {
         var newStudy = new TreeTestStudy({
             title: "Default Tree Test Title",
             type: "treetest",
+            showSiblings: true,
+            selectableParents: true,
             tasks: [],
             tree: [],
             active: false,
@@ -78,6 +80,8 @@ module.exports = {
 				study.tasks = tasks;
 				study.tree = tree;
 				study.active = req.body.active;
+                study.selectableParents = req.body.selectableParents,
+                study.showSiblings = req.body.showSiblings,
 				
 				study.save();
                 res.redirect('/studies');
