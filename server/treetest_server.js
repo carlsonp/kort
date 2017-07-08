@@ -11,8 +11,8 @@ module.exports = {
             type: "treetest",
             showSiblings: true,
             selectableParents: true,
-            tasks: [],
-            tree: [],
+            tasks: ['task1','task2','task3'],
+            tree: ['root','root/child1','root/child2'],
             active: false,
             ownerID: req.user._id
         });
