@@ -2,11 +2,7 @@ $(document).ready(function() {
 	var groupNum = 0;
 	var zoneNum = 5;
 	var studyIsOpen = false;
-	//Slide out menu
-	// function openMenu(){document.getElementById("mySidenav").style.width = "450px";}
-	// function closeMenu(){document.getElementById("mySidenav").style.width = "0px";}
-	// $('#hamburger').click(function(){openMenu();});
-	// $('#closeMenu').click(function(){closeMenu();});
+
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
@@ -24,17 +20,10 @@ $(document).ready(function() {
 		},
 	});
 
-	drake.on("drop", function(event){
-		if ($('#initialColumn').children().length == 0){
-			$('#done').removeClass('disabled')
-		} else {
-			$('#done').addClass('disabled')
-		}
-	});
-
 	function updateContainers(){
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
 	}
+
 	function deleteGroup(group){
 		groupNum-=1;
 		var nestedArea = group.children()[group.children().length-2]
@@ -45,6 +34,7 @@ $(document).ready(function() {
 		$(group).attr("id","toBeDeleted")
 		$('#toBeDeleted').fadeOut("fast","swing",function() {$(this).remove();});
 	}
+
 	function createGroup(groupname){
 		groupNum+=1;
 		var group = $("<div class='group' hidden></div>");
@@ -83,17 +73,37 @@ $(document).ready(function() {
 		$('#dropZone'+((zoneNum-1)+groupNum)%zoneNum).append(group)
 		group.fadeIn();
 		updateContainers();
-	};
+	}
+
 	function createCard(cardName){
 		var newElement = $('<div class="item">'+cardName+'</div>');
 		$('#initialColumn').append(newElement);
 		updateContainers();
 	}
+
+	function getResults(){
+		var results = []
+		$('.group').each(function(index) {
+			var title = $(this).children('.title')
+			var groupname = $(title).text();
+			var nestedArea = $(this).children('.droparea')
+			var cards = []
+			$(nestedArea).children().each(function(){
+				var cardname = $(this).text();
+				results.push({groupname,cardname})
+			});
+		});
+		results.unshift(Date())
+		return results;
+	}
+
 	function loadDatafromDB(){
 		if ($('#hiddenType').val() == 'open'){
 			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
-			// $('#newGroupButton').show();
 			studyIsOpen = true;
+			$('#newGroupButton').click(function() {
+				createGroup("New Group");
+			});
 		}
 		var groups = $('#hiddenGroups').val().split(";").map(function(item) {
 			  return item.trim();
@@ -111,9 +121,29 @@ $(document).ready(function() {
 				createCard(cards[i]);
 			}
 		}
+
+		//only bind if active
+		if($('#hiddenActive').val() === 'true'){
+			//dragula event to check for empty intial list on 'drop' actions
+			drake.on("drop", function(event){
+				if ($('#initialColumn').children().length == 0){
+					$('#done').removeClass('disabled')
+				} else {
+					$('#done').addClass('disabled')
+				}
+			});
+			//binding for submit button/link
+			$('#done').click(function() {	
+				if(!$('#done').hasClass('disabled')){
+					$('#hiddenResults').val(JSON.stringify(getResults()));
+					$('#submitForm').click();
+				}
+			});
+		}
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
 		$('#hiddenType').remove();
+		$('#hiddenActive').remove();
 	}
 	function setUpDropZones(){
 		for (var i = 0; i < zoneNum; i++) {
@@ -123,43 +153,4 @@ $(document).ready(function() {
 	//dropzones for groups need to be created before default groups
 	setUpDropZones();
 	loadDatafromDB();
-
-	function getResults(){
-		var results = []
-		$('.group').each(function(index) {
-			var title = $(this).children('.title')
-			var groupname = $(title).text();
-			var nestedArea = $(this).children('.droparea')
-			var cards = []
-			$(nestedArea).children().each(function(){
-				var cardname = $(this).text();
-				results.push({groupname,cardname})
-			});
-		});
-		results.unshift(Date())
-		return results;
-	}
-	// $('#addCardsButton').click(function() {
-	// 	var strArray = $('#cardsList').val().split("\n");
-	// 	for (var i = 0; i < strArray.length; i++) {
-	// 		if(strArray[i] != ''){
-	// 			createCard(strArray[i]);
-	// 		}
-	// 	}
-	// });
-	// $('#addGroupsButton').click(function() {
-	// 	var strArray = $('#groupsList').val().split("\n");
-	// 	for (var i = 0; i < strArray.length; i++) {
-	// 		createGroup(strArray[i]);
-	// 	}
-	// });
-	$('#newGroupButton').click(function() {
-		createGroup("New Group");
-	});
-	$('#done').click(function() {	
-		if(!$('#done').hasClass('disabled')){
-			$('#hiddenResults').val(JSON.stringify(getResults()));
-			$('#submitForm').click();
-		}
-	});
 });
