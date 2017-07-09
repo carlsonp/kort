@@ -7,42 +7,39 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class='well'>
-				<div class='row'>
-					<div class='col-md-4 col-md-offset-4 text-center'>
-						<span class='siteTitle'>Kort</span>
-					</div>
+			<div class='row'>
+				<div class='col-md-4 col-md-offset-4 text-center'>
+					<span class='siteTitle'>kort</span>
 				</div>
-				<div class='row'>
-					<div class='col-md-4 col-md-offset-4'>
-						<% if (loginMessage.length > 0) { %>
-							<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
-						<% } %>
-						<form class="form-horizontal" action="/login" method="post">
-							<div class="form-group">
-							<h4 class='text-center'>Login</h4>
-								<div class="inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-										<input name="email" placeholder="you@server.com" class="form-control" type="text" />
-									</div>
-							  </div>
-							</div>
-							<div class="form-group">
-								<div class="inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-										<input name="password" placeholder="Password" class="form-control" type="password" />
-									</div>
-							  </div>
-							</div>
-							<div class="form-group">
+			</div>
+			<div class='row'>
+				<div class='col-md-4 col-md-offset-4'>
+					<form class="form-horizontal" action="/login" method="post">
+						<div class="form-group">
+						<h4 class='text-center'>Login</h4>
+							<div class="inputGroupContainer">
 								<div class="input-group">
-									<button type="submit" class="btn btn-default">Login</button>
+									<span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+									<input name="email" placeholder="you@server.com" class="form-control" type="text" />
 								</div>
-							</div>
-						</form>
-					</div>	
+						  </div>
+						</div>
+						<div class="form-group">
+							<div class="inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+									<input name="password" placeholder="Password" class="form-control" type="password" />
+								</div>
+						  </div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						</div>
+						<% if (loginMessage.length > 0) { %>
+						<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
+						<% } %>
+
+					</form>
 				</div>			
 			</div>
 		</div>

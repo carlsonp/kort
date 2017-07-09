@@ -11,32 +11,36 @@
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<div class='row'>
 				<div class='col-sm-4'>
-					<label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input><br><br>
-					<p><label>Options</label></p>
+					<p><label for="title">Cardsort Title</label>
+					<input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input></p>
+
+					<p><label>Options</label>
 				    <%if (singleStudy.active == true) { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="active" checked>Preview Only (responses cannot be submitted).</label>
-				    </div>
+				    </div></p>
 				    <% } else { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="active">Preview Only (responses cannot be submitted).</label>
-				    </div>
+				    </div></p>
 				    <% } %>
 				    <label for="title">Type</label><br>
+				    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
+
 				    <%if (singleStudy.studyType == 'open') { %>
 				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
 				    </div>
 				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed'>Closed</label>
-				    </div>
+				    </div></p>
 				    <% } else { %> 
 				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open'>Open</label>
 				    </div>
 				    <div class="radio-inline">
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
-				    </div>
+				    </div></p>
 				    <% } %>
 				 
 				</div>
@@ -47,7 +51,14 @@
 					<label for="groups">Groups</label><br><textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.groups.length; j++) {%><%= singleStudy.groups[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save</button>
+			<div class='row'>
+				<div class='col-sm-4'>
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
+				</div>
+			</div>
+
+			
 		</form>
 	</div>			
 	</body>
