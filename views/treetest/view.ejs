@@ -22,6 +22,12 @@
 		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.showSiblings %>">
 
 		<script type="text/javascript" src="../treetest.js"/></script>
+		
+		<form method="POST" action="/submitTreetestResult">
+			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+			<input name="result" id='hiddenResults' type='text' hidden></input>
+			<button type="submit" id='submitForm' hidden>Add</button>
+		</form>
 
 		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
 			<div class="container-fluid">

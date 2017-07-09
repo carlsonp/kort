@@ -25,6 +25,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/treetest/:id', treetest.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
+	app.post('/submitTreetestResult', isLoggedIn, treetest.submitResult);
 
 	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
 	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);

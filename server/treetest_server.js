@@ -89,6 +89,22 @@ module.exports = {
             }
         });
     },
+    submitResult: function (req, res, next) {
+        TreeTestStudy.findOne({ _id: req.body.id}, 
+            function (err, study) {
+                if (err) {
+                    res.status(504);
+                    console.log('treetest.js: error submitting result');
+                    res.end(err);
+                } 
+                else {
+                    study.responses.push(JSON.parse(req.body.result));
+                    study.save();
+                    res.redirect('/studies');
+                    res.end();   
+                }
+        });
+    },
     delete: function(req, res, next) {
         TreeTestStudy.find({_id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
