@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	//--------------------Initialize Treeview Object---------------------
 	function createTreeViewStructure(){
 		function addNodeByPath(myroot,path){
 			if (path.length == 1){
@@ -42,8 +43,6 @@ $(document).ready(function() {
 		var myTree = makeTree(root)
 		return myTree;
 	}
-	//--------------------Initialize Treeview Object---------------------
-	
 	
 	function initializeTreeViewObject(treeStructure){
 		$('#tree').treeview({
@@ -55,8 +54,6 @@ $(document).ready(function() {
 		});
 		resetTree();
 	}
-
-	//create treeview object
 
 	//--------------------Treeview Event Handlers---------------------
 	
@@ -78,17 +75,18 @@ $(document).ready(function() {
 			});
 		});
 	}
-	
-	//When node is selected (clicked), write full path of node ids
-	$('#tree').on('nodeSelected', function(event, data) {
-		var node = $('#tree').treeview('getNode', data.nodeId);
-		tasks.answers[tasks.idx] = setHistory(node).concat([node.nodeId]); 
-		DOMnode = $('#taskList li').get(tasks.idx) 
-		$(DOMnode).addClass("checked");
-	});
-	$('#fileInputButton').click(function(){
-		document.getElementById('fileInput').click();
-	});
+	function bindNodeSelection(){
+		//When node is selected (clicked), write full path of node ids
+		$('#tree').on('nodeSelected', function(event, data) {
+			var node = $('#tree').treeview('getNode', data.nodeId);
+			tasks.answers[tasks.idx] = setHistory(node).concat([node.nodeId]); 
+			$('#nextTaskButton').removeClass('disabled')
+		});
+
+		$('#tree').on('nodeUnselected', function(event, data) {
+			$('#nextTaskButton').addClass('disabled')
+		});
+	}
 	//--------------------Treeview Functions (manual)--------------------
 	function expandToNode(history){
 		if(history.length > 1){
@@ -103,7 +101,6 @@ $(document).ready(function() {
 			$('#tree').treeview('selectNode', [ history.shift(), { silent: true } ]);
 		}
 	}
-	//collapse and show all nodes, deselect all
 	function resetTree(){
 		$('#tree').treeview('collapseAll', { silent: true });
 		$('#tree').treeview('enableAll', { silent: true });
@@ -111,8 +108,8 @@ $(document).ready(function() {
 		selectedNodes.forEach(function(element){
 			$('#tree').treeview('toggleNodeSelected', [ element.nodeId, { silent: true } ]);
 		});
+		$('#nextTaskButton').addClass('disabled');
 	}
-	//get all parent ids from node and concat them in a single array recursively(history)
 	function setHistory(node){
 		var parent = $('#tree').treeview('getParent', node);
 		if (parent.hasOwnProperty('text')){
@@ -138,12 +135,21 @@ $(document).ready(function() {
 		add: function (taskStr) {
 			this.list.push(taskStr);
 			this.answers.push(false);
-			$('#taskList').append("<li>Task "+this.list.length+"</li>");
+			// $('#taskList').append("<li>Task "+this.list.length+"</li>");
 		},
 		next:function() {
-			this.idx = this.idx + 1; 
-		    this.idx = this.idx % this.list.length;
-		    this.set(this.idx);
+			if (!(this.idx == this.list.length-1)){
+				this.idx = this.idx + 1; 
+				this.set(this.idx);
+			} else {
+				console.log('submit resulteds')
+				$('#hiddenResults').val(JSON.stringify(this.answers));
+				$('#submitForm').click();
+			}
+			if (this.idx == this.list.length-1){
+				$('#nextTaskButton').html('Finish')
+			}
+			
 		},
 		prev:function() {
 		    if (this.idx === 0) {
@@ -155,9 +161,10 @@ $(document).ready(function() {
 		set:function(number){
 			this.idx = number; 
 			$('#taskDesc').html(this.list[number]);
-			$('#taskList li').removeClass('selected');
-			DOMnode = $('#taskList li').get(this.idx) 
-			$(DOMnode).addClass("selected");
+			$('#taskDesc2').html("Task "+(number+1)+" of "+this.list.length);
+			// $('#taskList li').removeClass('selected');
+			// DOMnode = $('#taskList li').get(this.idx) 
+			// $(DOMnode).addClass("selected");
 			//if the selected task has already been 
 			//  completed load the answer from the tasks obj
 			resetTree();
@@ -186,7 +193,8 @@ $(document).ready(function() {
 			disableSelectableOnParents(myTree);
 		}
 
-		initializeTreeViewObject(myTree)
+		initializeTreeViewObject(myTree);
+		bindNodeSelection();
 
 		//initialize treeview event after treeview object created
 		if($('#hiddenShowSiblings').val()){
@@ -200,13 +208,18 @@ $(document).ready(function() {
 	}
 	loadDatafromDB();
 	tasks.set(0);
+	$('#nextTaskButton').addClass('disabled')
 	//-----------------------------Task List-----------------------------
-	$("#nextTaskButton" ).click(function() {tasks.next();});
-	$("#prevTaskButton" ).click(function() {tasks.prev();});
-	//click on task in task list ot navigate to task
-	$('#taskList').click(function(event,data) {
-		tasks.set($("li").index(event.target));
+	$("#nextTaskButton" ).click(function() {
+		if (!$('#nextTaskButton').hasClass('disabled')){
+			tasks.next();	
+		}
 	});
+	// $("#prevTaskButton" ).click(function() {tasks.prev();});
+	//click on task in task list ot navigate to task
+	// $('#taskList').click(function(event,data) {
+	// 	tasks.set($("li").index(event.target));
+	// });
 	//------------------------------File IO------------------------------
 	// function addTasksFromFile(filetext){
 	//     arr = filetext.split("\n");
