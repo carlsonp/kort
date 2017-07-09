@@ -34,19 +34,20 @@
 				<span class='navbar-brand'>Tree Test</span>
 			</div>
 		</nav>
-
-		<div id="taskDesc"></div>
-	
-		<ul id="taskList"></ul>
-		
-		<div id="treeArea">
-			<!--input field hidden-->
-			<input type="file" id="fileInput" style="display: none;"/>
-			<!--button that redirects the click (for UI purposes)-->
-			<!-- <button id="fileInputButton">Add Tasks from File</button> -->
-			<button id="prevTaskButton">Previous Task</button>
-			<button id="nextTaskButton">Next Task</button>
-			<div id="tree"></div>
+		<div class='container'>	
+		<div class="row">
+			<div id="taskDesc2"></div>
+			<div id="taskDesc"></div>
+		</div>
+			<!-- <ul id="taskList"></ul> -->
+		<div class="row">
+			<div id="treeArea">
+				<div id="tree"></div>
+			</div>
+		</div>
+		<div class="row">
+			<button class='btn btn-primary' style="float:right;" id="nextTaskButton">Next</button>
+		</div>
 		</div>
 	</body>
 </html>

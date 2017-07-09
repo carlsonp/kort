@@ -1,16 +1,24 @@
 #taskDesc {
     font-size: 22px;
     width: 100%;
-    padding: 25px;
+    padding: 15px 0px 15px 25px;
     background-color:   #484848;
+    color:white;
+    vertical-align: middle;
+}
+#taskDesc2 {
+    font-size: 14px;
+    width: 100%;
+    padding: 5px 0px 5px 25px;
+    background-color: #484848;
     color:white;
     vertical-align: middle;
 }
 #treeArea {
     margin-top: 25px;
     float:left;
-    margin-left: 25px;
-    width: 400px;
+    /*margin-left: 25px;*/
+    width: 100%;
     height: auto;
 }
 
