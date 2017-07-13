@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	var groupNum = 0;
-	var zoneNum = 5;
-	var studyIsOpen = false;
+	var cs = {};
+	cs.groupNum = 0;
+	cs.zoneNum = 5;
 
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
@@ -25,18 +25,19 @@ $(document).ready(function() {
 	}
 
 	function deleteGroup(group){
-		groupNum-=1;
-		var nestedArea = group.children()[group.children().length-2]
-		var items = $(nestedArea).children()
-		items.each(function() {
+		cs.groupNum-=1;
+		//get droparea div and put all items back to init column
+		$('.group > .droparea').children().each(function() {
 			$('#initialColumn').append(this);
 		});
-		$(group).attr("id","toBeDeleted")
-		$('#toBeDeleted').fadeOut("fast","swing",function() {$(this).remove();});
+		//remove group div
+		$(group).fadeOut("fast","swing", function() {
+			$(this).remove();
+		});
 	}
 
 	function createGroup(groupname){
-		groupNum+=1;
+		cs.groupNum+=1;
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -53,7 +54,6 @@ $(document).ready(function() {
         	event.target.contentEditable = false;
 			event.target.classList.remove('contenteditable');
     	});
-		//pressing enter doesn't create a newline just leaves edit mode
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
 				if ($(event.target).text().trim() == ''){
@@ -63,13 +63,12 @@ $(document).ready(function() {
 		    }
     	});
 		closeIcon.click(function(event){
-			var groupElement = $(event.target).parent();
-        	deleteGroup(groupElement);
+        	deleteGroup($(event.target).parent());
     	});
-		if (studyIsOpen){
+		if (cs.studyType == 'open'){
 			group.append(closeIcon);
 			groupTitle.click(function(event){
-	        	event.target.contentEditable=true;
+	        	event.target.contentEditable = true;
 				event.target.classList.add('contenteditable')
 				this.focus();
 				document.execCommand('selectAll', false, null);
@@ -78,14 +77,13 @@ $(document).ready(function() {
     	group.append(groupTitle);
     	group.append(nestedArea);
     	group.append(grabIcon);
-		$('#dropZone'+((zoneNum-1)+groupNum)%zoneNum).append(group)
+		$('#dropZone'+((cs.zoneNum-1)+cs.groupNum)%cs.zoneNum).append(group)
 		group.fadeIn();
 		updateContainers();
 	}
 
 	function createCard(cardName){
-		var newElement = $('<div class="item">'+cardName+'</div>');
-		$('#initialColumn').append(newElement);
+		$('#initialColumn').append('<div class="item">'+cardName+'</div>');
 		updateContainers();
 	}
 
@@ -106,19 +104,22 @@ $(document).ready(function() {
 	}
 
 	function loadDatafromDB(){
-		if ($('#hiddenType').val() == 'open'){
-			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
-			studyIsOpen = true;
-			$('#newGroupButton').click(function() {
-				createGroup("New Group");
-			});
-		}
+		cs.studyType = $('#hiddenType').val();
+		cs.active = $('#hiddenActive').val();
 		var groups = $('#hiddenGroups').val().split(";").map(function(item) {
 			  return item.trim();
 		});
 		var cards = $('#hiddenCards').val().split(";").map(function(item) {
 			  return item.trim();
 		});
+
+		if (cs.studyType == 'open'){
+			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
+			$('#newGroupButton').click(function() {
+				createGroup("New Group");
+			});
+		}
+		
 		for (var i = 0; i < groups.length; i++) {
 			if (groups[i] != ''){
 				createGroup(groups[i]);	
@@ -131,7 +132,7 @@ $(document).ready(function() {
 		}
 
 		//only bind if active
-		if($('#hiddenActive').val() === 'true'){
+		if(cs.active){
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
 				if ($('#initialColumn').children().length == 0){
@@ -154,7 +155,7 @@ $(document).ready(function() {
 		$('#hiddenActive').remove();
 	}
 	function setUpDropZones(){
-		for (var i = 0; i < zoneNum; i++) {
+		for (var i = 0; i < cs.zoneNum; i++) {
 			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
 		}
 	}
