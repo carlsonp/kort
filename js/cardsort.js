@@ -43,13 +43,23 @@ $(document).ready(function() {
 		var nestedArea = $("<div class='droparea nested accepts-items'></div>");
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
 		
-		groupTitle.blur(function(){
+		groupTitle.blur(function(event){
+			var newName = $(event.target).html();
+			console.log(newName)
+			if (newName == '' || newName == '<br>'){
+				$(event.target).html("Default Group");
+			}
         	event.target.contentEditable=false;
 			event.target.classList.remove('contenteditable');
     	});
 		//pressing enter doesn't create a newline just leaves edit mode
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
+		    	var newName = $(event.target).html();
+				console.log(newName)
+				if (newName == '' || newName == '<br>'){
+					$(event.target).html("Default Group");
+				}
         		event.target.contentEditable=false;
 				event.target.classList.remove('contenteditable');
 		    }
