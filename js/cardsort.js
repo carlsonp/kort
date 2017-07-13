@@ -60,7 +60,7 @@ $(document).ready(function() {
     	});
 		if (studyIsOpen){
 			group.append(closeIcon);
-			groupTitle.click(function(){
+			groupTitle.click(function(event){
 	        	event.target.contentEditable=true;
 				event.target.classList.add('contenteditable')
 				this.focus();
