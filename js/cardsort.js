@@ -44,24 +44,22 @@ $(document).ready(function() {
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
 		
 		groupTitle.blur(function(event){
-			var newName = $(event.target).html();
-			console.log(newName)
-			if (newName == '' || newName == '<br>'){
+			var newName = $(event.target).text().trim()
+			if (newName == ''){
 				$(event.target).html("Default Group");
+			} else {
+				$(event.target).html(newName);
 			}
-        	event.target.contentEditable=false;
+        	event.target.contentEditable = false;
 			event.target.classList.remove('contenteditable');
     	});
 		//pressing enter doesn't create a newline just leaves edit mode
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
-		    	var newName = $(event.target).html();
-				console.log(newName)
-				if (newName == '' || newName == '<br>'){
+				if ($(event.target).text().trim() == ''){
 					$(event.target).html("Default Group");
 				}
-        		event.target.contentEditable=false;
-				event.target.classList.remove('contenteditable');
+				$(event.target).blur();
 		    }
     	});
 		closeIcon.click(function(event){
