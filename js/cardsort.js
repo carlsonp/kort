@@ -27,7 +27,7 @@ $(document).ready(function() {
 	function deleteGroup(group){
 		cs.groupNum-=1;
 		//get droparea div and put all items back to init column
-		$('.group > .droparea').children().each(function() {
+		$(group).children('.droparea').children().each(function() {
 			$('#initialColumn').append(this);
 		});
 		//remove group div
@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 	function createCard(cardName){
 		$('#initialColumn').append('<div class="item">'+cardName+'</div>');
+		updateContainers()
 	}
 
 	function getResults(){
