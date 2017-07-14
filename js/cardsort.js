@@ -36,7 +36,7 @@ $(document).ready(function() {
 		});
 	}
 
-	function createGroup(groupname){
+	function createGroup(groupname, focus_on_creation = false){
 		cs.groupNum+=1;
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
@@ -78,13 +78,18 @@ $(document).ready(function() {
     	group.append(nestedArea);
     	group.append(grabIcon);
 		$('#dropZone'+((cs.zoneNum-1)+cs.groupNum)%cs.zoneNum).append(group)
-		group.fadeIn();
+		
+		if (focus_on_creation) {
+			group.fadeIn();
+			groupTitle.click()	
+		}
+
 		updateContainers();
 	}
 
 	function createCard(cardName){
 		$('#initialColumn').append('<div class="item">'+cardName+'</div>');
-		updateContainers();
+		// updateContainers();
 	}
 
 	function getResults(){
@@ -116,7 +121,7 @@ $(document).ready(function() {
 		if (cs.studyType == 'open'){
 			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
 			$('#newGroupButton').click(function() {
-				createGroup("New Group");
+				createGroup("New Group", true);
 			});
 		}
 		
