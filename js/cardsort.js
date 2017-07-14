@@ -131,7 +131,6 @@ $(document).ready(function() {
 			}
 		}
 
-		//only bind if active
 		if(cs.active){
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
@@ -149,11 +148,13 @@ $(document).ready(function() {
 				}
 			});
 		}
+		//remove temporary divs once data is imported
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
 		$('#hiddenType').remove();
 		$('#hiddenActive').remove();
 	}
+	
 	function setUpDropZones(){
 		for (var i = 0; i < cs.zoneNum; i++) {
 			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
