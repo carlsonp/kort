@@ -72,3 +72,4 @@ require('./server/routes.js')(app, passport, flash);
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
 });
+app.use('/public', express.static(__dirname + '/public/'));
