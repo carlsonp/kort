@@ -89,7 +89,6 @@ $(document).ready(function() {
 
 	function createCard(cardName){
 		$('#initialColumn').append('<div class="item">'+cardName+'</div>');
-		// updateContainers();
 	}
 
 	function getResults(){
@@ -159,13 +158,13 @@ $(document).ready(function() {
 		$('#hiddenType').remove();
 		$('#hiddenActive').remove();
 	}
-	
+
 	function setUpDropZones(){
 		for (var i = 0; i < cs.zoneNum; i++) {
 			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
 		}
 	}
 	//dropzones for groups need to be created before default groups
-	setUpDropZones();
+	// setUpDropZones();
 	loadDatafromDB();
 });
