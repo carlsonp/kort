@@ -14,9 +14,9 @@
 		<title>Cardsort</title>
 	</head>
 	<body>
-		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.groups.length; i++) {%><%= singleStudy.groups[i] %>;<% } %>">
-		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.cards.length; i++) {%><%= singleStudy.cards[i] %>;<% } %>">
-		<input id='hiddenType' type='text' value="<%= singleStudy.studyType %>">
+		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.data.groups.length; i++) {%><%= singleStudy.data.groups[i] %>;<% } %>">
+		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.data.cards.length; i++) {%><%= singleStudy.data.cards[i] %>;<% } %>">
+		<input id='hiddenType' type='text' value="<%= singleStudy.data.studyType %>">
 		<input id='hiddenActive' type='text' value="<%= singleStudy.active %>">
 
 		<form method="POST" action="/submitCardsortResult">

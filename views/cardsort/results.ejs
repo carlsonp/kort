@@ -17,8 +17,8 @@
 		<script>
 		
 		//https://plot.ly/javascript/heatmaps/
-		var xValues = <%- JSON.stringify(study.cards) %>;
-		var yValues = <%- JSON.stringify(study.groups) %>;
+		var xValues = <%- JSON.stringify(study.data.cards) %>;
+		var yValues = <%- JSON.stringify(study.data.groups) %>;
 
 		var zValues = <%- JSON.stringify(matrix) %>;
 

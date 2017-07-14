@@ -13,27 +13,27 @@ module.exports = function(app, passport, flash) {
 
 	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
-	app.get('/deletecardsort/:id', isLoggedIn, cardsort.delete);
+	app.get('/deletecardsort/:id', isLoggedIn, admin.delete);
 	app.get('/cardsort/:id', cardsort.view);
 	app.get('/cardsortresults/:id', isLoggedIn, cardsort.results);
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
-	app.post('/submitCardsortResult', isLoggedIn, cardsort.submitResult);
+	app.post('/submitCardsortResult', isLoggedIn, admin.submitResult);
 
 	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
-	app.get('/deletetreetest/:id', isLoggedIn, treetest.delete);
+	app.get('/deletetreetest/:id', isLoggedIn, admin.delete);
 	app.get('/treetest/:id', treetest.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
-	app.post('/submitTreetestResult', isLoggedIn, treetest.submitResult);
+	app.post('/submitTreetestResult', isLoggedIn, admin.submitResult);
 
 	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
 	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);
-	app.get('/deleteproductreaction/:id', isLoggedIn, productreaction.delete);
+	app.get('/deleteproductreaction/:id', isLoggedIn, admin.delete);
 	app.get('/productreaction/:id', productreaction.view);
 	app.get('/productreactionresults/:id', isLoggedIn, productreaction.results);
 	app.post('/updateproductreaction', isLoggedIn, productreaction.update);
-	app.post('/submitDesireability', isLoggedIn, productreaction.submitResult);
+	app.post('/submitDesireability', isLoggedIn, admin.submitResult);
 
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {email: req.user.email});
