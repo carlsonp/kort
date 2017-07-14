@@ -5,11 +5,12 @@ $(document).ready(function() {
 		onStageTwo: false,
 		selectedNum: 0,
 	}
-
 	function loadDatafromDB(){
 		pc.words = $('#hiddenWords').val().split(";").map(function(item) {
 			  return item.trim();
-		}).filter(function(n){ return n != ''});
+		}).filter(function(n) {
+			return n != ''
+		});
 		
 		for (var i = 0; i < pc.words.length; i++) {
 			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
