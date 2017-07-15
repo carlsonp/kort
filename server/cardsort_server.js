@@ -13,7 +13,7 @@ module.exports = {
                 groups: ['group1','group2','group3'],
             },
             responses: [],
-            active: false,
+            status: 'closed',
             ownerID: req.user._id
         });
         newStudy.save(function (err) {
@@ -93,15 +93,12 @@ module.exports = {
             else {
                 console.log('sdfds')
 				study.title = req.body.title;
-                // study.data.studyType = req.body.studyType;
-                // study.data.cards = cards;
-                // study.data.groups = groups;
                 study.data = {
                     studyType: req.body.studyType,
                     cards: cards,
                     groups: groups,
                 }
-				study.active = req.body.active;
+				study.status = req.body.status;
 				study.save();
                 res.redirect('/studies');
                 res.end();   
