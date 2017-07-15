@@ -4,7 +4,10 @@ var Study = new mongoose.Schema({
 	title: String,
 	type: String,
 	responses: [],
-	active: Boolean,
+	status: {
+		type: String,
+		enum: ['open', 'closed'],
+	},
 	ownerID: String,
 	sharedUserIDs: [],
 	data: {},

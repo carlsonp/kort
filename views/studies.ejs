@@ -14,7 +14,7 @@
 				<thead>
 					<tr>
 					<th>Name</th>
-					<th>Active</th>
+					<th>Status</th>
 					<th>Type</th>
 					<th>Cards</th>
 					<th>Groups</th>
@@ -30,7 +30,7 @@
 					<%if (studies[i].type == 'cardsort') { %>
 					<tr>
 						<td><%=studies[i].title %></td>
-						<td><%=studies[i].active %></td>
+						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.studyType %></td>
 						<td><%=studies[i].data.cards.length %></td>
 						<td><%=studies[i].data.groups.length %></td>
@@ -58,9 +58,10 @@
 				<thead>
 					<tr>
 					<th>Name</th>
-					<th>Active</th>
+					<td>Status</td>
 					<th>Tasks</th>
 					<th>Responses</th>
+					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -71,7 +72,7 @@
 					<%if (studies[i].type == 'treetest') { %>
 					<tr>
 						<td><%=studies[i].title %></td>
-						<td><%=studies[i].active %></td>
+						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.tasks.length %></td>
 						<td><%=studies[i].responses.length %></td>
 						<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
@@ -97,9 +98,10 @@
 				<thead>
 					<tr>
 					<th>Name</th>
-					<th>Active</th>
+					<th>Status</th>
 					<th>Words</th>
 					<th>Responses</th>
+					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -111,7 +113,7 @@
 					<%if (studies[i].type == 'productreaction') { %>
 					<tr>
 						<td><%=studies[i].title %></td>
-						<td><%=studies[i].active %></td>
+						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.words.length %></td>
 						<td><%=studies[i].responses.length %></td>
 						<td><a href="/productreaction/<%= studies[i]._id %>">View</a></td>
