@@ -1,14 +1,9 @@
 require('mongoose').model('User');
-require('mongoose').model('CardSortStudy');
-require('mongoose').model('ProductReactionStudy');
-require('mongoose').model('TreeTestStudy');
+require('mongoose').model('Study');
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var CardSortStudy = mongoose.model('CardSortStudy');
-var ProductReactionStudy = mongoose.model('ProductReactionStudy');
-var TreeTestStudy = mongoose.model('TreeTestStudy');
-
+var Study = mongoose.model('Study');
 
 module.exports = {
 	UserManagement: function (req, res, next) {
@@ -34,28 +29,13 @@ module.exports = {
 				req.end();
             } else {
 				//delete all studies associated with this user
-				CardSortStudy.remove({ownerID: user._id}, function(err) {
+				Study.remove({ownerID: user._id}, function(err) {
 					if (err) {
 						req.status(504);
 						console.log(err);
 						req.end();
 					}
 				});
-				ProductReactionStudy.remove({ownerID: user._id}, function(err) {
-					if (err) {
-						req.status(504);
-						console.log(err);
-						req.end();
-					}
-				});
-				TreeTestStudy.remove({ownerID: user._id}, function(err) {
-					if (err) {
-						req.status(504);
-						console.log(err);
-						req.end();
-					}
-				});
-				
 				//delete the user
 				user.remove();
 				

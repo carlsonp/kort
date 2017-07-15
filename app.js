@@ -18,9 +18,7 @@ const flash = require('connect-flash');
 //load in models
 require('./models/user');
 require('./models/study');
-require('./models/cardsort');
-require('./models/treetest');
-require('./models/productreaction');
+require('./models/response');
 
 //setup a default admin account in Mongo
 require('./server/createadmin_user')(adminUser, adminPassword);
