@@ -33,7 +33,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/productreaction/:id', productreaction.view);
 	app.get('/productreactionresults/:id', isLoggedIn, productreaction.results);
 	app.post('/updateproductreaction', isLoggedIn, productreaction.update);
-	app.post('/submitDesireability', isLoggedIn, admin.submitResult);
+	app.post('/submitproductreaction', isLoggedIn, admin.submitResult);
 
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {email: req.user.email});

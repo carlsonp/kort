@@ -13,12 +13,12 @@
 		</nav>
 	</head>
 	<body>
-		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.words.length; i++) {%><%= singleStudy.words[i] %>;<% } %>">
+		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.data.words.length; i++) {%><%= singleStudy.data.words[i] %>;<% } %>">
 		<input id='hiddenActive' type='text' value="<%= singleStudy.active %>">
 
 		<script type="text/javascript" src="../productcards.js"/></script>
 
-		<form method="POST" action="/submitDesireability">
+		<form method="POST" action="/submitproductreaction">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
 			<button type="submit" id='submitForm' hidden>Add</button>

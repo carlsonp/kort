@@ -72,7 +72,7 @@
 					<tr>
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].active %></td>
-						<td><%=studies[i].tasks.length %></td>
+						<td><%=studies[i].data.tasks.length %></td>
 						<td><%=studies[i].responses.length %></td>
 						<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
 						<%if (studies[i].responses.length > 0) { %>
@@ -112,7 +112,7 @@
 					<tr>
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].active %></td>
-						<td><%=studies[i].words.length %></td>
+						<td><%=studies[i].data.words.length %></td>
 						<td><%=studies[i].responses.length %></td>
 						<td><a href="/productreaction/<%= studies[i]._id %>">View</a></td>
 						<%if (studies[i].responses.length > 0) { %>

@@ -24,7 +24,7 @@
 				    </div>
 				    <% } %>
 
-				    <%if (singleStudy.selectableParents == true) { %>
+				    <%if (singleStudy.data.selectableParents == true) { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
 				    </div>
@@ -34,7 +34,7 @@
 				    </div>
 				    <% } %>
 			
-				    <%if (singleStudy.showSiblings == true) { %>
+				    <%if (singleStudy.data.showSiblings == true) { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
 				    </div>
@@ -45,12 +45,12 @@
 				    <% } %>
 				</div>
 				<div class='col-sm-4'>
-					<label for="tasks">Tasks</label><br><textarea style='width:100%' name="tasks" rows="15" cols="30" id="tasks"><% for(var j=0; j<singleStudy.tasks.length; j++) {%><%= singleStudy.tasks[j]+'\n' %><% } %></textarea>
+					<label for="tasks">Tasks</label><br><textarea style='width:100%' name="tasks" rows="15" cols="30" id="tasks"><% for(var j=0; j<singleStudy.data.tasks.length; j++) {%><%= singleStudy.data.tasks[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
 			<div class='row'>
 				<div class='col-sm-12'>
-					<label for="tree">Tree</label><br><textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.tree.length; j++) {%><%= singleStudy.tree[j]+'\n' %><% } %></textarea>
+					<label for="tree">Tree</label><br><textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.data.tree.length; j++) {%><%= singleStudy.data.tree[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
 			<div class='row'>

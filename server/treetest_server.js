@@ -1,18 +1,19 @@
-require('mongoose').model('TreeTestStudy');
+require('mongoose').model('Study');
 var mongoose = require('mongoose');
-
-var TreeTestStudy = mongoose.model('TreeTestStudy');
+var Study = mongoose.model('Study');
 
 module.exports = {
     create_ajax: function (req, res) {
         var studyData = req.body;
-        var newStudy = new TreeTestStudy({
+        var newStudy = new Study({
             title: "Default Tree Test Title",
             type: "treetest",
-            showSiblings: true,
-            selectableParents: true,
-            tasks: ['task1','task2','task3'],
-            tree: ['root','root/child1','root/child2'],
+            data: {
+                showSiblings: true,
+                selectableParents: true,
+                tasks: ['task1','task2','task3'],
+                tree: ['root','root/child1','root/child2'],
+            },
             active: false,
             ownerID: req.user._id
         });
@@ -29,7 +30,7 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        TreeTestStudy.findOne({_id: req.params.id}, function (err, docs) {
+        Study.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error viewing treetest.");
@@ -40,7 +41,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        TreeTestStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -51,7 +52,7 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        TreeTestStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error getting study to see results.");
@@ -68,7 +69,7 @@ module.exports = {
         var tree = req.body.tree.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        TreeTestStudy.findOne({_id: req.body.id, ownerID: req.user._id},
+        Study.findOne({_id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
                 res.status(504);
@@ -77,12 +78,14 @@ module.exports = {
             } 
             else {
 				study.title = req.body.title;
-				study.tasks = tasks;
-				study.tree = tree;
+                study.data = {
+                    tasks: tasks,
+                    tree: tree,
+                    selectableParents: req.body.selectableParents,
+                    showSiblings: req.body.showSiblings,
+                }
 				study.active = req.body.active;
-                study.selectableParents = req.body.selectableParents,
-                study.showSiblings = req.body.showSiblings,
-				
+
 				study.save();
                 res.redirect('/studies');
                 res.end();   
@@ -90,7 +93,7 @@ module.exports = {
         });
     },
     submitResult: function (req, res, next) {
-        TreeTestStudy.findOne({ _id: req.body.id}, 
+        Study.findOne({ _id: req.body.id}, 
             function (err, study) {
                 if (err) {
                     res.status(504);
@@ -106,7 +109,7 @@ module.exports = {
         });
     },
     delete: function(req, res, next) {
-        TreeTestStudy.find({_id: req.params.id, ownerID: req.user._id}, function(err) {
+        Study.find({_id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
         		console.log("treetest_server.js: Cannot find study to delete:" + req.params.id);
