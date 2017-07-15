@@ -16,7 +16,7 @@ $(document).ready(function() {
 			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
 		}
 
-		if($('#hiddenActive').val() == false){
+		if($('#hiddenStatus').val() == 'open'){
 			$("#done").click(function() {
 				if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
 						pc.results = []
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		}
 
 		$('#hiddenWords').remove();
-		$('#hiddenActive').remove();
+		$('#hiddenStatus').remove();
 	}
 	function enableButton(buttonID){
 		$(buttonID).removeClass('btn-default')

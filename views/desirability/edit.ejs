@@ -12,15 +12,22 @@
 			<div class='row'>
 				<div class='col-sm-4'>
 					<label for="title">Title</label><br><input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input>
-					<p><label>Options</label></p>
-				    <%if (singleStudy.active == true) { %>
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="active" checked>Preview Only (responses cannot be submitted).</label>
+					
+					<p><label>Status</label>
+   				     <%if (singleStudy.status == 'open') { %>
+				    <div class="radio-inline">
+				     	<label><input type="radio" name="status" value='open' checked>Open</label>
 				    </div>
-				    <% } else { %>
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="active">Preview Only (responses cannot be submitted).</label>
+				    <div class="radio-inline">
+						<label><input type="radio" name="status" value='closed'>Closed</label>
+				    </div></p>
+				    <% } else { %> 
+				    <div class="radio-inline">
+				     	<label><input type="radio" name="status" value='open'>Open</label>
 				    </div>
+				    <div class="radio-inline">
+						<label><input type="radio" name="status" value='closed' checked>Closed</label>
+				    </div></p>
 				    <% } %>
 				</div>
 				<div class='col-sm-8'>
