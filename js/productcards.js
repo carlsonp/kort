@@ -16,7 +16,7 @@ $(document).ready(function() {
 			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
 		}
 
-		if($('#hiddenActive').val() === 'false'){
+		if($('#hiddenActive').val() == false){
 			$("#done").click(function() {
 				if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
 						pc.results = []
