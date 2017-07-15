@@ -14,7 +14,7 @@ module.exports = {
                 tasks: ['task1','task2','task3'],
                 tree: ['root','root/child1','root/child2'],
             },
-            active: false,
+            status: 'closed',
             ownerID: req.user._id
         });
         newStudy.save(function (err) {
@@ -84,7 +84,7 @@ module.exports = {
                     selectableParents: req.body.selectableParents,
                     showSiblings: req.body.showSiblings,
                 }
-				study.active = req.body.active;
+				study.status = req.body.status;
 
 				study.save();
                 res.redirect('/studies');
