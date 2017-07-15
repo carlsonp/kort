@@ -91,10 +91,16 @@ module.exports = {
                 res.end(err);
             } 
             else {
+                console.log('sdfds')
 				study.title = req.body.title;
-                study.data.studyType = req.body.studyType;
-                study.data.cards = cards;
-                study.data.groups = groups;
+                // study.data.studyType = req.body.studyType;
+                // study.data.cards = cards;
+                // study.data.groups = groups;
+                study.data = {
+                    studyType: req.body.studyType,
+                    cards: cards,
+                    groups: groups,
+                }
 				study.active = req.body.active;
 				study.save();
                 res.redirect('/studies');
