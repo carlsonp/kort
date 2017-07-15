@@ -3,6 +3,15 @@ $(document).ready(function() {
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
 
+ 	function setLocationNewGroupButton(){
+		$('#newGroupButton').remove();
+		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
+		$('#dropZone'+next_idx).append("<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>")
+
+		$('#newGroupButton').click(function() {
+				createGroup("New Group", true);
+			});
+	}
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
@@ -34,10 +43,12 @@ $(document).ready(function() {
 		$(group).fadeOut("fast","swing", function() {
 			$(this).remove();
 		});
+		setLocationNewGroupButton();
 	}
 
 	function createGroup(groupname, focus_on_creation = false){
 		cs.groupNum+=1;
+		setLocationNewGroupButton();
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -108,6 +119,8 @@ $(document).ready(function() {
 		return results;
 	}
 
+
+
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
 		cs.status = $('#hiddenActive').val();
@@ -118,13 +131,7 @@ $(document).ready(function() {
 			  return item.trim();
 		});
 
-		if (cs.studyType == 'open'){
-			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
-			$('#newGroupButton').click(function() {
-				createGroup("New Group", true);
-			});
-		}
-		
+
 		for (var i = 0; i < groups.length; i++) {
 			if (groups[i] != ''){
 				createGroup(groups[i]);	
@@ -135,6 +142,15 @@ $(document).ready(function() {
 				createCard(cards[i]);
 			}
 		}
+
+		if (cs.studyType == 'open'){
+
+			setLocationNewGroupButton();
+			
+			
+		}
+		
+
 
 		if(cs.status == 'open'){
 			//dragula event to check for empty intial list on 'drop' actions
@@ -160,11 +176,11 @@ $(document).ready(function() {
 		$('#hiddenActive').remove();
 	}
 
-	function setUpDropZones(){
-		for (var i = 0; i < cs.zoneNum; i++) {
-			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
-		}
-	}
+	// function setUpDropZones(){
+	// 	for (var i = 0; i < cs.zoneNum; i++) {
+	// 		$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
+	// 	}
+	// }
 	//dropzones for groups need to be created before default groups
 	// setUpDropZones();
 	loadDatafromDB();

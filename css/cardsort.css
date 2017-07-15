@@ -3,6 +3,24 @@
 	padding-right: 10px;
 }
 
+#newGroupButton{
+	width: 90%;
+	color: black;
+	padding: 10px;
+	background-color: rgb(219,221,224);
+	margin: 15px;
+	border-radius: 4px;	
+    /*display: table;*/
+    border: solid 1px lightgray;
+    opacity: 0.5;
+    text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+#newGroupButton:hover{
+	 opacity: 0.78;
+}
+
 .custom-row {
     height: 100%;
 }
