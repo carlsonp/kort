@@ -1,5 +1,5 @@
 //load in functions
-var admin = require('./admin');
+var study = require('./study_server');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
 var productreaction = require('./productreaction_server');
@@ -13,33 +13,33 @@ module.exports = function(app, passport, flash) {
 
 	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
-	app.get('/deletecardsort/:id', isLoggedIn, admin.delete);
 	app.get('/cardsort/:id', cardsort.view);
 	app.get('/cardsortresults/:id', isLoggedIn, cardsort.results);
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
-	app.post('/submitCardsortResult', isLoggedIn, admin.submitResult);
 
 	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
-	app.get('/deletetreetest/:id', isLoggedIn, admin.delete);
 	app.get('/treetest/:id', treetest.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
-	app.post('/submitTreetestResult', isLoggedIn, admin.submitResult);
-
+	
 	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
 	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);
-	app.get('/deleteproductreaction/:id', isLoggedIn, admin.delete);
 	app.get('/productreaction/:id', productreaction.view);
 	app.get('/productreactionresults/:id', isLoggedIn, productreaction.results);
 	app.post('/updateproductreaction', isLoggedIn, productreaction.update);
-	app.post('/submitproductreaction', isLoggedIn, admin.submitResult);
+	
+	app.post('/submitTreetestResult', isLoggedIn, study.submitResult);
+	app.post('/submitCardsortResult', isLoggedIn, study.submitResult);
+	app.post('/submitproductreaction', isLoggedIn, study.submitResult);
+
+	app.get('/deletestudy/:id', isLoggedIn, study.delete);
 
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {email: req.user.email});
 	});
 
-	app.get('/studies', isLoggedIn, admin.Studies);
+	app.get('/studies', isLoggedIn, study.view);
 
 	app.get('/usermanagement', isLoggedIn, user.UserManagement);
 	  

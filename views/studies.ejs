@@ -42,7 +42,7 @@
 						<td style='color:gray;' onclick="return false;" >Results</td>
 						<% } %>
 						<td><a href="/editcardsort/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletecardsort/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 					</tr>
 					<% } %>
 				<% } %>
@@ -82,7 +82,7 @@
 						<td style='color:gray;' onclick="return false;" >Results</td>
 						<% } %>
 						<td><a href="/edittreetest/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletetreetest/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 					</tr>
 					<% } %>
 				<% } %>
@@ -123,7 +123,7 @@
 							<td style='color:gray;' onclick="return false;" >Results</td>
 						<% } %>
 						<td><a href="/editproductreaction/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 					</tr>
 					<% } %>
 				<% } %>
