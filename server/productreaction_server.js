@@ -1,17 +1,19 @@
-require('mongoose').model('ProductReactionStudy');
+require('mongoose').model('Study');
 var mongoose = require('mongoose');
 
-var ProductReactionStudy = mongoose.model('ProductReactionStudy');
+var Study = mongoose.model('Study');
 
 module.exports = {
     create_ajax: function (req, res) {
         var studyData = req.body;
-        var newStudy = new ProductReactionStudy({
+        var newStudy = new Study({
             title: "Desirability Exercise",
             type: "productreaction",
-            words: ['Accessible', 'Desirable', 'Gets in the way', 'Patronizing', 'Stressful', 'Appealing', 'Easy to use', 'Hard to use', 'Personal', 'Time-consuming', 'Attractive', 'Efficient', 'High quality', 'Predictable', 'Time-saving', 'Busy', 'Empowering', 'Inconsistent', 'Relevant', 'Too technical', 'Collaborative', 'Exciting', 'Intimidating', 'Reliable', 'Trustworthy', 'Complex', 'Familiar', 'Inviting', 'Rigid', 'Uncontrollable', 'Comprehensive', 'Fast', 'Motivating', 'Simplistic', 'Unconventional', 'Confusing', 'Flexible', 'Not valuable', 'Slow', 'Unpredictable', 'Connected', 'Fresh', 'Organized', 'Sophisticated', 'Usable', 'Consistent', 'Frustrating', 'Overbearing', 'Stimulating', 'Useful', 'Customizable', 'Fun', 'Overwhelming', 'Straight Forward', 'Valuable'],
+            data: {
+                words: ['Accessible', 'Desirable', 'Gets in the way', 'Patronizing', 'Stressful', 'Appealing', 'Easy to use', 'Hard to use', 'Personal', 'Time-consuming', 'Attractive', 'Efficient', 'High quality', 'Predictable', 'Time-saving', 'Busy', 'Empowering', 'Inconsistent', 'Relevant', 'Too technical', 'Collaborative', 'Exciting', 'Intimidating', 'Reliable', 'Trustworthy', 'Complex', 'Familiar', 'Inviting', 'Rigid', 'Uncontrollable', 'Comprehensive', 'Fast', 'Motivating', 'Simplistic', 'Unconventional', 'Confusing', 'Flexible', 'Not valuable', 'Slow', 'Unpredictable', 'Connected', 'Fresh', 'Organized', 'Sophisticated', 'Usable', 'Consistent', 'Frustrating', 'Overbearing', 'Stimulating', 'Useful', 'Customizable', 'Fun', 'Overwhelming', 'Straight Forward', 'Valuable'],
+            },
             responses: [],
-            active: false,
+            status: 'closed',
             ownerID: req.user._id
         });
         newStudy.save(function (err) {
@@ -27,7 +29,7 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id}, function (err, docs) {
+        Study.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("productreaction_server.js: Error viewing.");
@@ -38,7 +40,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -49,7 +51,7 @@ module.exports = {
         });
     },
     submitResult: function (req, res, next) {
-        ProductReactionStudy.findOne({ _id: req.body.id}, 
+        Study.findOne({ _id: req.body.id}, 
             function (err, study) {
                 if (err) {
                     res.status(504);
@@ -65,7 +67,7 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("productreaction_server.js: Error getting study to see results.");
@@ -98,7 +100,7 @@ module.exports = {
         var words = req.body.words.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != ''});
-        ProductReactionStudy.findOne({_id: req.body.id, ownerID: req.user._id}, 
+        Study.findOne({_id: req.body.id, ownerID: req.user._id}, 
             function (err, study) {
             if (err) {
                 res.status(504);
@@ -107,31 +109,15 @@ module.exports = {
             } 
             else {
 				study.title = req.body.title;
-				study.words = words;
-				study.active = req.body.active;
-
+                study.data = {
+                    words: words,
+                };
+				study.status = req.body.status;
 				study.save();
                 res.redirect('/studies');
                 res.end();   
             }
         });
     },
-    delete: function(req, res, next) {
-        ProductReactionStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function(err) {
-            if (err) {
-                req.status(504);
-        		console.log("productreaction_server.js: Cannot find study to delete:" + req.params.id);
-        		console.log(err);
-                req.end();
-            }
-        }).remove(function (err) {
-            if (err) {
-                console.log(err);
-                res.end(err);            
-            } else {
-                res.redirect('/studies');
-                res.end();
-            }
-        });
-    },
+
 }

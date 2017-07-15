@@ -17,6 +17,7 @@ const flash = require('connect-flash');
 
 //load in models
 require('./models/user');
+require('./models/study');
 require('./models/cardsort');
 require('./models/treetest');
 require('./models/productreaction');
@@ -44,6 +45,7 @@ app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/
 app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
 app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
 app.use('/plotlyjs', express.static(__dirname + '/node_modules/plotly.js/dist/'));
+app.use('/public', express.static(__dirname + '/public/'));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -72,4 +74,4 @@ require('./server/routes.js')(app, passport, flash);
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
 });
-app.use('/public', express.static(__dirname + '/public/'));
+

@@ -16,10 +16,10 @@
 	<body>
 
 
-		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.tasks.length; i++) {%><%= singleStudy.tasks[i] %>;<% } %>">
-		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.tree.length; i++) {%><%= singleStudy.tree[i] %>;<% } %>">
-		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.selectableParents %>">
-		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.showSiblings %>">
+		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
+		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">
+		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.data.selectableParents %>">
+		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.data.showSiblings %>">
 
 		<script type="text/javascript" src="../treetest.js"/></script>
 		

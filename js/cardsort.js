@@ -3,6 +3,16 @@ $(document).ready(function() {
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
 
+ 	function setLocationNewGroupButton(){
+		$('#newGroupButton').remove();
+		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
+		var newGroupButton = "<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>";
+		$('#dropZone'+next_idx).append(newGroupButton);
+
+		$('#newGroupButton').click(function() {
+				createGroup("New Group", true);
+			});
+	}
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
@@ -34,10 +44,14 @@ $(document).ready(function() {
 		$(group).fadeOut("fast","swing", function() {
 			$(this).remove();
 		});
+		setLocationNewGroupButton();
 	}
 
 	function createGroup(groupname, focus_on_creation = false){
 		cs.groupNum+=1;
+		if (cs.studyType == 'open'){
+			setLocationNewGroupButton();
+		}
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -108,23 +122,17 @@ $(document).ready(function() {
 		return results;
 	}
 
+
+
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
-		cs.active = $('#hiddenActive').val();
+		cs.status = $('#hiddenActive').val();
 		var groups = $('#hiddenGroups').val().split(";").map(function(item) {
 			  return item.trim();
 		});
 		var cards = $('#hiddenCards').val().split(";").map(function(item) {
 			  return item.trim();
 		});
-
-		if (cs.studyType == 'open'){
-			$('#cardsort-navbar').append("<li><a href='#' id='newGroupButton'>New Group</a></li>")
-			$('#newGroupButton').click(function() {
-				createGroup("New Group", true);
-			});
-		}
-		
 		for (var i = 0; i < groups.length; i++) {
 			if (groups[i] != ''){
 				createGroup(groups[i]);	
@@ -136,22 +144,28 @@ $(document).ready(function() {
 			}
 		}
 
-		if(cs.active){
+		// if (cs.studyType == 'open'){
+		// 	setLocationNewGroupButton();
+		// }
+		
+
+		if(cs.status == 'open'){
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
 				if ($('#initialColumn').children().length == 0){
-					$('#done').removeClass('disabled')
+					$('#initialColumn').append("<button type='button' id='done' class='btn btn-success btn-block center-block'>Finish</button>")
+					$('#done').click(function() {	
+						if(!$('#done').hasClass('disabled')){
+							$('#hiddenResults').val(JSON.stringify(getResults()));
+							$('#submitForm').click();
+						}
+					});
 				} else {
-					$('#done').addClass('disabled')
+					$('#done').remove();
 				}
 			});
-			//binding for submit button/link
-			$('#done').click(function() {	
-				if(!$('#done').hasClass('disabled')){
-					$('#hiddenResults').val(JSON.stringify(getResults()));
-					$('#submitForm').click();
-				}
-			});
+
+			
 		}
 		//remove temporary divs once data is imported
 		$('#hiddenGroups').remove();
@@ -160,11 +174,11 @@ $(document).ready(function() {
 		$('#hiddenActive').remove();
 	}
 
-	function setUpDropZones(){
-		for (var i = 0; i < cs.zoneNum; i++) {
-			$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
-		}
-	}
+	// function setUpDropZones(){
+	// 	for (var i = 0; i < cs.zoneNum; i++) {
+	// 		$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
+	// 	}
+	// }
 	//dropzones for groups need to be created before default groups
 	// setUpDropZones();
 	loadDatafromDB();

@@ -7,10 +7,10 @@ $(document).ready(function() {
 	        success: function(study) {
 	          	$(`<tr>
 				<td>`+study.title+`</td>
-				<td>`+study.active+`</td>
-				<td>`+study.studyType+`</td>
-				<td>`+study.cards.length+`</td>
-				<td>`+study.groups.length+`</td>
+				<td>`+study.status+`</td>
+				<td>`+study.data.studyType+`</td>
+				<td>`+study.data.cards.length+`</td>
+				<td>`+study.data.groups.length+`</td>
 				<td>`+study.responses.length+`</td>
 				<td><a href="/cardsort/`+study._id+`">View</a></td>
 				<td style='color:gray;' onclick="return false;" >Results</td>
@@ -32,8 +32,9 @@ $(document).ready(function() {
 	        success: function(study) {
 	          $(`<tr>
 				<td>`+study.title+`</td>
-				<td>`+study.active+`</td>
-				<td>`+study.tasks.length+`</td>
+				<td>`+study.status+`</td>
+				<td>`+study.data.tasks.length+`</td>
+				<td>`+study.responses.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>
 				<td style='color:gray;' onclick="return false;" >Results</td>
 				<td><a href="/edittreetest/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
@@ -53,8 +54,8 @@ $(document).ready(function() {
 	        success: function(study) {
 		      	$(`<tr>
 						<td>`+study.title+`</td>
-						<td>`+study.active+`</td>
-						<td>`+study.words.length+`</td>
+						<td>`+study.status+`</td>
+						<td>`+study.data.words.length+`</td>
 						<td>`+study.responses.length+`</td>
 						<td><a href="/productreaction/`+study._id+`">View</a></td>
 						<td style='color:gray;' onclick="return false;">Results</td>

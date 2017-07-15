@@ -1,19 +1,19 @@
-require('mongoose').model('CardSortStudy');
+require('mongoose').model('Study');
 var mongoose = require('mongoose');
-
-var CardSortStudy = mongoose.model('CardSortStudy');
-
+var Study = mongoose.model('Study');
 
 module.exports = {
     create_ajax: function (req, res) {
-        var newStudy = new CardSortStudy({
+        var newStudy = new Study({
             title: "New Cardsort",
             type: "cardsort",
-            studyType: "open",
-            cards: ['card1','card2','card3'],
-            groups: ['group1','group2','group3'],
+            data: {
+                studyType: "open",
+                cards: ['card1','card2','card3'],
+                groups: ['group1','group2','group3'],
+            },
             responses: [],
-            active: false,
+            status: 'closed',
             ownerID: req.user._id
         });
         newStudy.save(function (err) {
@@ -29,7 +29,7 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        CardSortStudy.findOne({_id: req.params.id}, function (err, docs) {
+        Study.findOne({_id: req.params.id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error viewing cardsort.");
@@ -40,7 +40,7 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        CardSortStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
@@ -51,24 +51,24 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        CardSortStudy.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
 				//results matrix for heatmap
-				var matrix = new Array(study.groups.length);
-				for (var i = 0; i < study.groups.length; i++) {
-					matrix[i] = new Array(study.cards.length);
+				var matrix = new Array(study.data.groups.length);
+				for (var i = 0; i < study.data.groups.length; i++) {
+					matrix[i] = new Array(study.data.cards.length);
 					matrix[i].fill(0);
 				}
 
 				study.responses.forEach(function(response){
 					response.shift(); //remove date (first item)
 					response.forEach(function(pair){
-						var groupIndex = study.groups.indexOf(pair.groupname);
-						var cardIndex = study.cards.indexOf(pair.cardname);
+						var groupIndex = study.data.groups.indexOf(pair.groupname);
+						var cardIndex = study.data.cards.indexOf(pair.cardname);
 						matrix[groupIndex][cardIndex]+=1;
 					})
 				})
@@ -83,7 +83,7 @@ module.exports = {
         var groups = req.body.groups.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        CardSortStudy.findOne({ _id: req.body.id, ownerID: req.user._id},
+        Study.findOne({ _id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
                 res.status(504);
@@ -91,50 +91,19 @@ module.exports = {
                 res.end(err);
             } 
             else {
+                console.log('sdfds')
 				study.title = req.body.title;
-				study.studyType = req.body.studyType;
-				study.cards = cards;
-				study.groups = groups;
-				study.active = req.body.active;
-					 
+                study.data = {
+                    studyType: req.body.studyType,
+                    cards: cards,
+                    groups: groups,
+                }
+				study.status = req.body.status;
 				study.save();
                 res.redirect('/studies');
                 res.end();   
             }
         });
     },
-    submitResult: function (req, res, next) {
-        CardSortStudy.findOne({ _id: req.body.id}, 
-            function (err, study) {
-                if (err) {
-                    res.status(504);
-                    console.log('cardsort_server.js: error submitting result');
-                    res.end(err);
-                } 
-                else {
-                    study.responses.push(JSON.parse(req.body.result));
-                    study.save();
-                    res.redirect('/studies');
-                    res.end();   
-                }
-        });
-    },
-    delete: function(req, res, next) {
-        CardSortStudy.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
-            if (err) {
-                req.status(504);
-        		console.log("cardsort_server.js: Cannot find study to delete:" + req.params.id);
-        		console.log(err);
-                req.end();
-            }
-        }).remove(function (err) {
-            if (err) {
-                console.log(err);
-                res.end(err);            
-            } else {
-                res.redirect('/studies');
-                res.end();
-            }
-        });
-    },
+    
 }

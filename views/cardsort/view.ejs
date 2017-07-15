@@ -14,10 +14,10 @@
 		<title>Cardsort</title>
 	</head>
 	<body>
-		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.groups.length; i++) {%><%= singleStudy.groups[i] %>;<% } %>">
-		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.cards.length; i++) {%><%= singleStudy.cards[i] %>;<% } %>">
-		<input id='hiddenType' type='text' value="<%= singleStudy.studyType %>">
-		<input id='hiddenActive' type='text' value="<%= singleStudy.active %>">
+		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.data.groups.length; i++) {%><%= singleStudy.data.groups[i] %>;<% } %>">
+		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.data.cards.length; i++) {%><%= singleStudy.data.cards[i] %>;<% } %>">
+		<input id='hiddenType' type='text' value="<%= singleStudy.data.studyType %>">
+		<input id='hiddenActive' type='text' value="<%= singleStudy.status %>">
 
 		<form method="POST" action="/submitCardsortResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
@@ -31,9 +31,6 @@
 		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
 			<div class="container-fluid">
 				<span class='navbar-brand'>Cardsort</span>
-			    <ul class='nav navbar-nav' id='cardsort-navbar'>
-			    	<li class="disabled" id='done'><a href='#' >Submit</a></li>
-			    </ul>
 			</div>
 		</nav>
 
