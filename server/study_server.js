@@ -34,15 +34,17 @@ module.exports = {
         });
     },
     submitResult: function (req, res, next) {
-         Response.findOne({_id: req.body.id}, function (err, response) {
+         Study.findOne({_id: req.body.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                response.data.push(JSON.parse(req.body.result));
+                var response = study.responses.id(req.body.resid);
                 response.status = true;
-                response.save();
+                response.data = JSON.parse(req.body.result);
+                study.responses.push(response);
+                study.save();
                 res.redirect('/studies');
                 res.end();   
             }
