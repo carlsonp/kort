@@ -1,4 +1,3 @@
-require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
