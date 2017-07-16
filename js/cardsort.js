@@ -8,10 +8,9 @@ $(document).ready(function() {
 		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
 		var newGroupButton = "<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>";
 		$('#dropZone'+next_idx).append(newGroupButton);
-
 		$('#newGroupButton').click(function() {
-				createGroup("New Group", true);
-			});
+			createGroup("New Group", true);
+		});
 	}
 	//Dragula initialization
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
@@ -144,22 +143,13 @@ $(document).ready(function() {
 			}
 		}
 
-		// if (cs.studyType == 'open'){
-		// 	setLocationNewGroupButton();
-		// }
-		
-
 		if(cs.status == 'open'){
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
+				$('#hiddenResults').val(JSON.stringify(getResults()));
 				if ($('#initialColumn').children().length == 0){
-					$('#initialColumn').append("<button type='button' id='done' class='btn btn-success btn-block center-block'>Finish</button>")
-					$('#done').click(function() {	
-						if(!$('#done').hasClass('disabled')){
-							$('#hiddenResults').val(JSON.stringify(getResults()));
-							$('#submitForm').click();
-						}
-					});
+					// $('#initialColumn').append("<button form='resultForm' type='submit' id='submitForm'>Add</button>")
+					$('#initialColumn').append("<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm' />");
 				} else {
 					$('#done').remove();
 				}

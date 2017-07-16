@@ -19,11 +19,10 @@
 		<input id='hiddenType' type='text' value="<%= singleStudy.data.studyType %>">
 		<input id='hiddenActive' type='text' value="<%= singleStudy.status %>">
 
-		<form method="POST" action="/submitResult">
+		<form id='resultsForm' method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
-			<button type="submit" id='submitForm' >Add</button>
 		</form>
 
 		<!-- starts Dragula object and adds onclick events for buttons -->
