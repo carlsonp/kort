@@ -43,7 +43,6 @@ module.exports = {
                 var response = study.responses.id(req.body.resid);
                 response.status = true;
                 response.data = JSON.parse(req.body.result);
-                study.responses.push(response);
                 study.save();
                 res.redirect('/studies');
                 res.end();   
