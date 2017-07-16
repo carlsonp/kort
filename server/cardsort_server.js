@@ -6,39 +6,6 @@ var Response = mongoose.model('Response');
 
 
 
-function getDataFromResponse(responses){
-    var global_responses = [];
-    for (var i = 0; i < responses.length; i++) {
-        Response.findOne({_id: responses[i]}, function (err, response) {
-            if (err) {
-                // res.status(504);
-                console.log("RESRS.js: Error viewing cardsort.");
-                // res.end(err);
-            } else {
-                global_responses.push(response.data.slice());
-                // console.log(respon)
-                // res.end();   
-            }
-        });
-    }
-        
-    console.log(global_responses)
-}
-
-function createResponse(studyID){
-    var response = new Response({
-        studyID: studyID,
-        data: [],
-        data_temp: [],
-        status: false,
-    });
-    response.save(function (err) {
-        if (err) return handleError(err);
-    });
-
-    return response._id;
-}
-
 module.exports = {
     create_ajax: function (req, res) {
         var newStudy = new Study({
