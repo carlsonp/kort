@@ -33,7 +33,17 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        var responseID = createResponse(req.params.id);
+        //create a response object
+        var response = new Response({
+            studyID: req.params.id,
+            data: [],
+            data_temp: [],
+            status: false,
+        });
+        response.save(function (err) {
+            if (err) return handleError(err);
+        });
+
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
@@ -41,12 +51,13 @@ module.exports = {
                 res.end(err);
             } else {
                 //add response id to study responses array
-                study.responses.push(responseID);
+                study.responses.push(response);
                 study.save();
-                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
+                res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
             }
         });
     },
+
     edit: function (req, res, next) {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
