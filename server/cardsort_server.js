@@ -4,8 +4,6 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 
-
-
 module.exports = {
     create_ajax: function (req, res) {
         var newStudy = new Study({
@@ -36,6 +34,7 @@ module.exports = {
         //create a response object
         var response = new Response({
             studyID: req.params.id,
+            //todo: do we need to pass all parameters during creation? 
             data: [],
             data_temp: [],
             status: false,
@@ -70,33 +69,29 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-
 				//results matrix for heatmap
 				var matrix = new Array(study.data.groups.length);
 				for (var i = 0; i < study.data.groups.length; i++) {
 					matrix[i] = new Array(study.data.cards.length);
 					matrix[i].fill(0);
 				}
-
                 for (var i = 0; i < study.responses.length; i++) {
                     var response = study.responses[i].data;
-                    // console.log(study.responses[i].data);
-
-                    response.shift(); //remove date (first item)
+                    
+                    //remove date (first item)
+                    response.shift(); 
                     response.forEach(function(pair){
                         var groupIndex = study.data.groups.indexOf(pair.groupname);
                         var cardIndex = study.data.cards.indexOf(pair.cardname);
                         matrix[groupIndex][cardIndex]+=1;
                     });
                 }
-				
 				res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
             }
         });
@@ -116,7 +111,6 @@ module.exports = {
                 res.end(err);
             } 
             else {
-                console.log('sdfds')
 				study.title = req.body.title;
                 study.data = {
                     studyType: req.body.studyType,
@@ -129,6 +123,5 @@ module.exports = {
                 res.end();   
             }
         });
-    },
-    
+    },   
 }
