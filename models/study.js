@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');  
-// var Response = mongoose.model('Response');
 
 var Response = new mongoose.Schema({
 	studyID: String,
@@ -9,7 +8,6 @@ var Response = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Response', Response);
-
 
 var Study = new mongoose.Schema({
 	title: String,
