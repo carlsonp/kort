@@ -70,58 +70,36 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-       
-        Study.findOne({_id: req.params.id}, function (err, study) {
-            if (err) {
-                // res.status(504);
-                console.log("cardsort_server.js: Error getting study to see results.");
-                // res.end(err);
-            } else {
-               
-            Response.findOne({_id: responses[i]}, function (err, response) {
-            if (err) {
-                console.log('errr')
-            } else {
-                global_responses.push(response.data.slice());
-                // console.log(respon)
-                // res.end();   
-            }
-        });
-                
-            }
-        });
-        // console.log(global_responses);
         
-    //     
-    //     Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
-    //         if (err) {
-    //             res.status(504);
-    //             console.log("cardsort_server.js: Error getting study to see results.");
-    //             res.end(err);
-    //         } else {
-				// //results matrix for heatmap
-				// var matrix = new Array(study.data.groups.length);
-				// for (var i = 0; i < study.data.groups.length; i++) {
-				// 	matrix[i] = new Array(study.data.cards.length);
-				// 	matrix[i].fill(0);
-				// }
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error getting study to see results.");
+                res.end(err);
+            } else {
 
-				// study.responses.forEach(function(responseID){
-    //                 console.log('id: '+responseID);
-                    
-                     
+				//results matrix for heatmap
+				var matrix = new Array(study.data.groups.length);
+				for (var i = 0; i < study.data.groups.length; i++) {
+					matrix[i] = new Array(study.data.cards.length);
+					matrix[i].fill(0);
+				}
 
-    //                 console.log('afeter findno')
-				// 	response.shift(); //remove date (first item)
-				// 	response.forEach(function(pair){
-				// 		var groupIndex = study.data.groups.indexOf(pair.groupname);
-				// 		var cardIndex = study.data.cards.indexOf(pair.cardname);
-				// 		matrix[groupIndex][cardIndex]+=1;
-				// 	})
-				// })
-				// res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
-    //         }
-    //     });
+                for (var i = 0; i < study.responses.length; i++) {
+                    var response = study.responses[i].data;
+                    // console.log(study.responses[i].data);
+
+                    response.shift(); //remove date (first item)
+                    response.forEach(function(pair){
+                        var groupIndex = study.data.groups.indexOf(pair.groupname);
+                        var cardIndex = study.data.cards.indexOf(pair.cardname);
+                        matrix[groupIndex][cardIndex]+=1;
+                    });
+                }
+				
+				res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
+            }
+        });
     },
     update: function (req, res, next) {
         var cards = req.body.cards.split(/\r?\n/).map(function(item) {
