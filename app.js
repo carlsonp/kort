@@ -18,7 +18,6 @@ const flash = require('connect-flash');
 //load in models
 require('./models/user');
 require('./models/study');
-require('./models/response');
 
 //setup a default admin account in Mongo
 require('./server/createadmin_user')(adminUser, adminPassword);
