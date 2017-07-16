@@ -1,6 +1,7 @@
 require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
+var Response = mongoose.model('Response');
 
 module.exports = {
     view: function (req, res, next) {
@@ -33,19 +34,18 @@ module.exports = {
         });
     },
     submitResult: function (req, res, next) {
-        Study.findOne({ _id: req.body.id}, 
-            function (err, study) {
-                if (err) {
-                    res.status(504);
-                    console.log('cardsort_server.js: error submitting result');
-                    res.end(err);
-                } 
-                else {
-                    study.responses.push(JSON.parse(req.body.result));
-                    study.save();
-                    res.redirect('/studies');
-                    res.end();   
-                }
+         Response.findOne({_id: req.body.id}, function (err, response) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error viewing cardsort.");
+                res.end(err);
+            } else {
+                response.data.push(JSON.parse(req.body.result));
+                response.status = true;
+                response.save();
+                res.redirect('/studies');
+                res.end();   
+            }
         });
     },
 }

@@ -1,6 +1,43 @@
 require('mongoose').model('Study');
+require('mongoose').model('Response');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
+var Response = mongoose.model('Response');
+
+
+
+function getDataFromResponse(responses){
+    var global_responses = [];
+    for (var i = 0; i < responses.length; i++) {
+        Response.findOne({_id: responses[i]}, function (err, response) {
+            if (err) {
+                // res.status(504);
+                console.log("RESRS.js: Error viewing cardsort.");
+                // res.end(err);
+            } else {
+                global_responses.push(response.data.slice());
+                // console.log(respon)
+                // res.end();   
+            }
+        });
+    }
+        
+    console.log(global_responses)
+}
+
+function createResponse(studyID){
+    var response = new Response({
+        studyID: studyID,
+        data: [],
+        data_temp: [],
+        status: false,
+    });
+    response.save(function (err) {
+        if (err) return handleError(err);
+    });
+
+    return response._id;
+}
 
 module.exports = {
     create_ajax: function (req, res) {
@@ -29,13 +66,17 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        Study.findOne({_id: req.params.id}, function (err, docs) {
+        var responseID = createResponse(req.params.id);
+        Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                res.render('cardsort/view.ejs',{singleStudy: docs});
+                //add response id to study responses array
+                study.responses.push(responseID);
+                study.save();
+                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             }
         });
     },
@@ -51,30 +92,58 @@ module.exports = {
         });
     },
     results: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
+       
+        Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
-                res.status(504);
+                // res.status(504);
                 console.log("cardsort_server.js: Error getting study to see results.");
-                res.end(err);
+                // res.end(err);
             } else {
-				//results matrix for heatmap
-				var matrix = new Array(study.data.groups.length);
-				for (var i = 0; i < study.data.groups.length; i++) {
-					matrix[i] = new Array(study.data.cards.length);
-					matrix[i].fill(0);
-				}
-
-				study.responses.forEach(function(response){
-					response.shift(); //remove date (first item)
-					response.forEach(function(pair){
-						var groupIndex = study.data.groups.indexOf(pair.groupname);
-						var cardIndex = study.data.cards.indexOf(pair.cardname);
-						matrix[groupIndex][cardIndex]+=1;
-					})
-				})
-				res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
+               
+            Response.findOne({_id: responses[i]}, function (err, response) {
+            if (err) {
+                console.log('errr')
+            } else {
+                global_responses.push(response.data.slice());
+                // console.log(respon)
+                // res.end();   
             }
         });
+                
+            }
+        });
+        // console.log(global_responses);
+        
+    //     
+    //     Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
+    //         if (err) {
+    //             res.status(504);
+    //             console.log("cardsort_server.js: Error getting study to see results.");
+    //             res.end(err);
+    //         } else {
+				// //results matrix for heatmap
+				// var matrix = new Array(study.data.groups.length);
+				// for (var i = 0; i < study.data.groups.length; i++) {
+				// 	matrix[i] = new Array(study.data.cards.length);
+				// 	matrix[i].fill(0);
+				// }
+
+				// study.responses.forEach(function(responseID){
+    //                 console.log('id: '+responseID);
+                    
+                     
+
+    //                 console.log('afeter findno')
+				// 	response.shift(); //remove date (first item)
+				// 	response.forEach(function(pair){
+				// 		var groupIndex = study.data.groups.indexOf(pair.groupname);
+				// 		var cardIndex = study.data.cards.indexOf(pair.cardname);
+				// 		matrix[groupIndex][cardIndex]+=1;
+				// 	})
+				// })
+				// res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
+    //         }
+    //     });
     },
     update: function (req, res, next) {
         var cards = req.body.cards.split(/\r?\n/).map(function(item) {

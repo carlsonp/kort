@@ -29,10 +29,8 @@ module.exports = function(app, passport, flash) {
 	app.get('/productreactionresults/:id', isLoggedIn, productreaction.results);
 	app.post('/updateproductreaction', isLoggedIn, productreaction.update);
 	
-	app.post('/submitTreetestResult', isLoggedIn, study.submitResult);
-	app.post('/submitCardsortResult', isLoggedIn, study.submitResult);
-	app.post('/submitproductreaction', isLoggedIn, study.submitResult);
 
+	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);
 
 	app.get('/admin', isLoggedIn, function (req, res) {

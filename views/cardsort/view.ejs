@@ -19,8 +19,8 @@
 		<input id='hiddenType' type='text' value="<%= singleStudy.data.studyType %>">
 		<input id='hiddenActive' type='text' value="<%= singleStudy.status %>">
 
-		<form method="POST" action="/submitCardsortResult">
-			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+		<form method="POST" action="/submitResult">
+			<input name="id" id='id' type='text' hidden value="<%= response %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
 			<button type="submit" id='submitForm' hidden>Add</button>
 		</form>
