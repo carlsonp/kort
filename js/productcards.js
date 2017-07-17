@@ -19,11 +19,11 @@ $(document).ready(function() {
 		if($('#hiddenStatus').val() == 'open'){
 			$("#done").click(function() {
 				if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
-						pc.results = []
+						pc.results = [];
+						pc.results.push(Date());
 						$('#cardArea li.selected').each(function(idx,word){
 							pc.results.push($(word).text());
 						});
-						pc.results.push(Date());
 						$('#hiddenResults').val(JSON.stringify(pc.results));
 						$('#submitForm').click();
 					}
