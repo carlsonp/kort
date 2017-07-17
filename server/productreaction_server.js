@@ -1,7 +1,7 @@
 require('mongoose').model('Study');
 var mongoose = require('mongoose');
-
 var Study = mongoose.model('Study');
+var Response = mongoose.model('Response');
 
 module.exports = {
     create_ajax: function (req, res) {
@@ -29,13 +29,27 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        Study.findOne({_id: req.params.id}, function (err, docs) {
+        //create a response object
+        var response = new Response({
+            studyID: req.params.id,
+            //todo: do we need to pass all parameters during creation? 
+            data: [],
+            data_temp: [],
+            status: false,
+        });
+        response.save(function (err) {
+            if (err) return handleError(err);
+        });
+
+        Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("productreaction_server.js: Error viewing.");
                 res.end(err);
             } else {
-                res.render('desirability/view.ejs',{singleStudy: docs});
+                study.responses.push(response);
+                study.save();
+                res.render('desirability/view.ejs',{singleStudy: study, response: response._id});
             }
         });
     },
@@ -50,22 +64,6 @@ module.exports = {
             }
         });
     },
-    submitResult: function (req, res, next) {
-        Study.findOne({ _id: req.body.id}, 
-            function (err, study) {
-                if (err) {
-                    res.status(504);
-                    console.log('cardsort_server.js: error submitting result');
-                    res.end(err);
-                } 
-                else {
-                    study.responses.push(JSON.parse(req.body.result));
-                    study.save();
-                    res.redirect('/studies');
-                    res.end();   
-                }
-        });
-    },
     results: function (req, res, next) {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
@@ -76,7 +74,8 @@ module.exports = {
                 //gather all words from all responses and put into single array
                 var allWords = []
                 for (var i = 0; i < study.responses.length; i++) {
-                    var response = study.responses[i]
+                    var response = study.responses[i].data
+                    response.shift();
                     for (var j = 0; j < response.length-1; j++) {
                         allWords.push(response[j])
                     }

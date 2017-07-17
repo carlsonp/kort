@@ -20,6 +20,7 @@
 
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+			<input name="resid" id='resid' type='text' hidden value="<%= response %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
 			<button type="submit" id='submitForm' hidden>Add</button>
 		</form>
