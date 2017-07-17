@@ -52,7 +52,7 @@ module.exports = {
                 //add response id to study responses array
                 study.responses.push(response);
                 study.save();
-                res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
+                res.render('cardsort/view.ejs',{singleStudy: study, response: response._id });
             }
         });
     },
