@@ -12,7 +12,7 @@ $(document).ready(function() {
 			createGroup("New Group", true);
 		});
 	}
-	//Dragula initialization
+	
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
 		accepts: function (el, target, source, sibling) {
@@ -121,8 +121,6 @@ $(document).ready(function() {
 		return results;
 	}
 
-
-
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
 		cs.status = $('#hiddenActive').val();
@@ -148,28 +146,18 @@ $(document).ready(function() {
 			drake.on("drop", function(event){
 				$('#hiddenResults').val(JSON.stringify(getResults()));
 				if ($('#initialColumn').children().length == 0){
-					// $('#initialColumn').append("<button form='resultForm' type='submit' id='submitForm'>Add</button>")
 					$('#initialColumn').append("<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm' />");
 				} else {
 					$('#done').remove();
 				}
 			});
-
-			
 		}
-		//remove temporary divs once data is imported
+
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
 		$('#hiddenType').remove();
 		$('#hiddenActive').remove();
 	}
 
-	// function setUpDropZones(){
-	// 	for (var i = 0; i < cs.zoneNum; i++) {
-	// 		$('#dropZoneParent').append('<div id="dropZone'+i+'"class="dropZone accepts-groups nested"></div>');
-	// 	}
-	// }
-	//dropzones for groups need to be created before default groups
-	// setUpDropZones();
 	loadDatafromDB();
 });
