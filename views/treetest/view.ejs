@@ -2,20 +2,15 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-
 		<!-- Include Bootstrap Treeview -->
 		<link rel="stylesheet" type="text/css" href="../bootstrap-treeview/bootstrap-treeview.min.css"/>
 		<script type="text/javascript" src="../bootstrap-treeview/bootstrap-treeview.min.js"/></script>
-		
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="../treetest.css" />
-	
 		<title>Kort Treetest</title>
 	</head>
 	
 	<body>
-
-
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">
 		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.data.selectableParents %>">
@@ -25,29 +20,31 @@
 		
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
+			<input name="resid" id='resid' type='text' hidden value="<%= response %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
 			<button type="submit" id='submitForm' hidden>Add</button>
 		</form>
 
-		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
+		<nav id='TreeTestNavbar' class="navbar navbar-default navbar-static-top">
 			<div class="container-fluid">
 				<span class='navbar-brand'>Tree Test</span>
 			</div>
 		</nav>
+
 		<div class='container'>	
-		<div class="row">
-			<div id="taskDesc2"></div>
-			<div id="taskDesc"></div>
-		</div>
-			<!-- <ul id="taskList"></ul> -->
-		<div class="row">
-			<div id="treeArea">
-				<div id="tree"></div>
+			<div class="row">
+				<div id="taskNum"></div>
+				<div id="taskDesc"></div>
 			</div>
-		</div>
-		<div class="row">
-			<button class='btn btn-primary' style="float:right;" id="nextTaskButton">Next</button>
-		</div>
+			
+			<div class="row">
+				<div id="treeArea">
+					<div id="tree"></div>
+				</div>
+			</div>
+			<div class="row">
+				<button class='btn btn-primary' style="float:right;" id="nextTaskButton">Next</button>
+			</div>
 		</div>
 	</body>
 </html>

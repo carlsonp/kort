@@ -1,6 +1,7 @@
 require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
+var Response = mongoose.model('Response');
 
 module.exports = {
     create_ajax: function (req, res) {
@@ -30,35 +31,52 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        Study.findOne({_id: req.params.id}, function (err, docs) {
+        //create a response object
+        var response = new Response({
+            studyID: req.params.id,
+            //todo: do we need to pass all parameters during creation? 
+            data: [],
+            data_temp: [],
+            status: false,
+        });
+        response.save(function (err) {
+            if (err) return handleError(err);
+        });
+
+        Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error viewing treetest.");
                 res.end(err);
             } else {
-                res.render('treetest/view.ejs',{singleStudy: docs});
+                study.responses.push(response);
+                study.save();
+                res.render('treetest/view.ejs',{singleStudy: study, response: response._id});
             }
         });
     },
     edit: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('treetest/edit.ejs',{singleStudy: docs, email: req.user.email});
+                res.render('treetest/edit.ejs',{singleStudy: study, email: req.user.email});
             }
         });
     },
     results: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('treetest/results.ejs',{study: docs, email: req.user.email});
+                for (var i = 0; i < study.responses.length; i++) {
+                    var response = study.responses[i].data;
+                }
+                res.render('treetest/results.ejs',{study: study, email: req.user.email});
             }
         });
     },
@@ -89,40 +107,6 @@ module.exports = {
 				study.save();
                 res.redirect('/studies');
                 res.end();   
-            }
-        });
-    },
-    submitResult: function (req, res, next) {
-        Study.findOne({ _id: req.body.id}, 
-            function (err, study) {
-                if (err) {
-                    res.status(504);
-                    console.log('treetest.js: error submitting result');
-                    res.end(err);
-                } 
-                else {
-                    study.responses.push(JSON.parse(req.body.result));
-                    study.save();
-                    res.redirect('/studies');
-                    res.end();   
-                }
-        });
-    },
-    delete: function(req, res, next) {
-        Study.find({_id: req.params.id, ownerID: req.user._id}, function(err) {
-            if (err) {
-                req.status(504);
-        		console.log("treetest_server.js: Cannot find study to delete:" + req.params.id);
-        		console.log(err);
-                req.end();
-            }
-        }).remove(function (err) {
-            if (err) {
-                console.log(err);
-                res.end(err);            
-            } else {
-                res.redirect('/studies');
-                res.end();
             }
         });
     },
