@@ -11,8 +11,8 @@ module.exports = {
             data: {
                 showSiblings: true,
                 selectableParents: true,
-                tasks: ['task1','task2','task3'],
-                tree: ['root','root/child1','root/child2'],
+                tasks: ['Where is the Apple?','Where is the Steak','Where is the Wine?'],
+                tree: ['Food', 'Food/Meat', 'Food/Meat/Steak', 'Food/Meat/Chicken', 'Food/Meat/Pork', 'Food/Fruit', 'Food/Fruit/Apple', 'Food/Fruit/Banana', 'Food/Fruit/Orange', 'Food/Fruit/Lime', 'Food/Fruit/Grapefruit', 'Drink','Drink/Non-alcholic', 'Drink/Non-alcholic/Milk', 'Drink/Non-alcholic/Water', 'Drink/Non-alcholic/Juice', 'Drink/Alcohol', 'Drink/Alcohol/Beer', 'Drink/Alcohol/Wine'],
             },
             status: 'closed',
             ownerID: req.user._id
