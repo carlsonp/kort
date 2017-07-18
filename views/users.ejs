@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<%= include('partials/header.ejs') %>
+		<%- include('partials/header.ejs') %>
 		<title>Kort: User Management</title>
-		<script type="text/javascript" src="../usermanagement.js"></script>
+		<script type="text/javascript" src="../users.js"></script>
 	</head>
 	<body>
-	<%= include('partials/admin_header.ejs') %>
+	<%- include('partials/admin_header.ejs') %>
 		<div class="container">
 			<% if (createUserErrorMessage.length > 0) { %>
 				<div class="alert alert-danger errorMessage">

@@ -39,7 +39,7 @@ module.exports = function(app, passport, flash) {
 
 	app.get('/studies', isLoggedIn, study.view);
 
-	app.get('/usermanagement', isLoggedIn, user.UserManagement);
+	app.get('/users', isLoggedIn, user.UserManagement);
 	  
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/admin',
@@ -54,8 +54,8 @@ module.exports = function(app, passport, flash) {
 	});
 	
 	app.post('/createuser', isLoggedIn, passport.authenticate('local-signup', {
-		successRedirect : '/usermanagement',
-		failureRedirect : '/usermanagement',
+		successRedirect : '/users',
+		failureRedirect : '/users',
 		failureFlash : true
 	}));
 

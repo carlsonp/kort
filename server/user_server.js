@@ -12,7 +12,7 @@ module.exports = {
                 res.status(504);
                 res.end(err);
             } else {
-                res.render("usermanagement.ejs", {users: docs,
+                res.render("users.ejs", {users: docs,
 												email: req.user.email,
                                                 createUserErrorMessage: req.flash('createUserErrorMessage'), 
                                                 createUserSuccessMessage: req.flash('createUserSuccessMessage')});
@@ -39,7 +39,7 @@ module.exports = {
 				//delete the user
 				user.remove();
 				
-				res.redirect('/usermanagement');
+				res.redirect('/users');
                 res.end();
 			}
         });
