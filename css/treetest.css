@@ -1,3 +1,7 @@
+#TreeTestNavbar {
+    margin-bottom: 0px;
+}
+
 #taskDesc {
     font-size: 22px;
     width: 100%;
@@ -6,18 +10,16 @@
     color:white;
     vertical-align: middle;
 }
-#taskDesc2 {
+#taskNum {
     font-size: 14px;
     width: 100%;
-    padding: 5px 0px 5px 25px;
-    background-color: #484848;
-    color:white;
+    padding: 5px 0px 5px 5px;
+    color:black;
     vertical-align: middle;
 }
 #treeArea {
     margin-top: 25px;
     float:left;
-    /*margin-left: 25px;*/
     width: 100%;
     height: auto;
 }
@@ -52,7 +54,6 @@
     background: #808080 !important;
     color: white !important;
 }
-
 
 /* Add a "checked" mark when clicked on */
 #taskList li.checked::before {

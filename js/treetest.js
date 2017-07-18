@@ -29,6 +29,7 @@ $(document).ready(function() {
 			}
 			return newTree;
 		}
+
 		var root = {text: 'root', nodes: []}
 		var nodes = $('#hiddenTree').val().split(";").map(function(item) {
 			  return item.trim();
@@ -50,13 +51,13 @@ $(document).ready(function() {
 			collapseIcon: "glyphicon glyphicon-menu-down",
 			expandIcon:"glyphicon glyphicon-menu-right",
 			selectedBackColor: "gray",
-			onhoverColor: "white"
+			onhoverColor: "white",
+			borderColor: 'lightgray',
 		});
 		resetTree();
 	}
 
 	//--------------------Treeview Event Handlers---------------------
-	
 	function bindToHideSiblings(){
 		//Hide sibling nodes when node expands
 		$('#tree').on('nodeExpanded', function(event, data) {
@@ -161,12 +162,7 @@ $(document).ready(function() {
 		set:function(number){
 			this.idx = number; 
 			$('#taskDesc').html(this.list[number]);
-			$('#taskDesc2').html("Task "+(number+1)+" of "+this.list.length);
-			// $('#taskList li').removeClass('selected');
-			// DOMnode = $('#taskList li').get(this.idx) 
-			// $(DOMnode).addClass("selected");
-			//if the selected task has already been 
-			//  completed load the answer from the tasks obj
+			$('#taskNum').html("Task "+(number+1)+" of "+this.list.length);
 			resetTree();
 			if(this.answers[this.idx].length > 0){
 				//need to pass a copy of node path to expandToNode (or else it alters tasks.answers)
@@ -187,20 +183,16 @@ $(document).ready(function() {
 		}
 		//create treeview structure from database information
 		var myTree = createTreeViewStructure()
-		
 		//parents are selectable by default, only disable when value is false
 		if(!$('#hiddenSelectableParents').val()){
 			disableSelectableOnParents(myTree);
 		}
-
 		initializeTreeViewObject(myTree);
 		bindNodeSelection();
-
 		//initialize treeview event after treeview object created
 		if($('#hiddenShowSiblings').val()){
 			bindToHideSiblings()
 		}
-
 		$('#hiddenTasks').remove();
 		$('#hiddenTree').remove();
 		$('#hiddenSelectableParents').remove();
@@ -215,37 +207,5 @@ $(document).ready(function() {
 			tasks.next();	
 		}
 	});
-	// $("#prevTaskButton" ).click(function() {tasks.prev();});
-	//click on task in task list ot navigate to task
-	// $('#taskList').click(function(event,data) {
-	// 	tasks.set($("li").index(event.target));
-	// });
-	//------------------------------File IO------------------------------
-	// function addTasksFromFile(filetext){
-	//     arr = filetext.split("\n");
-	//     for (var i = 0; i < arr.length; i++) {
- //    		tasks.add(arr[i]);
-	// 	}
-	// 	tasks.set(0);
-	// }
- //  	function readInTextFile(tasksOrTree){  
-	// 	var file = $('#fileInput').prop('files')[0];
-	// 	if (file.type.match(/text.*/)) {
-	// 		var reader = new FileReader();
-	// 		reader.onload = function() {
-	// 			if(tasksOrTree === "tree"){
-	// 				//do tree stuff
-	// 			} else {
-	// 				addTasksFromFile(reader.result);		
-	// 			}
-	// 		}
-	// 		reader.readAsText(file);  
-	// 	}
-	// }
-	// $('#fileInput').change(function(){
-	// 	readInTextFile("tasks");
-	// });
-
-	//-------------------------------------------------------------------
 });
 
