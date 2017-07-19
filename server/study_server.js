@@ -41,6 +41,7 @@ module.exports = {
             } else {
                 var response = study.responses.id(req.body.resid);
                 response.status = true;
+                response.date = new Date(Date.now());
                 response.data = JSON.parse(req.body.result);
                 study.save();
                 res.redirect('/studies');

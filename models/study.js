@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');  
 
 var Response = new mongoose.Schema({
+	title: String,
+	date: Date,
 	studyID: String,
 	data: [],
 	data_temp: [],
