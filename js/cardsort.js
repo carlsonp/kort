@@ -145,13 +145,14 @@ $(document).ready(function() {
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
 				$('#hiddenResults').val(JSON.stringify(getResults()));
-				if ($('#initialColumn').children().length == 0){
-					$('#initialColumn').append("<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm' />");
+				if ($('#initialColumn').children().length == 1){
+					$('#done').show();
 				} else {
-					$('#done').remove();
+					$('#done').hide();
 				}
 			});
 		}
+		$('#done').hide();
 
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
