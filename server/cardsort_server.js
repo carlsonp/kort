@@ -33,17 +33,14 @@ module.exports = {
     },
     view: function (req, res, next) {
         //create a response object
-        var response = new Response({
-            studyID: req.params.id,
-            //todo: do we need to pass all parameters during creation? 
-            data: [],
-            data_temp: [],
-            status: false,
-        });
-        response.save(function (err) {
-            if (err) return handleError(err);
-        });
-
+        var responseID;
+        if (req.params.resid) {
+            responseID = req.params.resid;
+        } else {
+            var response = resp.createResponse(req.params.id,"Anonymous");
+            responseID = response._id;
+        }
+        
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
@@ -53,7 +50,7 @@ module.exports = {
                 //add response id to study responses array
                 study.responses.push(response);
                 study.save();
-                res.render('cardsort/view.ejs',{singleStudy: study, response: response._id });
+                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID });
             }
         });
     },
