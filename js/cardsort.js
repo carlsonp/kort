@@ -2,7 +2,16 @@ $(document).ready(function() {
 	var cs = {};
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
-
+	
+	function groupAlreadyExists(groupname){
+		$('.group').each(function(index) {
+			var title = $(this).children('.title')
+			if (groupname === title.text()){
+				return true;
+			}
+		});
+		return false;
+	}
  	function setLocationNewGroupButton(){
 		$('#newGroupButton').remove();
 		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
@@ -62,7 +71,13 @@ $(document).ready(function() {
 			if (newName == ''){
 				$(event.target).html("Default Group");
 			} else {
-				$(event.target).html(newName);
+				// console.log(groupAlreadyExists(newName));
+				if (groupAlreadyExists(newName)){
+					$(event.target).html(newName);
+				} else {
+					alert('group name already exists');
+				}
+				
 			}
         	event.target.contentEditable = false;
 			event.target.classList.remove('contenteditable');
@@ -120,6 +135,8 @@ $(document).ready(function() {
 		results.unshift(Date())
 		return results;
 	}
+
+
 
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
