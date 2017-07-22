@@ -30,20 +30,22 @@
 #initialColumn {
 	height: 100%;
 	background-color: 	#C8C8C8;
+	padding-right: 0px !important;
 }
 
 .dropZone {
 	height: 100%;
 	background-color: white;
+	padding-right: 0px !important;
 	border: solid lightgray 1px;
 }
 
 .group {
-	width: 90%;
+	width: 100%;
 	color: black;
 	min-height: 150px;
 	background-color: rgb(219,221,224);
-	margin: 15px;
+	margin-top: 15px;
 	border-radius: 4px;	
     word-wrap: break-word;
     cursor: move;
@@ -69,6 +71,9 @@
 	float: right;
 	margin: 5px;
 }
+.group .closeicon:hover {
+	color: black;
+}
 
 .group .iconContainer{
 	text-align: center;
@@ -80,7 +85,7 @@
 }
 
 .group .droparea {
-	background-color: #B0B0B0;
+	/*background-color: #B0B0B0;*/
 	padding: 2px;
 	cursor: default;
 	min-height: 150px;
