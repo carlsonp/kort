@@ -12,8 +12,8 @@ module.exports = {
             type: "cardsort",
             data: {
                 studyType: "open",
-                cards: ['card1','card2','card3'],
-                groups: ['group1','group2','group3'],
+                cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],
+                groups: ['Fruit','Meat','Vegtables'],
             },
             responses: [],
             status: 'closed',
