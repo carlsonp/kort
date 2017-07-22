@@ -13,7 +13,7 @@ module.exports = {
             data: {
                 studyType: "open",
                 cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],
-                groups: ['Fruit','Meat','Vegtables'],
+                groups: ['Fruit','Meat','Vegetables'],
             },
             responses: [],
             status: 'closed',
