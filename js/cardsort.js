@@ -2,10 +2,6 @@ $(document).ready(function() {
 	var cs = {};
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
-	cs.groups = [];
-
-
-
 
 	function updateGroupArray(){
 		cs.groups = [];
@@ -15,15 +11,19 @@ $(document).ready(function() {
 		});
 	}
 	
-
-
  	function setLocationNewGroupButton(){
 		$('#newGroupButton').remove();
 		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
 		var newGroupButton = "<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>";
 		$('#dropZone'+next_idx).append(newGroupButton);
 		$('#newGroupButton').click(function() {
-			createGroup("New Group", true);
+			for (var i = 1; i < 1000; i++) {
+				var newName = "Group "+i;
+				if (!groupNameExists(newName)){
+					createGroup(newName, true);
+					break;
+				} 
+			}
 		});
 	}
 	
@@ -42,6 +42,14 @@ $(document).ready(function() {
 			return  !el.classList.contains('no-dnd')
 		},
 	});
+
+	function groupNameExists(groupname){
+		if (cs.groups.indexOf(groupname) !== -1){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	function updateContainers(){
 		drake.containers = [].slice.apply(document.querySelectorAll('.nested'))
@@ -73,62 +81,46 @@ $(document).ready(function() {
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
 		
 		groupTitle.blur(function(event){
+			//helper function for blur event
 
-			function groupNameExists(groupname){
-				if (cs.groups.indexOf(groupname) !== -1){
-					return true;
-				} else {
-					return false;
-				}
-			}
-
-			var newName = $(event.target).text().trim();
+			var title = event.target;
+			var newName = $(title).text().trim();	
 			if (cs.lastChanged != newName){
 				if (newName == ''){
-					$(event.target).html('Default Group');
+					$(title).html('Default Group');
 				} else {
 					if (!groupNameExists(newName)){
-						$(event.target).html(newName);
+						$(title).html(newName);
 					} else {
 						alert('group name already exists');
-						$(event.target).html(cs.lastChanged);
-						// $(event.target).click();
+						$(title).html(cs.lastChanged);
 					}
 				}
-				// $(event.target).html(verifyGroupName(newName));
 			} 
-			
-        	event.target.contentEditable = false;
-			event.target.classList.remove('contenteditable');
+        	title.contentEditable = false;
+			title.classList.remove('contenteditable');
 			updateGroupArray();
     	});
+		//if the enter key is pressed, call the blur event
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
 				$(event.target).blur();
 		    }
     	});
 
-		groupTitle.change(function(event){
-		    
-    	});
-
-    	groupTitle.change(function() {
-		  console.log($(event.target).val());
-		});
-
-		closeIcon.click(function(event){
-        	deleteGroup($(event.target).parent());
-    	});
 		if (cs.studyType == 'open'){
 			group.append(closeIcon);
+			closeIcon.click(function(event){
+    	    	deleteGroup($(event.target).parent());
+    		});
 
 			groupTitle.click(function(event){
-	        	cs.lastChanged = $(event.target).text();
-	        	event.target.contentEditable = true;
-				event.target.classList.add('contenteditable')
+				var title = event.target;
+	        	cs.lastChanged = $(title).text();
+	        	title.contentEditable = true;
+				title.classList.add('contenteditable')
 				this.focus();
 				document.execCommand('selectAll', false, null);
-
 	    	});
 		}
     	group.append(groupTitle);

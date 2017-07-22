@@ -43,7 +43,7 @@
 .group {
 	width: 100%;
 	color: black;
-	min-height: 150px;
+	/*min-height: 150px;*/
 	background-color: rgb(219,221,224);
 	margin-top: 15px;
 	border-radius: 4px;	
@@ -88,7 +88,7 @@
 	/*background-color: #B0B0B0;*/
 	padding: 2px;
 	cursor: default;
-	min-height: 150px;
+	min-height: 50px;
 }
 
 .item {
