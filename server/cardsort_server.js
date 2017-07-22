@@ -73,24 +73,36 @@ module.exports = {
                 console.log("cardsort_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-				//results matrix for heatmap
-				var matrix = new Array(study.data.groups.length);
-				for (var i = 0; i < study.data.groups.length; i++) {
+				//collect all group names
+                sum_groups = []
+                for (var i = 0; i < study.responses.length; i++) {
+                    if (study.responses[i].status == true){
+                        var response = study.responses[i].data;
+                        for (var i = 1; i < response.length; i++) {
+                            if(!sum_groups.includes(response[i].groupname)){
+                                sum_groups.push(response[i].groupname);
+                            }
+                        }
+                    }
+                }
+                
+				var matrix = new Array(sum_groups.length);
+				for (var i = 0; i < sum_groups.length; i++) {
 					matrix[i] = new Array(study.data.cards.length);
 					matrix[i].fill(0);
 				}
+
                 for (var i = 0; i < study.responses.length; i++) {
-                    var response = study.responses[i].data;
-                    
-                    //remove date (first item)
-                    response.shift(); 
-                    response.forEach(function(pair){
-                        var groupIndex = study.data.groups.indexOf(pair.groupname);
-                        var cardIndex = study.data.cards.indexOf(pair.cardname);
-                        matrix[groupIndex][cardIndex]+=1;
-                    });
+                    if (study.responses[i].status == true){
+                        var response = study.responses[i].data;
+                        for (var i = 1; i < response.length; i++) {
+                            var groupIndex = sum_groups.indexOf(response[i].groupname);
+                            var cardIndex = study.data.cards.indexOf(response[i].cardname);
+                            matrix[groupIndex][cardIndex]+=1;
+                        }    
+                    }
                 }
-				res.render('cardsort/results.ejs',{study: study, matrix: matrix, email: req.user.email});
+				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, matrix: matrix});
             }
         });
     },
