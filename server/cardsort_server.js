@@ -102,7 +102,7 @@ module.exports = {
                         }    
                     }
                 }
-				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, matrix: matrix});
+				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, matrix: matrix,email: req.user.email});
             }
         });
     },
