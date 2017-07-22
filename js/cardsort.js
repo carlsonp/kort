@@ -2,16 +2,24 @@ $(document).ready(function() {
 	var cs = {};
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
-	
-	function groupAlreadyExists(groupname){
+	cs.groups = [];
+
+	function updateGroupArray(){
+		cs.groups = [];
 		$('.group').each(function(index) {
 			var title = $(this).children('.title')
-			if (groupname === title.text()){
-				return true;
-			}
+			cs.groups.push(title.text());
 		});
-		return false;
 	}
+	
+	function groupNameExists(groupname){
+		if (cs.groups.indexOf(groupname) !== -1){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
  	function setLocationNewGroupButton(){
 		$('#newGroupButton').remove();
 		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
@@ -53,6 +61,7 @@ $(document).ready(function() {
 			$(this).remove();
 		});
 		setLocationNewGroupButton();
+		updateGroupArray();
 	}
 
 	function createGroup(groupname, focus_on_creation = false){
@@ -68,11 +77,11 @@ $(document).ready(function() {
 		
 		groupTitle.blur(function(event){
 			var newName = $(event.target).text().trim()
+
 			if (newName == ''){
 				$(event.target).html("Default Group");
 			} else {
-				// console.log(groupAlreadyExists(newName));
-				if (groupAlreadyExists(newName)){
+				if (!groupNameExists(newName)){
 					$(event.target).html(newName);
 				} else {
 					alert('group name already exists');
@@ -81,6 +90,7 @@ $(document).ready(function() {
 			}
         	event.target.contentEditable = false;
 			event.target.classList.remove('contenteditable');
+			updateGroupArray();
     	});
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
@@ -113,6 +123,7 @@ $(document).ready(function() {
 		}
 
 		updateContainers();
+		updateGroupArray();
 	}
 
 	function createCard(cardName){
