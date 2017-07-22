@@ -4,6 +4,9 @@ $(document).ready(function() {
 	cs.zoneNum = 5;
 	cs.groups = [];
 
+
+
+
 	function updateGroupArray(){
 		cs.groups = [];
 		$('.group').each(function(index) {
@@ -12,13 +15,7 @@ $(document).ready(function() {
 		});
 	}
 	
-	function groupNameExists(groupname){
-		if (cs.groups.indexOf(groupname) !== -1){
-			return true;
-		} else {
-			return false;
-		}
-	}
+
 
  	function setLocationNewGroupButton(){
 		$('#newGroupButton').remove();
@@ -76,40 +73,62 @@ $(document).ready(function() {
 		var grabIcon = $("<div class='iconContainer'><i class='fa fa-ellipsis-h grabicon' aria-hidden='true'></i></div>");
 		
 		groupTitle.blur(function(event){
-			var newName = $(event.target).text().trim()
 
-			if (newName == ''){
-				$(event.target).html("Default Group");
-			} else {
-				if (!groupNameExists(newName)){
-					$(event.target).html(newName);
+			function groupNameExists(groupname){
+				if (cs.groups.indexOf(groupname) !== -1){
+					return true;
 				} else {
-					alert('group name already exists');
+					return false;
 				}
-				
 			}
+
+			var newName = $(event.target).text().trim();
+			if (cs.lastChanged != newName){
+				if (newName == ''){
+					$(event.target).html('Default Group');
+				} else {
+					if (!groupNameExists(newName)){
+						$(event.target).html(newName);
+					} else {
+						alert('group name already exists');
+						$(event.target).html(cs.lastChanged);
+						// $(event.target).click();
+					}
+				}
+				// $(event.target).html(verifyGroupName(newName));
+			} 
+			
         	event.target.contentEditable = false;
 			event.target.classList.remove('contenteditable');
 			updateGroupArray();
     	});
 		groupTitle.keydown(function(event){
 		    if(event.keyCode == 13){
-				if ($(event.target).text().trim() == ''){
-					$(event.target).html("Default Group");
-				}
 				$(event.target).blur();
 		    }
     	});
+
+		groupTitle.change(function(event){
+		    
+    	});
+
+    	groupTitle.change(function() {
+		  console.log($(event.target).val());
+		});
+
 		closeIcon.click(function(event){
         	deleteGroup($(event.target).parent());
     	});
 		if (cs.studyType == 'open'){
 			group.append(closeIcon);
+
 			groupTitle.click(function(event){
+	        	cs.lastChanged = $(event.target).text();
 	        	event.target.contentEditable = true;
 				event.target.classList.add('contenteditable')
 				this.focus();
 				document.execCommand('selectAll', false, null);
+
 	    	});
 		}
     	group.append(groupTitle);
