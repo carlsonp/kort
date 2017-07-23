@@ -32,12 +32,14 @@
 			<table id='results_table'>
 				<thead>
 					<tr>
+						<th>Response</th>
 						<th>Date</th>
 						<th>Words</th>
 					</tr>
 				</thead>
 				<% for(var i=0; i<study.responses.length; i++) {%>
 					<tr>
+						<td><%= i+1 %></td>
 						<td><%= study.responses[i].date %></td>
 						<td><%= study.responses[i].data %></td>
 					</tr>
