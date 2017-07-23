@@ -77,10 +77,10 @@ module.exports = {
                 for (var i = 0; i < study.responses.length; i++) {
                     if (study.responses[i].status == true){
                         var response = study.responses[i].data;
-                        for (var i = 1; i < response.length; i++) {
-                            if(!sum_groups.includes(response[i].groupname)){
-                                sum_groups.push(response[i].groupname);
-                            }
+                        for (var j = 0; j < response.length; j++) {
+							if(sum_groups.indexOf(response[j].groupname) == -1){
+								sum_groups.push(response[j].groupname);
+							}
                         }
                     }
                 }
@@ -94,10 +94,10 @@ module.exports = {
                 for (var i = 0; i < study.responses.length; i++) {
                     if (study.responses[i].status == true){
                         var response = study.responses[i].data;
-                        for (var i = 1; i < response.length; i++) {
-                            var groupIndex = sum_groups.indexOf(response[i].groupname);
-                            var cardIndex = study.data.cards.indexOf(response[i].cardname);
-                            matrix[groupIndex][cardIndex]+=1;
+                        for (var j = 0; j < response.length; j++) {
+							var groupIndex = sum_groups.indexOf(response[j].groupname);
+							var cardIndex = study.data.cards.indexOf(response[j].cardname);
+							matrix[groupIndex][cardIndex]+=1;
                         }    
                     }
                 }
