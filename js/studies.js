@@ -64,7 +64,7 @@ $(document).ready(function() {
 				</tr>`).appendTo($('#productreactioncards_table_body'));
 	        },
 	        error:   function(xhr, text, err) {
-	          console.log("productreactioncardss: Please check ajax request");
+	          console.log("ProductReactionCards: Please check ajax request");
 	        }
 	      });
 	    });

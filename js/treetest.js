@@ -143,7 +143,6 @@ $(document).ready(function() {
 				this.idx = this.idx + 1; 
 				this.set(this.idx);
 			} else {
-				console.log('submit resulteds')
 				$('#hiddenResults').val(JSON.stringify(this.answers));
 				$('#submitForm').click();
 			}

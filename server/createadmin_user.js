@@ -22,7 +22,7 @@ module.exports = function(adminEmail, adminPassword) {
 			admin_user.save(function(err) {
 				if (err)
 					throw err;
-				console.log("Default admin user created.");
+				console.log("createadmin_user.js: Default admin user created.");
 			});
 		}
 	});
