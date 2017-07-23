@@ -46,7 +46,7 @@ module.exports = {
                 console.log("treetest_server.js: Error viewing treetest.");
                 res.end(err);
             } else {
-                study.responses.push(response);
+                study.incompleteResponses.push(response);
                 study.save();
                 res.render('treetest/view.ejs',{singleStudy: study, response: responseID});
             }
