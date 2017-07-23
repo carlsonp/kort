@@ -12,7 +12,7 @@ module.exports = {
 		    //date: new Date(Date.now()),
 		    data: [],
 		    data_temp: [],
-		    status: false,
+		    complete: false,
 		});
 		response.save(function (err) {
 		    if (err) return handleError(err);
