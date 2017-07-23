@@ -47,7 +47,6 @@ module.exports = {
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                //add response id to study responses array
                 study.responses.push(response);
                 study.save();
                 res.render('cardsort/view.ejs',{singleStudy: study, response: responseID });
