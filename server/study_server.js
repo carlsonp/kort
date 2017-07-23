@@ -4,13 +4,13 @@ var Response = mongoose.model('Response');
 
 module.exports = {
     view: function (req, res, next) {
-        Study.find({}, function (err, docs) {
+        Study.find({}, function (err, studies) {
             if (err) {
                 res.status(504);
                 console.log("study_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render("studies.ejs", {studies: docs, email: req.user.email});
+                res.render("studies.ejs", {studies: studies, email: req.user.email});
             }
         });
     },
