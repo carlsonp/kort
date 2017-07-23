@@ -42,6 +42,10 @@ app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/
 app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
 app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
 app.use('/plotlyjs', express.static(__dirname + '/node_modules/plotly.js/dist/'));
+app.use('/datatables', express.static(__dirname + '/node_modules/datatables.net/js/'));
+app.use('/datatables', express.static(__dirname + '/node_modules/datatables.net-dt/'));
+app.use('/datatables-buttons', express.static(__dirname + '/node_modules/datatables.net-buttons/js/'));
+app.use('/datatables-buttons', express.static(__dirname + '/node_modules/datatables.net-buttons-dt/css/'));
 app.use('/public', express.static(__dirname + '/public/'));
 
 const session = require('express-session');

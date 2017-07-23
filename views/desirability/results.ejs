@@ -3,13 +3,50 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 
-		<title>Desire Results</title>
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
+		
+		<script type="text/javascript" src="/datatables/jquery.dataTables.js"></script>
+		<link rel="stylesheet" type="text/css" href="/datatables/css/jquery.dataTables.css" />
+		<script type="text/javascript" src="/datatables-buttons/dataTables.buttons.js"></script>
+		<script type="text/javascript" src="/datatables-buttons/buttons.html5.js"></script>
+		<link rel="stylesheet" type="text/css" href="/datatables-buttons/buttons.dataTables.css" />
+
+
+		<title>Desirability Results</title>
 	</head>
 	<body>
-		<a href='/admin'>Back to studies</a><br>
+		<%- include('../partials/admin_header.ejs') %>
+			
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#results_table').DataTable({
+					dom: 'Bfrtip',
+					buttons: [
+						'csvHtml5'
+					]
+				});
+			} );
+		</script>
+						
 		<div class='container'>
-			<div id='myDiv'></div>
+			<table id='results_table'>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Words</th>
+					</tr>
+				</thead>
+				<% for(var i=0; i<study.responses.length; i++) {%>
+					<tr>
+						<td><%= study.responses[i].date %></td>
+						<td><%= study.responses[i].data %></td>
+					</tr>
+				<% } %>
+			</table>
+			
+			<br><br>
+			
+			<div id='bargraph'></div>
 		</div>
 		<script>
 		var data = [{
@@ -19,7 +56,7 @@
 			orientation: 'h',
 		}];
 		var layout = {
-			title: '<%=study.title %> Results',
+			title: '<%=study.title %>  - Results',
 			autosize: true,
 			margin: {
 				l: 150,
@@ -27,7 +64,7 @@
 			},
 		};
 
-		Plotly.newPlot('myDiv', data, layout);
+		Plotly.newPlot('bargraph', data, layout);
 
 		</script>
 	</body>
