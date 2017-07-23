@@ -12,7 +12,6 @@ module.exports = {
             data: {
                 words: ['Accessible', 'Desirable', 'Gets in the way', 'Patronizing', 'Stressful', 'Appealing', 'Easy to use', 'Hard to use', 'Personal', 'Time-consuming', 'Attractive', 'Efficient', 'High quality', 'Predictable', 'Time-saving', 'Busy', 'Empowering', 'Inconsistent', 'Relevant', 'Too technical', 'Collaborative', 'Exciting', 'Intimidating', 'Reliable', 'Trustworthy', 'Complex', 'Familiar', 'Inviting', 'Rigid', 'Uncontrollable', 'Comprehensive', 'Fast', 'Motivating', 'Simplistic', 'Unconventional', 'Confusing', 'Flexible', 'Not valuable', 'Slow', 'Unpredictable', 'Connected', 'Fresh', 'Organized', 'Sophisticated', 'Usable', 'Consistent', 'Frustrating', 'Overbearing', 'Stimulating', 'Useful', 'Customizable', 'Fun', 'Overwhelming', 'Straight Forward', 'Valuable'],
             },
-            responses: [],
             status: 'closed',
             ownerID: req.user._id
         });
@@ -45,7 +44,7 @@ module.exports = {
                 console.log("productreactioncards_server.js: Error viewing.");
                 res.end(err);
             } else {
-                study.responses.push(response);
+                study.incompleteResponses.push(response);
                 study.save();
                 res.render('productreactioncards/view.ejs',{singleStudy: study, response: response._id});
             }
@@ -71,8 +70,8 @@ module.exports = {
             } else {
                 //gather all words from all responses and put into single array
                 var allWords = []
-                for (var i = 0; i < study.responses.length; i++) {
-                    var response = study.responses[i].data
+                for (var i = 0; i < study.completeResponses.length; i++) {
+                    var response = study.completeResponses[i].data
                     for (var j = 0; j < response.length; j++) {
                         allWords.push(response[j])
                     }

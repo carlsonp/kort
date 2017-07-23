@@ -34,9 +34,9 @@
 						<td><%=studies[i].data.studyType %></td>
 						<td><%=studies[i].data.cards.length %></td>
 						<td><%=studies[i].data.groups.length %></td>
-						<td><%=studies[i].responses.length %></td>
+						<td><%=studies[i].completeResponses.length %></td>
 						<td><a href="/cardsort/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].responses.length > 0) { %>
+						<%if (studies[i].completeResponses.length > 0) { %>
 						<td><a href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
 						<% } else { %>
 						<td style='color:gray;' onclick="return false;" >Results</td>
@@ -74,9 +74,9 @@
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.tasks.length %></td>
-						<td><%=studies[i].responses.length %></td>
+						<td><%=studies[i].completeResponses.length %></td>
 						<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].responses.length > 0) { %>
+						<%if (studies[i].completeResponses.length > 0) { %>
 						<td><a href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
 						<% } else { %>
 						<td style='color:gray;' onclick="return false;" >Results</td>
@@ -115,9 +115,9 @@
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.words.length %></td>
-						<td><%=studies[i].responses.length %></td>
+						<td><%=studies[i].completeResponses.length %></td>
 						<td><a href="/productreactioncards/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].responses.length > 0) { %>
+						<%if (studies[i].completeResponses.length > 0) { %>
 							<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
 						<% } else { %>
 							<td style='color:gray;' onclick="return false;" >Results</td>

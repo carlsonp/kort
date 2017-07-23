@@ -47,7 +47,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                study.responses.push(response);
+                study.incompleteResponses.push(response);
                 study.save();
                 res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             }
@@ -74,9 +74,9 @@ module.exports = {
             } else {
 				//collect all group names
                 sum_groups = []
-                for (var i = 0; i < study.responses.length; i++) {
-                    if (study.responses[i].complete == true){
-                        var response = study.responses[i].data;
+                for (var i = 0; i < study.completeResponses.length; i++) {
+                    if (study.completeResponses[i].complete == true){
+                        var response = study.completeResponses[i].data;
                         for (var j = 0; j < response.length; j++) {
 							if(sum_groups.indexOf(response[j].groupname) == -1){
 								sum_groups.push(response[j].groupname);
@@ -91,9 +91,9 @@ module.exports = {
 					matrix[i].fill(0);
 				}
 
-                for (var i = 0; i < study.responses.length; i++) {
-                    if (study.responses[i].complete == true){
-                        var response = study.responses[i].data;
+                for (var i = 0; i < study.completeResponses.length; i++) {
+                    if (study.completeResponses[i].complete == true){
+                        var response = study.completeResponses[i].data;
                         for (var j = 0; j < response.length; j++) {
 							var groupIndex = sum_groups.indexOf(response[j].groupname);
 							var cardIndex = study.data.cards.indexOf(response[j].cardname);
