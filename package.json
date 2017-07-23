@@ -38,6 +38,7 @@
     "jquery": "^3.2.1",
     "mongoose": "^4.11.3",
     "morgan": "^1.8.2",
+    "npm-font-open-sans": "^1.0.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "plotly.js": "^1.29.0"
