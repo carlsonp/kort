@@ -20,7 +20,6 @@ $(document).ready(function() {
 			$("#done").click(function() {
 				if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
 						pc.results = [];
-						pc.results.push(Date());
 						$('#cardArea li.selected').each(function(idx,word){
 							pc.results.push($(word).text());
 						});
@@ -29,7 +28,6 @@ $(document).ready(function() {
 					}
 				});
 		}
-
 		$('#hiddenWords').remove();
 		$('#hiddenStatus').remove();
 	}
@@ -69,8 +67,6 @@ $(document).ready(function() {
 		}
 	}
 	
-	
-
 	$("#nextBtn").click(function() {
   		if ($("#cardArea li.selected").length >= pc.firstSelectionLimit) {
 				$( "#cardArea li:not(.selected)").each(function(index) {

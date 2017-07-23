@@ -154,7 +154,6 @@ $(document).ready(function() {
 				results.push({groupname,cardname})
 			});
 		});
-		results.unshift(Date())
 		return results;
 	}
 

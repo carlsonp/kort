@@ -75,7 +75,6 @@ module.exports = {
                 var allWords = []
                 for (var i = 0; i < study.responses.length; i++) {
                     var response = study.responses[i].data
-                    response.shift();
                     for (var j = 0; j < response.length; j++) {
                         allWords.push(response[j])
                     }
