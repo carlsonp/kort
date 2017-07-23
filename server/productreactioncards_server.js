@@ -2,6 +2,7 @@ require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
+var resp = require('./response');
 
 module.exports = {
     create_ajax: function (req, res) {
@@ -28,15 +29,13 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        var response = new Response({
-            studyID: req.params.id,
-            data: [],
-            data_temp: [],
-            complete: false,
-        });
-        response.save(function (err) {
-            if (err) return handleError(err);
-        });
+        var responseID;
+        if (req.params.resid) {
+            responseID = req.params.resid;
+        } else {
+            var response = resp.createResponse(req.params.id,"Anonymous");
+            responseID = response._id;
+        }
 
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
@@ -46,7 +45,7 @@ module.exports = {
             } else {
                 study.incompleteResponses.push(response);
                 study.save();
-                res.render('productreactioncards/view.ejs',{singleStudy: study, response: response._id});
+                res.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
             }
         });
     },
