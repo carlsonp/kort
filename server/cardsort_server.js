@@ -49,7 +49,7 @@ module.exports = {
             } else {
                 study.responses.push(response);
                 study.save();
-                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID });
+                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             }
         });
     },

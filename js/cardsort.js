@@ -44,7 +44,7 @@ $(document).ready(function() {
 	});
 
 	function groupNameExists(groupname){
-		if (cs.groups.indexOf(groupname) !== -1){
+		if (cs.groups && cs.groups.indexOf(groupname) !== -1){
 			return true;
 		} else {
 			return false;
@@ -162,17 +162,21 @@ $(document).ready(function() {
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
 		cs.status = $('#hiddenActive').val();
-		var groups = $('#hiddenGroups').val().split(";").map(function(item) {
+
+		if(cs.studyType == 'closed'){
+			var groups = $('#hiddenGroups').val().split(";").map(function(item) {
 			  return item.trim();
-		});
+			});
+			for (var i = 0; i < groups.length; i++) {
+				if (groups[i] != ''){
+					createGroup(groups[i]);	
+				}
+			}
+		}
+		setLocationNewGroupButton();
 		var cards = $('#hiddenCards').val().split(";").map(function(item) {
 			  return item.trim();
 		});
-		for (var i = 0; i < groups.length; i++) {
-			if (groups[i] != ''){
-				createGroup(groups[i]);	
-			}
-		}
 		for (var i = 0; i < cards.length; i++) {
 			if (cards[i] != ''){
 				createCard(cards[i]);

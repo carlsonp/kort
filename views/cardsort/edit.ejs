@@ -3,6 +3,19 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<title>Edit Card Sort</title>
+		<script>
+			$( document ).ready(function() {
+			    $("[name='studyType']").change(function() {
+				  $("#groupInputArea").toggle();
+				});
+				//group input area is hidden by default, if study is 'closed' - toggle it to be visble
+				//this might be difficut to include in an external js file todo.
+				<%if (singleStudy.data.studyType == 'closed') { %>
+					$("#groupInputArea").toggle();
+				<% } %>
+
+			});
+		</script>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -52,10 +65,14 @@
 				 
 				</div>
 				<div class='col-sm-4'>
-					<label for="cards">Cards</label><br><textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
+					<label for="cards">Cards</label>
+					<br>
+					<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
 				</div>
-				<div class='col-sm-4'>
-					<label for="groups">Groups</label><br><textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
+				<div class='col-sm-4' id='groupInputArea' hidden>
+					<label for="groups">Groups</label>
+					<br>
+					<textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
 				</div>
 			</div>
 			<div class='row'>
