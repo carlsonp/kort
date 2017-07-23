@@ -37,7 +37,7 @@ module.exports = {
             //todo: do we need to pass all parameters during creation? 
             data: [],
             data_temp: [],
-            status: false,
+            complete: false,
         });
         response.save(function (err) {
             if (err) return handleError(err);

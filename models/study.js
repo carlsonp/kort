@@ -6,7 +6,7 @@ var Response = new mongoose.Schema({
 	studyID: String,
 	data: [],
 	data_temp: [],
-	status: Boolean,
+	complete: Boolean,
 });
 
 module.exports = mongoose.model('Response', Response);

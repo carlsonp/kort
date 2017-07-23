@@ -75,7 +75,7 @@ module.exports = {
 				//collect all group names
                 sum_groups = []
                 for (var i = 0; i < study.responses.length; i++) {
-                    if (study.responses[i].status == true){
+                    if (study.responses[i].complete == true){
                         var response = study.responses[i].data;
                         for (var j = 0; j < response.length; j++) {
 							if(sum_groups.indexOf(response[j].groupname) == -1){
@@ -92,7 +92,7 @@ module.exports = {
 				}
 
                 for (var i = 0; i < study.responses.length; i++) {
-                    if (study.responses[i].status == true){
+                    if (study.responses[i].complete == true){
                         var response = study.responses[i].data;
                         for (var j = 0; j < response.length; j++) {
 							var groupIndex = sum_groups.indexOf(response[j].groupname);
