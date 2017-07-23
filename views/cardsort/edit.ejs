@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-		<title>Edit Cardsort</title>
+		<title>Edit Card Sort</title>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -11,7 +11,7 @@
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<div class='row'>
 				<div class='col-sm-4'>
-					<p><label for="title">Cardsort Title</label>
+					<p><label for="title">Card Sort Title</label>
 					<input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input></p>
 
 					<p><label>Status</label>
@@ -31,7 +31,7 @@
 				    </div></p>
 				    <% } %>
 				    
-				    <label for="title">Cardsort Study Type</label><br>
+				    <label for="title">Card Sort Study Type</label><br>
 				    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
 
 				    <%if (singleStudy.data.studyType == 'open') { %>

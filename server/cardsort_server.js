@@ -8,7 +8,7 @@ var resp = require('./response');
 module.exports = {
     create_ajax: function (req, res) {
         var newStudy = new Study({
-            title: "New Cardsort",
+            title: "New Card Sort",
             type: "cardsort",
             data: {
                 studyType: "open",
