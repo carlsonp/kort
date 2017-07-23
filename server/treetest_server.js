@@ -31,10 +31,8 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        //create a response object
         var response = new Response({
             studyID: req.params.id,
-            //todo: do we need to pass all parameters during creation? 
             data: [],
             data_temp: [],
             complete: false,
