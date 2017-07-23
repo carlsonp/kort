@@ -30,7 +30,7 @@
 				    </div></p>
 				    <% } %>
 
-				    <%if (singleStudy.data.selectableParents == true) { %>
+				    <%if (singleStudy.data.selectableParents == 'on') { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
 				    </div>
@@ -40,7 +40,7 @@
 				    </div>
 				    <% } %>
 			
-				    <%if (singleStudy.data.showSiblings == true) { %>
+				    <%if (singleStudy.data.showSiblings == 'on') { %>
 				    <div class="checkbox">
 				      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
 				    </div>
@@ -65,7 +65,6 @@
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
-
 		</form>
 	</div>			
 	</body>
