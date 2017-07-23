@@ -108,21 +108,21 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody id="productreaction_table_body">
+				<tbody id="productreactioncards_table_body">
 				<% for(var i=0; i<studies.length; i++) {%>
-					<%if (studies[i].type == 'productreaction') { %>
+					<%if (studies[i].type == 'productreactioncards') { %>
 					<tr>
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].status %></td>
 						<td><%=studies[i].data.words.length %></td>
 						<td><%=studies[i].responses.length %></td>
-						<td><a href="/productreaction/<%= studies[i]._id %>">View</a></td>
+						<td><a href="/productreactioncards/<%= studies[i]._id %>">View</a></td>
 						<%if (studies[i].responses.length > 0) { %>
-							<td><a href="/productreactionresults/<%= studies[i]._id %>">Results</a></td>
+							<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
 						<% } else { %>
 							<td style='color:gray;' onclick="return false;" >Results</td>
 						<% } %>
-						<td><a href="/editproductreaction/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+						<td><a href="/editproductreactioncards/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
 						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 					</tr>
 					<% } %>
@@ -130,7 +130,7 @@
 				</tbody>
 			</table>
 			<div style="background-color: white">
-				<button type="button" id='createNewProductReactionBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+				<button type="button" id='createNewProductReactionCardsBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
 			</div>
 		</div>
   	</div>

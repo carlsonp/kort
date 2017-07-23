@@ -7,8 +7,8 @@ module.exports = {
     create_ajax: function (req, res) {
         var studyData = req.body;
         var newStudy = new Study({
-            title: "Desirability Exercise",
-            type: "productreaction",
+            title: "Product Reaction Cards",
+            type: "productreactioncards",
             data: {
                 words: ['Accessible', 'Desirable', 'Gets in the way', 'Patronizing', 'Stressful', 'Appealing', 'Easy to use', 'Hard to use', 'Personal', 'Time-consuming', 'Attractive', 'Efficient', 'High quality', 'Predictable', 'Time-saving', 'Busy', 'Empowering', 'Inconsistent', 'Relevant', 'Too technical', 'Collaborative', 'Exciting', 'Intimidating', 'Reliable', 'Trustworthy', 'Complex', 'Familiar', 'Inviting', 'Rigid', 'Uncontrollable', 'Comprehensive', 'Fast', 'Motivating', 'Simplistic', 'Unconventional', 'Confusing', 'Flexible', 'Not valuable', 'Slow', 'Unpredictable', 'Connected', 'Fresh', 'Organized', 'Sophisticated', 'Usable', 'Consistent', 'Frustrating', 'Overbearing', 'Stimulating', 'Useful', 'Customizable', 'Fun', 'Overwhelming', 'Straight Forward', 'Valuable'],
             },
@@ -18,21 +18,19 @@ module.exports = {
         });
         newStudy.save(function (err) {
             if (err) {
-                console.log('productreaction_server.js: Error creating new.');
+                console.log('productreactioncards_server.js: Error creating new.');
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('productreaction_server.js: Created new successfully.');
+                console.log('productreactioncards_server.js: Created new successfully.');
                 res.send(newStudy);
                 res.end();
             }
         });
     },
     view: function (req, res, next) {
-        //create a response object
         var response = new Response({
             studyID: req.params.id,
-            //todo: do we need to pass all parameters during creation? 
             data: [],
             data_temp: [],
             complete: false,
@@ -44,12 +42,12 @@ module.exports = {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("productreaction_server.js: Error viewing.");
+                console.log("productreactioncards_server.js: Error viewing.");
                 res.end(err);
             } else {
                 study.responses.push(response);
                 study.save();
-                res.render('desirability/view.ejs',{singleStudy: study, response: response._id});
+                res.render('productreactioncards/view.ejs',{singleStudy: study, response: response._id});
             }
         });
     },
@@ -60,7 +58,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('desirability/edit.ejs',{singleStudy: docs, email: req.user.email});
+                res.render('productreactioncards/edit.ejs',{singleStudy: docs, email: req.user.email});
             }
         });
     },
@@ -68,7 +66,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("productreaction_server.js: Error getting study to see results.");
+                console.log("productreactioncards_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
                 //gather all words from all responses and put into single array
@@ -90,7 +88,7 @@ module.exports = {
                     counts.push(combined[words[i]]);
                 }
 
-                res.render('desirability/results.ejs',{study: study, words: words, counts: counts, email: req.user.email});
+                res.render('productreactioncards/results.ejs',{study: study, words: words, counts: counts, email: req.user.email});
             }
         });
     },
@@ -102,7 +100,7 @@ module.exports = {
             function (err, study) {
             if (err) {
                 res.status(504);
-                console.log('productreaction_server.js: error updating');
+                console.log('productreactioncards_server.js: error updating');
                 res.end(err);
             } 
             else {

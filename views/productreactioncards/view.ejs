@@ -3,7 +3,7 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 
-		<link rel="stylesheet" type="text/css" href="../productcards.css" />
+		<link rel="stylesheet" type="text/css" href="../productreactioncards.css" />
 		
 		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
 			<div class="container-fluid">
@@ -16,13 +16,13 @@
 		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.data.words.length; i++) {%><%= singleStudy.data.words[i] %>;<% } %>">
 		<input id='hiddenStatus' type='text' value="<%= singleStudy.status %>">
 
-		<script type="text/javascript" src="../productcards.js"/></script>
+		<script type="text/javascript" src="../productreactioncards.js"/></script>
 
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>"></input>
 			<input name="result" id='hiddenResults' type='text' hidden></input>
-			<button type="submit" id='submitForm' hidden>Add</button>
+			<button type="submit" id='submitForm' hidden>Submit</button>
 		</form>
 		<div class='container'>
 			<div id="textArea">Select at least 10 cards that represent your experience with the system.</div>

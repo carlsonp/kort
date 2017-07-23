@@ -7,7 +7,7 @@ module.exports = {
         Study.find({}, function (err, docs) {
             if (err) {
                 res.status(504);
-                console.log("admin.js: Error edit cardsort.");
+                console.log("study_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
                 res.render("studies.ejs", {studies: docs, email: req.user.email});
@@ -18,7 +18,7 @@ module.exports = {
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
-                console.log("admin.js: Cannot find study to delete:" + req.params.id);
+                console.log("study_server.js: Cannot find study to delete:" + req.params.id);
                 console.log(err);
                 req.end();
             }
@@ -36,7 +36,7 @@ module.exports = {
          Study.findOne({_id: req.body.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error viewing cardsort.");
+                console.log("study_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
                 var response = study.responses.id(req.body.resid);

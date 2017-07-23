@@ -2,7 +2,7 @@
 var study = require('./study_server');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
-var productreaction = require('./productreaction_server');
+var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 
 module.exports = function(app, passport, flash) {
@@ -25,12 +25,12 @@ module.exports = function(app, passport, flash) {
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
 	
-	app.post('/createproductreaction_ajax', isLoggedIn, productreaction.create_ajax);
-	app.get('/editproductreaction/:id', isLoggedIn, productreaction.edit);
-	app.get('/productreaction/:id', productreaction.view);
-	app.get('/productreaction/:id/:resid', productreaction.view);
-	app.get('/productreactionresults/:id', isLoggedIn, productreaction.results);
-	app.post('/updateproductreaction', isLoggedIn, productreaction.update);
+	app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
+	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
+	app.get('/productreactioncards/:id', productreactioncards.view);
+	app.get('/productreactioncards/:id/:resid', productreactioncards.view);
+	app.get('/productreactioncardsresults/:id', isLoggedIn, productreactioncards.results);
+	app.post('/updateproductreactioncards', isLoggedIn, productreactioncards.update);
 	
 
 	app.post('/submitResult', isLoggedIn, study.submitResult);

@@ -46,9 +46,9 @@ $(document).ready(function() {
         	}
       	});
     });
-    $('#createNewProductReactionBtn').on('click', function(event) {
+    $('#createNewProductReactionCardsBtn').on('click', function(event) {
 	  	$.ajax({
-	        url: '/createproductreaction_ajax',
+	        url: '/createproductreactioncards_ajax',
 	        type: "POST",
 	        contentType: "application/json",
 	        success: function(study) {
@@ -57,14 +57,14 @@ $(document).ready(function() {
 						<td>`+study.status+`</td>
 						<td>`+study.data.words.length+`</td>
 						<td>`+study.responses.length+`</td>
-						<td><a href="/productreaction/`+study._id+`">View</a></td>
+						<td><a href="/productreactioncards/`+study._id+`">View</a></td>
 						<td style='color:gray;' onclick="return false;">Results</td>
-						<td><a href="/editproductreaction/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreaction/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
-				</tr>`).appendTo($('#productreaction_table_body'));
+						<td><a href="/editproductreactioncards/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deleteproductreactioncards/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+				</tr>`).appendTo($('#productreactioncards_table_body'));
 	        },
 	        error:   function(xhr, text, err) {
-	          console.log("productreactions: Please check ajax request");
+	          console.log("productreactioncardss: Please check ajax request");
 	        }
 	      });
 	    });
