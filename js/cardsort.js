@@ -3,6 +3,15 @@ $(document).ready(function() {
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
 
+	function readInResults(){
+		for (var i = 0; i < stuff.length; i++) {
+			console.log(stuff[i].groupname+': ------');
+			for (var j = 0; j < stuff[i].cards.length; j++) {
+				console.log(stuff[i].cards[j]);
+			}
+		}
+	}
+
 	function updateGroupArray(){
 		cs.groups = [];
 		$('.group').each(function(index) {
@@ -151,13 +160,12 @@ $(document).ready(function() {
 			var cards = []
 			$(nestedArea).children().each(function(){
 				var cardname = $(this).text();
-				results.push({groupname,cardname})
+				cards.push(cardname);
 			});
+			results.push({groupname,cards})
 		});
 		return results;
 	}
-
-
 
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
