@@ -3,7 +3,7 @@ require('mongoose').model('Response');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
-var resp = require('./response');
+var resp = require('./response_server');
 
 module.exports = {
     create_ajax: function (req, res) {

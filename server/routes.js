@@ -4,6 +4,7 @@ var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
+var response = require('./response_server');
 
 module.exports = function(app, passport, flash) {
 
