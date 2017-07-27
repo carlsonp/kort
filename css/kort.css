@@ -12,7 +12,7 @@ html,body {
 }
 .studyTitle {
     font-size: 20px;
-    padding-bottom: 10px;
+    /*padding-bottom: 5px;*/
 }
 .errorMessage, .successMessage {
     display:none;
