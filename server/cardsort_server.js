@@ -32,24 +32,25 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        //create a response object
-        var responseID;
-        if (req.params.resid) {
-            responseID = req.params.resid;
-        } else {
-            var response = resp.createResponse(req.params.id,"Anonymous");
-            responseID = response._id;
-        }
-        
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                study.incompleteResponses.push(response);
-                study.save();
-                res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
+                //if responseid was passed, look up partial data and pass to render
+                if (req.params.resid) {
+                    var response = study.incompleteResponses.id(req.params.resid);
+                    var partialResults = response.data;
+                    study.save();
+                    res.render('cardsort/view.ejs',{singleStudy: study, response: req.params.resid});
+                } else {
+                    var response = resp.createResponse(req.params.id,"Anonymous");
+                    study.incompleteResponses.push(response);
+                    study.save();
+                    res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
+                }
+                
             }
         });
     },
