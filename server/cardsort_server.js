@@ -9,7 +9,7 @@ module.exports = {
     create_ajax: function (req, res) {
         var newStudy = new Study({
             title: "New Card Sort",
-            type: "cardsort",
+            type: "Card Sort",
             data: {
                 studyType: "open",
                 cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],

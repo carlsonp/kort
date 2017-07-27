@@ -9,7 +9,7 @@ module.exports = {
         var studyData = req.body;
         var newStudy = new Study({
             title: "Default Tree Test Title",
-            type: "treetest",
+            type: "Tree Test",
             data: {
                 showSiblings: true,
                 selectableParents: true,

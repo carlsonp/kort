@@ -7,17 +7,16 @@
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
+
 	<div class="container">
+		<h3>Studies</h3>
 		<div class='well'>
-			<div class='studyTitle'>Card Sorts</div>
-		  	<table class="table">
+		  	<table class="table table-border">
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Status</th>
 						<th>Type</th>
-						<th>Cards</th>
-						<th>Groups</th>
 						<th>Responses</th>
 						<th></th>
 						<th></th>
@@ -25,114 +24,49 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody id="cardsort_table_body">
-				<% for(var i=0; i<studies.length; i++) {%>
-					<%if (studies[i].type == 'cardsort') { %>
+				<tbody id="studies_table_body">
+				<% for(var i=0; i<studies.length; i++) {%>	
 					<tr>
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].status %></td>
-						<td><%=studies[i].data.studyType %></td>
-						<td><%=studies[i].data.cards.length %></td>
-						<td><%=studies[i].data.groups.length %></td>
+						<td><%=studies[i].type %></td>
 						<td><%=studies[i].completeResponses.length %></td>
-						<td><a href="/cardsort/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].completeResponses.length > 0) { %>
-						<td><a href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
-						<% } else { %>
-						<td style='color:gray;' onclick="return false;" >Results</td>
-						<% } %>
-						<td><a href="/editcardsort/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
-					</tr>
-					<% } %>
-				<% } %>
-				</tbody>
-			</table>
-			<div style="background-color: white;" class='text-success'>
-				<button type="button" id='createNewCardSortBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
-			</div>
-		</div>
-		<div class='well'>
-	  		<div class='studyTitle'>Tree Tests</div>
-		  	<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Status</th>
-						<th>Tasks</th>
-						<th>Responses</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody id="treetest_table_body">
-				<% for(var i=0; i<studies.length; i++) {%>
-					<%if (studies[i].type == 'treetest') { %>
-					<tr>
-						<td><%=studies[i].title %></td>
-						<td><%=studies[i].status %></td>
-						<td><%=studies[i].data.tasks.length %></td>
-						<td><%=studies[i].completeResponses.length %></td>
-						<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].completeResponses.length > 0) { %>
-						<td><a href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
-						<% } else { %>
-						<td style='color:gray;' onclick="return false;" >Results</td>
-						<% } %>
-						<td><a href="/edittreetest/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
-					</tr>
-					<% } %>
-				<% } %>
-				</tbody>
-			</table>
-			<div style="background-color: white">
-				<button type="button" id='createNewTreeTestBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
-			</div>
-		</div>
-		<div class='well'>
-	  		<div class='studyTitle'>Product Reaction Cards</div>
-		  	<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Status</th>
-						<th>Words</th>
-						<th>Responses</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody id="productreactioncards_table_body">
-				<% for(var i=0; i<studies.length; i++) {%>
-					<%if (studies[i].type == 'productreactioncards') { %>
-					<tr>
-						<td><%=studies[i].title %></td>
-						<td><%=studies[i].status %></td>
-						<td><%=studies[i].data.words.length %></td>
-						<td><%=studies[i].completeResponses.length %></td>
-						<td><a href="/productreactioncards/<%= studies[i]._id %>">View</a></td>
-						<%if (studies[i].completeResponses.length > 0) { %>
-							<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
-						<% } else { %>
+						<%if (studies[i].type == 'Card Sort') { %>
+							<td><a href="/cardsort/<%= studies[i]._id %>">View</a></td>
+							<%if (studies[i].completeResponses.length > 0) { %>
+							<td><a href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
+							<% } else { %>
 							<td style='color:gray;' onclick="return false;" >Results</td>
-						<% } %>
-						<td><a href="/editproductreactioncards/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+							<% } %>
+							<td><a href="/editcardsort/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+						<% } %>	
+						<%if (studies[i].type == 'Tree Test') { %>
+							<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
+							<%if (studies[i].completeResponses.length > 0) { %>
+							<td><a href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
+							<% } else { %>
+							<td style='color:gray;' onclick="return false;" >Results</td>
+							<% } %>
+							<td><a href="/edittreetest/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+						<% } %>	
+						<%if (studies[i].type == 'Product Reaction Cards') { %>
+							<td><a href="/productreactioncards/<%= studies[i]._id %>">View</a></td>
+							<%if (studies[i].completeResponses.length > 0) { %>
+								<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
+							<% } else { %>
+								<td style='color:gray;' onclick="return false;" >Results</td>
+							<% } %>
+							<td><a href="/editproductreactioncards/<%= studies[i]._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true" title="Edit Study"></i></a></td>
+						<% } %>	
 						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')"><i class="fa fa-trash-o fa-lg" aria-hidden="true" title="Delete Study"></i></a></td>
 					</tr>
-					<% } %>
 				<% } %>
 				</tbody>
 			</table>
-			<div style="background-color: white">
-				<button type="button" id='createNewProductReactionCardsBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
-			</div>
 		</div>
+		<button type="button" id='createNewCardSortBtn' class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Card Sort</button>
+		<button type="button" id='createNewTreeTestBtn' class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Tree Test</button>
+		<button type="button" id='createNewProductReactionCardsBtn' class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Product Reaction Cards</button>
   	</div>
 	</body>
 </html>
