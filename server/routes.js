@@ -34,6 +34,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/updateproductreactioncards', isLoggedIn, productreactioncards.update);
 	
 	app.post('/createresponse_ajax/:studyID', isLoggedIn, response.create_ajax);
+	// app.get('/deleteresponse_ajax/:studyID/:resid', isLoggedIn, response.delete);
 
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);

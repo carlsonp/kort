@@ -44,4 +44,19 @@ module.exports = {
             }
 		});
     },
+    delete: function(req, res, next) {
+        Study.findOne({ _id: req.params.studyID}, function(err,study) {
+            if (err) {
+                req.status(504);
+                console.log("response_server.js: Cannot find study:" + req.params.studyID);
+                console.log(err);
+                req.end();
+            } else {
+            	var response = study.incompleteResponses.id(req.params.resid).remove;
+            	study.save();
+            	res.redirect('/studies');
+                res.end();
+            }
+        });
+    },
 }
