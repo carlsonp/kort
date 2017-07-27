@@ -13,6 +13,21 @@
 				<%if (singleStudy.data.studyType == 'closed') { %>
 					$("#groupInputArea").toggle();
 				<% } %>
+				$('#createNewResponseBtn').on('click', function(event) {
+			      	$.ajax({
+				        url: '/createresponse_ajax/<%= singleStudy._id %>',
+				        type: "POST",
+				        contentType: "application/json",
+				        success: function(response) {
+				          	$(`<tr>
+							<td><a href='/cardsort/<%= singleStudy._id %>/`+response._id+`'>/cardsort/<%= singleStudy._id %>/`+response._id+`</td>
+							</tr>`).appendTo($('#responses_table_body'));
+				        },
+				        error:   function(xhr, text, err) {
+			          		console.log("Response: Please check ajax request");
+				        }
+			      	});
+			    });  
 
 			});
 		</script>
@@ -20,6 +35,8 @@
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
+		<h3>Study Options</h3>
+				<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<div class='row'>
@@ -81,9 +98,30 @@
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
-
-			
 		</form>
+
+
+		<h3>Responses</h3>
+		<hr>
+  		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>ID</th>
+				</tr>
+			</thead>
+			<tbody id="responses_table_body">
+			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+				<tr>
+					<td><%= singleStudy.incompleteResponses[z]._id %></td>
+				</tr>
+			<% } %>
+			</tbody>
+		</table>
+		<div style="background-color: white">
+			<button type="button" id='createNewResponseBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+		</div>
 	</div>			
+	
 	</body>
 </html>
