@@ -24,17 +24,15 @@ require('./server/createadmin_user')(adminUser, adminPassword);
 
 app.set('view engine', 'ejs');
 
-//https://expressjs.com/en/starter/static-files.html
-app.use(express.static('css'))
-app.use(express.static('js'))
-
 //app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
 app.use(flash());
 
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
+//https://expressjs.com/en/starter/static-files.html
 app.use('/css', express.static(__dirname + '/css/'));
+app.use('/js', express.static(__dirname + '/js/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
