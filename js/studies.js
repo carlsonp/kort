@@ -12,8 +12,8 @@ $(document).ready(function() {
 				<td>`+study.completeResponses.length+`</td>
 				<td><a href="/cardsort/`+study._id+`">View</a></td>
 				<td style='color:gray;' onclick="return false;" >Results</td>
-				<td><a href="/editcardsort/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+				<td><a href="/editcardsort/`+study._id+`">Edit</a></td>
+				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
 	        },
 	        error:   function(xhr, text, err) {
@@ -35,8 +35,8 @@ $(document).ready(function() {
 				<td>`+study.completeResponses.length+`</td>
 				<td><a href="/treetest/`+study._id+`">View</a></td>
 				<td style='color:gray;' onclick="return false;" >Results</td>
-				<td><a href="/edittreetest/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+				<td><a href="/edittreetest/`+study._id+`">Edit</a></td>
+				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
 	        },
 	        error:   function(xhr, text, err) {
@@ -57,8 +57,8 @@ $(document).ready(function() {
 						<td>`+study.completeResponses.length+`</td>
 						<td><a href="/productreactioncards/`+study._id+`">View</a></td>
 						<td style='color:gray;' onclick="return false;">Results</td>
-						<td><a href="/editproductreactioncards/`+study._id+`"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
-						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+						<td><a href="/editproductreactioncards/`+study._id+`">Edit</a></td>
+						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
 	        },
 	        error:   function(xhr, text, err) {
