@@ -6,7 +6,7 @@ function confirmDelete(href,username){
 	 bootbox.confirm({
     	size: 'small',
     	closeButton: false,
-	    message: "Delete "+username+"? This will also delete any studies created by this user.",
+	    message: "<b>Delete "+username+"?</b><br>This will also delete any studies created by this user.",
 	    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
         		  cancel: {label: 'Cancel',className: 'btn-link'}
 	    },

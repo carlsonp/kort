@@ -89,7 +89,7 @@ function confirmDeleteStudy(href,studyTitle){
 	 bootbox.confirm({
     	size: 'small',
     	closeButton: false,
-	    message: "Delete "+studyTitle+"?",
+	    message: "<b>Delete "+studyTitle+"?</b><br>This will delete all responses and associated data.",
 	    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
         		  cancel: {label: 'Cancel',className: 'btn-link'}
 	    },
