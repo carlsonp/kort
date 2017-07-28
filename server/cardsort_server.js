@@ -39,19 +39,34 @@ module.exports = {
                 console.log("cardsort_server.js: Error viewing cardsort.");
                 res.end(err);
             } else {
-                //if responseid was passed, look up partial data and pass to render
-                if (req.params.resid) {
-                    var response = study.incompleteResponses.id(req.params.resid);
-                    var partialResults = response.data;
-                    study.save();
-                    res.render('cardsort/view.ejs',{singleStudy: study, response: req.params.resid});
+                if (study.private){
+                    //must provide response id if study is private
+                    if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
+                        var response = study.incompleteResponses.id(req.params.resid);
+                        //todo if partial responses are desired
+                        var partialResults = response.data;
+                        res.render('cardsort/view.ejs',{singleStudy: study, response: req.params.resid});
+                    } else {
+                        res.redirect('/');
+                    }
+                //study is open, create new response for each view
                 } else {
                     var response = resp.createResponse(req.params.id,"Anonymous");
                     study.incompleteResponses.push(response);
                     study.save();
                     res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
                 }
-                
+            }
+        });
+    },
+    preview: function (req, res, next) {
+        Study.findOne({_id: req.params.id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error previewing cardsort.");
+                res.end(err);
+            } else {
+                res.render('cardsort/view.ejs',{singleStudy: study, response: 'preview'});
             }
         });
     },
@@ -63,7 +78,8 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email});
+                var fullUrl = req.protocol + '://' + req.get('host')
+                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });
     },
@@ -131,6 +147,7 @@ module.exports = {
                     groups: groups,
                 }
 				study.status = req.body.status;
+                study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');
                 res.end();   

@@ -170,6 +170,7 @@ $(document).ready(function() {
 	function loadDatafromDB(){
 		cs.studyType = $('#hiddenType').val();
 		cs.status = $('#hiddenActive').val();
+		cs.responseID = $('#resid').val();
 
 		if(cs.studyType == 'closed'){
 			var groups = $('#hiddenGroups').val().split(";").map(function(item) {
@@ -195,7 +196,7 @@ $(document).ready(function() {
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
 				$('#hiddenResults').val(JSON.stringify(getResults()));
-				if ($('#initialColumn').children().length == 1){
+				if (($('#initialColumn').children().length == 1) && (cs.responseID != 'preview')){
 					$('#done').show();
 				} else {
 					$('#done').hide();

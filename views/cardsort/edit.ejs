@@ -109,27 +109,27 @@
 			</div>
 		</form>
 
-
-		<h3>Responses</h3>
-		<hr>
-  		<table class="table">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>ID</th>
-				</tr>
-			</thead>
-			<tbody id="responses_table_body">
-			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
-				<tr>
-					<td><%= singleStudy.incompleteResponses[z]._id %></td>
-				</tr>
-			<% } %>
-			</tbody>
-		</table>
-		<div style="background-color: white">
-			<button type="button" id='createNewResponseBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
-		</div>
+		<%if (singleStudy.private == true) { %>
+			<h3>Responses</h3>
+			<hr>
+	  		<table class="table">
+				<thead>
+					<tr>
+						<th>URLs</th>
+					</tr>
+				</thead>
+				<tbody id="responses_table_body">
+				<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+					<tr>
+						<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
+					</tr>
+				<% } %>
+				</tbody>
+			</table>
+			<div style="background-color: white">
+				<button type="button" id='createNewResponseBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+			</div>
+		<% } %>
 	</div>			
 	
 	</body>
