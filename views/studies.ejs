@@ -4,13 +4,14 @@
 		<%- include('partials/header.ejs') %>
 		<title>Kort: Studies</title>
 	 	<script type="text/javascript" src="../studies.js"></script>
+	 	<style type="text/css">
+	 		body {background: white;}
+	 	</style>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
-
 	<div class="container">
 		<h3>Studies</h3>
-		<div class='well'>
 		  	<table class="table table-border">
 				<thead>
 					<tr>
@@ -63,16 +64,15 @@
 				<% } %>
 				</tbody>
 			</table>
-		</div>
-		<div class="btn-group">
-		    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-		    <i class="fa fa-plus" aria-hidden="true"></i>  Create</button>
-		    <ul class="dropdown-menu" role="menu">
-		      <li><a href="#" id='createNewCardSortBtn'>Card Sort</a></li>
-		      <li><a href="#" id='createNewTreeTestBtn'>Tree Test</a></li>
-		      <li><a href="#" id='createNewProductReactionCardsBtn'>Product Reaction Cards</a></li>
-		    </ul>
-	  	</div>
+			<div class="btn-group">
+			    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			    <i class="fa fa-plus" aria-hidden="true"></i>  Create</button>
+			    <ul class="dropdown-menu" role="menu">
+			      <li><a href="#" id='createNewCardSortBtn'>Card Sort</a></li>
+			      <li><a href="#" id='createNewTreeTestBtn'>Tree Test</a></li>
+			      <li><a href="#" id='createNewProductReactionCardsBtn'>Product Reaction Cards</a></li>
+			    </ul>
+		  	</div>
   	</div>
 	</body>
 </html>
