@@ -4,6 +4,9 @@
 		<%- include('partials/header.ejs') %>
 		<title>Kort: User Management</title>
 		<script type="text/javascript" src="../users.js"></script>
+	 	<style type="text/css">
+	 		body {background: white;}
+	 	</style>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
@@ -18,26 +21,26 @@
 				  <strong>Success!</strong> <%= createUserSuccessMessage %>
 				</div>
 			<% } %>
-			<div class='well'>
-				<span class='studyTitle'>Users</span>
-				<table class='table'>
+
+				<h3>Users</h3>
+				<table class='table table-bordered'>
 					<thead>
-						<tr>
+						<tr class='active'>
 						<th>Email</th>
+						<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<% for(var i=0; i<users.length; i++) {%>
 						<tr>
 							<td><%= users[i].email %></td>
-							<td><a href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')"><i class="fa fa-trash-o fa-lg text-danger" aria-hidden="true" title="Delete User"></i></a></td>
+							<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
 							
 						</tr>
 						<% } %>
 					</tbody>
 				</table>
-			</div>	
-			<div class="well">
+
 			<p><strong>Add a User</strong></p>
 				<form class="form-inline" action="/createuser" method="post">
 
@@ -67,7 +70,7 @@
 					
 				</form>
 						
-			</div>
+			
 		</div>
 	</body>
 </html>
