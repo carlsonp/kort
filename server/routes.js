@@ -15,6 +15,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
 	app.get('/cardsort/:id', cardsort.view);
+	app.get('/cardsort/preview/:id', isLoggedIn, cardsort.preview);
 	app.get('/cardsort/:id/:resid', cardsort.view);
 	app.get('/cardsortresults/:id', isLoggedIn, cardsort.results);
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);

@@ -20,7 +20,7 @@
 				        contentType: "application/json",
 				        success: function(response) {
 				          	$(`<tr>
-							<td><a href='/cardsort/<%= singleStudy._id %>/`+response._id+`'>/cardsort/<%= singleStudy._id %>/`+response._id+`</td>
+							<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`'><%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`</td>
 							</tr>`).appendTo($('#responses_table_body'));
 				        },
 				        error:   function(xhr, text, err) {

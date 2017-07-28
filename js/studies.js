@@ -15,7 +15,7 @@ $(document).ready(function() {
 				<td>`+study.status+`</td>
 				<td>`+study.type+`</td>
 				<td>`+study.completeResponses.length+`</td>
-				<td><a href="/cardsort/`+study._id+`">View</a></td>
+				<td><a href="/cardsort/preview/`+study._id+`">View</a></td>
 				<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="`+resultsNotAvailString+`">Results</a></td>
 				<td><a href="/editcardsort/`+study._id+`">Edit</a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
@@ -42,7 +42,7 @@ $(document).ready(function() {
 				<td>`+study.status+`</td>
 				<td>`+study.type+`</td>
 				<td>`+study.completeResponses.length+`</td>
-				<td><a href="/treetest/`+study._id+`">View</a></td>
+				<td><a href="/treetest/preview/`+study._id+`">View</a></td>
 				<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="`+resultsNotAvailString+`">Results</a></td>
 				<td><a href="/edittreetest/`+study._id+`">Edit</a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
@@ -70,7 +70,7 @@ $(document).ready(function() {
 						<td>`+study.status+`</td>
 						<td>`+study.type+`</td>
 						<td>`+study.completeResponses.length+`</td>
-						<td><a href="/productreactioncards/`+study._id+`">View</a></td>
+						<td><a href="/productreactioncards/preview/`+study._id+`">View</a></td>
 						<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="`+resultsNotAvailString+`">Results</a></td>
 						<td><a href="/editproductreactioncards/`+study._id+`">Edit</a></td>
 						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>

@@ -33,7 +33,7 @@
 						<td><%=studies[i].type %></td>
 						<td><%=studies[i].completeResponses.length %></td>
 						<%if (studies[i].type == 'Card Sort') { %>
-							<td><a href="/cardsort/<%= studies[i]._id %>">View</a></td>
+							<td><a href="/cardsort/preview/<%= studies[i]._id %>">View</a></td>
 							<%if (studies[i].completeResponses.length > 0) { %>
 							<td><a href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
@@ -42,7 +42,7 @@
 							<td><a href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
 						<% } %>	
 						<%if (studies[i].type == 'Tree Test') { %>
-							<td><a href="/treetest/<%= studies[i]._id %>">View</a></td>
+							<td><a href="/treetest/preview/<%= studies[i]._id %>">View</a></td>
 							<%if (studies[i].completeResponses.length > 0) { %>
 							<td><a href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
@@ -51,7 +51,7 @@
 							<td><a href="/edittreetest/<%= studies[i]._id %>">Edit</a></td>
 						<% } %>	
 						<%if (studies[i].type == 'Product Reaction Cards') { %>
-							<td><a href="/productreactioncards/<%= studies[i]._id %>">View</a></td>
+							<td><a href="/productreactioncards/preview/<%= studies[i]._id %>">View</a></td>
 							<%if (studies[i].completeResponses.length > 0) { %>
 								<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
