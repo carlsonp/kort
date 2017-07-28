@@ -39,6 +39,16 @@
 				      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
 				    </div>
 				    <% } %>
+
+				    <%if (singleStudy.private == true) { %>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="private" checked>Private</label>
+				    </div>
+				    <% } else { %>
+				   <div class="checkbox">
+				      <label><input type="checkbox" name="private">Private</label>
+				    </div>
+				    <% } %>
 			
 				    <%if (singleStudy.data.showSiblings == 'on') { %>
 				    <div class="checkbox">

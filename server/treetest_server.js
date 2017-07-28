@@ -17,7 +17,8 @@ module.exports = {
                 tree: ['Food', 'Food/Meat', 'Food/Meat/Steak', 'Food/Meat/Chicken', 'Food/Meat/Pork', 'Food/Fruit', 'Food/Fruit/Apple', 'Food/Fruit/Banana', 'Food/Fruit/Orange', 'Food/Fruit/Lime', 'Food/Fruit/Grapefruit', 'Drink','Drink/Non-alcholic', 'Drink/Non-alcholic/Milk', 'Drink/Non-alcholic/Water', 'Drink/Non-alcholic/Juice', 'Drink/Alcohol', 'Drink/Alcohol/Beer', 'Drink/Alcohol/Wine'],
             },
             status: 'closed',
-            ownerID: req.user._id
+            ownerID: req.user._id,
+            private: false,
         });
         newStudy.save(function (err) {
             if (err) {

@@ -79,6 +79,15 @@
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
 				    </div></p>
 				    <% } %>
+				    <%if (singleStudy.private == true) { %>
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="private" checked>Private</label>
+				    </div>
+				    <% } else { %>
+				   <div class="checkbox">
+				      <label><input type="checkbox" name="private">Private</label>
+				    </div>
+				    <% } %>
 				 
 				</div>
 				<div class='col-sm-4'>

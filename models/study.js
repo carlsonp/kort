@@ -22,6 +22,7 @@ var Study = new mongoose.Schema({
 	ownerID: String,
 	sharedUserIDs: [],
 	data: {},
+	private: Boolean,
 });
 
 module.exports = mongoose.model('Study', Study);

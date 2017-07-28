@@ -17,7 +17,8 @@ module.exports = {
             },
             responses: [],
             status: 'closed',
-            ownerID: req.user._id
+            ownerID: req.user._id,
+            private: false,
         });
         newStudy.save(function (err) {
             if (err) {
