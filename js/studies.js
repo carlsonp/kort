@@ -1,6 +1,9 @@
 $(document).ready(function() {
+	//intialize tooltips
 	$('[data-toggle="tooltip"]').tooltip();  
+	//string var for tooltip message
 	var resultsNotAvailString = "Results not available until at least 1 submission completed."
+
   	$('#createNewCardSortBtn').on('click', function(event) {
       	$.ajax({
 	        url: '/createcardsort_ajax',
@@ -17,11 +20,14 @@ $(document).ready(function() {
 				<td><a href="/editcardsort/`+study._id+`">Edit</a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
+
+				window.location.href = '/editcardsort/'+study._id
 	        },
 	        error:   function(xhr, text, err) {
           		console.log("Cardsort: Please check ajax request");
 	        }
       	});
+      	//re-initialize toolstip for newly added study
       	$('[data-toggle="tooltip"]').tooltip();  
     });  
 
@@ -41,13 +47,18 @@ $(document).ready(function() {
 				<td><a href="/edittreetest/`+study._id+`">Edit</a></td>
 				<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
+
+	          	window.location.href = '/edittreetest/'+study._id
+
 	        },
 	        error:   function(xhr, text, err) {
           		console.log("Treetest: Please check ajax request");
         	}
       	});
+      	//re-initialize toolstip for newly added study
       	$('[data-toggle="tooltip"]').tooltip();  
     });
+
     $('#createNewProductReactionCardsBtn').on('click', function(event) {
 	  	$.ajax({
 	        url: '/createproductreactioncards_ajax',
@@ -64,14 +75,16 @@ $(document).ready(function() {
 						<td><a href="/editproductreactioncards/`+study._id+`">Edit</a></td>
 						<td><a href='#' class="text-danger" onclick="confirmDeleteStudy('/deletestudy/`+study._id+`','`+study.title+`')">Delete</a></td>
 				</tr>`).appendTo($('#studies_table_body'));
+				window.location.href = '/editproductreactioncards/'+study._id
 	        },
 	        error:   function(xhr, text, err) {
 	          console.log("ProductReactionCards: Please check ajax request");
 	        }
-	      });
-	  		$('[data-toggle="tooltip"]').tooltip();  
-	    });
+      	});
+  		$('[data-toggle="tooltip"]').tooltip();  
+    });
 });
+
 function confirmDeleteStudy(href,studyTitle){
 	 bootbox.confirm({
     	size: 'small',
@@ -87,5 +100,3 @@ function confirmDeleteStudy(href,studyTitle){
 	    }
 	});
 }
-
-
