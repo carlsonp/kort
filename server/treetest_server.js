@@ -32,44 +32,6 @@ module.exports = {
             }
         });
     },
-    view: function (req, res, next) {
-        Study.findOne({_id: req.params.id}, function (err, study) {
-            if (err) {
-                res.status(504);
-                console.log("treetest_server.js: Error viewing treetest.");
-                res.end(err);
-            } else {
-               if (study.private){
-                    //must provide response id if study is private
-                    if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
-                        var response = study.incompleteResponses.id(req.params.resid);
-                        //todo if partial responses are desired
-                        var partialResults = response.data;
-                        res.render('treetest/view.ejs',{singleStudy: study, response: req.params.resid});
-                    } else {
-                        res.redirect('/');
-                    }
-                //study is open, create new response for each view
-                } else {
-                    var response = resp.createResponse(req.params.id,"Anonymous");
-                    study.incompleteResponses.push(response);
-                    study.save();
-                    res.render('treetest/view.ejs',{singleStudy: study, response: response._id});
-                }
-            }
-        });
-    },
-    preview: function (req, res, next) {
-        Study.findOne({_id: req.params.id}, function (err, study) {
-            if (err) {
-                res.status(504);
-                console.log("treetest_server.js: Error previewing treetest.");
-                res.end(err);
-            } else {
-                res.render('treetest/view.ejs',{singleStudy: study, response: 'preview'});
-            }
-        });
-    },
     edit: function (req, res, next) {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
