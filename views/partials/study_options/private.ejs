@@ -1,18 +1,18 @@
 <div class='well'>
 <p><label for="private">Links</label>
-<%if (singleStudy.private) { %>
+<%if (!singleStudy.private) { %>
 <div class="radio">
- 	<label><input type="radio" name="private"  checked>All participants use same link</label>
+ 	<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
 </div>
 <div class="radio">
-	<label><input type="radio" name="private" >Unique Link for each participant</label>
+	<label><input type="radio" name="private" value='true'>Unique Link for each participant</label>
 </div></p>
 <% } else { %> 
 <div class="radio">
- 	<label><input type="radio" name="private" >All participants use same link</label>
+ 	<label><input type="radio" name="private" value='false'>All participants use same link</label>
 </div>
 <div class="radio">
-	<label><input type="radio" name="private"  checked>Unique Link for each participant</label>
+	<label><input type="radio" name="private"  value='true' checked>Unique Link for each participant</label>
 </div></p>
 <% } %>
 </div>
