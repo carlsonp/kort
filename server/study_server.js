@@ -2,6 +2,22 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 
+function renderPages(studyType,responseID){
+    switch(studyType) {
+        case 'Card Sort':
+            res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
+            break;
+        case 'Tree Test':
+            res.render('treetest/view.ejs',{singleStudy: study, response: responseID});
+            break;
+        case 'Product Reaction Cards':
+            res.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
+            break;
+        default:
+            break;
+    }
+}
+
 module.exports = {
     home: function (req, res, next) {
         Study.find({}, function (err, studies) {
@@ -24,40 +40,16 @@ module.exports = {
                if (study.private){
                     if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
                         var response = study.incompleteResponses.id(req.params.resid);
-                        var partialResults = response.data;
-                        switch(study.type) {
-                            case 'Card Sort':
-                                res.render('cardsort/view.ejs',{singleStudy: study, response: req.params.resid});
-                                break;
-                            case 'Tree Test':
-                                res.render('treetest/view.ejs',{singleStudy: study, response: req.params.resid});
-                                break;
-                            case 'Product Reaction Cards':
-                                res.render('productreactioncards/view.ejs',{singleStudy: study, response: req.params.resid});
-                                break;
-                            default:
-                                break;
-                        }
+                        renderPages(study.type,req.params.resid,response.data)
                     } else {
+                        //to make a page that is sorry
                         res.redirect('/');
                     }
                 } else {
                     var response = resp.createResponse(req.params.id,"Anonymous");
                     study.incompleteResponses.push(response);
                     study.save();
-                    switch(study.type) {
-                        case 'Card Sort':
-                            res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
-                            break;
-                        case 'Tree Test':
-                            res.render('treetest/view.ejs',{singleStudy: study, response: response._id});
-                            break;
-                        case 'Product Reaction Cards':
-                            res.render('productreactioncards/view.ejs',{singleStudy: study, response: response._id});
-                            break;
-                        default:
-                            break;
-                    }
+                    renderPages(study.type,response._id)
                 }
             }
         });
