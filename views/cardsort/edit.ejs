@@ -8,8 +8,14 @@
 			    $("[name='studyType']").change(function() {
 				  $("#groupInputArea").toggle();
 				});
+				 $("[name='private']").change(function() {
+				  $("#responseListArea").toggle();
+				});
 				//group input area is hidden by default, if study is 'closed' - toggle it to be visble
 				//this might be difficut to include in an external js file todo.
+				<%if (singleStudy.private == true) { %>
+					$("#responseListArea").toggle();
+				<% } %>
 				<%if (singleStudy.data.studyType == 'closed') { %>
 					$("#groupInputArea").toggle();
 				<% } %>
@@ -36,7 +42,6 @@
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
 		<h1><%= title %> Cardsort</h1>
-		<h3>Study Options</h3>
 				<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
@@ -44,16 +49,6 @@
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
-					<%- include('../partials/study_options/private.ejs') %>
-				</div>
-				<div class='col-sm-4'>
-					<div class="well">
-						<label for="cards">Cards</label>
-						<br>
-						<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
-					</div>
-				</div>
-				<div class='col-sm-4'>
 					<div class="well">
 					    <label for="title">Card Sort Study Type</label><br>
 					    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
@@ -73,6 +68,15 @@
 						    </div></p>
 					    <% } %>
 					</div>
+				</div>
+				<div class='col-sm-4'>
+					<div class="well">
+						<label for="cards">Cards</label>
+						<br>
+						<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
+					</div>
+				</div>
+				<div class='col-sm-4'>
 					<div id='groupInputArea' hidden>
 						<div class="well">
 							<label for="groups">Groups</label><br>
@@ -80,6 +84,32 @@
 						</div>
 					</div>
 				</div>	
+			</div>
+			<div class='row well'>
+				<%- include('../partials/study_options/private.ejs') %>
+				<div id='responseListArea' hidden>
+			  		<table class="table">
+						<thead>
+							<tr>
+								<th>URL</th>
+								<th>Complete</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody id="responses_table_body">
+						<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+							<tr>
+								<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
+								<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
+								<td>Delete</td>
+							</tr>
+						<% } %>
+						</tbody>
+					</table>
+					<div style="background-color: white">
+						<button type="button" id='createNewResponseBtn'>Add Response</button>
+					</div>
+				</div>
 			</div>
 
 			<div class='row'>
@@ -93,36 +123,8 @@
 				</div>
 			</div>
 		</form>
-
-		<%if (singleStudy.private == true) { %>
-			<h3>Responses</h3>
-			<hr>
-	  		<table class="table">
-				<thead>
-					<tr>
-						<th>URLs</th>
-						<th>Complete?</th>
-					</tr>
-				</thead>
-				<tbody id="responses_table_body">
-				<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
-					<tr>
-						<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
-						<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
-					</tr>
-				<% } %>
-				<% for(var z=0; z < singleStudy.completeResponses.length; z++) {%>
-					<tr>
-						<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.completeResponses[z]._id %></a></td>
-						<td><%= singleStudy.completeResponses[z].complete %></a></td>
-					</tr>
-				<% } %>
-				</tbody>
-			</table>
-			<div style="background-color: white">
-				<button type="button" id='createNewResponseBtn' class="text-success">Add Response</button>
-			</div>
-		<% } %>
+		
+		
 	</div>			
 	
 	</body>
