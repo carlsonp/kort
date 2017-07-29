@@ -23,6 +23,7 @@ module.exports = function(app, passport, flash) {
 	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
 	app.get('/treetest/:id', treetest.view);
+	app.get('/treetest/preview/:id', isLoggedIn, treetest.preview);
 	app.get('/treetest/:id/:resid', treetest.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
@@ -30,12 +31,13 @@ module.exports = function(app, passport, flash) {
 	app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
 	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
 	app.get('/productreactioncards/:id', productreactioncards.view);
+	app.get('/productreactioncards/preview/:id', isLoggedIn, productreactioncards.preview);
 	app.get('/productreactioncards/:id/:resid', productreactioncards.view);
 	app.get('/productreactioncardsresults/:id', isLoggedIn, productreactioncards.results);
 	app.post('/updateproductreactioncards', isLoggedIn, productreactioncards.update);
 	
 	app.post('/createresponse_ajax/:studyID', isLoggedIn, response.create_ajax);
-	// app.get('/deleteresponse_ajax/:studyID/:resid', isLoggedIn, response.delete);
+	app.get('/deleteresponse_ajax/:studyID/:resid', isLoggedIn, response.delete);
 
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);
@@ -44,7 +46,7 @@ module.exports = function(app, passport, flash) {
 		res.render('admin.ejs', {email: req.user.email});
 	});
 
-	app.get('/studies', isLoggedIn, study.view);
+	app.get('/studies', isLoggedIn, study.home);
 
 	app.get('/users', isLoggedIn, user.UserManagement);
 	  
