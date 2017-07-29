@@ -33,7 +33,12 @@ function resetPassword(userid){
 		},
 		callback: function(result) {
 			if(result){
-				$.post("/resetpassword/", {userid: userid, password: result});
+				$.post({
+					url: "/resetpassword",
+					type: "POST",
+					data: JSON.stringify({userid: userid, password: result}),
+					contentType: "application/json",
+				});
 			} else {
 				alert("Password cannot be empty");
 			}

@@ -13,9 +13,9 @@ module.exports = {
                 res.end(err);
             } else {
                 res.render("users.ejs", {users: docs,
-												email: req.user.email,
-                                                createUserErrorMessage: req.flash('createUserErrorMessage'), 
-                                                createUserSuccessMessage: req.flash('createUserSuccessMessage')});
+										email: req.user.email,
+                                        createUserErrorMessage: req.flash('createUserErrorMessage'), 
+                                        createUserSuccessMessage: req.flash('createUserSuccessMessage')});
             }
       });
 	},
@@ -44,9 +44,8 @@ module.exports = {
 			}
         });
     },
-    
     resetPassword: function(req, res, next) {
-        User.findOneAndUpdate( {_id: req.body.userid}, function(err, user) {
+        User.findById( {_id: req.body.userid}, function(err, user) {
             if (err) {
                 req.status(504);
 				console.log(err);
@@ -54,7 +53,6 @@ module.exports = {
             } else {
 				user.password = user.generateHash(req.body.password);
 				user.save();
-				
 				res.redirect('/users');
                 res.end();
 			}
