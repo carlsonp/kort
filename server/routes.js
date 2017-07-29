@@ -14,25 +14,25 @@ module.exports = function(app, passport, flash) {
 
 	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
-	app.get('/cardsort/:id', cardsort.view);
+	app.get('/cardsort/:id', study.view);
 	app.get('/cardsort/preview/:id', isLoggedIn, cardsort.preview);
-	app.get('/cardsort/:id/:resid', cardsort.view);
+	app.get('/cardsort/:id/:resid', study.view);
 	app.get('/cardsortresults/:id', isLoggedIn, cardsort.results);
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
 
 	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
-	app.get('/treetest/:id', treetest.view);
+	app.get('/treetest/:id', study.view);
 	app.get('/treetest/preview/:id', isLoggedIn, treetest.preview);
-	app.get('/treetest/:id/:resid', treetest.view);
+	app.get('/treetest/:id/:resid', study.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
 	
 	app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
 	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
-	app.get('/productreactioncards/:id', productreactioncards.view);
+	app.get('/productreactioncards/:id', study.view);
 	app.get('/productreactioncards/preview/:id', isLoggedIn, productreactioncards.preview);
-	app.get('/productreactioncards/:id/:resid', productreactioncards.view);
+	app.get('/productreactioncards/:id/:resid', study.view);
 	app.get('/productreactioncardsresults/:id', isLoggedIn, productreactioncards.results);
 	app.post('/updateproductreactioncards', isLoggedIn, productreactioncards.update);
 	

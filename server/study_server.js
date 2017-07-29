@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
+var resp = require('./response_server');
 
-function renderPages(studyType,responseID){
-    switch(studyType) {
+function renderPages(study,responseID,res){
+    switch(study.type) {
         case 'Card Sort':
             res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             break;
@@ -40,7 +41,7 @@ module.exports = {
                if (study.private){
                     if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
                         var response = study.incompleteResponses.id(req.params.resid);
-                        renderPages(study.type,req.params.resid,response.data)
+                        renderPages(study,req.params.resid,res)
                     } else {
                         //to make a page that is sorry
                         res.redirect('/');
@@ -49,7 +50,7 @@ module.exports = {
                     var response = resp.createResponse(req.params.id,"Anonymous");
                     study.incompleteResponses.push(response);
                     study.save();
-                    renderPages(study.type,response._id)
+                    renderPages(study,response._id,res)
                 }
             }
         });
