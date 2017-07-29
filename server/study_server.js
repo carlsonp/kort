@@ -3,18 +3,20 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
-function renderPages(study,responseID,res){
+function renderPages(study,responseID,responseObj){
     switch(study.type) {
         case 'Card Sort':
-            res.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
+            responseObj.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             break;
         case 'Tree Test':
-            res.render('treetest/view.ejs',{singleStudy: study, response: responseID});
+            responseObj.render('treetest/view.ejs',{singleStudy: study, response: responseID});
             break;
         case 'Product Reaction Cards':
-            res.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
+            responseObj.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
             break;
         default:
+            console.log('study-server.js - renderPages - default switch case');
+            res.redirect('/study404');
             break;
     }
 }
@@ -32,10 +34,11 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
+        console.log('calling view')
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("treetest_server.js: Error viewing treetest.");
+                console.log("study_server.js: Error viewing study.");
                 res.end(err);
             } else {
                if (study.private){
@@ -43,7 +46,6 @@ module.exports = {
                         var response = study.incompleteResponses.id(req.params.resid);
                         renderPages(study,req.params.resid,res)
                     } else {
-                        //to make a page that is sorry
                         res.redirect('/study404');
                     }
                 } else {
@@ -52,6 +54,17 @@ module.exports = {
                     study.save();
                     renderPages(study,response._id,res)
                 }
+            }
+        });
+    },
+    preview: function (req, res, next) {
+        Study.findOne({_id: req.params.id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("cardsort_server.js: Error previewing cardsort.");
+                res.end(err);
+            } else {
+                renderPages(study,"preview",res)
             }
         });
     },
