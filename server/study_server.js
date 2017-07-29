@@ -3,7 +3,7 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 
 module.exports = {
-    view: function (req, res, next) {
+    home: function (req, res, next) {
         Study.find({}, function (err, studies) {
             if (err) {
                 res.status(504);
@@ -11,6 +11,54 @@ module.exports = {
                 res.end(err);
             } else {
                 res.render("studies.ejs", {studies: studies, email: req.user.email});
+            }
+        });
+    },
+    view: function (req, res, next) {
+        Study.findOne({_id: req.params.id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("treetest_server.js: Error viewing treetest.");
+                res.end(err);
+            } else {
+               if (study.private){
+                    if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
+                        var response = study.incompleteResponses.id(req.params.resid);
+                        var partialResults = response.data;
+                        switch(study.type) {
+                            case 'Card Sort':
+                                res.render('cardsort/view.ejs',{singleStudy: study, response: req.params.resid});
+                                break;
+                            case 'Tree Test':
+                                res.render('treetest/view.ejs',{singleStudy: study, response: req.params.resid});
+                                break;
+                            case 'Product Reaction Cards':
+                                res.render('productreactioncards/view.ejs',{singleStudy: study, response: req.params.resid});
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        res.redirect('/');
+                    }
+                } else {
+                    var response = resp.createResponse(req.params.id,"Anonymous");
+                    study.incompleteResponses.push(response);
+                    study.save();
+                    switch(study.type) {
+                        case 'Card Sort':
+                            res.render('cardsort/view.ejs',{singleStudy: study, response: response._id});
+                            break;
+                        case 'Tree Test':
+                            res.render('treetest/view.ejs',{singleStudy: study, response: response._id});
+                            break;
+                        case 'Product Reaction Cards':
+                            res.render('productreactioncards/view.ejs',{singleStudy: study, response: response._id});
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         });
     },
