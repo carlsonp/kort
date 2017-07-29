@@ -5,7 +5,7 @@ var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
 module.exports = {
-    create_ajax: function (req, res) {
+    create: function (req, res) {
         var studyData = req.body;
         var newStudy = new Study({
             title: "Default Tree Test Title",
@@ -26,8 +26,9 @@ module.exports = {
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('treetest_server.js: Created new treetest successfully.');
-                res.send(newStudy);
+                console.log('treetest_server.js: Created new treetest via POST successfully.');
+                var fullUrl = req.protocol + '://' + req.get('host')
+                res.render('treetest/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl,email: req.user.email});
                 res.end();
             }
         });
@@ -36,10 +37,10 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error edit cardsort.");
+                console.log("treetest_server.js: Error edit treetest.");
                 res.end(err);
             } else {
-                res.render('treetest/edit.ejs',{singleStudy: study, email: req.user.email});
+                res.render('treetest/edit.ejs',{title: "Edit", singleStudy: study, email: req.user.email});
             }
         });
     },

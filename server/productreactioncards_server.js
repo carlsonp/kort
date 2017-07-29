@@ -5,7 +5,7 @@ var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
 module.exports = {
-    create_ajax: function (req, res) {
+    create: function (req, res) {
         var studyData = req.body;
         var newStudy = new Study({
             title: "Product Reaction Cards",
@@ -23,20 +23,21 @@ module.exports = {
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('productreactioncards_server.js: Created new successfully.');
-                res.send(newStudy);
+                console.log('productreactioncards_server.js: Created new cardsort via POST successfully.');
+                var fullUrl = req.protocol + '://' + req.get('host')
+                res.render('productreactioncards/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl, email: req.user.email});
                 res.end();
             }
         });
     },
     edit: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('productreactioncards/edit.ejs',{singleStudy: docs, email: req.user.email});
+                res.render('productreactioncards/edit.ejs',{title: "Edit",singleStudy: study, email: req.user.email});
             }
         });
     },
@@ -87,7 +88,6 @@ module.exports = {
                     words: words,
                 };
 				study.status = req.body.status;
-                console.log(req.body.private);
                 study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');

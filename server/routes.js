@@ -13,7 +13,8 @@ module.exports = function(app, passport, flash) {
 	});
 
 	//card sort routes
-	app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
+	app.get('/createcardsort', isLoggedIn, cardsort.create);
+	// app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
 	app.get('/cardsort/:id', study.view);
 	app.get('/cardsort/preview/:id', isLoggedIn, study.preview);
@@ -22,7 +23,8 @@ module.exports = function(app, passport, flash) {
 	app.post('/updatecardsort', isLoggedIn, cardsort.update);
 
 	//tree test routes
-	app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
+	app.get('/createtreetest', isLoggedIn, treetest.create);
+	// app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
 	app.get('/treetest/:id', study.view);
 	app.get('/treetest/preview/:id', isLoggedIn, study.preview);
@@ -31,7 +33,8 @@ module.exports = function(app, passport, flash) {
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
 	
 	//product reaction cards routes
-	app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
+	app.get('/createproductreactioncards', isLoggedIn, productreactioncards.create);
+	// app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
 	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
 	app.get('/productreactioncards/:id', study.view);
 	app.get('/productreactioncards/preview/:id', isLoggedIn, study.preview);

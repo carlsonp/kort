@@ -6,7 +6,7 @@ var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
 module.exports = {
-    create_ajax: function (req, res) {
+     create: function (req, res) {
         var newStudy = new Study({
             title: "New Card Sort",
             type: "Card Sort",
@@ -26,7 +26,8 @@ module.exports = {
                 res.end(err);
             } else {
                 console.log('cardsort_server.js: Created new cardsort via POST successfully.');
-                res.send(newStudy);
+                var fullUrl = req.protocol + '://' + req.get('host')
+                res.render('cardsort/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl,email: req.user.email});
                 res.end();
             }
         });
@@ -39,7 +40,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host')
-                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('cardsort/edit.ejs',{title: "Edit",singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });
     },
@@ -110,6 +111,7 @@ module.exports = {
                 }
 				study.status = req.body.status;
                 study.private = req.body.private;
+                console.log('private cardsort value: '+req.body.private)
 				study.save();
                 res.redirect('/studies');
                 res.end();   
