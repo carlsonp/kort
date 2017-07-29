@@ -45,36 +45,43 @@
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
 					<%- include('../partials/study_options/private.ejs') %>
-
-				    <label for="title">Card Sort Study Type</label><br>
-				    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
-				    <%if (singleStudy.data.studyType == 'open') { %>
-				    <div class="radio">
-				     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
-				    </div>
-				    <div class="radio">
-						<label><input type="radio" name="studyType" value='closed'>Closed</label>
-				    </div></p>
-				    <% } else { %> 
-				    <div class="radio">
-				     	<label><input type="radio" name="studyType" value='open'>Open</label>
-				    </div>
-				    <div class="radio">
-						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
-				    </div></p>
-				    <% } %>
 				</div>
 				<div class='col-sm-4'>
-					<label for="cards">Cards</label>
-					<br>
-					<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
+					<div class="well">
+						<label for="cards">Cards</label>
+						<br>
+						<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
+					</div>
 				</div>
-				<div class='col-sm-4' id='groupInputArea' hidden>
-					<label for="groups">Groups</label>
-					<br>
-					<textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
-				</div>
+				<div class='col-sm-4'>
+					<div class="well">
+					    <label for="title">Card Sort Study Type</label><br>
+					    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
+					    <%if (singleStudy.data.studyType == 'open') { %>
+						    <div class="radio">
+						     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
+						    </div>
+						    <div class="radio">
+								<label><input type="radio" name="studyType" value='closed'>Closed</label>
+						    </div></p>
+					    <% } else { %> 
+						    <div class="radio">
+						     	<label><input type="radio" name="studyType" value='open'>Open</label>
+						    </div>
+						    <div class="radio">
+								<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
+						    </div></p>
+					    <% } %>
+					</div>
+					<div id='groupInputArea' hidden>
+						<div class="well">
+							<label for="groups">Groups</label><br>
+							<textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
+						</div>
+					</div>
+				</div>	
 			</div>
+
 			<div class='row'>
 				<div class='col-sm-4'>
 					<button type="submit" class="btn btn-primary">Save</button>
@@ -94,18 +101,26 @@
 				<thead>
 					<tr>
 						<th>URLs</th>
+						<th>Complete?</th>
 					</tr>
 				</thead>
 				<tbody id="responses_table_body">
 				<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
 					<tr>
 						<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
+						<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
+					</tr>
+				<% } %>
+				<% for(var z=0; z < singleStudy.completeResponses.length; z++) {%>
+					<tr>
+						<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.completeResponses[z]._id %></a></td>
+						<td><%= singleStudy.completeResponses[z].complete %></a></td>
 					</tr>
 				<% } %>
 				</tbody>
 			</table>
 			<div style="background-color: white">
-				<button type="button" id='createNewResponseBtn' class="btn-link text-success"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+				<button type="button" id='createNewResponseBtn' class="text-success">Add Response</button>
 			</div>
 		<% } %>
 	</div>			
