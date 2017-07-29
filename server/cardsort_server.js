@@ -15,7 +15,6 @@ module.exports = {
                 cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],
                 groups: ['Fruit','Meat','Vegetables'],
             },
-            responses: [],
             status: 'closed',
             ownerID: req.user._id,
             private: false,
@@ -129,9 +128,11 @@ module.exports = {
         var cards = req.body.cards.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
+
         var groups = req.body.groups.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
+
         Study.findOne({ _id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
