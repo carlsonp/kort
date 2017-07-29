@@ -11,6 +11,8 @@ $(document).ready(function() {
 		}).filter(function(n) {
 			return n != ''
 		});
+
+		pc.responseID = $('#resid').val();
 		
 		for (var i = 0; i < pc.words.length; i++) {
 			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
@@ -49,7 +51,7 @@ $(document).ready(function() {
 	function updateView(){
 		pc.selectedNum = $('#cardArea li.selected').length;
 		if (pc.onStageTwo) {
-			if(pc.selectedNum === pc.secondSelectionLimit){
+			if(pc.selectedNum == pc.secondSelectionLimit && pc.responseID != 'preview'){
 				$( "#cardArea li:not(.selected)").toggleClass('disabled');
 				enableButton('#done');
 			} else {
