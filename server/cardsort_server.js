@@ -111,7 +111,6 @@ module.exports = {
                 }
 				study.status = req.body.status;
                 study.private = req.body.private;
-                console.log('private cardsort value: '+req.body.private)
 				study.save();
                 res.redirect('/studies');
                 res.end();   
