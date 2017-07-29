@@ -11,9 +11,16 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
-var db = require('./server/db')(mongoURL, mongoose);
 const async = require('async');
 const flash = require('connect-flash');
+
+//use default ES6 for promises, potential for using bluebird for increased performance
+//https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
+mongoose.Promise = global.Promise;
+//https://stackoverflow.com/questions/23293202/export-and-reuse-my-mongoose-connection-across-multiple-models
+//https://stackoverflow.com/questions/44749700/how-to-set-usemongoclient-mongoose-4-11-0
+const connection = mongoose.connect(mongoURL, { useMongoClient: true });
+
 
 //load in models
 require('./models/user');
@@ -52,7 +59,7 @@ const MongoStore = require('connect-mongo')(session);
 app.use(session({
     secret: secretHash,
 	//TODO: look into using our existing single Mongo connection instead of opening up a new one
-    store: new MongoStore({ url: mongoURL,
+    store: new MongoStore({ mongooseConnection: connection,
           collection: 'session',
 		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
 		}),
