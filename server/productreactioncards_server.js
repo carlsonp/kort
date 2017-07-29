@@ -37,7 +37,8 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                res.render('productreactioncards/edit.ejs',{title: "Edit",singleStudy: study, email: req.user.email});
+				var fullUrl = req.protocol + '://' + req.get('host');
+                res.render('productreactioncards/edit.ejs',{title: "Edit",singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },

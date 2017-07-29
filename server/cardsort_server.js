@@ -39,7 +39,7 @@ module.exports = {
                 console.log("cardsort_server.js: Error edit cardsort.");
                 res.end(err);
             } else {
-                var fullUrl = req.protocol + '://' + req.get('host')
+                var fullUrl = req.protocol + '://' + req.get('host');
                 res.render('cardsort/edit.ejs',{title: "Edit",singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });

@@ -40,7 +40,8 @@ module.exports = {
                 console.log("treetest_server.js: Error edit treetest.");
                 res.end(err);
             } else {
-                res.render('treetest/edit.ejs',{title: "Edit", singleStudy: study, email: req.user.email});
+				var fullUrl = req.protocol + '://' + req.get('host');
+                res.render('treetest/edit.ejs',{title: "Edit", singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },
