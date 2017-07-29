@@ -14,7 +14,6 @@ module.exports = function(app, passport, flash) {
 
 	//card sort routes
 	app.get('/createcardsort', isLoggedIn, cardsort.create);
-	// app.post('/createcardsort_ajax', isLoggedIn, cardsort.create_ajax);
 	app.get('/editcardsort/:id', isLoggedIn, cardsort.edit);
 	app.get('/cardsort/:id', study.view);
 	app.get('/cardsort/preview/:id', isLoggedIn, study.preview);
@@ -24,7 +23,6 @@ module.exports = function(app, passport, flash) {
 
 	//tree test routes
 	app.get('/createtreetest', isLoggedIn, treetest.create);
-	// app.post('/createtreetest_ajax', isLoggedIn, treetest.create_ajax);
 	app.get('/edittreetest/:id', isLoggedIn, treetest.edit);
 	app.get('/treetest/:id', study.view);
 	app.get('/treetest/preview/:id', isLoggedIn, study.preview);
@@ -34,7 +32,6 @@ module.exports = function(app, passport, flash) {
 	
 	//product reaction cards routes
 	app.get('/createproductreactioncards', isLoggedIn, productreactioncards.create);
-	// app.post('/createproductreactioncards_ajax', isLoggedIn, productreactioncards.create_ajax);
 	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
 	app.get('/productreactioncards/:id', study.view);
 	app.get('/productreactioncards/preview/:id', isLoggedIn, study.preview);
@@ -49,47 +46,42 @@ module.exports = function(app, passport, flash) {
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);
+		app.get('/study404', function (req, res) {
+		res.render('study404.ejs');
+	});
+	app.get('/thanks', function (req, res) {
+		res.render('thanks.ejs');
+	});
 
 	//response routes
 	app.post('/createresponse_ajax/:studyID', isLoggedIn, response.create_ajax);
 	app.get('/deleteresponse_ajax/:studyID/:resid', isLoggedIn, response.delete);
 
-
-
+	//???
 	app.get('/admin', isLoggedIn, function (req, res) {
 		res.render('admin.ejs', {email: req.user.email});
 	});
 
-	app.get('/study404', function (req, res) {
-		res.render('study404.ejs');
-	});
-
-	app.get('/thanks', function (req, res) {
-		res.render('thanks.ejs');
-	});
-
+	//user routes
 	app.get('/users', isLoggedIn, user.UserManagement);
-	  
+	app.post('/createuser', isLoggedIn, passport.authenticate('local-signup', {
+		successRedirect : '/users',
+		failureRedirect : '/users',
+		failureFlash : true
+	}));
+	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
+	app.post('/resetpassword', isLoggedIn, user.resetPassword);
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/admin',
 		failureRedirect: '/',
 		failureFlash : true
-	}));
-	  
+	}));	  
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
 		res.redirect('/');
 	});
 	
-	app.post('/createuser', isLoggedIn, passport.authenticate('local-signup', {
-		successRedirect : '/users',
-		failureRedirect : '/users',
-		failureFlash : true
-	}));
-
-	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
-	app.post('/resetpassword', isLoggedIn, user.resetPassword);
 }
 
 function isLoggedIn(req, res, next) {
