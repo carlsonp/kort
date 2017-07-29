@@ -44,7 +44,7 @@ module.exports = {
                         renderPages(study,req.params.resid,res)
                     } else {
                         //to make a page that is sorry
-                        res.redirect('/');
+                        res.redirect('/study404');
                     }
                 } else {
                     var response = resp.createResponse(req.params.id,"Anonymous");

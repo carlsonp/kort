@@ -46,6 +46,14 @@ module.exports = function(app, passport, flash) {
 		res.render('admin.ejs', {email: req.user.email});
 	});
 
+	app.get('/study404', function (req, res) {
+		res.render('study404.ejs');
+	});
+
+	app.get('/thanks', function (req, res) {
+		res.render('thanks.ejs');
+	});
+
 	app.get('/studies', isLoggedIn, study.home);
 
 	app.get('/users', isLoggedIn, user.UserManagement);
