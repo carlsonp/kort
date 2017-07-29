@@ -33,23 +33,40 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        var responseID;
-        if (req.params.resid) {
-            responseID = req.params.resid;
-        } else {
-            var response = resp.createResponse(req.params.id,"Anonymous");
-            responseID = response._id;
-        }
-
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
                 console.log("treetest_server.js: Error viewing treetest.");
                 res.end(err);
             } else {
-                study.incompleteResponses.push(response);
-                study.save();
-                res.render('treetest/view.ejs',{singleStudy: study, response: responseID});
+               if (study.private){
+                    //must provide response id if study is private
+                    if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
+                        var response = study.incompleteResponses.id(req.params.resid);
+                        //todo if partial responses are desired
+                        var partialResults = response.data;
+                        res.render('treetest/view.ejs',{singleStudy: study, response: req.params.resid});
+                    } else {
+                        res.redirect('/');
+                    }
+                //study is open, create new response for each view
+                } else {
+                    var response = resp.createResponse(req.params.id,"Anonymous");
+                    study.incompleteResponses.push(response);
+                    study.save();
+                    res.render('treetest/view.ejs',{singleStudy: study, response: response._id});
+                }
+            }
+        });
+    },
+    preview: function (req, res, next) {
+        Study.findOne({_id: req.params.id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("treetest_server.js: Error previewing treetest.");
+                res.end(err);
+            } else {
+                res.render('treetest/view.ejs',{singleStudy: study, response: 'preview'});
             }
         });
     },
@@ -101,7 +118,7 @@ module.exports = {
                     showSiblings: req.body.showSiblings,
                 }
 				study.status = req.body.status;
-
+                study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');
                 res.end();   
