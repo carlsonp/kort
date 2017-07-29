@@ -43,6 +43,22 @@ module.exports = {
                 res.end();
 			}
         });
+    },
+    
+    resetPassword: function(req, res, next) {
+        User.findOneAndUpdate( {_id: req.body.userid}, function(err, user) {
+            if (err) {
+                req.status(504);
+				console.log(err);
+				req.end();
+            } else {
+				user.password = user.generateHash(req.body.password);
+				user.save();
+				
+				res.redirect('/users');
+                res.end();
+			}
+        });
     }
 }
 

@@ -89,6 +89,7 @@ module.exports = function(app, passport, flash) {
 	}));
 
 	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
+	app.post('/resetpassword', isLoggedIn, user.resetPassword);
 }
 
 function isLoggedIn(req, res, next) {

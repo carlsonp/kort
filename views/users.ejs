@@ -3,13 +3,14 @@
 	<head>
 		<%- include('partials/header.ejs') %>
 		<title>Kort: User Management</title>
-		<script type="text/javascript" src="../users.js"></script>
+		<script type="text/javascript" src="/js/users.js"></script>
 	 	<style type="text/css">
 	 		body {background: white;}
 	 	</style>
 	</head>
 	<body>
 	<%- include('partials/admin_header.ejs') %>
+	
 		<div class="container">
 
 			<% if (createUserErrorMessage.length > 0) { %>
@@ -29,6 +30,7 @@
 					<tr class='active'>
 					<th>Email</th>
 					<th></th>
+					<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,6 +38,7 @@
 					<tr>
 						<td><%= users[i].email %></td>
 						<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
+						<td><a class='text-danger' href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
 					</tr>
 					<% } %>
 				</tbody>
