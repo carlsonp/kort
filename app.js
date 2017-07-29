@@ -58,7 +58,6 @@ const MongoStore = require('connect-mongo')(session);
  
 app.use(session({
     secret: secretHash,
-	//TODO: look into using our existing single Mongo connection instead of opening up a new one
     store: new MongoStore({ mongooseConnection: connection,
           collection: 'session',
 		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
