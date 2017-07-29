@@ -3,10 +3,10 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<!-- Include Bootstrap Treeview -->
-		<link rel="stylesheet" type="text/css" href="../bootstrap-treeview/bootstrap-treeview.min.css"/>
-		<script type="text/javascript" src="../bootstrap-treeview/bootstrap-treeview.min.js"/></script>
+		<link rel="stylesheet" type="text/css" href="/bootstrap-treeview/bootstrap-treeview.min.css"/>
+		<script type="text/javascript" src="/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
 		<!-- custom css -->
-		<link rel="stylesheet" type="text/css" href="../treetest.css" />
+		<link rel="stylesheet" type="text/css" href="/css/treetest.css" />
 		<title>Kort Treetest</title>
 	</head>
 	
@@ -16,7 +16,7 @@
 		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.data.selectableParents %>">
 		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.data.showSiblings %>">
 
-		<script type="text/javascript" src="../treetest.js"/></script>
+		<script type="text/javascript" src="/js/treetest.js"/></script>
 		
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
