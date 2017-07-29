@@ -1,6 +1,5 @@
 require('mongoose').model('User');
 require('mongoose').model('Study');
-
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Study = mongoose.model('Study');
@@ -38,7 +37,6 @@ module.exports = {
 				});
 				//delete the user
 				user.remove();
-				
 				res.redirect('/users');
                 res.end();
 			}

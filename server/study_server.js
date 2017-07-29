@@ -34,7 +34,6 @@ module.exports = {
         });
     },
     view: function (req, res, next) {
-        console.log('calling view')
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
@@ -69,6 +68,7 @@ module.exports = {
         });
     },
     delete: function(req, res, next) {
+
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
