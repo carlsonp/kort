@@ -41,29 +41,12 @@
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<div class='row'>
 				<div class='col-sm-4'>
-					<p><label for="title">Card Sort Title</label>
-					<input style='width:100%' name="title" id='title' type="text" value="<%= singleStudy.title %>"></input></p>
+					<%- include('../partials/study_options/title.ejs') %>
+					<%- include('../partials/study_options/status.ejs') %>
+					<%- include('../partials/study_options/private.ejs') %>
 
-					<p><label>Status</label>
-   				     <%if (singleStudy.status == 'open') { %>
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="status" value='open' checked>Open</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="status" value='closed'>Closed</label>
-				    </div></p>
-				    <% } else { %> 
-				    <div class="radio-inline">
-				     	<label><input type="radio" name="status" value='open'>Open</label>
-				    </div>
-				    <div class="radio-inline">
-						<label><input type="radio" name="status" value='closed' checked>Closed</label>
-				    </div></p>
-				    <% } %>
-				    
 				    <label for="title">Card Sort Study Type</label><br>
 				    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
-
 				    <%if (singleStudy.data.studyType == 'open') { %>
 				    <div class="radio-inline">
 				     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
@@ -79,16 +62,6 @@
 						<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
 				    </div></p>
 				    <% } %>
-				    <%if (singleStudy.private == true) { %>
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="private" checked>Private</label>
-				    </div>
-				    <% } else { %>
-				   <div class="checkbox">
-				      <label><input type="checkbox" name="private">Private</label>
-				    </div>
-				    <% } %>
-				 
 				</div>
 				<div class='col-sm-4'>
 					<label for="cards">Cards</label>

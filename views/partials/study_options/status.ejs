@@ -1,0 +1,18 @@
+<div class='well'>
+<label>Status</label><p>
+<%if (singleStudy.status == 'open') { %>
+<div class="radio">
+ 	<label><input type="radio" name="status" value='open' checked>Accepting Responses</label>
+</div>
+<div class="radio">
+	<label><input type="radio" name="status" value='closed'>Not accepting Responses</label>
+</div></p>
+<% } else { %> 
+<div class="radio">
+ 	<label><input type="radio" name="status" value='open'>Accepting Responses</label>
+</div>
+<div class="radio">
+	<label><input type="radio" name="status" value='closed' checked>Not accepting Responses</label>
+</div></p>
+<% } %>
+</div>
