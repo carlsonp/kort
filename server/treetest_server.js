@@ -52,9 +52,6 @@ module.exports = {
                 console.log("treetest_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                for (var i = 0; i < study.completeResponses.length; i++) {
-                    var response = study.responses[i].data;
-                }
                 res.render('treetest/results.ejs',{study: study, email: req.user.email});
             }
         });

@@ -52,9 +52,9 @@ module.exports = {
                 //gather all words from all responses and put into single array
                 var allWords = []
                 for (var i = 0; i < study.completeResponses.length; i++) {
-                    var response = study.completeResponses[i].data
+                    var response = study.completeResponses[i].data;
                     for (var j = 0; j < response.length; j++) {
-                        allWords.push(response[j])
+                        allWords.push(response[j]);
                     }
                 }
                 var combined = allWords.reduce(function (acc, curr) {

@@ -37,11 +37,11 @@
 						<th>Task</th>
 					</tr>
 				</thead>
-				<% for(var i=0; i<study.responses.length; i++) {%>
+				<% for(var i=0; i<study.completeResponses.length; i++) {%>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= study.responses[i].date %></td>
-						<td><%= study.responses[i].data %></td>
+						<td><%= study.completeResponses[i].date %></td>
+						<td><%= study.completeResponses[i].data %></td>
 					</tr>
 				<% } %>
 			</table>			
