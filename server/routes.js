@@ -55,7 +55,7 @@ module.exports = function(app, passport, flash) {
 
 	//response routes
 	app.post('/createresponse_ajax/:studyID', isLoggedIn, response.create_ajax);
-	app.get('/deleteresponse_ajax/:studyID/:resid', isLoggedIn, response.delete);
+	app.post('/deleteresponse/:studyID/:resid', isLoggedIn, response.delete);
 
 	//???
 	app.get('/admin', isLoggedIn, function (req, res) {

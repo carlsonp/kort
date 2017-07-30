@@ -52,9 +52,20 @@ module.exports = {
                 console.log(err);
                 req.end();
             } else {
-            	var response = study.incompleteResponses.id(req.params.resid).remove;
+                study.incompleteResponses.pull(req.params.resid);
+                study.completeResponses.pull(req.params.resid);
             	study.save();
-            	res.redirect('/studies');
+                res.end();
+            }
+        });
+        Response.findOne({ _id: req.params.resid}, function(err,response) {
+            if (err) {
+                req.status(504);
+                console.log("response_server.js: Cannot find study:" + req.params.studyID);
+                console.log(err);
+                req.end();
+            } else {
+                response.remove();
                 res.end();
             }
         });

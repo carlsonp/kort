@@ -8,34 +8,61 @@
 			    $("[name='studyType']").change(function() {
 				  $("#groupInputArea").toggle();
 				});
-				 $("[name='private']").change(function() {
+
+			 	$("[name='private']").change(function() {
 				  $("#responseListArea").toggle();
 				});
-				//group input area is hidden by default, if study is 'closed' - toggle it to be visble
-				//this might be difficut to include in an external js file todo.
+
 				<%if (singleStudy.private == true) { %>
 					$("#responseListArea").toggle();
 				<% } %>
+
 				<%if (singleStudy.data.studyType == 'closed') { %>
 					$("#groupInputArea").toggle();
 				<% } %>
-				$('#createNewResponseBtn').on('click', function(event) {
-			      	$.ajax({
-				        url: '/createresponse_ajax/<%= singleStudy._id %>',
-				        type: "POST",
-				        contentType: "application/json",
-				        success: function(response) {
-				          	$(`<tr>
-							<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`'><%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`</td>
-							</tr>`).appendTo($('#responses_table_body'));
-				        },
-				        error:   function(xhr, text, err) {
-			          		console.log("Response: Please check ajax request");
-				        }
-			      	});
+				
+				$('.create-response').on('click', function(event) {
+			    	createResponse();  	
 			    });  
 
+			    $('.delete-response').on('click', function(event){
+			    	deleteResponse(event.target);
+			    	//need to return false or page slides up upon click
+			    	return false;
+			    });
+
 			});
+			function createResponse(){
+				$.ajax({
+			        url: '/createresponse_ajax/<%= singleStudy._id %>',
+			        type: "POST",
+			        contentType: "application/json",
+			        success: function(response) {
+			          	$(`<tr>
+								<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`'><%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`</a></td>
+								<td>`+response.complete+`</td>
+								<td><a class='text-danger delete-response' resid='`+response._id+`' href="">Delete</a></td>
+							</tr>`).appendTo($('#responses_table_body'));
+			        },
+			        error:   function(xhr, text, err) {
+		          		console.log("Response: Please check ajax request");
+			        }
+		      	});
+		    }
+			function deleteResponse(target){
+				var responseID = $(target).attr('resid');
+				$.ajax({
+					url:  "/deleteresponse/<%= singleStudy._id %>/"+responseID,
+					type: "POST",
+					contentType: "application/json",
+					success: function(data) {
+					  $(target).parent().parent().remove();
+					},
+					error:   function(xhr, text, err) {
+					  console.log("delete Response ajax error");
+					}
+				});
+		    }
 		</script>
 	</head>
 	<body>
@@ -101,14 +128,12 @@
 							<tr>
 								<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
 								<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
-								<td>Delete</td>
+								<td><a class='text-danger delete-response' resid='<%= singleStudy.incompleteResponses[z]._id %>' href="#">Delete</a></td>
 							</tr>
 						<% } %>
 						</tbody>
 					</table>
-					<div style="background-color: white">
-						<button type="button" id='createNewResponseBtn'>Add Response</button>
-					</div>
+					<button type="button" class='btn btn-default create-response'>Add Response</button>
 				</div>
 			</div>
 
