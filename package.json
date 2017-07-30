@@ -36,12 +36,12 @@
     "express-session": "^1.15.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
-    "mongoose": "^4.11.3",
+    "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
     "npm-font-open-sans": "^1.0.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "plotly.js": "^1.29.0"
+    "plotly.js": "^1.29.3"
   },
   "devDependencies": {},
   "scripts": {
