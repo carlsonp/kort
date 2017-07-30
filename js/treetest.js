@@ -141,6 +141,12 @@ $(document).ready(function() {
 		}
 		return textAnswers;
 	}
+
+	function updateProgressBar(){
+		var status = ((tasks.idx/tasks.list.length)*100)+'%';
+		$('#progressbar').css("width", status);
+		$('#progressbar').html(status);
+	}
 	//--------------------------Task JS Object---------------------------
 	//tasks js object to store task related functions and data
 	var tasks = {
@@ -150,12 +156,12 @@ $(document).ready(function() {
 		add: function (taskStr) {
 			this.list.push(taskStr);
 			this.answers.push(false);
-			// $('#taskList').append("<li>Task "+this.list.length+"</li>");
 		},
 		next:function() {
 			if (!(this.idx == this.list.length-1)){
 				this.idx = this.idx + 1; 
 				this.set(this.idx);
+				updateProgressBar();
 			} else {				
 				$('#hiddenResults').val(JSON.stringify(getAllHistoryAsText()));
 				console.log(JSON.stringify(getAllHistoryAsText()))
