@@ -127,6 +127,20 @@ $(document).ready(function() {
 			} 
 		}	
 	}
+
+	function getAllHistoryAsText(){
+		var textAnswers = [];
+		for (var i = 0; i < tasks.answers.length; i++) {
+			var taskNodeIds = tasks.answers[i];
+			var textTask = [];
+			for (var j = 0; j < taskNodeIds.length; j++) {
+				var node = $('#tree').treeview('getNode', taskNodeIds[j]);
+				textTask.push(taskNodeIds[j],node.text);
+			}
+			textAnswers.push(textTask)
+		}
+		return textAnswers;
+	}
 	//--------------------------Task JS Object---------------------------
 	//tasks js object to store task related functions and data
 	var tasks = {
@@ -142,8 +156,9 @@ $(document).ready(function() {
 			if (!(this.idx == this.list.length-1)){
 				this.idx = this.idx + 1; 
 				this.set(this.idx);
-			} else {
-				$('#hiddenResults').val(JSON.stringify(this.answers));
+			} else {				
+				$('#hiddenResults').val(JSON.stringify(getAllHistoryAsText()));
+				console.log(JSON.stringify(getAllHistoryAsText()))
 				$('#submitForm').click();
 			}
 			if (this.idx == this.list.length-1){
