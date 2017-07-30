@@ -40,19 +40,23 @@ module.exports = {
                 console.log("study_server.js: Error viewing study.");
                 res.end(err);
             } else {
-               if (study.private){
-                    if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
-                        var response = study.incompleteResponses.id(req.params.resid);
-                        renderPages(study,req.params.resid,res)
-                    } else {
-                        res.redirect('/study404');
-                    }
-                } else {
-                    var response = resp.createResponse(req.params.id,"Anonymous");
-                    study.incompleteResponses.push(response);
-                    study.save();
-                    renderPages(study,response._id,res)
-                }
+				if (study.status == "open") {
+				   if (study.private){
+						if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
+							var response = study.incompleteResponses.id(req.params.resid);
+							renderPages(study,req.params.resid,res)
+						} else {
+							res.redirect('/study404');
+						}
+					} else {
+						var response = resp.createResponse(req.params.id,"Anonymous");
+						study.incompleteResponses.push(response);
+						study.save();
+						renderPages(study,response._id,res)
+					}
+				} else {
+					res.redirect('/study404');
+				}
             }
         });
     },
