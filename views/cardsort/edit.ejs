@@ -51,14 +51,14 @@
 					<%- include('../partials/study_options/status.ejs') %>
 					<div class="well">
 					    <label for="title">Card Sort Study Type</label><br>
-					    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.
+					    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.</p>
 					    <%if (singleStudy.data.studyType == 'open') { %>
 						    <div class="radio">
 						     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
 						    </div>
 						    <div class="radio">
 								<label><input type="radio" name="studyType" value='closed'>Closed</label>
-						    </div></p>
+						    </div>
 					    <% } else { %> 
 						    <div class="radio">
 						     	<label><input type="radio" name="studyType" value='open'>Open</label>

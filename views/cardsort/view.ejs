@@ -20,9 +20,9 @@
 		<input id='hiddenActive' type='text' value="<%= singleStudy.status %>">
 
 		<form id='resultsForm' method="POST" action="/submitResult">
-			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>"></input>
-			<input name="resid" id='resid' type='text' hidden value="<%= response %>"></input>
-			<input name="result" id='hiddenResults' type='text' hidden></input>
+			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
+			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
+			<input name="result" id='hiddenResults' type='text' hidden />
 		</form>
 
 		<!-- starts Dragula object and adds onclick events for buttons -->
@@ -36,7 +36,7 @@
 
 		<div id='dropZoneParent' class="row custom-row">	
 			<div id="initialColumn" class="col-md-2 initialColumn accepts-items nested">
-				<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm'></input>
+				<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm' />
 			</div>
 			<div id="dropZone0" class="col-md-2 dropZone accepts-groups nested"></div>
 			<div id="dropZone1" class="col-md-2 dropZone accepts-groups nested"></div>

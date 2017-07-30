@@ -1,19 +1,19 @@
 
-<p><label for="private">Links</label>
+<label for="private">Links</label>
 <%if (!singleStudy.private) { %>
-<div class="radio">
- 	<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
- 	(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
-</div>
-<div class="radio">
-	<label><input type="radio" name="private" value='true'>Unique Link for each participant</label>
-</div></p>
+	<div class="radio">
+		<label><input type="radio" name="private" id="private" value='false' checked>All participants use same link</label>
+		(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
+	</div>
+	<div class="radio">
+		<label><input type="radio" name="private" id="private" value='true'>Unique Link for each participant</label>
+	</div>
 <% } else { %> 
-<div class="radio">
- 	<label><input type="radio" name="private" value='false'>All participants use same link</label>
- 	(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
-</div>
-<div class="radio">
-	<label><input type="radio" name="private"  value='true' checked>Unique Link for each participant</label>
-</div></p>
+	<div class="radio">
+		<label><input type="radio" name="private" id="private" value='false'>All participants use same link</label>
+		(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
+	</div>
+	<div class="radio">
+		<label><input type="radio" name="private" id="private" value='true' checked>Unique Link for each participant</label>
+	</div>
 <% } %>
