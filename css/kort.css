@@ -1,7 +1,7 @@
 html,body {
     height:100%;
     width: 100%;
-    background-color: #F8F8F8;
+    /*background-color: #F8F8F8;*/
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -22,7 +22,7 @@ html,body {
 }
 .siteTitle {
     font-size: 125px;
-    letter-spacing: 30px;
+    /*letter-spacing: 30px;*/
     color:darkgray;
 }
 .container {
