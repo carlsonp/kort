@@ -3,67 +3,7 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<title>Edit Card Sort</title>
-		<script>
-			$( document ).ready(function() {
-			    $("[name='studyType']").change(function() {
-				  $("#groupInputArea").toggle();
-				});
-
-			 	$("[name='private']").change(function() {
-				  $("#responseListArea").toggle();
-				});
-
-				<%if (singleStudy.private == true) { %>
-					$("#responseListArea").toggle();
-				<% } %>
-
-				<%if (singleStudy.data.studyType == 'closed') { %>
-					$("#groupInputArea").toggle();
-				<% } %>
-				
-				$('.create-response').on('click', function(event) {
-			    	createResponse();  	
-			    });  
-
-			    $('.delete-response').on('click', function(event){
-			    	deleteResponse(event.target);
-			    	//need to return false or page slides up upon click
-			    	return false;
-			    });
-
-			});
-			function createResponse(){
-				$.ajax({
-			        url: '/createresponse_ajax/<%= singleStudy._id %>',
-			        type: "POST",
-			        contentType: "application/json",
-			        success: function(response) {
-			          	$(`<tr>
-								<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`'><%= url %>/cardsort/<%= singleStudy._id %>/`+response._id+`</a></td>
-								<td>`+response.complete+`</td>
-								<td><a class='text-danger delete-response' resid='`+response._id+`' href="">Delete</a></td>
-							</tr>`).appendTo($('#responses_table_body'));
-			        },
-			        error:   function(xhr, text, err) {
-		          		console.log("Response: Please check ajax request");
-			        }
-		      	});
-		    }
-			function deleteResponse(target){
-				var responseID = $(target).attr('resid');
-				$.ajax({
-					url:  "/deleteresponse/<%= singleStudy._id %>/"+responseID,
-					type: "POST",
-					contentType: "application/json",
-					success: function(data) {
-					  $(target).parent().parent().remove();
-					},
-					error:   function(xhr, text, err) {
-					  console.log("delete Response ajax error");
-					}
-				});
-		    }
-		</script>
+		<script type="text/javascript" src="/js/cardsort_edit.js"></script>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -104,7 +44,11 @@
 					</div>
 				</div>
 				<div class='col-sm-4'>
+					<%if (singleStudy.data.studyType == 'closed') { %>
+					<div id='groupInputArea'>
+					<% } else { %>
 					<div id='groupInputArea' hidden>
+					<% } %>
 						<div class="well">
 							<label for="groups">Groups</label><br>
 							<textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
@@ -112,28 +56,9 @@
 					</div>
 				</div>	
 			</div>
-			<div class='row well'>
-				<%- include('../partials/study_options/private.ejs') %>
-				<div id='responseListArea' hidden>
-			  		<table class="table">
-						<thead>
-							<tr>
-								<th>URL</th>
-								<th>Complete</th>
-								<th>Delete</th>
-							</tr>
-						</thead>
-						<tbody id="responses_table_body">
-						<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
-							<tr>
-								<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
-								<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
-								<td><a class='text-danger delete-response' resid='<%= singleStudy.incompleteResponses[z]._id %>' href="#">Delete</a></td>
-							</tr>
-						<% } %>
-						</tbody>
-					</table>
-					<button type="button" class='btn btn-default create-response'>Add Response</button>
+			<div class='row'>
+				<div class="well">
+					<%- include('../partials/study_options/private.ejs') %>
 				</div>
 			</div>
 

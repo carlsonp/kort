@@ -1,4 +1,35 @@
-
+<script type="text/javascript">
+function createResponse(studyID,url){
+	$.ajax({
+        url: '/createresponse_ajax/'+studyID,
+        type: "POST",
+        contentType: "application/json",
+        success: function(response) {
+          	$(`<tr>
+					<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
+					<td>`+response.complete+`</td>
+					<td><a class='text-danger delete-response' resid='`+response._id+`' href="">Delete</a></td>
+				</tr>`).appendTo($('#responses_table_body'));
+        },
+        error:   function(xhr, text, err) {
+      		console.log("Response: Please check ajax request");
+        }
+  	});
+}
+function deleteResponse(studyID,responseID){
+	$.ajax({
+		url:  "/deleteresponse/"+studyID+"/"+responseID,
+		type: "POST",
+		contentType: "application/json",
+		success: function(data) {
+		  console.log("delete Response success");
+		},
+		error:   function(xhr, text, err) {
+		  console.log("delete Response ajax error");
+		}
+	});
+}
+</script>
 <label>Links</label>
 <%if (!singleStudy.private) { %>
 	<div class="radio">
@@ -17,3 +48,28 @@
 		<label><input type="radio" name="private" value='true' checked>Unique link for each participant</label>
 	</div>
 <% } %>
+	<%if (singleStudy.private == true) { %>
+	<div id='responseListArea' >
+	<% } else { %> 
+	<div id='responseListArea' hidden>
+	<% } %>
+  		<table class="table">
+			<thead>
+				<tr>
+					<th>URL</th>
+					<th>Complete</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody id="responses_table_body">
+			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+				<tr>
+					<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
+					<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
+					<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.incompleteResponses[z]._id %>');$(this).parent().parent().remove();return false;" href="#">Delete</a></td>
+				</tr>
+			<% } %>
+			</tbody>
+		</table>
+		<button type="button" class='btn btn-default' onclick="createResponse('<%= singleStudy._id %>','<%= url %>');return false;">Add Response</button>
+	</div>
