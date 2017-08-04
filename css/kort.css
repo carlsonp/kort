@@ -1,14 +1,14 @@
 html,body {
     height:100%;
     width: 100%;
-    /*background-color: #F8F8F8;*/
     font-family: 'Open Sans', sans-serif;
 }
 
 .well {
-    background: white;
+    background: #F8F8F8;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     border-radius: 2px;
+
 }
 .studyTitle {
     font-size: 20px;
@@ -22,7 +22,6 @@ html,body {
 }
 .siteTitle {
     font-size: 125px;
-    /*letter-spacing: 30px;*/
     color:darkgray;
 }
 .container {
