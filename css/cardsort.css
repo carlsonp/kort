@@ -26,13 +26,13 @@
 	background-color: rgb(219,221,224);
 	margin: 15px;
 	border-radius: 4px;	
-    opacity: 0.5;
+    opacity: 0.6;
     text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
 }
 #newGroupButton:hover{
-	 opacity: 0.78;
+	 opacity: 0.85;
 }
 
 .custom-row {
@@ -103,7 +103,7 @@
 }
 
 .item {
-	width: auto;
+	/*width: auto;*/
 	cursor: move;
 	color: black;
 	background-color: white;
@@ -111,7 +111,12 @@
 	margin: 5px;
 	padding: 5px;
 	border-radius: 3px;	
-	font-size: 14px;
-	word-wrap: break-word;
+	font-size: 16px;
+	word-wrap: normal;
     border: solid 1px gray;
+}
+
+.item:hover {
+   font-weight: 500;
+   border: solid 1px black;
 }
