@@ -28,14 +28,17 @@
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="/js/cardsort.js"></script>
 		
-		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
-			<div class="container-fluid">
+		<nav   class="navbar navbar-default navbar-static-top ">
+			<div class="container-fluid cardsort_topbar">
 				<span class='navbar-brand'>Card Sort</span>
 			</div>
 		</nav>
 
 		<div id='dropZoneParent' class="row custom-row">	
 			<div id="initialColumn" class="col-md-2 initialColumn accepts-items nested">
+				<%if (singleStudy.data.studyType == 'open') { %>
+				<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>
+				<% } %>
 				<input type='submit' id='done' class='btn btn-success btn-block' form='resultsForm' />
 			</div>
 			<div id="dropZone0" class="col-md-2 dropZone accepts-groups nested"></div>

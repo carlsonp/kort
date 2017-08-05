@@ -20,22 +20,6 @@ $(document).ready(function() {
 		});
 	}
 	
- 	function setLocationNewGroupButton(){
-		$('#newGroupButton').remove();
-		var next_idx = ((cs.zoneNum)+cs.groupNum)%cs.zoneNum;
-		var newGroupButton = "<div id='newGroupButton'><i class='fa fa-plus' aria-hidden='true'></i>  New Group</div>";
-		$('#dropZone'+next_idx).append(newGroupButton);
-		$('#newGroupButton').click(function() {
-			for (var i = 1; i < 1000; i++) {
-				var newName = "Group "+i;
-				if (!groupNameExists(newName)){
-					createGroup(newName, true);
-					break;
-				} 
-			}
-		});
-	}
-	
 	var drake = dragula([].slice.apply(document.querySelectorAll('.nested')),{
 		copy: false,
 		accepts: function (el, target, source, sibling) {
@@ -74,15 +58,14 @@ $(document).ready(function() {
 		$(group).fadeOut("fast","swing", function() {
 			$(this).remove();
 		});
-		setLocationNewGroupButton();
 		updateGroupArray();
 	}
 
 	function createGroup(groupname, focus_on_creation = false){
 		cs.groupNum+=1;
-		if (cs.studyType == 'open'){
-			setLocationNewGroupButton();
-		}
+		// if (cs.studyType == 'open'){
+		// 	setLocationNewGroupButton();
+		// }
 		var group = $("<div class='group' hidden></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -141,7 +124,6 @@ $(document).ready(function() {
 			group.fadeIn();
 			groupTitle.click()	
 		}
-
 		updateContainers();
 		updateGroupArray();
 	}
@@ -182,7 +164,7 @@ $(document).ready(function() {
 				}
 			}
 		}
-		setLocationNewGroupButton();
+
 		var cards = $('#hiddenCards').val().split(";").map(function(item) {
 			  return item.trim();
 		});
@@ -202,9 +184,19 @@ $(document).ready(function() {
 					$('#done').hide();
 				}
 			});
+
+			$('#newGroupButton').click(function() {
+			for (var i = 1; i < 1000; i++) {
+				var newName = "Group "+i;
+				if (!groupNameExists(newName)){
+					createGroup(newName, true);
+					break;
+				} 
+			}
+		});
 		}
 		$('#done').hide();
-
+		
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
 		$('#hiddenType').remove();
