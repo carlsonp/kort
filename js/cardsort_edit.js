@@ -5,5 +5,6 @@ $( document ).ready(function() {
 
  	$("[name='private']").change(function() {
 	  $("#responseListArea").toggle();
+	  $("#responseSingleArea").toggle();
 	});
 });

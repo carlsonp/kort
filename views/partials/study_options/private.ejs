@@ -1,86 +1,99 @@
 <script type="text/javascript">
-function createResponse(studyID,url){
-	$.ajax({
-        url: '/createresponse_ajax/'+studyID,
-        type: "POST",
-        contentType: "application/json",
-        success: function(response) {
-          	$(`<tr>
-					<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
-					<td>`+response.complete+`</td>
-					<td></td>
-					<td><a class='text-danger delete-response' resid='`+response._id+`' href="">Delete</a></td>
-				</tr>`).appendTo($('#responses_table_body'));
-        },
-        error:   function(xhr, text, err) {
-      		console.log("Response: Please check ajax request");
-        }
-  	});
-}
-function deleteResponse(studyID,responseID){
-	$.ajax({
-		url:  "/deleteresponse/"+studyID+"/"+responseID,
-		type: "POST",
-		contentType: "application/json",
-		success: function(data) {
-		  console.log("delete Response success");
-		},
-		error:   function(xhr, text, err) {
-		  console.log("delete Response ajax error");
-		}
-	});
-}
+	function deleteResponse(studyID,responseID,target){
+		bootbox.confirm({
+	    	size: 'small',
+	    	closeButton: false,
+		    message: "<b>Delete Response?</b><br>This cannot be undone.",
+		    buttons: {confirm: {label: 'Delete Response',className: 'btn-danger'},
+	        		  cancel: {label: 'Cancel',className: 'btn-link'}
+		    },
+		    callback: function (result) {
+		    	if(result){
+		    		$.ajax({
+						url:  "/deleteresponse/"+studyID+"/"+responseID,
+						type: "POST",
+						contentType: "application/json",
+						success: function(data) {
+		  	    			var tableRowToDelete = $(target).parent().parent()
+		    				tableRowToDelete.remove();
+						},
+						error:   function(xhr, text, err) {
+						  console.log("private.ejs: delete Response ajax error");
+						}
+					});
+		    	}
+		    }
+		});
+	}
+	function createResponse(studyID,url){
+		$.ajax({
+	        url: '/createresponse_ajax/'+studyID,
+	        type: "POST",
+	        contentType: "application/json",
+	        success: function(response) {
+	          	$(`<tr>
+						<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
+						<td>`+response.complete+`</td>
+						<td></td>
+						<td><a class='text-danger' onclick="deleteResponse('`+studyID+`','`+response._id+`',this);" href="#">Delete</a></td>
+					</tr>`).appendTo($('#responses_table_body'));
+	        },
+	        error:   function(xhr, text, err) {
+	      		console.log("Response: Please check ajax request");
+	        }
+	  	});
+	}
 </script>
-<label>Links</label>
+<p><label>Links</label></p>
+
 <%if (!singleStudy.private) { %>
-	<div class="radio">
-		<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
-		(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
-	</div>
-	<div class="radio">
-		<label><input type="radio" name="private" value='true'>Unique link for each participant</label>
-	</div>
+<div class="radio-inline">
+	<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
+</div>
+<div class="radio-inline">
+	<label><input type="radio" name="private" value='true'>Unique link for each participant</label>
+</div>
 <% } else { %> 
-	<div class="radio">
-		<label><input type="radio" name="private" value='false'>All participants use same link</label>
-		(<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>)
-	</div>
-	<div class="radio">
-		<label><input type="radio" name="private" value='true' checked>Unique link for each participant</label>
-	</div>
+<div class="radio-inline">
+	<label><input type="radio" name="private" value='false'>All participants use same link</label>
+</div>
+<div class="radio-inline">
+	<label><input type="radio" name="private" value='true' checked>Unique link for each participant</label>
+</div>
 <% } %>
-	<%if (singleStudy.private == true) { %>
-	<div id='responseListArea' >
-	<% } else { %> 
-	<div id='responseListArea' hidden>
-	<% } %>
-  		<table class="table">
-			<thead>
-				<tr>
-					<th>URL</th>
-					<th>Complete</th>
-					<th>Date Submitted</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody id="responses_table_body">
-<!-- 			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
-				<tr>
-					<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
-					<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
-					<td><%= singleStudy.incompleteResponses[z].date %></a></td>
-					<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.incompleteResponses[z]._id %>');$(this).parent().parent().remove();return false;" href="#">Delete</a></td>
-				</tr>
-			<% } %> -->
-			<% for(var z=0; z < singleStudy.getAllResponses().length; z++) {%>
-				<tr>
-					<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
-					<td><%= singleStudy.getAllResponses()[z].complete %></a></td>
-					<td><%= singleStudy.getAllResponses()[z].date %></a></td>
-					<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.getAllResponses()[z]._id %>');$(this).parent().parent().remove();return false;" href="#">Delete</a></td>
-				</tr>
-			<% } %>
-			</tbody>
-		</table>
-		<button type="button" class='btn btn-default' onclick="createResponse('<%= singleStudy._id %>','<%= url %>');return false;">Add Response</button>
-	</div>
+
+<%if (singleStudy.private == false) { %>
+<div id='responseSingleArea'>
+<% } else { %> 
+<div id='responseSingleArea' hidden>
+<% } %>
+<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>
+</div>
+
+<%if (singleStudy.private == true) { %>
+<div id='responseListArea' >
+<% } else { %> 
+<div id='responseListArea' hidden>
+<% } %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>URL</th>
+				<th>Complete</th>
+				<th>Date Submitted</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody id="responses_table_body">
+		<% for(var z=0; z < singleStudy.getAllResponses().length; z++) {%>
+			<tr>
+				<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
+				<td><%= singleStudy.getAllResponses()[z].complete %></a></td>
+				<td><%= singleStudy.getAllResponses()[z].date %></a></td>
+				<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.getAllResponses()[z]._id %>',this);" href="#">Delete</a></td>
+			</tr>
+		<% } %>
+		</tbody>
+	</table>
+	<button type="button" class='btn btn-default' onclick="createResponse('<%= singleStudy._id %>','<%= url %>');return false;">Add Participant Link</button>
+</div>
