@@ -46,11 +46,21 @@ module.exports = function(app, passport, flash) {
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);
-		app.get('/study404', function (req, res) {
-		res.render('study404.ejs');
-	});
-	app.get('/thanks', function (req, res) {
-		res.render('thanks.ejs');
+	
+	app.get('/msg/:cm', function (req, res) {
+		switch(req.params.cm) {
+		    case "thanks":
+		        res.render('msg.ejs', {titleline: "Thanks!", msg: "Your response has been recorded"});
+		        break;
+		    case "study404":
+		        res.render('msg.ejs', {titleline: "Can't find the study. Sorry :(", msg: "Your study couldn't be found."});
+		        break;
+			case "notactive":
+		        res.render('msg.ejs', {titleline: "Sorry. The study isn't accepting responses.", msg: "Contact your study coordinator."});
+		        break;
+		    default:
+		        res.redirect('/');
+		}
 	});
 
 	//response routes

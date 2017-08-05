@@ -2,12 +2,12 @@
 <html lang="en">
 	<head>
 		<%- include('partials/header.ejs') %>
-		<title>Can't find study :(</title>
+		<title><%= titleline %></title>
 	</head>
 	<body>
 		<div class="container">
-		<h1>Sorry, can't find that study :(</h1>
-		Sorry about that. Thanks for your interest. 
+			<h1><%= titleline %></h1>
+			<p><%= msg %></p>
 		</div>
 	</body>
 </html>

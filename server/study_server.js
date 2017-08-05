@@ -46,7 +46,7 @@ module.exports = {
 							var response = study.incompleteResponses.id(req.params.resid);
 							renderPages(study,req.params.resid,res)
 						} else {
-							res.redirect('/study404');
+							res.redirect('/msg/study404');
 						}
 					} else {
 						var response = resp.createResponse(req.params.id,"Anonymous");
@@ -55,7 +55,7 @@ module.exports = {
 						renderPages(study,response._id,res)
 					}
 				} else {
-					res.redirect('/study404');
+					res.redirect('/msg/notactive');
 				}
             }
         });
@@ -108,7 +108,7 @@ module.exports = {
                 study.incompleteResponses.splice(respIdx,1);
                 //save the study object (which will save the child objects)
                 study.save();
-                res.redirect('/studies');
+                res.redirect('/msg/thanks');
                 res.end();   
             }
         });
