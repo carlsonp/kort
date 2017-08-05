@@ -11,6 +11,15 @@
 	<body>
 	<%- include('partials/admin_header.ejs') %>
 	<div class="container">
+		<div class="btn-group float-right">
+		    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+		    <i class="fa fa-plus" aria-hidden="true"></i>  Create</button>
+		    <ul class="dropdown-menu" role="menu">
+		      <li><a href="/createcardsort">Card Sort</a></li>
+		      <li><a href="/createtreetest">Tree Test</a></li>
+		      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
+		    </ul>
+	  	</div>
 		<h3>Studies</h3>
 		  	<table class="table table-bordered">
 				<thead>
@@ -64,15 +73,7 @@
 				<% } %>
 				</tbody>
 			</table>
-			<div class="btn-group">
-			    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-			    <i class="fa fa-plus" aria-hidden="true"></i>  Create</button>
-			    <ul class="dropdown-menu" role="menu">
-			      <li><a href="/createcardsort">Card Sort</a></li>
-			      <li><a href="/createtreetest">Tree Test</a></li>
-			      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
-			    </ul>
-		  	</div>
+			
   	</div>
 	</body>
 </html>
