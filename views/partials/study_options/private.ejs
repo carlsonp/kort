@@ -8,6 +8,7 @@ function createResponse(studyID,url){
           	$(`<tr>
 					<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
 					<td>`+response.complete+`</td>
+					<td></td>
 					<td><a class='text-danger delete-response' resid='`+response._id+`' href="">Delete</a></td>
 				</tr>`).appendTo($('#responses_table_body'));
         },
@@ -58,15 +59,25 @@ function deleteResponse(studyID,responseID){
 				<tr>
 					<th>URL</th>
 					<th>Complete</th>
+					<th>Date Submitted</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody id="responses_table_body">
-			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+<!-- 			<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
 				<tr>
 					<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
 					<td><%= singleStudy.incompleteResponses[z].complete %></a></td>
+					<td><%= singleStudy.incompleteResponses[z].date %></a></td>
 					<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.incompleteResponses[z]._id %>');$(this).parent().parent().remove();return false;" href="#">Delete</a></td>
+				</tr>
+			<% } %> -->
+			<% for(var z=0; z < singleStudy.getAllResponses().length; z++) {%>
+				<tr>
+					<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
+					<td><%= singleStudy.getAllResponses()[z].complete %></a></td>
+					<td><%= singleStudy.getAllResponses()[z].date %></a></td>
+					<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.getAllResponses()[z]._id %>');$(this).parent().parent().remove();return false;" href="#">Delete</a></td>
 				</tr>
 			<% } %>
 			</tbody>

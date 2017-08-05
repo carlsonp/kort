@@ -25,6 +25,10 @@ var Study = new mongoose.Schema({
 	private: Boolean,
 });
 
+Study.methods.getAllResponses = function() {
+  return this.completeResponses.concat(this.incompleteResponses);
+};
+
 module.exports = mongoose.model('Study', Study);
 
 
