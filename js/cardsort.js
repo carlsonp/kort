@@ -66,7 +66,7 @@ $(document).ready(function() {
 		// if (cs.studyType == 'open'){
 		// 	setLocationNewGroupButton();
 		// }
-		var group = $("<div class='group' hidden></div>");
+		var group = $("<div class='group'></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
 		var nestedArea = $("<div class='droparea nested accepts-items'></div>");
@@ -74,7 +74,6 @@ $(document).ready(function() {
 		
 		groupTitle.blur(function(event){
 			//helper function for blur event
-
 			var title = event.target;
 			var newName = $(title).text().trim();	
 			if (cs.lastChanged != newName){
@@ -196,12 +195,10 @@ $(document).ready(function() {
 		});
 		}
 		$('#done').hide();
-		
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
 		$('#hiddenType').remove();
 		$('#hiddenActive').remove();
 	}
-
 	loadDatafromDB();
 });
