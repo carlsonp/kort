@@ -20,19 +20,12 @@
 }
 
 #newGroupButton{
-	color: black;
-	padding: 5px;
 	background-color: rgb(219,221,224);
-	margin: 5px;
-	border-radius: 3px;	
-    opacity: 0.6;
-    text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	list-style-type: none;
+    opacity: 0.9;
 }
+
 #newGroupButton:hover{
-	 opacity: 0.85;
+	 opacity: 1;
 }
 
 .custom-row {

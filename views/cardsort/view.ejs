@@ -32,12 +32,10 @@
 			<div class="container-fluid cardsort_topbar">
 				<span class='navbar-brand'><%= singleStudy.title %></span>
 				<%if (singleStudy.data.studyType == 'open') { %>
-				<ul class="navbar-nav">
-					<li style="" class="nav-item" id='newGroupButton'>
-						<i class='fa fa-plus' aria-hidden='true'></i>  New Group
-					</li>
+				<ul class="navbar-nav" style="float:right">
+					<button id='newGroupButton' type="button" class="btn navbar-btn"><i class='fa fa-plus' aria-hidden='true'></i>  New Group</button>
 			    </ul>
-			<% } %>
+				<% } %>
 			</div>
 		</nav>
 
