@@ -49,7 +49,7 @@
 						<div class="input-group">
 							<input id='newCardInput' type="text" class="form-control" placeholder="Enter card name...">
 							<span class="input-group-btn">
-								<button id='addCardBtn' class="btn btn-secondary" type="button">Add</button>
+								<button id='addCardBtn' class="btn btn-default" type="button">Add</button>
 							</span>
 						</div>
 						
@@ -66,8 +66,9 @@
 									<td><a href="#" class="text-danger">Delete</a></td>
 								</tr>
 							<% } %>
-						</table>			
-
+						</table>
+						<br>		
+						<p><a href='#' onclick='addCardsFromDialog()'>Add from list</a></p>
 
 					</div>
 				</div>
@@ -82,7 +83,7 @@
 							<div class="input-group">
 								<input id='newGroupInput' type="text" class="form-control" placeholder="Enter group name...">
 								<span class="input-group-btn">
-									<button id='addGroupBtn' class="btn btn-secondary" type="button">Add</button>
+									<button id='addGroupBtn' class="btn btn-default" type="button">Add</button>
 								</span>
 							</div>
 							
@@ -99,7 +100,9 @@
 										<td><a href="#" class="text-danger">Delete</a></td>
 									</tr>
 								<% } %>
-							</table>			
+							</table>	
+							<br>		
+							<p><a href='#' onclick='addGroupsFromDialog()'>Add from list</a></p>		
 						</div>
 					</div>
 				</div>	
