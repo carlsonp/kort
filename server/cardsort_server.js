@@ -87,13 +87,6 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        var cards = req.body.cards.split(/\r?\n/).map(function(item) {
-             return item.trim();
-        }).filter(function(n){ return n != '' });
-
-        var groups = req.body.groups.split(/\r?\n/).map(function(item) {
-             return item.trim();
-        }).filter(function(n){ return n != '' });
 
         Study.findOne({ _id: req.body.id, ownerID: req.user._id},
             function (err, study) {
@@ -106,8 +99,8 @@ module.exports = {
 				study.title = req.body.title;
                 study.data = {
                     studyType: req.body.studyType,
-                    cards: cards,
-                    groups: groups,
+                    cards: JSON.parse(req.body.cards),
+                    groups: JSON.parse(req.body.groups),
                 }
 				study.status = req.body.status;
                 study.private = req.body.private;

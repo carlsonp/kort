@@ -4,6 +4,11 @@
 		<%- include('../partials/header.ejs') %>
 		<title>Edit Card Sort</title>
 		<script type="text/javascript" src="/js/cardsort_edit.js"></script>
+		<script type="text/javascript" src="/datatables/jquery.dataTables.js"></script>
+		<link rel="stylesheet" type="text/css" href="/datatables/css/jquery.dataTables.css" />
+		<script type="text/javascript" src="/datatables-buttons/dataTables.buttons.js"></script>
+		<script type="text/javascript" src="/datatables-buttons/buttons.html5.js"></script>
+		<link rel="stylesheet" type="text/css" href="/datatables-buttons/buttons.dataTables.css" />
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -12,6 +17,8 @@
 				<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
+			<input hidden name='cards' id='cards' />
+			<input hidden name='groups' id='groups' />
 			<div class='row'>
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
@@ -39,8 +46,29 @@
 				<div class='col-sm-4'>
 					<div class="well">
 						<label for="cards">Cards</label>
-						<p>One card per line.</p>
-						<textarea name="cards" rows="15" cols="30" id="cards"><% for(var j=0; j<singleStudy.data.cards.length; j++) {%><%= singleStudy.data.cards[j]+'\n' %><% } %></textarea>
+						<div class="input-group">
+							<input id='newCardInput' type="text" class="form-control" placeholder="Enter card name...">
+							<span class="input-group-btn">
+								<button id='addCardBtn' class="btn btn-secondary" type="button">Add</button>
+							</span>
+						</div>
+						
+						<table id='cards_table' class="table compact">
+							<thead>
+								<tr>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<% for(var j=0; j<singleStudy.data.cards.length; j++) {%>
+								<tr>
+									<td><%= singleStudy.data.cards[j] %></td>
+									<td><a href="#" class="text-danger">Delete</a></td>
+								</tr>
+							<% } %>
+						</table>			
+
+
 					</div>
 				</div>
 				<div class='col-sm-4'>
@@ -50,9 +78,28 @@
 					<div id='groupInputArea' hidden>
 					<% } %>
 						<div class="well">
-							<label for="groups">Groups</label>
-							<p>One group per line.</p>
-							<textarea name="groups" rows="15" cols="30" id="groups"><% for(var j=0; j<singleStudy.data.groups.length; j++) {%><%= singleStudy.data.groups[j]+'\n' %><% } %></textarea>
+							<label for="cards">Groups</label>
+							<div class="input-group">
+								<input id='newGroupInput' type="text" class="form-control" placeholder="Enter group name...">
+								<span class="input-group-btn">
+									<button id='addGroupBtn' class="btn btn-secondary" type="button">Add</button>
+								</span>
+							</div>
+							
+							<table id='groups_table' class="table compact">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<% for(var j=0; j<singleStudy.data.groups.length; j++) {%>
+									<tr>
+										<td><%= singleStudy.data.groups[j] %></td>
+										<td><a href="#" class="text-danger">Delete</a></td>
+									</tr>
+								<% } %>
+							</table>			
 						</div>
 					</div>
 				</div>	
