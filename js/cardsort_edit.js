@@ -25,6 +25,7 @@ function createGroup(str){
 		groups_table.row.add([str,deleteLink]).draw(false);
 		$('#newGroupInput').val('');
 		updateInputArrays();
+	}
 }
 
 function addCardsFromDialog(){
