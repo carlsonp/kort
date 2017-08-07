@@ -50,7 +50,7 @@ $(document).ready(function() {
 			data: treeStructure,
 			collapseIcon: "glyphicon glyphicon-menu-down",
 			expandIcon:"glyphicon glyphicon-menu-right",
-			selectedBackColor: "gray",
+			selectedBackColor: "#00838F",
 			onhoverColor: "white",
 			borderColor: 'lightgray',
 		});
@@ -145,7 +145,7 @@ $(document).ready(function() {
 	function updateProgressBar(){
 		var status = ((tasks.idx/tasks.list.length)*100)+'%';
 		$('#progressbar').css("width", status);
-		$('#progressbar').html(status);
+		$('#progressbar').html('');
 	}
 	//--------------------------Task JS Object---------------------------
 	//tasks js object to store task related functions and data
