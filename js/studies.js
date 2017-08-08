@@ -1,6 +1,13 @@
 $(document).ready(function() {
 	//intialize tooltips
 	$('[data-toggle="tooltip"]').tooltip();  
+
+	studies_table = $('#studies_table').DataTable({
+		"paging":   false,
+		// "ordering": false,
+		"info":     false,
+		"searching": false,
+	});
 });
 
 function confirmDeleteStudy(href,studyTitle){
