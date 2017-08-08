@@ -1,6 +1,27 @@
+
+.navbar {
+    border: 0px !important;
+    margin-bottom: 0px;
+}
+
+body {
+   /*background-color: #0097A7;*/
+   background-color:#006064;
+}
+.productreactioncards_topbar {
+    /*background-color:#00838F;*/
+    background-color: #00838F;
+
+}
+.productreactioncards_topbar .navbar-brand {
+    color: white;
+}
+
+
 #textArea {
     margin: 15px;
     font-size: 24px;
+    color: white;
 }
 #cardArea {
     margin: 10px;
@@ -14,7 +35,7 @@
     border-radius: 4px;
     width: auto;
     padding: 10px;
-    background-color: #DCDCDC;
+    background-color:#E0F7FA;
     font-size: 18px;
     margin: 5px;
     list-style: none;
@@ -27,7 +48,7 @@
     pointer-events: none;
 }
 #cardArea li.selected {
-    background-color: #585858;
+    background-color: #00ACC1;
     color:white;
 }
 #cardArea li.selected::before {

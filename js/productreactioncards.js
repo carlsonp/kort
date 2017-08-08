@@ -36,11 +36,11 @@ $(document).ready(function() {
 	function enableButton(buttonID){
 		$(buttonID).removeClass('btn-default')
 		$(buttonID).removeClass('disabled')
-		$(buttonID).addClass('btn-primary');
+		$(buttonID).addClass('btn-default');
 	}
 
 	function disableButton(buttonID){
-		$(buttonID).removeClass('btn-primary')
+		$(buttonID).removeClass('btn-default')
 		$(buttonID).addClass('disabled','btn-default');
 	}
 

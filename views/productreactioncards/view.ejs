@@ -4,10 +4,14 @@
 		<%- include('../partials/header.ejs') %>
 
 		<link rel="stylesheet" type="text/css" href="/css/productreactioncards.css" />
-		
+		<style type="text/css">
+			body{
+				background-color: lightgray;
+			}
+		</style>
 		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
-			<div class="container-fluid">
-				<span class='navbar-brand'>Desirability Exercise</span>
+			<div class="container-fluid productreactioncards_topbar">
+				<span class='navbar-brand'><%= singleStudy.title %></span>
 			    <ul class='nav navbar-nav' id='cardsort-navbar'></ul>
 			</div>
 		</nav>
@@ -27,8 +31,8 @@
 		<div class='container'>
 			<div id="textArea">Select at least 10 cards that represent your experience with the system.</div>
 			<div id="cardArea"></div>
-			<button class='btn btn-primary btn-lg btn-right' id='nextBtn'>Next</button>
-			<button class='btn btn-primary btn-lg btn-right' id='done'>Finish</button>
+			<button class='btn btn-default btn-lg btn-right' id='nextBtn'>Next</button>
+			<button class='btn btn-default btn-lg btn-right' id='done'>Finish</button>
 		</div>
 	</body>
 </html>
