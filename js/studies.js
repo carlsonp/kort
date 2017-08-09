@@ -4,9 +4,18 @@ $(document).ready(function() {
 
 	studies_table = $('#studies_table').DataTable({
 		"paging":   false,
-		// "ordering": false,
 		"info":     false,
 		"searching": false,
+		"columns": [
+		    null,
+		    null,
+		    null,
+		    null,
+		    { "orderable": false },
+		    { "orderable": false },
+		    { "orderable": false },
+		    { "orderable": false },
+		  ]
 	});
 });
 
