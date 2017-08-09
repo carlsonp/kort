@@ -24,7 +24,12 @@ html,body {
     color: white;
     background-color: #006064;
     margin: 20px;
-    border-radius: 3px
+    border-radius: 3px;
+}
+.siteSubtitle {
+    color: #006064;
+    font-size: 25px;
+    margin-bottom: 30px;
 }
 .container {
     margin-top: 50px;
