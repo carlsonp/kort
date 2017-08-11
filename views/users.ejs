@@ -4,11 +4,8 @@
 		<%- include('partials/header.ejs') %>
 		<title>Kort: User Management</title>
 		<script type="text/javascript" src="/js/users.js"></script>
-	 	<style type="text/css">
-	 		body {background: white;}
-	 	</style>
 	</head>
-	<body>
+	<body style="background-color: white">
 	<%- include('partials/admin_header.ejs') %>
 	
 		<div class="container">
@@ -24,7 +21,8 @@
 			</div>
 			<% } %>
 
-			<h3>Manage Users</h3>
+			<h3>Users</h3>
+			<p>Create and delete users.</p>
 			<table class='table table-bordered'>
 				<thead>
 					<tr class='active'>
