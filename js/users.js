@@ -13,7 +13,6 @@ $( document ).ready(function() {
 		    },
 			callback: function (result) {
 				if(result){
-					alert('sfs');
 					$('#newUserForm').submit();
 				}
 			}
