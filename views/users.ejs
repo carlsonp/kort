@@ -38,29 +38,12 @@
 					<tr>
 						<td><%= users[i].email %></td>
 						<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
-						<td><a class='text-danger' href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
+						<td><a href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
-			<hr>
-			<h3>Add a User</h3>
-				<form id='newUserForm' class="form-inline" action="/createuser" method="post">
-					<div class="form-group col-xs-4">
-					 	<label for="email">Email</label>
-						<div class="input-group" style='width:100%'>
-							<input id="email" name="email" autocomplete="off" placeholder="Email Address" class="form-control" type="text" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<div class="input-group" style='width:100%'>
-							<input id="password" name="password" autocomplete="off" placeholder="Password" class="form-control" type="password" />
-						</div>
-					</div>
-				</form>
-				<br>
-				<button type="submit" form='newUserForm' class="btn btn-default" value="Create User">Create User</button>		
+			<button id='newUserBtn' class="btn btn-success">New User</button>
 		</div>
 	</body>
 </html>

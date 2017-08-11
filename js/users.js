@@ -1,6 +1,24 @@
 $( document ).ready(function() {
     $( ".successMessage" ).slideDown(300).delay(2000).slideUp(300);
     $( ".errorMessage" ).slideDown(300);
+    $('#newUserBtn').click(function(){
+		bootbox.confirm({
+			message: "<h3>Add User</h3><form id='newUserForm' action='/createuser' method='post'>\
+		    <input id='email' name='email' autocomplete='off' placeholder='Email Address' class='form-control' type='text' /><br/>\
+		    <input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
+		    </form>",
+			closeButton: false,
+		    buttons: {confirm: {label: 'Add User',className: 'btn-success'},
+	        		  cancel: {label: 'Cancel',className: 'btn-link'}
+		    },
+			callback: function (result) {
+				if(result){
+					alert('sfs');
+					$('#newUserForm').submit();
+				}
+			}
+		});
+	});
 });
 function confirmDelete(href,username){
 	 bootbox.confirm({
