@@ -10,18 +10,26 @@
 	<body>
 	<%- include('partials/admin_header.ejs') %>
 	<div class="container">
-		<div class="btn-group float-right">
-		    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-		      New Study</button>
-		    <ul class="dropdown-menu pull-right" role="menu">
-		      <li><a href="/createcardsort">Card Sort</a></li>
-		      <li><a href="/createtreetest">Tree Test</a></li>
-		      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
-		    </ul>
-	  	</div>
-		<h3>Studies</h3>
-			<p>Create, edit, and delete studies.</p>
-		  	<table class="table table-bordered" id='studies_table'>
+		<div class="row">
+			<div class="col-md-4">
+				<h3>Studies</h3>
+				<p>Create, edit, and delete studies.</p>
+			</div>
+			<div class="col-md-4 col-md-offset-4">
+				<div class="btn-group float-right">
+				    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+				      New Study</button>
+				    <ul class="dropdown-menu pull-right" role="menu">
+				      <li><a href="/createcardsort">Card Sort</a></li>
+				      <li><a href="/createtreetest">Tree Test</a></li>
+				      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
+				    </ul>
+			  	</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+		  	<table class="table" id='studies_table'>
 				<thead>
 					<tr class='active'>
 						<th>Name</th>
@@ -73,7 +81,7 @@
 				<% } %>
 				</tbody>
 			</table>
-			
+		</div>	
   	</div>
 	</body>
 </html>
