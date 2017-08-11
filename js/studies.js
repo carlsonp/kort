@@ -6,6 +6,9 @@ $(document).ready(function() {
 		"paging":   false,
 		"info":     false,
 		"searching": false,
+		 "language": {
+	        "emptyTable":     "No studies found :("
+	    },
 		"columns": [
 		    null,
 		    null,
