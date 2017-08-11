@@ -68,8 +68,8 @@ module.exports = function(app, passport, flash) {
 	app.post('/deleteresponse/:studyID/:resid', isLoggedIn, response.delete);
 
 	//???
-	app.get('/admin', isLoggedIn, function (req, res) {
-		res.render('admin.ejs', {email: req.user.email});
+	app.get('/overview', isLoggedIn, function (req, res) {
+		res.render('overview.ejs', {email: req.user.email});
 	});
 
 	//user routes
@@ -82,7 +82,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
 	app.post('/resetpassword', isLoggedIn, user.resetPassword);
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/admin',
+		successRedirect : '/overview',
 		failureRedirect: '/',
 		failureFlash : true
 	}));	  
