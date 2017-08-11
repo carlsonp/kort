@@ -21,27 +21,37 @@
 			</div>
 			<% } %>
 
-			<h3>Users</h3>
-			<p>Create and delete users.</p>
-			<table class='table table-bordered'>
-				<thead>
-					<tr class='active'>
-					<th>Email</th>
-					<th></th>
-					<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for(var i=0; i<users.length; i++) {%>
-					<tr>
-						<td><%= users[i].email %></td>
-						<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
-						<td><a href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
-					</tr>
-					<% } %>
-				</tbody>
-			</table>
-			<button id='newUserBtn' class="btn btn-success">New User</button>
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Users</h3>
+					<p>Create and delete users.</p>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<button id='newUserBtn' class="btn btn-success float-right">New User</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class='table table-bordered'>
+						<thead>
+							<tr class='active'>
+							<th>Email</th>
+							<th></th>
+							<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(var i=0; i<users.length; i++) {%>
+							<tr>
+								<td><%= users[i].email %></td>
+								<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
+								<td><a href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>			
 		</div>
 	</body>
 </html>
