@@ -14,39 +14,57 @@
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
-					<%- include('../partials/study_options/private.ejs') %>
-					
-				    <%if (singleStudy.data.selectableParents == 'on') { %>
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
-				    </div>
-				    <% } else { %>
-				   <div class="checkbox">
-				      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
-				    </div>
-				    <% } %>
-			
-				    <%if (singleStudy.data.showSiblings == 'on') { %>
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
-				    </div>
-				    <% } else { %>
-				   <div class="checkbox">
-				      <label><input type="checkbox" name="showSiblings">Hide Siblings</label>
-				    </div>
-				    <% } %>
+					<div class="well">
+						<label for="selectableParents">Tree Behavior</label>
+					    <%if (singleStudy.data.selectableParents == 'on') { %>
+					    <div class="checkbox">
+					      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
+					    </div>
+					    <% } else { %>
+					   <div class="checkbox">
+					      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
+					    </div>
+					    <% } %>
+
+					    <%if (singleStudy.data.showSiblings == 'on') { %>
+					    <div class="checkbox">
+					      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
+					    </div>
+					    <% } else { %>
+					   <div class="checkbox">
+					      <label><input type="checkbox" name="showSiblings">Hide Siblings</label>
+					    </div>
+					    <% } %>
+					</div>
 				</div>
-				<div class='col-sm-4'>
-					<label for="tasks">Tasks</label><br><textarea style='width:100%' name="tasks" rows="15" cols="30" id="tasks"><% for(var j=0; j<singleStudy.data.tasks.length; j++) {%><%= singleStudy.data.tasks[j]+'\n' %><% } %></textarea>
+				<div class='col-sm-8'>
+					<div class="well">
+						<p><label for="tasks">Tasks</label>
+						<br>One task per line (task numbers will be added automatically).</p>
+						<textarea style='width:100%' name="tasks" rows="15" cols="30" id="tasks"><% for(var j=0; j<singleStudy.data.tasks.length; j++) {%><%= singleStudy.data.tasks[j]+'\n' %><% } %></textarea>
+					</div>
 				</div>
 			</div>
 			<div class='row'>
-				<div class='col-sm-12'>
-					<label for="tree">Tree</label><br><textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.data.tree.length; j++) {%><%= singleStudy.data.tree[j]+'\n' %><% } %></textarea>
+				<div class='col-md-12'>
+					<div class="well">
+						<p><label for="tree">Tree Structure</label>
+						<br>One tree node per line. Use '/' to build structure.</p>
+						<textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.data.tree.length; j++) {%><%= singleStudy.data.tree[j]+'\n' %><% } %></textarea>
+					</div>
+				</div>	
+			</div>
+
+			<div class='row'>
+				<div class="col-md-12">
+					<div class="well">
+						<%- include('../partials/study_options/private.ejs') %>
+					</div>
 				</div>
 			</div>
+
 			<div class='row'>
-				<div class='col-sm-4'>
+				<div class='col-md-4'>
 					<button type="submit" class="btn btn-primary">Save</button>
 					<%if (title == 'Edit') { %>
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>

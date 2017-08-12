@@ -14,10 +14,19 @@
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
-					<%- include('../partials/study_options/private.ejs') %>
 				</div>
 				<div class='col-sm-8'>
-					<label for="words">Words</label><br><textarea style='width:100%' name="words" rows="15" cols="30" id="words"><% for(var j=0; j<singleStudy.data.words.length; j++) {%><%= singleStudy.data.words[j]+'\n' %><% } %></textarea>
+					<div class="well">
+						<p><label for="words">Words</label>
+						<br>One word per line.</p><textarea style='width:100%' name="words" rows="15" cols="30" id="words"><% for(var j=0; j<singleStudy.data.words.length; j++) {%><%= singleStudy.data.words[j]+'\n' %><% } %></textarea>
+					</div>
+				</div>
+			</div>
+						<div class='row'>
+				<div class="col-sm-12">
+					<div class="well">
+						<%- include('../partials/study_options/private.ejs') %>
+					</div>
 				</div>
 			</div>
 			<div class='row'>
