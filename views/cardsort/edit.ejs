@@ -2,18 +2,16 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-		<title>Edit Card Sort</title>
+		<title><%= title %> Card Sort</title>
+		<!-- Include javascript for this ejs page -->
 		<script type="text/javascript" src="/js/cardsort_edit.js"></script>
-		<script type="text/javascript" src="/datatables/jquery.dataTables.js"></script>
-		<link rel="stylesheet" type="text/css" href="/datatables/css/jquery.dataTables.css" />
-		<script type="text/javascript" src="/datatables-buttons/dataTables.buttons.js"></script>
-		<script type="text/javascript" src="/datatables-buttons/buttons.html5.js"></script>
-		<link rel="stylesheet" type="text/css" href="/datatables-buttons/buttons.dataTables.css" />
+		<!-- Include javascript for private.ejs -->
+		<script type="text/javascript" src="/js/private.js"></script>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
-		<h1><%= title %> Cardsort</h1>
+		<h1><%= title %> Card Sort</h1>
 				<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
