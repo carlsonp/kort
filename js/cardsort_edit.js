@@ -105,6 +105,9 @@ $( document ).ready(function() {
 
  	//initalize cards_table DataTable
 	cards_table = $('#cards_table').DataTable({
+		"language": {
+	        "emptyTable":     "Empty"
+	    },
 		"paging":   false,
 		"ordering": false,
 		"info":     false,
@@ -122,6 +125,9 @@ $( document ).ready(function() {
 
 	//initalize groups_table DataTable
 	groups_table = $('#groups_table').DataTable({
+		"language": {
+	        "emptyTable":     "Empty"
+	    },
 		"paging":   false,
 		"ordering": false,
 		"info":     false,
