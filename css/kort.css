@@ -3,6 +3,9 @@ html,body {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
 }
+h1, h2, h3 {
+    font-weight: 300;
+}
 
 .well {
     background: #F8F8F8;
@@ -25,6 +28,7 @@ html,body {
     background-color: #006064;
     margin: 20px;
     border-radius: 3px;
+    font-weight: 300;
 }
 .siteSubtitle {
     color: #006064;
