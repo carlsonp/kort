@@ -8,7 +8,7 @@
 	margin-bottom: 0px;
 }
 .cardsort_topbar {
-	background-color:#00838F;
+	 background-color: #607D8B;
 
 }
 .cardsort_topbar .navbar-brand {
@@ -34,13 +34,13 @@
 
 #initialColumn {
 	height: 100%;
-	background-color:#00ACC1;
+	background-color:#78909C;
 	padding-right: 0px !important;
 }
 
 .dropZone {
 	height: 100%;
-	background-color: #0097A7;
+	background-color:#455A64;
 	padding-right: 0px !important;
 }
 

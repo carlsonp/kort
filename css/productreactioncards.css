@@ -6,11 +6,11 @@
 
 body {
    /*background-color: #0097A7;*/
-   background-color:#006064;
+   background-color:#455A64;
 }
 .productreactioncards_topbar {
     /*background-color:#00838F;*/
-    background-color: #00838F;
+    background-color: #607D8B;
 
 }
 .productreactioncards_topbar .navbar-brand {
@@ -48,7 +48,7 @@ body {
     pointer-events: none;
 }
 #cardArea li.selected {
-    background-color: #00ACC1;
+    background-color: #78909C;
     color:white;
 }
 #cardArea li.selected::before {

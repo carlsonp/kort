@@ -1,14 +1,12 @@
 body {
-    
-    background-color:#00838F;
+    background-color:#455A64;
 }
 .progress {
     height: 5px;
 }
 #progressbar {
     background-image: none;
-    background-color:#006064;
-    
+    background-color:#546E7A;
 }
 
 .navbar {
@@ -16,7 +14,7 @@ body {
     margin-bottom: 0px;
 }
 .treetest_topbar {
-    background-color: #0097A7;
+     background-color: #607D8B;
 }
 .treetest_topbar .navbar-brand {
     color: white;
@@ -26,7 +24,7 @@ body {
     font-size: 22px;
     width: 100%;
     padding: 15px 0px 15px 25px;
-    background-color: #00ACC1;
+    background-color:#607D8B;
     color:white;
     vertical-align: middle;
 }
