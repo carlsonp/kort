@@ -41,7 +41,7 @@ function resetPassword(userid){
 		buttons: {
 			confirm: {
 				label: 'Reset Password',
-				className: 'btn-success'
+				className: 'btn-warning'
 			},
 			cancel: {
 				label: 'Cancel',
@@ -56,7 +56,10 @@ function resetPassword(userid){
 					data: JSON.stringify({userid: userid, password: result}),
 					contentType: "application/json",
 				});
+			} else if (result == null) {
+				//do nothing if cancel was clicked
 			} else {
+				//send up an alert if change button was pressed, but password was empty
 				alert("Password cannot be empty");
 			}
 		}
