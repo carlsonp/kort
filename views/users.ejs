@@ -2,14 +2,12 @@
 <html lang="en">
 	<head>
 		<%- include('partials/header.ejs') %>
-		<title>Kort: User Management</title>
+		<title>Kort: Users</title>
 		<script type="text/javascript" src="/js/users.js"></script>
 	</head>
 	<body style="background-color: white">
 	<%- include('partials/admin_header.ejs') %>
-	
 		<div class="container">
-
 			<% if (createUserErrorMessage.length > 0) { %>
 			<div class="alert alert-danger errorMessage">
 			  <%= createUserErrorMessage %>
@@ -20,10 +18,9 @@
 			  <strong>Success!</strong> <%= createUserSuccessMessage %>
 			</div>
 			<% } %>
-
 			<div class="row">
 				<div class="col-md-4">
-					<h3>Users</h3>
+					<h1>Users</h1>
 					<p>Create and delete users.</p>
 				</div>
 				<div class="col-md-4 col-md-offset-4">

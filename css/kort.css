@@ -3,8 +3,14 @@ html,body {
     width: 100%;
     font-family: 'Open Sans', sans-serif;
 }
-h1, h2, h3 {
+h1, h2 {
     font-weight: 300;
+    color: black;
+}
+
+h3 {
+    color:#00838F;
+    margin-top: 0px;
 }
 
 .well {
