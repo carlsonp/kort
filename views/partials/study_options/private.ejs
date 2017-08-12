@@ -1,4 +1,12 @@
 <script type="text/javascript">
+	$( document ).ready(function() {
+	    //toggles between link and links for responses
+	 	$("[name='private']").change(function() {
+		  $("#responseListArea").toggle();
+		  $("#responseSingleArea").toggle();
+		});
+	 });
+
 	function deleteResponse(studyID,responseID,target){
 		bootbox.confirm({
 	    	size: 'small',

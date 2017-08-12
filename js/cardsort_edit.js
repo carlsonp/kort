@@ -97,12 +97,6 @@ $( document ).ready(function() {
 	  $("#groupInputArea").toggle();
 	});
 
-    //toggles between link and links for responses
- 	$("[name='private']").change(function() {
-	  $("#responseListArea").toggle();
-	  $("#responseSingleArea").toggle();
-	});
-
  	//initalize cards_table DataTable
 	cards_table = $('#cards_table').DataTable({
 		"language": {
