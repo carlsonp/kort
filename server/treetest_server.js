@@ -28,7 +28,8 @@ module.exports = {
             } else {
                 console.log('treetest_server.js: Created new treetest via POST successfully.');
                 var fullUrl = req.protocol + '://' + req.get('host')
-                res.render('treetest/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl,email: req.user.email});
+                //res.render('treetest/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl,email: req.user.email});
+                res.redirect('/edittreetest/'+newStudy._id+'?new=New');
                 res.end();
             }
         });
@@ -41,7 +42,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('treetest/edit.ejs',{title: "Edit", singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('treetest/edit.ejs',{title: req.query.new || "Edit", singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },

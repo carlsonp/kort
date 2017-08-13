@@ -24,8 +24,7 @@ module.exports = {
                 res.end(err);
             } else {
                 console.log('productreactioncards_server.js: Created new cardsort via POST successfully.');
-                var fullUrl = req.protocol + '://' + req.get('host')
-                res.render('productreactioncards/edit.ejs',{title: "Create", singleStudy: newStudy, url: fullUrl, email: req.user.email});
+                res.redirect('/editproductreactioncards/'+newStudy._id+'?new=New');
                 res.end();
             }
         });
@@ -38,7 +37,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('productreactioncards/edit.ejs',{title: "Edit",singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('productreactioncards/edit.ejs',{title:  req.query.new || "Edit",singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },
