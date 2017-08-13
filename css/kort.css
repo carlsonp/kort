@@ -8,9 +8,14 @@ h1, h2 {
     color: black;
 }
 
+.background-gray {
+    background-color: #F8F8F8;
+}
+
 h3 {
-    color:#00838F;
+    color:#5cb85c;
     margin-top: 0px;
+    font-weight: 400;
 }
 
 .well {
@@ -29,15 +34,19 @@ h3 {
     display:none;
 }
 .siteTitle {
+    background:  #006064; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #5cb85c ,#337ab7 ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5cb85c,#337ab7 ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5cb85c,#337ab7 ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5cb85c ,#337ab7 ); /* Standard syntax */
     font-size: 80px;
     color: white;
-    background-color: #006064;
     margin: 20px;
     border-radius: 3px;
     font-weight: 300;
 }
 .siteSubtitle {
-    color: #006064;
+    color: rgb(21,91,150);
     font-size: 25px;
     margin-bottom: 30px;
 }

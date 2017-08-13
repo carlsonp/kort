@@ -5,7 +5,7 @@
 		<title>Kort</title>
 		<script type="text/javascript" src="/js/index.js"></script>
 	</head>
-	<body style="background-color: #F8F8F8;">
+	<body class="background-gray">
 		<div class="container">
 		<a href="https://github.com/carlsonp/kort"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
 			<div class='row'>
@@ -24,21 +24,20 @@
 						<div class="form-group">
 						<h4 class='text-center'></h4>
 							<div class="inputGroupContainer">
-								<input name="email" placeholder="you@server.com" class="form-control" type="text" />
+								<input name="email" placeholder="Email" class="form-control" type="text" />
 						  </div>
 						</div>
 						<div class="form-group">
 							<div class="inputGroupContainer">
 								<input name="password" placeholder="Password" class="form-control" type="password" />
-						  </div>
+						  	</div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-secondary btn-block">Login</button>
+							<button type="submit" class="btn btn-primary btn-sm btn-block">Login</button>
 						</div>
 						<% if (loginMessage.length > 0) { %>
 						<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
 						<% } %>
-
 					</form>
 				</div>			
 			</div>
