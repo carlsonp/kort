@@ -7,7 +7,7 @@
 <div class="radio-inline">
 	<label><input type="radio" name="private" value='true'>Unique link for each participant</label>
 </div>
-<% } else { %> 
+<% } else { %>
 <div class="radio-inline">
 	<label><input type="radio" name="private" value='false'>All participants use same link</label>
 </div>
@@ -18,15 +18,15 @@
 
 <%if (singleStudy.private == false) { %>
 <div id='responseSingleArea'>
-<% } else { %> 
+<% } else { %>
 <div id='responseSingleArea' hidden>
 <% } %>
-<a href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>
+<a target="_blank" href="<%= url %>/study/<%= singleStudy._id %>"><%= url %>/study/<%= singleStudy._id %></a>
 </div>
 
 <%if (singleStudy.private == true) { %>
 <div id='responseListArea' >
-<% } else { %> 
+<% } else { %>
 <div id='responseListArea' hidden>
 <% } %>
 	<table class="table">
@@ -41,7 +41,7 @@
 		<tbody id="responses_table_body">
 		<% for(var z=0; z < singleStudy.getAllResponses().length; z++) {%>
 			<tr>
-				<td><a href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
+				<td><a target="_blank" href='<%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/cardsort/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
 				<td><%= singleStudy.getAllResponses()[z].complete %></a></td>
 				<td><%= singleStudy.getAllResponses()[z].date %></a></td>
 				<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.getAllResponses()[z]._id %>',this);" href="#">Delete</a></td>
