@@ -23,7 +23,7 @@ function renderPages(study,responseID,responseObj){
 
 module.exports = {
     home: function (req, res, next) {
-        Study.find({}, function (err, studies) {
+        Study.find({ownerID: req.user._id}, function (err, studies) {
             if (err) {
                 res.status(504);
                 console.log("study_server.js: Error edit cardsort.");
