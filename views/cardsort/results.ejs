@@ -2,19 +2,19 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-		
+
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
 
 		<title>Card Sort Results</title>
-		
+
 	</head>
 	<body>
 		<%- include('../partials/admin_header.ejs') %>
-		
+
 		<div id='heatmap'></div>
-		
+
 		<script>
-		
+
 		//https://plot.ly/javascript/heatmaps/
 		var xValues = <%- JSON.stringify(cards) %>;
 		var yValues = <%- JSON.stringify(groups) %>;
@@ -24,9 +24,6 @@
 		  [0, '#3D9970'],
 		  [1, '#001f3f']
 		];
-		
-		var text = xValues.map((xi, i) => yValues.map((yi, j) =>
-		`Card: ${xi}<br>Group: ${yi}<br>Number: ${zValues[i][j]}`));
 
 		var data = [{
 		  x: xValues,
@@ -35,10 +32,8 @@
 		  type: 'heatmap',
 		  colorscale: colorscaleValue,
 		  showscale: false,
-		  text: text,
-		  hoverinfo: 'text',
 		}];
-		
+
 		var layout = {
 		  title: 'Card Sort Heatmap',
 		  annotations: [],
@@ -83,9 +78,9 @@
 
 		Plotly.newPlot('heatmap', data, layout, {displayModeBar: false});
 
-		
+
 		</script>
-		
-		
+
+
 	</body>
 </html>
