@@ -11,7 +11,15 @@
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
-		<h1><%= title %> Card Sort</h1>
+		<h1 class="text-center"><%= title %> Card Sort</h1>
+		 <%if (singleStudy.completeResponses.length > 0) { %>
+		<div class="alert alert-danger">
+			<h4><strong>Responses have been recieved!</strong></h4>
+			<p>Making changes to study content may lead in inconsistent results.</p>
+		</div>
+		<% } %>
+
+		<h2>Options</h2>
 				<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
@@ -22,21 +30,21 @@
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
 					<div class="well">
-					    <label for="title">Card Sort Study Type</label><br>
-					    <p>Set this to "open" if you want participants to be able to add new groups and change the names of existing.</p>
+					    <label for="title">Type</label><br>
+					    <p>Set this to "open" if you want participants to be able to create their own groups.</p>
 					    <%if (singleStudy.data.studyType == 'open') { %>
 						    <div class="radio">
-						     	<label><input type="radio" name="studyType" value='open' checked>Open</label>
+						     	<label><input type="radio" name="studyType" value='open' checked>Open Card Sort</label>
 						    </div>
 						    <div class="radio">
-								<label><input type="radio" name="studyType" value='closed'>Closed</label>
+								<label><input type="radio" name="studyType" value='closed'>Closed Card Sort</label>
 						    </div>
 					    <% } else { %> 
 						    <div class="radio">
-						     	<label><input type="radio" name="studyType" value='open'>Open</label>
+						     	<label><input type="radio" name="studyType" value='open'>Open Card Sort</label>
 						    </div>
 						    <div class="radio">
-								<label><input type="radio" name="studyType" value='closed' checked>Closed</label>
+								<label><input type="radio" name="studyType" value='closed' checked>Closed Card Sort</label>
 						    </div></p>
 					    <% } %>
 					</div>
@@ -107,6 +115,8 @@
 			</div>
 			<div class='row'>
 				<div class="col-sm-12">
+				<h2>Responses</h2>
+				<hr>
 					<div class="well">
 						<%- include('../partials/study_options/private.ejs') %>
 					</div>
