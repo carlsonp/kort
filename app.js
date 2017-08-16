@@ -41,6 +41,7 @@ app.use(flash());
 app.use('/css', express.static(__dirname + '/css/'));
 app.use('/js', express.static(__dirname + '/js/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/clipboard', express.static(__dirname + '/node_modules/clipboard/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
 app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
