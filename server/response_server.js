@@ -3,18 +3,6 @@ var Response = mongoose.model('Response');
 var Study = mongoose.model('Study');
 
 module.exports = {
-	// createResponse: function(studyID, title){
-	// 	var response = new Response({
-	// 		title: title,
-	// 	    studyID: studyID,
-	// 	    data: [],
-	// 	    complete: false,
-	// 	});
-	// 	response.save(function (err) {
-	// 	    if (err) return handleError(err);
-	// 	});
-	// 	return response;
-	// },
 	create_ajax: function (req, res) {
 		var response = new Response({
             title: req.body.title,
@@ -25,7 +13,7 @@ module.exports = {
 		Study.findOne({_id: req.params.studyID}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error viewing cardsort.");
+                console.log("response.js: Error creating response.");
                 res.end(err);
             } else {
             	study.incompleteResponses.push(response);
