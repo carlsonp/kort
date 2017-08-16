@@ -3,20 +3,21 @@ var Response = mongoose.model('Response');
 var Study = mongoose.model('Study');
 
 module.exports = {
-	createResponse: function(studyID, title){
-		var response = new Response({
-			title: title,
-		    studyID: studyID,
-		    data: [],
-		    complete: false,
-		});
-		response.save(function (err) {
-		    if (err) return handleError(err);
-		});
-		return response;
-	},
+	// createResponse: function(studyID, title){
+	// 	var response = new Response({
+	// 		title: title,
+	// 	    studyID: studyID,
+	// 	    data: [],
+	// 	    complete: false,
+	// 	});
+	// 	response.save(function (err) {
+	// 	    if (err) return handleError(err);
+	// 	});
+	// 	return response;
+	// },
 	create_ajax: function (req, res) {
 		var response = new Response({
+            title: req.body.title,
 		    studyID: req.params.studyID,
 		    data: [],
 		    complete: false,

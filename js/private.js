@@ -4,7 +4,15 @@ $( document ).ready(function() {
 	  $("#responseListArea").toggle();
 	  $("#responseSingleArea").toggle();
 	});
+
+ 	$('#addResponseBtn').click(function(){
+ 		createResponse($(this).data("studyid"),$(this).data("url"),$('#newResponseInput').val());
+		// return false;
+ 	});
+
  });
+
+
 
 function deleteResponse(studyID,responseID,target){
 	bootbox.confirm({
@@ -33,11 +41,12 @@ function deleteResponse(studyID,responseID,target){
 	});
 }
 
-function createResponse(studyID,url){
+function createResponse(studyID,url,title){
 	$.ajax({
         url: '/createresponse_ajax/'+studyID,
         type: "POST",
-        contentType: "application/json",
+        data: {title: title},
+        // contentType: "application/json",
         success: function(response) {
           	$(`<tr>
 					<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
