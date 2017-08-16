@@ -9,7 +9,8 @@ $( document ).ready(function() {
  		var studyID = $(this).data("studyid");
  		var url = $(this).data("url");
  		var title = $('#newResponseInput').val();
- 		createResponse(studyID,url,title);
+ 		var studyType = $(this).data("studytype");
+ 		createResponse(studyID,url,title,studyType);
  		$('#newResponseInput').val("");
  	});
 
@@ -45,18 +46,17 @@ function deleteResponse(studyID,responseID,target){
 	});
 }
 
-function createResponse(studyID,url,title){
+function createResponse(studyID,url,title,studyType){
 	if (title == '') title = "Anonymous";
 	$.ajax({
         url: '/createresponse_ajax/'+studyID,
         type: "POST",
         data: {title: title},
-        // contentType: "application/json",
         success: function(response) {
           	$(`<tr>
           			<td>`+response.title+`</td>
-					<td><a href='`+url+`/cardsort/`+studyID+`/`+response._id+`'>`+url+`/cardsort/`+studyID+`/`+response._id+`</a></td>
-					<td><button onclick="return false;" class="btn btn-default copyText" data-clipboard-text="`+url+`/cardsort/`+studyID+`/`+response._id+`">Copy</button></td>
+					<td><a href='`+url+`/`+studyType+`/`+studyID+`/`+response._id+`'>`+url+`/`+studyType+`/`+studyID+`/`+response._id+`</a></td>
+					<td><button onclick="return false;" class="btn btn-default copyText" data-clipboard-text="`+url+`/`+studyType+`/`+studyID+`/`+response._id+`">Copy</button></td>
 					<td><a class='text-danger' onclick="deleteResponse('`+studyID+`','`+response._id+`',this);return false;" href="#">Delete</a></td>
 				</tr>`).appendTo($('#responses_table_body'));
         },

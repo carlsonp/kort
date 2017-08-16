@@ -5,13 +5,13 @@ var resp = require('./response_server');
 
 function renderPages(study,responseID,responseObj){
     switch(study.type) {
-        case 'Card Sort':
+        case 'cardsort':
             responseObj.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             break;
-        case 'Tree Test':
+        case 'treetest':
             responseObj.render('treetest/view.ejs',{singleStudy: study, response: responseID});
             break;
-        case 'Product Reaction Cards':
+        case 'productreactioncards':
             responseObj.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
             break;
         default:

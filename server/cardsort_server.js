@@ -9,7 +9,7 @@ module.exports = {
      create: function (req, res) {
         var newStudy = new Study({
             title: "New Card Sort",
-            type: "Card Sort",
+            type: "cardsort",
             data: {
                 studyType: "open",
                 cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],
