@@ -49,10 +49,16 @@ module.exports = {
 							res.redirect('/msg/study404');
 						}
 					} else {
-						var response = resp.createResponse(req.params.id,"Anonymous");
-						study.incompleteResponses.push(response);
-						study.save();
-						renderPages(study,response._id,res)
+                        //if a response id was not passed, create a response and render page
+                        if (req.params.resid == null) {
+                            var response = resp.createResponse(req.params.id,"Anonymous");
+                            study.incompleteResponses.push(response);
+                            study.save();
+                            renderPages(study,response._id,res)
+                        } else {
+                            //if response id was sent - send error page 
+                            res.redirect('/msg/study404');
+                        }	
 					}
 				} else {
 					res.redirect('/msg/notactive');
