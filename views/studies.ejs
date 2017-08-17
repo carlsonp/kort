@@ -37,6 +37,7 @@
 						<th></th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody id="studies_table_body">
@@ -46,6 +47,7 @@
 						<td><%=studies[i].status %></td>
 						<td><%=studies[i].type %></td>
 						<td><%=studies[i].completeResponses.length %></td>
+						<td><a href="/study/copy/<%= studies[i]._id %>">Copy</a></td>
 						<%if (studies[i].type == 'cardsort') { %>
 							<td><a href="/cardsort/preview/<%= studies[i]._id %>">Preview</a></td>
 							<%if (studies[i].completeResponses.length > 0) { %>
@@ -54,6 +56,7 @@
 							<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least 1 submission completed.">Results</a></td>
 							<% } %>
 							<td><a href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
+							
 						<% } %>	
 						<%if (studies[i].type == 'treetest') { %>
 							<td><a href="/treetest/preview/<%= studies[i]._id %>">Preview</a></td>

@@ -42,6 +42,7 @@ module.exports = function(app, passport, flash) {
 	//study routes
 	app.get('/studies', isLoggedIn, study.home);
 	app.get('/study/:id', study.view);
+	app.get('/study/copy/:id', study.copy);
 	app.get('/study/:id/:resid', study.view);
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);

@@ -33,6 +33,25 @@ module.exports = {
             }
         });
     },
+    copy: function (req, res, next) {
+        Study.findOne({_id: req.params.id}, function (err, study) {
+            if (err) {
+                res.status(504);
+                console.log("study_server.js: Error copying study.");
+                res.end(err);
+            } else {
+                var newStudy = new Study({
+                    title: "Copy of "+study.title,
+                    type: study.type,
+                    data: study.data,
+                    status: study.status,
+                    ownerID: study.ownerID,
+                    private: study.private,
+                }).save();
+                res.redirect('/studies');
+            }
+        });
+    },
     view: function (req, res, next) {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
@@ -78,7 +97,6 @@ module.exports = {
         });
     },
     delete: function(req, res, next) {
-
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
