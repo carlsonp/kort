@@ -75,7 +75,7 @@ $(document).ready(function() {
 		groupTitle.blur(function(event){
 			//helper function for blur event
 			var title = event.target;
-			var newName = $(title).text().trim();	
+			var newName = $(title).text().trim().replace(/[^\w\s]/gi, '');
 			if (cs.lastChanged != newName){
 				if (newName == ''){
 					$(title).html('Default Group');
