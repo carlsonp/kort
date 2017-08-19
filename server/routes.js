@@ -29,7 +29,7 @@ module.exports = function(app, passport, flash) {
 	app.get('/treetest/:id/:resid', study.view);
 	app.get('/treetestresults/:id', isLoggedIn, treetest.results);
 	app.post('/updatetreetest', isLoggedIn, treetest.update);
-	
+
 	//product reaction cards routes
 	app.get('/createproductreactioncards', isLoggedIn, productreactioncards.create);
 	app.get('/editproductreactioncards/:id', isLoggedIn, productreactioncards.edit);
@@ -47,7 +47,8 @@ module.exports = function(app, passport, flash) {
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.get('/deletestudy/:id', isLoggedIn, study.delete);
-	
+	app.get('/clearstudy/:id', isLoggedIn, study.clearResponses);
+
 	app.get('/msg/:cm', function (req, res) {
 		switch(req.params.cm) {
 		    case "thanks":
@@ -86,13 +87,13 @@ module.exports = function(app, passport, flash) {
 		successRedirect : '/overview',
 		failureRedirect: '/',
 		failureFlash : true
-	}));	  
+	}));
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
 		res.redirect('/');
 	});
-	
+
 }
 
 function isLoggedIn(req, res, next) {
