@@ -55,6 +55,11 @@ function resetPassword(userid){
 					type: "POST",
 					data: JSON.stringify({userid: userid, password: result}),
 					contentType: "application/json",
+                    success: function (data) {
+                        $("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
+                            $("#password-reset-success").slideUp(500);
+                        });
+                    }
 				});
 			} else if (result == null) {
 				//do nothing if cancel was clicked
