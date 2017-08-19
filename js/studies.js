@@ -1,13 +1,13 @@
 $(document).ready(function() {
 	//intialize tooltips
-	$('[data-toggle="tooltip"]').tooltip();  
+	$('[data-toggle="tooltip"]').tooltip();
 
 	studies_table = $('#studies_table').DataTable({
 		"paging":   false,
 		"info":     false,
 		"searching": false,
 		 "language": {
-	        "emptyTable":     "No studies found :("
+	        "emptyTable":     "No studies found, create one using the button above."
 	    },
 		"columns": [
 		    null,
