@@ -43,7 +43,7 @@
 			<tr>
 				<td><%= singleStudy.getAllResponses()[z].title %></a></td>
 				<td><a target="_blank" href='<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>'><%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %></a></td>
-				<td><a href="#" onclick="return false;" class="copyText" data-placement="right" data-clipboard-text="<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>" data-toggle="tooltip" title="Copied!">Copy</a></td>
+				<td><a href="" class="copyText" data-placement="right" data-clipboard-text="<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.getAllResponses()[z]._id %>" data-toggle="tooltip" title="Copied!">Copy</a></td>
 				<td><a class='text-danger' onclick="deleteResponse('<%= singleStudy._id %>','<%= singleStudy.getAllResponses()[z]._id %>',this);return false;" href="#">Delete</a></td>
 			</tr>
 		<% } %>
