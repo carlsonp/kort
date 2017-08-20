@@ -23,38 +23,46 @@ $(document).ready(function() {
 		    { "orderable": false },
 		    { "orderable": false },
 		    { "orderable": false },
-		  ]
+		]
 	});
+	// onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')
+	$('#studies_table_body').on( "click",'.text-danger', function(event) {
+	    event.preventDefault();
+	    var studyID = $(this).data("studyid");
+	    var title = $(this).data("title");
+	    bootbox.confirm({
+	    	size: 'small',
+	    	closeButton: false,
+		    message: "<b>Delete "+title+"?</b><br>This will delete all responses and associated data.",
+		    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
+	        		  cancel: {label: 'Cancel',className: 'btn-link'}
+		    },
+		    callback: function (result) {
+		    	if(result){
+		    		window.location.href = '/deletestudy/'+studyID
+		    	}
+		    }
+		});
+	});
+
+	$('#studies_table_body').on( "click",'.clear-responses', function(event) {
+	    event.preventDefault();
+	    var studyID = $(this).data("studyid");
+	    var title = $(this).data("title");
+	    bootbox.confirm({
+	    	size: 'small',
+	    	closeButton: false,
+		    message: "<b>Clear "+title+"?</b><br>This will clear all participant responses.",
+		    buttons: {confirm: {label: 'Clear',className: 'btn-danger'},
+	        		  cancel: {label: 'Cancel',className: 'btn-link'}
+		    },
+		    callback: function (result) {
+		    	if(result){
+		    		window.location.href = '/clearstudy/'+studyID
+		    	}
+		    }
+		});
+	});
+
 });
 
-function confirmDeleteStudy(href, studyTitle) {
-	 bootbox.confirm({
-    	size: 'small',
-    	closeButton: false,
-	    message: "<b>Delete "+studyTitle+"?</b><br>This will delete all responses and associated data.",
-	    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
-        		  cancel: {label: 'Cancel',className: 'btn-link'}
-	    },
-	    callback: function (result) {
-	    	if(result){
-	    		window.location.href = href
-	    	}
-	    }
-	});
-}
-
-function confirmClearStudy(href, studyTitle) {
-	 bootbox.confirm({
-    	size: 'small',
-    	closeButton: false,
-	    message: "<b>Clear "+studyTitle+"?</b><br>This will clear all participant responses.",
-	    buttons: {confirm: {label: 'Clear',className: 'btn-danger'},
-        		  cancel: {label: 'Cancel',className: 'btn-link'}
-	    },
-	    callback: function (result) {
-	    	if(result){
-	    		window.location.href = href
-	    	}
-	    }
-	});
-}
