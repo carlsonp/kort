@@ -46,7 +46,7 @@
 					<tr>
 						<td><%=studies[i].title %></td>
 						<td><%=studies[i].status %></td>
-						<td><%=studies[i].type %></td>
+						<td data-type='<%=studies[i].type %>'></td>
 						<td><%=studies[i].completeResponses.length %>
 							<% if (studies[i].completeResponses.length >= 1) { %>
 								<a href="#" onclick="confirmClearStudy('/clearstudy/<%= studies[i]._id %>','<%=studies[i].title %>')">(Clear)</a>
@@ -58,7 +58,7 @@
 							<%if (studies[i].completeResponses.length > 0) { %>
 							<td><a href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
-							<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least 1 submission completed.">Results</a></td>
+							<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">Results</a></td>
 							<% } %>
 							<td><a href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
 
@@ -68,7 +68,7 @@
 							<%if (studies[i].completeResponses.length > 0) { %>
 							<td><a href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
-							<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least 1 submission completed.">Results</a></td>
+							<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">Results</a></td>
 							<% } %>
 							<td><a href="/edittreetest/<%= studies[i]._id %>">Edit</a></td>
 						<% } %>
@@ -77,7 +77,7 @@
 							<%if (studies[i].completeResponses.length > 0) { %>
 								<td><a href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
 							<% } else { %>
-								<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least 1 submission completed.">Results</a></td>
+								<td><a style='color:gray;' onclick="return false;" href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">Results</a></td>
 							<% } %>
 							<td><a href="/editproductreactioncards/<%= studies[i]._id %>">Edit</a></td>
 						<% } %>

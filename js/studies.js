@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	//intialize tooltips
 	$('[data-toggle="tooltip"]').tooltip();
+	//update names of study types in table
+	$('td[data-type="cardsort"]').html('Card Sort');
+	$('td[data-type="treetest"]').html('Tree Test');
+	$('td[data-type="productreactioncards"]').html('Product Reaction Cards');
 
 	studies_table = $('#studies_table').DataTable({
 		"paging":   false,
