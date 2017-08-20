@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	$('.copyText').tooltip({trigger: 'manual'});
     //toggles between link and links for responses
  	$("[name='private']").change(function() {
 	  $("#responseListArea").toggle();
@@ -15,8 +16,28 @@ $( document ).ready(function() {
  	});
 
  	var clip = new Clipboard('.copyText');
+
+ 	$('.copyText').click(function(){
+ 		var tt = $(this); 
+ 		tt.tooltip("show");
+ 		setTimeout(function(){
+			tt.tooltip('hide');
+	    }, 1000);
+ 	});
+
+
  });
 
+function bindTooltip(){
+	$('.copyText').tooltip({trigger: 'manual'});
+	$('.copyText').click(function(){
+ 		var tt = $(this); 
+ 		tt.tooltip("show");
+ 		setTimeout(function(){
+			tt.tooltip('hide');
+	    }, 1000);
+ 	});
+}
 
 
 function deleteResponse(studyID,responseID,target){
@@ -56,7 +77,7 @@ function createResponse(studyID,url,title,studyType){
           	$(`<tr>
           			<td>`+response.title+`</td>
 					<td><a href='`+url+`/`+studyType+`/`+studyID+`/`+response._id+`'>`+url+`/`+studyType+`/`+studyID+`/`+response._id+`</a></td>
-					<td><button onclick="return false;" class="btn btn-default copyText" data-clipboard-text="`+url+`/`+studyType+`/`+studyID+`/`+response._id+`">Copy</button></td>
+					<td><a href="#" data-toggle="tooltip" title="Copied!" onclick="bindTooltip();return false;" data-placement="right" class="copyText" data-clipboard-text="`+url+`/`+studyType+`/`+studyID+`/`+response._id+`">Copy</a></td>
 					<td><a class='text-danger' onclick="deleteResponse('`+studyID+`','`+response._id+`',this);return false;" href="#">Delete</a></td>
 				</tr>`).appendTo($('#responses_table_body'));
         },
