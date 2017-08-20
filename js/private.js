@@ -26,21 +26,16 @@ $( document ).ready(function() {
 			tt.tooltip('hide');
 	    }, 1000);
 	});
+	
+	$('#responses_table_body').on( "click",'.text-danger', function(event) {
+	    event.preventDefault();
+	    var studyID = $(this).data("studyid");
+	    var resid = $(this).data("resid");
+	    deleteResponse(studyID,resid,this);
+	});
 
 
  });
-
-// function bindTooltip(){
-// 	$('.copyText').tooltip({trigger: 'manual'});
-// 	$('.copyText').click(function(){
-//  		var tt = $(this); 
-//  		tt.tooltip("show");
-//  		setTimeout(function(){
-// 			tt.tooltip('hide');
-// 	    }, 1000);
-//  	});
-// }
-
 
 function deleteResponse(studyID,responseID,target){
 	bootbox.confirm({
@@ -80,7 +75,7 @@ function createResponse(studyID,url,title,studyType){
           			<td>`+response.title+`</td>
 					<td><a href='`+url+`/`+studyType+`/`+studyID+`/`+response._id+`'>`+url+`/`+studyType+`/`+studyID+`/`+response._id+`</a></td>
 					<td><a href="" class="copyText" data-placement="right" data-clipboard-text="`+url+`/`+studyType+`/`+studyID+`/`+response._id+`" data-toggle="tooltip" title="Copied!">Copy</a></td>
-					<td><a class='text-danger' onclick="deleteResponse('`+studyID+`','`+response._id+`',this);return false;" href="#">Delete</a></td>
+					<td><a class='text-danger' data-studyid="`+studyID+`" data-resid="`+response._id+`" href="">Delete</a></td>
 				</tr>`).appendTo($('#responses_table_body'));
         },
         error:   function(xhr, text, err) {
