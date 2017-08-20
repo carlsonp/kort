@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	
 	//create clipboard object
 	var clip = new Clipboard('.copyText');
 
