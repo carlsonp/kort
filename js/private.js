@@ -1,11 +1,15 @@
 $( document ).ready(function() {
 	
+	//create clipboard object
+	var clip = new Clipboard('.copyText');
+
     //toggles between link and links for responses
  	$("[name='private']").change(function() {
 	  $("#responseListArea").toggle();
 	  $("#responseSingleArea").toggle();
 	});
 
+ 	//bind response add button
  	$('#addResponseBtn').click(function(){
  		var studyID = $(this).data("studyid");
  		var url = $(this).data("url");
@@ -33,8 +37,7 @@ $( document ).ready(function() {
  		$('#newResponseInput').val("");
  	});
 
- 	var clip = new Clipboard('.copyText');
-
+ 	//bind tooltip objects for clipboar
  	$('#responses_table_body').on( "click",'.copyText', function(event) {
 	    event.preventDefault();
 	    $('.copyText').tooltip({trigger: 'manual'});
@@ -45,6 +48,7 @@ $( document ).ready(function() {
 	    }, 1000);
 	});
 	
+	//bind delete response 
 	$('#responses_table_body').on( "click",'.text-danger', function(event) {
 	    event.preventDefault();
 	    var studyID = $(this).data("studyid");
