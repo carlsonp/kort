@@ -10,7 +10,7 @@ module.exports = {
         var newStudy = new Study({
             title: "Product Reaction Cards",
             type: "productreactioncards",
-            data: {                
+            data: {
                 words: ['Accessible', 'Advanced', 'Annoying', 'Appealing', 'Approachable', 'Attractive', 'Boring', 'Business-like', 'Busy', 'Calm', 'Clean', 'Clear', 'Collaborative', 'Comfortable', 'Compatible', 'Compelling', 'Complex', 'Comprehensive', 'Confident', 'Confusing', 'Connected', 'Consistent', 'Controllable', 'Convenient', 'Creative', 'Customizable', 'Cutting edge', 'Dated', 'Desirable', 'Difficult', 'Disconnected', 'Disruptive', 'Distracting', 'Dull', 'Easy to use', 'Effective', 'Efficient', 'Effortless', 'Empowering', 'Energetic', 'Engaging', 'Entertaining', 'Enthusiastic', 'Essential', 'Exceptional', 'Exciting', 'Expected', 'Familiar', 'Fast', 'Flexible', 'Fragile', 'Fresh', 'Friendly', 'Frustrating','Fun', 'Gets in the way', 'Hard to Use', 'Helpful', 'High quality', 'Impersonal', 'Impressive', 'Incomprehensible', 'Inconsistent', 'Ineffective', 'Innovative', 'Inspiring', 'Integrated', 'Intimidating', 'Intuitive', 'Inviting', 'Irrelevant', 'Low Maintenance', 'Meaningful', 'Motivating', 'Not Secure', 'Not Valuable', 'Novel', 'Old', 'Optimistic', 'Ordinary', 'Organized', 'Overbearing', 'Overwhelming', 'Patronizing', 'Personal', 'Poor quality', 'Powerful', 'Predictable', 'Professional', 'Relevant', 'Reliable', 'Responsive', 'Rigid', 'Satisfying', 'Secure', 'Simplistic', 'Slow', 'Sophisticated', 'Stable', 'Sterile', 'Stimulating', 'Straight Forward', 'Stressful', 'Time-consuming', 'Time-Saving', 'Too Technical', 'Trustworthy', 'Unapproachable', 'Unattractive', 'Uncontrollable', 'Unconventional', 'Understandable', 'Undesirable', 'Unpredictable', 'Unrefined', 'Usable', 'Useful', 'Valuable'],
             },
             status: 'closed',
@@ -57,7 +57,7 @@ module.exports = {
                     }
                 }
                 var combined = allWords.reduce(function (acc, curr) {
-                  if (typeof acc[curr] == 'undefined') {acc[curr] = 1;} 
+                  if (typeof acc[curr] == 'undefined') {acc[curr] = 1;}
                   else {acc[curr] += 1;}
                   return acc;
                 }, {});
@@ -75,13 +75,13 @@ module.exports = {
         var words = req.body.words.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != ''});
-        Study.findOne({_id: req.body.id, ownerID: req.user._id}, 
+        Study.findOne({_id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
                 res.status(504);
                 console.log('productreactioncards_server.js: error updating');
                 res.end(err);
-            } 
+            }
             else {
 				study.title = req.body.title;
                 study.data = {
@@ -91,7 +91,7 @@ module.exports = {
                 study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');
-                res.end();   
+                res.end();
             }
         });
     },

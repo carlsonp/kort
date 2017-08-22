@@ -70,7 +70,7 @@ module.exports = {
                 res.status(504);
                 console.log('treetest_server.js: error updating treetest');
                 res.end(err);
-            } 
+            }
             else {
 				study.title = req.body.title;
                 study.data = {
@@ -83,7 +83,7 @@ module.exports = {
                 study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');
-                res.end();   
+                res.end();
             }
         });
     },

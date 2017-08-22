@@ -79,10 +79,10 @@ module.exports = {
                                 var cardIndex = study.data.cards.indexOf(response[j].cards[k]);
                                 matrix[groupIndex][cardIndex]+=1;
                             }
-                        }    
+                        }
                     }
                 }
-				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, matrix: matrix,email: req.user.email});
+				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix,email: req.user.email});
             }
         });
     },
@@ -94,7 +94,7 @@ module.exports = {
                 res.status(504);
                 console.log('cardsort_server.js: error updating cardsort');
                 res.end(err);
-            } 
+            }
             else {
 				study.title = req.body.title;
                 study.data = {
@@ -106,8 +106,8 @@ module.exports = {
                 study.private = req.body.private;
 				study.save();
                 res.redirect('/studies');
-                res.end();   
+                res.end();
             }
         });
-    },   
+    },
 }
