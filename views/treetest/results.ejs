@@ -23,7 +23,8 @@
 				$('#results_table').DataTable({
 					dom: 'Bfrtip',
 					buttons: [
-						'csvHtml5'
+						{ extend: 'csvHtml5', text: 'Save CSV' },
+						{ extend: 'copy', text: 'Copy'}
 					]
 				});
 			} );
@@ -42,7 +43,7 @@
 					<tr>
 						<td><%= i+1 %></td>
 						<td><%= study.completeResponses[i].date %></td>
-						<td><%= study.completeResponses[i].data %></td>
+						<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
 					</tr>
 				<% } %>
 			</table>			
