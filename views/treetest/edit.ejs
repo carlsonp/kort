@@ -19,24 +19,28 @@
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
 					<div class="well">
-						<label for="selectableParents">Tree Behavior</label>
+						<label for="selectableParents">Options</label>
 					    <%if (singleStudy.data.selectableParents == 'on') { %>
 					    <div class="checkbox">
 					      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
+					      <p>Elements with items nested under them may not be selected as answers.</p>
 					    </div>
 					    <% } else { %>
 					   <div class="checkbox">
 					      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
+					       <p>Elements with items nested under them may not be selected as answers.</p>
 					    </div>
 					    <% } %>
 
 					    <%if (singleStudy.data.showSiblings == 'on') { %>
 					    <div class="checkbox">
 					      <label><input type="checkbox" name="showSiblings" checked>Hide Siblings</label>
+					      <p>When an element is expanded, other elements on that level will be hidden. This can be useful for viewing large structures.</p>
 					    </div>
 					    <% } else { %>
 					   <div class="checkbox">
 					      <label><input type="checkbox" name="showSiblings">Hide Siblings</label>
+					        <p>When an element is expanded, other elements on that level will be hidden. This can be useful for viewing large structures.</p>
 					    </div>
 					    <% } %>
 					</div>
