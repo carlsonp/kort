@@ -15,8 +15,16 @@
 			$(document).ready(function() {
 				$('#results_table').DataTable({
 					dom: 'Bfrtip',
+					bPaginate: false,
+					bInfo: false,
+				  	scrollY:        "500px",
+			        scrollCollapse: true,
+			        paging:         false,
+					language: {
+				        search: "Filter"
+				    },
 					buttons: [
-						{ extend: 'csvHtml5', text: 'Save CSV' },
+						{ extend: 'csvHtml5', text: 'Download CSV' },
 						{ extend: 'copy', text: 'Copy'}
 					]
 				});
@@ -24,24 +32,25 @@
 		</script>
 
 		<div class='container'>
-			<h2><%= study.title %></h2><br>
-			<table id='results_table'>
-				<thead>
-					<tr>
-						<th>Response</th>
-						<th>Date</th>
-						<th>Task</th>
-					</tr>
-				</thead>
-				<% for(var i=0; i<study.completeResponses.length; i++) {%>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= study.completeResponses[i].date %></td>
-						<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
-					</tr>
-				<% } %>
-			</table>
+			<h2><%= study.title %></h2>
+			<div class="well">
+				<table id='results_table'>
+					<thead>
+						<tr>
+							<th>Response #</th>
+							<th>Date</th>
+							<th>Data</th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<study.completeResponses.length; i++) {%>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= study.completeResponses[i].date %></td>
+							<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
+						</tr>
+					<% } %>
+				</table>
+			</div>
 		</div>
-
 	</body>
 </html>
