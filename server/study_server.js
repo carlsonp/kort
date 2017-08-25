@@ -75,9 +75,9 @@ module.exports = {
                             study.save();
                             renderPages(study,response._id,res)
                         } else {
-                            //if response id was sent - send error page 
+                            //if response id was sent - send error page
                             res.redirect('/msg/study404');
-                        }	
+                        }
 					}
 				} else {
 					res.redirect('/msg/notactive');
@@ -107,7 +107,7 @@ module.exports = {
         }).remove(function (err) {
             if (err) {
                 console.log(err);
-                res.end(err);            
+                res.end(err);
             } else {
                 res.redirect('/studies');
                 res.end();
@@ -133,9 +133,25 @@ module.exports = {
                 //save the study object (which will save the child objects)
                 study.save();
                 res.redirect('/msg/thanks');
-                res.end();   
+                res.end();
+            }
+        });
+    },
+    clearResponses: function(req, res, next) {
+        Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err, study) {
+            if (err) {
+                req.status(504);
+                console.log("study_server.js: Cannot find study to clear responses:" + req.params.id);
+                console.log(err);
+                req.end();
+            } else {
+                //clear participant responses
+                study.incompleteResponses = [];
+                study.completeResponses = [];
+                study.save();
+                res.redirect('/studies');
+                res.end();
             }
         });
     },
 }
-
