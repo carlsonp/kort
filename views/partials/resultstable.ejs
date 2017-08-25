@@ -1,0 +1,16 @@
+<table id='results_table'>
+	<thead>
+		<tr>
+			<th>Response #</th>
+			<th>Date</th>
+			<th>Data</th>
+		</tr>
+	</thead>
+	<% for(var i=0; i<study.completeResponses.length; i++) {%>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= study.completeResponses[i].date %></td>
+			<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
+		</tr>
+	<% } %>
+</table>

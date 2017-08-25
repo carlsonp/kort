@@ -3,47 +3,23 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<%- include('../partials/datatables.ejs') %>
-
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
+		<script type="text/javascript" src="/js/results.js"></script>
 
 		<title>Desirability Results</title>
 	</head>
 	<body>
 		<%- include('../partials/admin_header.ejs') %>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#results_table').DataTable({
-					dom: 'Bfrtip',
-					buttons: [
-						'csvHtml5'
-					]
-				});
-			} );
-		</script>
-
 		<div class='container'>
-			<h2><%= study.title %></h2><br>
-			<table id='results_table'>
-				<thead>
-					<tr>
-						<th>Response</th>
-						<th>Date</th>
-						<th>Words</th>
-					</tr>
-				</thead>
-				<% for(var i=0; i<study.completeResponses.length; i++) {%>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= study.completeResponses[i].date %></td>
-						<td><%= study.completeResponses[i].data %></td>
-					</tr>
-				<% } %>
-			</table>
-
-			<br><br>
-
+			<h2><%= study.title %></h2>
+			<hr>
+			<div class="well">
+				<%- include('../partials/resultstable.ejs') %>
+			</div>
+			<div class="well">
 			<div id='bargraph'></div>
+			</div>
 		</div>
 		<script>
 		var data = [{
