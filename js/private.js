@@ -46,6 +46,16 @@ $( document ).ready(function() {
 			tt.tooltip('hide');
 	    }, 1000);
 	});
+
+ 	$('#responseSingleArea').on( "click",'.copyText', function(event) {
+	    event.preventDefault();
+	    $('.copyText').tooltip({trigger: 'manual'});
+	    var tt = $(this); 
+ 		tt.tooltip("show");
+ 		setTimeout(function(){
+			tt.tooltip('hide');
+	    }, 1000);
+	});
 	
 	//bind delete response 
 	$('#responses_table_body').on( "click",'.text-danger', function(event) {
