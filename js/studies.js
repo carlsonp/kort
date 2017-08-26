@@ -5,6 +5,8 @@ $(document).ready(function() {
 	$('td[data-type="cardsort"]').html('Card Sort');
 	$('td[data-type="treetest"]').html('Tree Test');
 	$('td[data-type="productreactioncards"]').html('Product Reaction Cards');
+	$('td[data-status="open"]').html('Accepting Responses');
+	$('td[data-status="closed"]').html('Not Accepting Responses');
 
 	studies_table = $('#studies_table').DataTable({
 		"paging":   false,

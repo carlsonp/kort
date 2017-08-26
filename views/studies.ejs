@@ -45,7 +45,7 @@
 				<% for(var i=0; i<studies.length; i++) {%>
 					<tr>
 						<td><%=studies[i].title %></td>
-						<td><%=studies[i].status %></td>
+						<td data-status="<%=studies[i].status %>"><%=studies[i].status %></td>
 						<td data-type='<%=studies[i].type %>'></td>
 						<td><%=studies[i].completeResponses.length %>
 						<% if (studies[i].completeResponses.length > 0) { %>
