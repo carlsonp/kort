@@ -8,16 +8,17 @@ h1, h2 {
     color: black;
 }
 
-.background-gray {
-    background-color: #F8F8F8;
-}
-
 h3 {
     color:#5cb85c;
     margin-top: 0px;
     font-weight: 400;
 }
-
+.background-gray {
+    background-color: #F8F8F8;
+}
+.background-white {
+    background-color: white;
+}
 .well {
     background: #F8F8F8;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
@@ -57,128 +58,3 @@ h3 {
 .float-right {
     float: right;
 }
-/*
-a:link {
-    color: white;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-a:visited {
-    color: white;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-a:hover {
-    color: lightgrey;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-a:active {
-    color: blue;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-button {
-    background-color: #4CAF50;
-    border: none;
-    font-size: 15px;
-    color:white;
-    padding: 5px;
-    margin: 5px;
-}
-button:hover {
-    background-color: #3e8e41;
-}
-button:active {
-    background-color: #3e8e41;
-}
-
-textarea {
-    color:black;
-}
-input {
-    color:black;
-}
-table, th, td {
-    color: black;
-    border: 1px solid black;
-    background-color: white;
-}
-th {
-    background-color: rgb(0,158,195);
-    color:white;
-}
-th, td {
-    padding: 10px;
-}
-#header { 
-    min-width: 100%;
-    height: 25px;
-    background-color: rgb(0,158,195);
-    color: white;
-    display: table;
-    padding-left: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-#header #title {
-    font-size: 1.1em;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(0, 107, 132);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 20px;
-    font-size: 14px;
-    text-decoration: none;
-    color: white;
-}
-.sidenav a {
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    display: block;
-    transition: 0.1s;
-}
-.sidenav a:hover {
-    color: white;
-    text-decoration: none;
-}
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 15px;
-    font-size: 24px;
-    margin-left: 10px;
-}
-.sidenav .textEntry {
-    padding: 10px;
-    display: table-cell;
-}
-.sidenav .textEntry a{
-    font-size:18px;
-}
-
-.sidenav .textEntry textarea{
-    color: black;
-    width: 90%;
-    height: 400px;
-    font-size: 12px;
-    resize: vertical;
-}
-.sidenav .textEntry button{
-    width: 90%;
-}*/
