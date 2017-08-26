@@ -47,11 +47,7 @@
 						<td><%=studies[i].title %></td>
 						<td data-status="<%=studies[i].status %>"><%=studies[i].status %></td>
 						<td data-type='<%=studies[i].type %>'></td>
-						<td><%=studies[i].completeResponses.length %>
-						<% if (studies[i].completeResponses.length > 0) { %>
-							<a href="#" class='clear-responses' data-studyid="<%= studies[i]._id %>" data-title="<%=studies[i].title %>">(Clear)</a>
-						<% } %>
-						</td>
+						<td><%=studies[i].completeResponses.length %></td>
 						<td><a href="/study/copy/<%= studies[i]._id %>">Copy</a></td>
 						<%if (studies[i].type == 'cardsort') { %>
 							<td><a href="/cardsort/preview/<%= studies[i]._id %>">Preview</a></td>

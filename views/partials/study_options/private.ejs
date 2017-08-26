@@ -30,13 +30,16 @@
 <% } else { %>
 <div id='responseListArea' hidden>
 <% } %>
-	<table class="table">
+	<table id="responses_table" class="table">
 		<thead>
 			<tr>
 				<th>Name</th>
 				<th>URL</th>
 				<th>Copy to Clipboard</th>
-				<th>Delete</th>
+				<th>Delete <% if (singleStudy.getAllResponses().length > 0) { %>
+					<a href="#" class='clear-responses text-danger' data-studyid="<%= singleStudy._id %>" data-title="<%= singleStudy.title %>">(Delete All)</a>
+					<% } %>
+				</th>
 			</tr>
 		</thead>
 		<tbody id="responses_table_body">

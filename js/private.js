@@ -87,6 +87,25 @@ $( document ).ready(function() {
 		    }
 		});
 	});
+
+	$('#responses_table').on( "click",'.clear-responses', function(event) {
+	    event.preventDefault();
+	    var studyID = $(this).data("studyid");
+	    var title = $(this).data("title");
+	    bootbox.confirm({
+	    	size: 'small',
+	    	closeButton: false,
+		    message: "<b>Delete all responses for "+title+"?</b><br>This will delete all responses.",
+		    buttons: {confirm: {label: 'Delete All Responses',className: 'btn-danger'},
+	        		  cancel: {label: 'Cancel',className: 'btn-link'}
+		    },
+		    callback: function (result) {
+		    	if(result){
+		    		window.location.href = '/clearstudy/'+studyID
+		    	}
+		    }
+		});
+	});
  });
 
 
