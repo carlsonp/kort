@@ -13,7 +13,7 @@ module.exports = {
             data: {
                 showSiblings: true,
                 selectableParents: true,
-                tasks: ['Where is the Apple?','Where is the Steak','Where is the Wine?'],
+                tasks: ['Where is the Apple?','Where is the Steak?','Where is the Wine?'],
                 tree: ['Food', 'Food/Meat', 'Food/Meat/Steak', 'Food/Meat/Chicken', 'Food/Meat/Pork', 'Food/Fruit', 'Food/Fruit/Apple', 'Food/Fruit/Banana', 'Food/Fruit/Orange', 'Food/Fruit/Lime', 'Food/Fruit/Grapefruit', 'Drink','Drink/Non-alcoholic', 'Drink/Non-alcoholic/Milk', 'Drink/Non-alcoholic/Water', 'Drink/Non-alcoholic/Juice', 'Drink/Alcohol', 'Drink/Alcohol/Beer', 'Drink/Alcohol/Wine'],
             },
             status: 'closed',
