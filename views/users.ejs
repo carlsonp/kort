@@ -32,7 +32,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<table class='table table-bordered'>
+					<table id="userstable" class='table table-bordered'>
 						<thead>
 							<tr class='active'>
 							<th>Email</th>
@@ -44,8 +44,8 @@
 							<% for(var i=0; i<users.length; i++) {%>
 							<tr>
 								<td><%= users[i].email %></td>
-								<td><a class='text-danger' href='#' onclick="confirmDelete('/deleteuser/<%= users[i]._id %>/','<%= users[i].email %>')">Delete</a></td>
-								<td><a href='#' onclick="resetPassword('<%= users[i]._id %>')">Reset Password</a></td>
+								<td><a data-email="<%= users[i].email %>" data-userid="<%= users[i]._id %>" class='text-danger' href="">Delete</a></td>
+								<td><a data-email="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
 							</tr>
 							<% } %>
 						</tbody>

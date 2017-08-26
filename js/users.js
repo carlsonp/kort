@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     $( ".successMessage" ).slideDown(300).delay(2000).slideUp(300);
     $( ".errorMessage" ).slideDown(300);
+    //bind new user button
     $('#newUserBtn').click(function(){
 		bootbox.confirm({
 			message: "<h3>Add User</h3><form id='newUserForm' action='/createuser' method='post'>\
@@ -18,55 +19,64 @@ $( document ).ready(function() {
 			}
 		});
 	});
-});
-function confirmDelete(href,username){
-	 bootbox.confirm({
-    	size: 'small',
-    	closeButton: false,
-	    message: "<b>Delete "+username+"?</b><br>This will also delete any studies created by this user.",
-	    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
-        		  cancel: {label: 'Cancel',className: 'btn-default'}
-	    },
-	    callback: function (result) {
-	    	if(result){
-	    		window.location.href = href
-	    	}
-	    }
+    //bind delete user link
+	$('#userstable').on( "click",'.text-danger', function(event) {
+		event.preventDefault();
+		var userID = $(this).data("userid");
+		var email = $(this).data("email");
+	    bootbox.confirm({
+	    	size: 'small',
+	    	closeButton: false,
+		    message: "<b>Delete "+email+"?</b><br>This will also delete any studies created by this user.",
+		    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
+	        		  cancel: {label: 'Cancel',className: 'btn-default'}
+		    },
+		    callback: function (result) {
+		    	if(result){
+		    		window.location.href = '/deleteuser/'+userID+'/'
+		    	}
+		    }
+		});
 	});
-}
-function resetPassword(userid){
-	bootbox.prompt({
-		title: "New password",
-		inputType: "password",
-		buttons: {
-			confirm: {
-				label: 'Reset Password',
-				className: 'btn-warning'
+	//bind password reset link
+	$('#userstable').on( "click",'.passwordreset', function(event) {
+		event.preventDefault();
+		var userid = $(this).data("email");
+		bootbox.prompt({
+			title: "New password",
+			inputType: "password",
+			buttons: {
+				confirm: {
+					label: 'Reset Password',
+					className: 'btn-warning'
+				},
+				cancel: {
+					label: 'Cancel',
+					className: 'btn-default'
+				}
 			},
-			cancel: {
-				label: 'Cancel',
-				className: 'btn-default'
+			callback: function(result) {
+				if(result){
+					$.post({
+						url: "/resetpassword",
+						type: "POST",
+						data: JSON.stringify({userid: userid, password: result}),
+						contentType: "application/json",
+		                success: function (data) {
+		                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
+								$("#password-reset-success").slideUp(500);
+		                    });
+		                }
+					});
+				} else if (result == null) {
+					//do nothing if cancel was clicked
+				} else {
+					//send up an alert if change button was pressed, but password was empty
+					alert("Password cannot be empty");
+				}
 			}
-		},
-		callback: function(result) {
-			if(result){
-				$.post({
-					url: "/resetpassword",
-					type: "POST",
-					data: JSON.stringify({userid: userid, password: result}),
-					contentType: "application/json",
-                    success: function (data) {
-                        $("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
-                            $("#password-reset-success").slideUp(500);
-                        });
-                    }
-				});
-			} else if (result == null) {
-				//do nothing if cancel was clicked
-			} else {
-				//send up an alert if change button was pressed, but password was empty
-				alert("Password cannot be empty");
-			}
-		}
+		});
 	});
-}
+
+});
+
