@@ -1,6 +1,22 @@
 $( document ).ready(function() {
     $( ".successMessage" ).slideDown(300).delay(2000).slideUp(300);
     $( ".errorMessage" ).slideDown(300);
+
+	users_table = $('#userstable').DataTable({
+			"paging":   false,
+			"info":     false,
+			"searching": false,
+			 "language": {
+		        "emptyTable": "No users found, create one using the button above."
+		    },
+			"columns": [
+			    null,
+			    { "orderable": false },
+			]
+		});
+
+
+
     //bind new user button
     $('#newUserBtn').click(function(){
 		bootbox.confirm({
