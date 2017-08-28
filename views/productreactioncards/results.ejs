@@ -12,33 +12,36 @@
 		<%- include('../partials/admin_header.ejs') %>
 
 		<div class='container'>
-			<h2><%= study.title %></h2>
-			<hr>
+			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+			<h1>Results for <%= study.title %></h1>
+			<br>
 			<div class="well">
 				<%- include('../partials/resultstable.ejs') %>
 			</div>
 			<div class="well">
-			<div id='bargraph'></div>
+				<h3>Bargraph</h3>
+				<hr>
+				<div id='bargraph'></div>
 			</div>
 		</div>
 		<script>
-		var data = [{
-			type: 'bar',
-			x: <%- JSON.stringify(counts) %>,
-			y: <%- JSON.stringify(words) %>,
-			orientation: 'h',
-		}];
-		var layout = {
-			title: '<%=study.title %>  - Results',
-			autosize: true,
-			margin: {
-				l: 150,
-				pad: 5,
-			},
-		};
+			var data = [{
+				type: 'bar',
+				x: <%- JSON.stringify(counts) %>,
+				y: <%- JSON.stringify(words) %>,
+				orientation: 'h',
+			}];
+			var layout = {
+				title: '',
+				autosize: true,
+				margin: {
+					l: 150,
+					pad: 5,
+				},
+				
+			};
 
-		Plotly.newPlot('bargraph', data, layout);
-
+			Plotly.newPlot('bargraph', data, layout);
 		</script>
 	</body>
 </html>

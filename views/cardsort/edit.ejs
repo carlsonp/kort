@@ -14,16 +14,15 @@
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
-		<h1 class="text-center"><%= title %> Card Sort</h1>
 		 <%if (singleStudy.completeResponses.length > 0) { %>
 		<div class="alert alert-danger">
 			<h4><strong>Responses have been recieved!</strong></h4>
 			<p>Making changes to study content may lead in inconsistent results.</p>
 		</div>
 		<% } %>
-
-		<h2>Options</h2>
-				<hr>
+		<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+		<h1><%= title %> Card Sort</h1>
+		<hr>
 		<form method="POST" action="/updatecardsort">
 			<input hidden name='id' value='<%= singleStudy._id %>' />
 			<input hidden name='cards' id='cards' />
@@ -118,8 +117,6 @@
 			</div>
 			<div class='row'>
 				<div class="col-sm-12">
-				<h2>Invites</h2>
-				<hr>
 					<div class="well">
 						<%- include('../partials/study_options/private.ejs') %>
 					</div>
