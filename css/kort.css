@@ -7,11 +7,12 @@ h1, h2 {
     font-weight: 300;
     color: black;
 }
-
 h3 {
-    color:#5cb85c;
     margin-top: 0px;
     font-weight: 400;
+}
+h3.header {
+    color:#5cb85c;
 }
 .background-gray {
     background-color: #F8F8F8;
