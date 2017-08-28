@@ -27,7 +27,7 @@ $(document).ready(function() {
 		    { "orderable": false },
 		]
 	});
-	// onclick="confirmDeleteStudy('/deletestudy/<%= studies[i]._id %>','<%=studies[i].title %>')
+
 	$('#studies_table_body').on( "click",'.text-danger', function(event) {
 	    event.preventDefault();
 	    var studyID = $(this).data("studyid");
@@ -36,7 +36,7 @@ $(document).ready(function() {
 	    	size: 'small',
 	    	closeButton: false,
 		    message: "<b>Delete "+title+"?</b><br>This will delete all responses and associated data.",
-		    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
+		    buttons: {confirm: {label: 'Delete Study',className: 'btn-danger'},
 	        		  cancel: {label: 'Cancel',className: 'btn-link'}
 		    },
 		    callback: function (result) {

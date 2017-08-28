@@ -44,7 +44,7 @@ $( document ).ready(function() {
 	    	size: 'small',
 	    	closeButton: false,
 		    message: "<b>Delete "+email+"?</b><br>This will also delete any studies created by this user.",
-		    buttons: {confirm: {label: 'Delete',className: 'btn-danger'},
+		    buttons: {confirm: {label: 'Delete User',className: 'btn-danger'},
 	        		  cancel: {label: 'Cancel',className: 'btn-default'}
 		    },
 		    callback: function (result) {
