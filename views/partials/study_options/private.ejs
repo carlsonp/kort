@@ -1,4 +1,4 @@
-<p><label>Links</label></p>
+<p><label>Participant Links (URLs)</label></p>
 
 <%if (!singleStudy.private) { %>
 <div class="radio-inline">
@@ -60,7 +60,7 @@
 		</tbody>
 	</table>
 	<div class="input-group">
-		<input id='newResponseInput' type="text" class="form-control" placeholder="Enter participant name/id...">
+		<input id='newResponseInput' type="text" class="form-control" placeholder="Enter participant name or id">
 		<span class="input-group-btn">
 			<button data-studytype='<%= singleStudy.type %>' data-studyid='<%= singleStudy._id %>' data-url='<%= url %>' id='addResponseBtn' class="btn btn-default" type="button">Add</button>
 		</span>
