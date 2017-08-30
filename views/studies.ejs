@@ -47,20 +47,20 @@
 						<td data-type='<%=studies[i].type %>'></td>
 						<td><%=studies[i].completeResponses.length %></td>
 						<%if (studies[i].type == 'cardsort') { %>
-								<td><a class="btn btn-sm btn-default" href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
-								<td><a class="btn btn-sm btn-default" href="/cardsort/preview/<%= studies[i]._id %>">Preview</a></td>
+								<td><a class="btn btn-link" href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
+								<td><a class="btn btn-link" href="/cardsort/preview/<%= studies[i]._id %>">Preview</a></td>
 						<% } %>
 						<%if (studies[i].type == 'treetest') { %>
-								<td><a class="btn btn-sm btn-default" href="/edittreetest/<%= studies[i]._id %>">Edit</a></td>
-								<td><a class="btn btn-sm btn-default" href="/treetest/preview/<%= studies[i]._id %>">Preview</a></td>								
+								<td><a class="btn btn-link" href="/edittreetest/<%= studies[i]._id %>">Edit</a></td>
+								<td><a class="btn btn-link" href="/treetest/preview/<%= studies[i]._id %>">Preview</a></td>								
 						<% } %>
 						<%if (studies[i].type == 'productreactioncards') { %>
-								<td><a class="btn btn-sm btn-default" href="/editproductreactioncards/<%= studies[i]._id %>">Edit</a></td>
-								<td><a class="btn btn-sm btn-default" href="/productreactioncards/preview/<%= studies[i]._id %>">Preview</a></td>								
+								<td><a class="btn btn-link" href="/editproductreactioncards/<%= studies[i]._id %>">Edit</a></td>
+								<td><a class="btn btn-link" href="/productreactioncards/preview/<%= studies[i]._id %>">Preview</a></td>								
 						<% } %>
 						<td>
 							<div class="btn-group">
-							    <button type="button" class=" btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+							    <button type="button" style="color:darkgray" class=" btn btn-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-ellipsis-h" aria-hidden="true"></i></button>
 							    <ul class="dropdown-menu pull-right" role="menu">
 							      <li><a href="/study/copy/<%= studies[i]._id %>">Copy</a></li>
 
