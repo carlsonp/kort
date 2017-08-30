@@ -3,19 +3,20 @@ $( document ).ready(function() {
     $( ".errorMessage" ).slideDown(300);
 
 	users_table = $('#userstable').DataTable({
-			"paging":   false,
-			"info":     false,
-			"searching": false,
-			 "language": {
-		        "emptyTable": "No users found, create one using the button above."
-		    },
-			"columns": [
-			    null,
-			    { "orderable": false },
-			]
-		});
-
-
+		"bLengthChange": false,
+		"pagingType": "numbers",
+		"pageLength": 10,
+		"info":     true,
+		"searching": false,
+		 "language": {
+	        "emptyTable": "No users found, create one using the button above.",
+	        "info":           "Showing _START_ - _END_ of _TOTAL_ entries",
+	    },
+		"columns": [
+		    null,
+		    { "orderable": false },
+		],
+	});
 
     //bind new user button
     $('#newUserBtn').click(function(){

@@ -9,11 +9,15 @@ $(document).ready(function() {
 	$('td[data-status="closed"]').html('Not Accepting Responses');
 
 	studies_table = $('#studies_table').DataTable({
-		"paging":   false,
-		"info":     false,
+		"bLengthChange": false,
+		"pagingType": "numbers",
+		"pageLength": 10,
+		"info":     true,
 		"searching": false,
+		
 		 "language": {
-	        "emptyTable":     "No studies found, create one using the button above."
+	        "emptyTable":     "No studies found, create one using the button above.",
+	        "info":           "Showing _START_ - _END_ of _TOTAL_ entries",
 	    },
 		"columns": [
 		    null,
@@ -23,8 +27,6 @@ $(document).ready(function() {
 		    { "orderable": false },
 		    { "orderable": false },
 		    { "orderable": false },
-		    // { "orderable": false },
-		    // { "orderable": false },
 		]
 	});
 
