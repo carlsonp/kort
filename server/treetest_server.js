@@ -9,6 +9,7 @@ module.exports = {
         var studyData = req.body;
         var newStudy = new Study({
             title: "Default Tree Test Title",
+            dateCreated: new Date(Date.now()),
             type: "treetest",
             data: {
                 showSiblings: true,

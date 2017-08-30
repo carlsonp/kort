@@ -31,6 +31,7 @@
 				<thead>
 					<tr class='active'>
 						<th>Title</th>
+						<th>Created</th>
 						<th>Status</th>
 						<th>Study Type</th>
 						<th># of Responses</th>
@@ -43,6 +44,7 @@
 				<% for(var i=0; i<studies.length; i++) {%>
 					<tr>
 						<td><%=studies[i].title %></td>
+						<td><%=studies[i].dateCreated %></td>
 						<td data-status="<%=studies[i].status %>"><%=studies[i].status %></td>
 						<td data-type='<%=studies[i].type %>'></td>
 						<td><%=studies[i].completeResponses.length %></td>

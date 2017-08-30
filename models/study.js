@@ -13,6 +13,7 @@ module.exports = mongoose.model('Response', Response);
 var Study = new mongoose.Schema({
 	title: String,
 	type: String,
+	dateCreated: Date,
 	completeResponses: [Response],
 	incompleteResponses: [Response],
 	status: {

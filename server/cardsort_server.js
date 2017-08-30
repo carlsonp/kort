@@ -10,6 +10,7 @@ module.exports = {
         var newStudy = new Study({
             title: "New Card Sort",
             type: "cardsort",
+            dateCreated: new Date(Date.now()),
             data: {
                 studyType: "open",
                 cards: ['Apple','Orange','Banana','Pork','Beef','Chicken','Carrot','Broccoli','Peas'],

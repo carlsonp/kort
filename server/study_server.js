@@ -42,6 +42,7 @@ module.exports = {
             } else {
                 var newStudy = new Study({
                     title: "Copy of "+study.title,
+                    dateCreated: new Date(Date.now()),
                     type: study.type,
                     data: study.data,
                     status: study.status,
