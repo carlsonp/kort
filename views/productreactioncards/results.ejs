@@ -30,6 +30,9 @@
 				x: <%- JSON.stringify(counts) %>,
 				y: <%- JSON.stringify(words) %>,
 				orientation: 'h',
+				marker: {
+					color: '#337ab7',
+			  	},
 			}];
 			var layout = {
 				title: '',
@@ -38,10 +41,13 @@
 					l: 150,
 					pad: 5,
 				},
-				
+				xaxis: {
+					title: "Number of Selections",
+				    dtick: 1,
+			  	},
 			};
 
-			Plotly.newPlot('bargraph', data, layout);
+			Plotly.newPlot('bargraph', data, layout, {staticPlot: false});
 		</script>
 	</body>
 </html>
