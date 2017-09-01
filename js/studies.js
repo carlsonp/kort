@@ -18,6 +18,10 @@ $(document).ready(function() {
 		"language": {
 			"emptyTable":     "No studies found, create one using the button above.",
 			"info":           "Showing _START_ - _END_ of _TOTAL_ entries",
+			"search": "_INPUT_",
+        	"searchPlaceholder": "Search",
+        	"zeroRecords":    "No matching studies found",
+
 		},
 		"columns": [
 			null,
@@ -25,6 +29,7 @@ $(document).ready(function() {
 			null,
 			null,
 			null,
+			{ "orderable": false },
 			{ "orderable": false },
 			{ "orderable": false },
 			{ "orderable": false },
