@@ -60,3 +60,6 @@ h3.header {
 .float-right {
     float: right;
 }
+table.dataTable tbody td {
+    vertical-align: middle;
+}
