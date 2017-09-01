@@ -34,7 +34,8 @@
 						<th>Created</th>
 						<th>Status</th>
 						<th>Study Type</th>
-						<th># of Responses</th>
+						<th>Responses</th>
+						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -44,19 +45,34 @@
 				<% for(var i=0; i<studies.length; i++) {%>
 					<tr>
 						<td><%=studies[i].title %></td>
-						<td><%=studies[i].dateCreated %></td>
+						<td><%=studies[i].dateCreated.toLocaleDateString() %></td>
 						<td data-status="<%=studies[i].status %>"><%=studies[i].status %></td>
 						<td data-type='<%=studies[i].type %>'></td>
 						<td><%=studies[i].completeResponses.length %></td>
 						<%if (studies[i].type == 'cardsort') { %>
+								<%if (studies[i].completeResponses.length > 0) { %>									
+									<td><a class="btn btn-link" href="/cardsortresults/<%= studies[i]._id %>">Results</a></td>
+								<% } else { %>
+									<td></td>
+								<% } %>
 								<td><a class="btn btn-link" href="/editcardsort/<%= studies[i]._id %>">Edit</a></td>
 								<td><a class="btn btn-link" href="/cardsort/preview/<%= studies[i]._id %>">Preview</a></td>
 						<% } %>
 						<%if (studies[i].type == 'treetest') { %>
+								<%if (studies[i].completeResponses.length > 0) { %>									
+									<td><a class="btn btn-link" href="/treetestresults/<%= studies[i]._id %>">Results</a></td>
+								<% } else { %>
+									<td></td>
+								<% } %>
 								<td><a class="btn btn-link" href="/edittreetest/<%= studies[i]._id %>">Edit</a></td>
 								<td><a class="btn btn-link" href="/treetest/preview/<%= studies[i]._id %>">Preview</a></td>								
 						<% } %>
 						<%if (studies[i].type == 'productreactioncards') { %>
+								<%if (studies[i].completeResponses.length > 0) { %>									
+									<td><a class="btn btn-link" href="/productreactioncardsresults/<%= studies[i]._id %>">Results</a></td>
+								<% } else { %>
+									<td></td>
+								<% } %>
 								<td><a class="btn btn-link" href="/editproductreactioncards/<%= studies[i]._id %>">Edit</a></td>
 								<td><a class="btn btn-link" href="/productreactioncards/preview/<%= studies[i]._id %>">Preview</a></td>								
 						<% } %>
@@ -64,31 +80,9 @@
 							<div class="btn-group">
 							    <button type="button" style="color:darkgray" class=" btn btn-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-ellipsis-h" aria-hidden="true"></i></button>
 							    <ul class="dropdown-menu pull-right" role="menu">
-							      <li><a href="/study/copy/<%= studies[i]._id %>">Copy</a></li>
-
-						<%if (studies[i].type == 'cardsort') { %>
-							<%if (studies[i].completeResponses.length > 0) { %>
-							<li><a href="/cardsortresults/<%= studies[i]._id %>">View Results</a></li>
-							<% } else { %>
-							<li><a class="disabled" data-placement="left"  href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">View Results</a></li>
-							<% } %>
-						<% } %>
-						<%if (studies[i].type == 'treetest') { %>
-							<%if (studies[i].completeResponses.length > 0) { %>
-							<li><a href="/treetestresults/<%= studies[i]._id %>">View Results</a></li>
-							<% } else { %>
-							<li><a class="disabled" data-placement="left" href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">View Results</a></li>
-							<% } %>
-						<% } %>
-						<%if (studies[i].type == 'productreactioncards') { %>							
-							<%if (studies[i].completeResponses.length > 0) { %>
-							<li><a href="/productreactioncardsresults/<%= studies[i]._id %>">View Results</a></li>
-							<% } else { %>
-							<li><a class="disabled" data-placement="left" href="#" data-toggle="tooltip" title="Results not available until at least one submission completed.">View Results</a></li>
-							<% } %>							
-						<% } %>
-							<li><a href='#' data-studyid="<%= studies[i]._id %>" data-title="<%=studies[i].title %>" class="text-danger">Delete</a></li>
-						    </ul>
+					      			<li><a href="/study/copy/<%= studies[i]._id %>">Copy</a></li>
+									<li><a href='#' data-studyid="<%= studies[i]._id %>" data-title="<%=studies[i].title %>" class="text-danger">Delete</a></li>
+						    	</ul>
 					  		</div>
 				  		</td>
 					</tr>
