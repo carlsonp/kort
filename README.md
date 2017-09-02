@@ -26,7 +26,7 @@ on the default port 3000.  You can connect via http://localhost:3000
 
 ### Support
 
-Open a Github issue.
+Open a [Github issue](https://github.com/carlsonp/kort/issues).
 
 ### License
 
