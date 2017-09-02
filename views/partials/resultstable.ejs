@@ -1,17 +1,19 @@
-<h3>Data</h3>
+<h3>Raw Data by Response</h3>
 <hr>
 <table id='results_table'>
 	<thead>
 		<tr>
 			<th>Response #</th>
-			<th>Date</th>
+			<th>Title / Name</th>
+			<th>Date Submitted</th>
 			<th>Data</th>
 		</tr>
 	</thead>
 	<% for(var i=0; i<study.completeResponses.length; i++) {%>
 		<tr>
 			<td><%= i+1 %></td>
-			<td><%= study.completeResponses[i].date %></td>
+			<td><%= study.completeResponses[i].title %></td>
+			<td><%= study.completeResponses[i].date.toLocaleDateString() %> (<%= study.completeResponses[i].date.toLocaleTimeString() %>)</td>
 			<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
 		</tr>
 	<% } %>
