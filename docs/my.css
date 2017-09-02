@@ -1,0 +1,19 @@
+body {
+	background-color:#607D8B;
+	font-family: 'Open Sans', sans-serif;
+	color:white;
+}
+h1.title {
+	font-size: 78px;
+	font-weight: 300;
+	margin:0;
+}
+p {
+	font-size: 22px;
+}
+body .header {
+	background-color: #455A64;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	width: 100%;
+}
