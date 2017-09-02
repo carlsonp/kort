@@ -18,6 +18,29 @@
 			<div class="well">
 				<%- include('../partials/resultstable.ejs') %>
 			</div>
+			<div class="well">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Task</th>
+							<th>Responses</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for(var i=0; i < sumResp.length; i++) {%>
+					<tr>
+						<td><%= i+1 %></td>
+						<td><%= study.data.tasks[i] %></td>
+						<td>
+						<% for(var j=0; j<sumResp[i].length; j++) {%>
+							<p><%= sumResp[i][j] %></p>
+						<% } %>		
+						</td>
+					</tr>
+				<% } %>
+				</table>
+			</div>
 		</div>
 	</body>
 </html>

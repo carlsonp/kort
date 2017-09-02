@@ -4,6 +4,53 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
+
+function convertResponseArrayToString(arr){
+    var ret_str = "";
+    for (var i = 1; i < arr.length; i=i+2) {
+        ret_str+="/"+arr[i].toString()
+    }
+    return ret_str
+}
+
+
+// var distances = {};
+// $.map(electrons,function(e,i) {
+//    distances[e.distance] = (distances[e.distance] || 0) + 1;
+//});
+
+function countUniqueInstances(taskArray){
+    taskSets = []
+    for (var task = 0; task < taskArray.length; task++) {
+        var taskSet = {}
+        var singleTask = taskArray[task]
+        for (var response = 0; response < singleTask.length; response++) {
+            taskSet[singleTask[response]] = (taskSet[singleTask[response]] || 0) + 1;
+        }
+        var taskSum = []
+        Object.keys(taskSet).forEach(function(key) {
+            taskSum.push(key+" ("+taskSet[key]+" of "+singleTask.length+" responses)");
+        });
+        taskSets.push(taskSum);
+    }
+    return taskSets
+}
+
+function gatherResponses(tasks, responses){
+    var ret_responses = []
+    for (var i = 0; i < tasks.length; i++) {
+        ret_responses.push([]);
+    }
+
+    for (var i = 0; i < responses.length; i++) {
+        var response = responses[i]
+        for (var j = 0; j < response.data.length; j++) {
+            ret_responses[j].push(convertResponseArrayToString(response.data[j]));
+        }
+    }
+    return countUniqueInstances(ret_responses)
+}
+
 module.exports = {
     create: function (req, res) {
         var studyData = req.body;
@@ -54,7 +101,8 @@ module.exports = {
                 console.log("treetest_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-                res.render('treetest/results.ejs',{study: study, email: req.user.email});
+                var responses = gatherResponses(study.data.tasks, study.completeResponses)
+                res.render('treetest/results.ejs',{study: study, email: req.user.email, sumResp: responses});
             }
         });
     },
