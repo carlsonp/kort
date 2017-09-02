@@ -6,7 +6,7 @@ var resp = require('./response_server');
 
 function convertResponseArrayToString(arr){
     var ret_str = "";
-    for (var i = 1; i < arr.length; i=i+2) {
+    for (var i = 0; i < arr.length; i++) {
         ret_str+="/"+arr[i].toString()
     }
     return ret_str
@@ -14,6 +14,7 @@ function convertResponseArrayToString(arr){
 
 function countUniqueInstances(taskArray){
     taskSets = []
+    taskCounts = []
     for (var task = 0; task < taskArray.length; task++) {
         var taskSet = {}
         var singleTask = taskArray[task]
@@ -21,12 +22,15 @@ function countUniqueInstances(taskArray){
             taskSet[singleTask[response]] = (taskSet[singleTask[response]] || 0) + 1;
         }
         var taskSum = []
+        var taskCount = []
         Object.keys(taskSet).forEach(function(key) {
-            taskSum.push(key+" ("+taskSet[key]+" of "+singleTask.length+" responses)");
+            taskSum.push(key);
+            taskCount.push(taskSet[key]);
         });
         taskSets.push(taskSum);
+        taskCounts.push(taskCount);
     }
-    return taskSets
+    return [taskSets,taskCounts]
 }
 
 function gatherResponses(tasks, responses){
@@ -95,7 +99,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var responses = gatherResponses(study.data.tasks, study.completeResponses)
-                res.render('treetest/results.ejs',{study: study, email: req.user.email, sumResp: responses});
+                res.render('treetest/results.ejs',{study: study, email: req.user.email, taskSet: responses[0], taskCount: responses[1]});
             }
         });
     },

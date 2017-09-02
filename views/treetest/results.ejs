@@ -20,23 +20,40 @@
 			</div>
 			<div class="well">
 				<h3>Responses by Task</h3>
-				<table class="table">
+				<table class="table" id="treetest_table">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>Task</th>
-							<th>Responses</th>
+							<!-- <th>Responses</th> -->
+							<th>Chart</th>
 						</tr>
 					</thead>
 					<tbody>
-					<% for(var i=0; i < sumResp.length; i++) {%>
-					<tr>
+					<% for(var i=0; i < taskSet.length; i++) {%>
+					<tr >
 						<td><%= i+1 %></td>
 						<td><%= study.data.tasks[i] %></td>
 						<td>
-						<% for(var j=0; j<sumResp[i].length; j++) {%>
-							<p><%= sumResp[i][j] %></p>
-						<% } %>		
+							<div id="taskChart<%= i %>" style="height: <%= (taskSet[i].length*15)+180 %>px;">
+							<script type="text/javascript">
+								var layout = {
+									title: '',
+									autosize: true,
+									margin: {
+										l: 60,
+										pad: 10,
+									},
+
+								};
+								Plotly.newPlot('taskChart<%= i %>', [{
+								  type: 'bar',
+								  x: <%- JSON.stringify(taskCount[i]) %>,
+								  y: <%- JSON.stringify(taskSet[i]) %>,
+								  orientation: 'h',
+								}],layout);
+							</script>
+							</div>
 						</td>
 					</tr>
 				<% } %>
