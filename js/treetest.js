@@ -135,7 +135,7 @@ $(document).ready(function() {
 			var textTask = [];
 			for (var j = 0; j < taskNodeIds.length; j++) {
 				var node = $('#tree').treeview('getNode', taskNodeIds[j]);
-				textTask.push(taskNodeIds[j],node.text);
+				textTask.push(node.text);
 			}
 			textAnswers.push(textTask)
 		}
