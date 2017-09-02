@@ -4,7 +4,6 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 
-
 function convertResponseArrayToString(arr){
     var ret_str = "";
     for (var i = 1; i < arr.length; i=i+2) {
@@ -12,12 +11,6 @@ function convertResponseArrayToString(arr){
     }
     return ret_str
 }
-
-
-// var distances = {};
-// $.map(electrons,function(e,i) {
-//    distances[e.distance] = (distances[e.distance] || 0) + 1;
-//});
 
 function countUniqueInstances(taskArray){
     taskSets = []
