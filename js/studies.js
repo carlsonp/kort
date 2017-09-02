@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	//intialize tooltips
-	$('[data-toggle="tooltip"]').tooltip();
 	//update names of study types in table
 	$('td[data-type="cardsort"]').html('Card Sort');
 	$('td[data-type="treetest"]').html('Tree Test');
