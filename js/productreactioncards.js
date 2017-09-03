@@ -51,7 +51,7 @@ $(document).ready(function() {
 	function updateView(){
 		pc.selectedNum = $('#cardArea li.selected').length;
 		if (pc.onStageTwo) {
-			if(pc.selectedNum == pc.secondSelectionLimit && pc.responseID != 'preview'){
+			if(pc.selectedNum == pc.secondSelectionLimit){
 				$( "#cardArea li:not(.selected)").toggleClass('disabled');
 				enableButton('#done');
 			} else {
