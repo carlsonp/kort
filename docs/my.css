@@ -11,10 +11,14 @@ h1.title {
 	letter-spacing: 5px;
 }
 
+.amber {
+	color: #FFC107;
+}
+
 .topText {
 	color:#cfd8dc;
 	font-weight: 300;
-	font-size: 32px;
+	font-size: 38px;
 	margin-top: 20px;
 }
 
@@ -45,7 +49,14 @@ body .header {
 	padding-bottom: 25px;
 	width: 100%;
 }
-
+body .footer {
+	background-color: #455A64;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	width: 100%;
+	text-align: center;
+	margin-top: 25px;
+}
 .section {
 	border-left: 2px solid #ffc107;
 	margin-bottom: 30px;
@@ -55,8 +66,9 @@ img {
 	border: 1px solid #B0BEC5;
 }
 
-a {
+a, a:visited {
 	color: white;
+	text-decoration: underline;
 }
 a:hover {
 	color: #ECEFF1;
