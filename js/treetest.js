@@ -50,7 +50,8 @@ $(document).ready(function() {
 			data: treeStructure,
 			collapseIcon: "glyphicon glyphicon-menu-down",
 			expandIcon:"glyphicon glyphicon-menu-right",
-			selectedBackColor: "#78909C",
+			selectedBackColor: "#FFD54F",
+			selectedColor: "black",
 			onhoverColor: "white",
 			borderColor: 'lightgray',
 		});

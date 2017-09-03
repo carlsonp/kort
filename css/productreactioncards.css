@@ -51,8 +51,8 @@ body {
 }
 
 #cardArea li.selected {
-    background-color: #78909C;
-    color:white;
+    background-color: #FFC107;
+    color:black;
 }
 
 #cardArea li.selected::before {

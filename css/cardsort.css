@@ -20,8 +20,8 @@
 }
 
 #newGroupButton{
-	background-color: rgb(219,221,224);
-    opacity: 0.9;
+	background-color: #FFC107;
+    opacity: 0.7;
 }
 
 #newGroupButton:hover{
