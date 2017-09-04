@@ -25,8 +25,7 @@
 						<tr>
 							<th>#</th>
 							<th>Task</th>
-							<!-- <th>Responses</th> -->
-							<th>Chart</th>
+							<th>Responses</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,26 +33,13 @@
 					<tr >
 						<td><%= i+1 %></td>
 						<td><%= study.data.tasks[i] %></td>
-						<td>
-							<div id="taskChart<%= i %>" style="height: <%= (taskSet[i].length*15)+180 %>px;">
-							<script type="text/javascript">
-								var layout = {
-									title: '',
-									autosize: true,
-									margin: {
-										l: 60,
-										pad: 10,
-									},
-
-								};
-								Plotly.newPlot('taskChart<%= i %>', [{
-								  type: 'bar',
-								  x: <%- JSON.stringify(taskCount[i]) %>,
-								  y: <%- JSON.stringify(taskSet[i]) %>,
-								  orientation: 'h',
-								}],layout);
-							</script>
+						<td style="width:75%">
+							<% for(var j=0; j < taskSet[i].length; j++) {%>
+							<%= taskSet[i][j] %>
+							<div class="progress" style="border-radius: 0px;">
+								<div class="progress-bar" role="progressbar" style="width: <%= (taskCount[i][j]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= taskCount[i][j] %> of <%= study.completeResponses.length %> (<%= Math.floor((taskCount[i][j]/study.completeResponses.length)*100) %>%)</div>
 							</div>
+							<% } %>
 						</td>
 					</tr>
 				<% } %>
