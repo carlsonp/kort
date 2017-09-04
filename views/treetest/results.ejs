@@ -14,7 +14,30 @@
 			<h1>Results for <%= study.title %></h1>
 			<br>
 			<div class="well">
-				<%- include('../partials/resultstable.ejs') %>
+				<h3>Data by Response</h3>
+				<hr>
+				<table id='results_table'>
+					<thead>
+						<tr>
+							<th>Response #</th>
+							<th>Title / Name</th>
+							<th>Date Submitted</th>
+							<% for(var i=0; i<study.data.tasks.length; i++) {%>
+							<th>Task <%= i+1 %></th>
+							<% } %>
+						</tr>
+					</thead>
+					<% for(var i=0; i<study.completeResponses.length; i++) {%>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= study.completeResponses[i].title %></td>
+							<td><%= study.completeResponses[i].date.toLocaleDateString() %> (<%= study.completeResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<study.completeResponses[i].data.length; j++) {%>
+							<td><%= study.completeResponses[i].data[j].toString().replace(/[',]+/g, '/') %></td>
+							<% } %>
+						</tr>
+					<% } %>
+				</table>
 			</div>
 			<div class="well">
 				<h3>Responses by Task</h3>
