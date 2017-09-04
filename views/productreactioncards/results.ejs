@@ -4,50 +4,100 @@
 		<%- include('../partials/header.ejs') %>
 		<%- include('../partials/datatables.ejs') %>
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
-		<script type="text/javascript" src="/js/results.js"></script>
+		<script type="text/javascript" src="/js/productreactioncards-results.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/progressBarAsChart.css"/>
 
-		<title>Desirability Results</title>
+
+		<title>Product Reaction Cards Results</title>
 	</head>
 	<body>
 		<%- include('../partials/admin_header.ejs') %>
-
 		<div class='container'>
 			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 			<h1>Results for <%= study.title %></h1>
 			<br>
 			<div class="well">
-				<%- include('../partials/resultstable.ejs') %>
+				<h3>Words by Response</h3>
+				<hr>
+				<table id='results_table'>
+					<thead>
+						<tr>
+							<th>Response #</th>
+							<th>Title / Name</th>
+							<th>Date Submitted</th>
+							<th>Words</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<study.completeResponses.length; i++) {%>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= study.completeResponses[i].title %></td>
+							<td><%= study.completeResponses[i].date.toLocaleDateString() %> (<%= study.completeResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<study.completeResponses[i].data.length; j++) {%>
+								<td><%= JSON.stringify(study.completeResponses[i].data[j]).replace(/['"]+/g, '') %></td>
+							<% } %>
+						</tr>
+					<% } %>
+				</table>
 			</div>
 			<div class="well">
-				<h3>Bargraph</h3>
+				<h3>Responses by Task</h3>
 				<hr>
-				<div id='bargraph'></div>
+				<table class="table" id="words_table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Word</th>
+							<th># of selections<br>(<%= study.completeResponses.length %> responses total)</th>
+							<th>Percentage</th>
+							<th>Bargraph</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for(var i=0; i < words.length; i++) {%>
+					<tr>
+						<td><%= i+1 %></td>
+						<td><%= words[i] %></td>
+						<td><%= counts[i] %></td>
+						<td><%= Math.floor((counts[i]/study.completeResponses.length)*100) %>%</td>
+						<td style="width:50%">
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" style="width:<%= (counts[i]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>	
+						</td>
+					</tr>
+					<% } %>
+				</table>
 			</div>
 		</div>
 		<script>
-			var data = [{
-				type: 'bar',
-				x: <%- JSON.stringify(counts) %>,
-				y: <%- JSON.stringify(words) %>,
-				orientation: 'h',
-				marker: {
-					color: '#337ab7',
-			  	},
-			}];
-			var layout = {
-				title: '',
-				autosize: true,
-				margin: {
-					l: 150,
-					pad: 5,
-				},
-				xaxis: {
-					title: "Number of Selections",
-				    dtick: 1,
-			  	},
-			};
+			// var data = [{
+			// 	type: 'bar',
+			// 	x: <%- JSON.stringify(counts) %>,
+			// 	y: <%- JSON.stringify(words) %>,
+			// 	orientation: 'h',
+			// 	marker: {
+			// 		color: '#337ab7',
+			//   	},
+			// }];
+			// var layout = {
+			// 	title: '',
+			// 	autosize: true,
+			// 	margin: {
+			// 		l: 150,
+			// 		pad: 5,
+			// 	},
+			// 	xaxis: {
+			// 		title: "Number of Selections",
+			// 	    dtick: 1,
+			//   	},
+			// };
 
-			Plotly.newPlot('bargraph', data, layout, {staticPlot: false});
+			// Plotly.newPlot('bargraph', data, layout, {staticPlot: false});
 		</script>
 	</body>
 </html>
