@@ -1,0 +1,17 @@
+table .progress {
+	background-color: transparent;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	background: white;
+}
+
+table .progress .progress-bar {
+	background-image: none;
+	background-color:#337ab7;
+}
+
+table td .no-border {
+	border: none !important;	
+}

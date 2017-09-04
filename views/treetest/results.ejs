@@ -4,7 +4,7 @@
 		<%- include('../partials/header.ejs') %>
 		<%- include('../partials/datatables.ejs') %>
 		<script type="text/javascript" src="/js/results.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="/css/treetest-results.css" />
 		<title>Tree Test Results</title>
 	</head>
 	<body>
@@ -28,19 +28,25 @@
 					</thead>
 					<tbody>
 					<% for(var i=0; i < taskSet.length; i++) {%>
-					<tr >
+					<tr>
 						<td><%= i+1 %></td>
 						<td><%= study.data.tasks[i] %></td>
-						<td style="width:75%">
+						<td style="width:80%">
+							<table class="table table-condensed">
 							<% for(var j=0; j < taskSet[i].length; j++) {%>
-							<%= taskSet[i][j] %>
-							<div class="progress" style="border-radius: 0px;">
-								<div class="progress-bar" role="progressbar" style="width: <%= (taskCount[i][j]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= taskCount[i][j] %> of <%= study.completeResponses.length %> (<%= Math.floor((taskCount[i][j]/study.completeResponses.length)*100) %>%)</div>
-							</div>
+								<tr>
+									<td class="no-border"><%= taskSet[i][j] %></td>
+									<td class="no-border" style="width:75%;">
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width:<%= (taskCount[i][j]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= taskCount[i][j] %> of <%= study.completeResponses.length %> (<%= Math.floor((taskCount[i][j]/study.completeResponses.length)*100) %>%)</div>
+										</div>
+									</td>
+								</tr>
 							<% } %>
+							</table>
 						</td>
 					</tr>
-				<% } %>
+					<% } %>
 				</table>
 			</div>
 		</div>
