@@ -35,20 +35,23 @@
 	height: calc(100vh - 50px);
 	background-color:#78909C;
 	padding-right: 0px !important;
+	padding-left: 0px !important;
 }
 
 .dropZone {
 	height: calc(100vh - 50px);
 	background-color:#455A64;
-	padding-right: 0px !important;
+	padding-right: 15px !important;
+	/*padding-left: 7px !important;*/
+	margin-left: 0px !important;
 }
 
 .group {
 	width: 100%;
 	color: black;
 	background-color: rgb(219,221,224);
-	margin-top: 15px;
-	border-radius: 4px;	
+	margin-top: 7px;
+	border-radius: 3px;	
     word-wrap: break-word;
     cursor: move;
     /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
@@ -70,7 +73,7 @@
 .group .title {
 	color: black;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 5px;
 }
 
