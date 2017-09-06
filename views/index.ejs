@@ -7,40 +7,41 @@
 	</head>
 	<body class="background-gray">
 		<div class="container">
-		
-			<div class='row'>
-				<div class='col-md-12 '>
-					<div class='siteTitle text-center'>KORT</div>
+			<div class="bgcontainer">
+				<div class='row'>
+					<div class='col-md-12'>
+						<div class='siteTitle text-center'>KORT</div>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class='col-md-12'>
-					<div class="siteSubtitle text-center">Card Sorting, Tree Testing, and Product Reaction Cards</div>
+				<div class="row">
+					<div class='col-md-12'>
+						<div class="siteSubtitle text-center ">Card Sorting, Tree Testing, and Product Reaction Cards</div>
+					</div>
 				</div>
-			</div>
-			<div class='row'>
-				<div class='col-md-4 col-md-offset-4'>
-					<form class="form-horizontal" action="/login" method="post">
-						<div class="form-group">
-						<h4 class='text-center'></h4>
-							<div class="inputGroupContainer">
-								<input name="email" placeholder="Email" class="form-control" type="text" />
-						  </div>
-						</div>
-						<div class="form-group">
-							<div class="inputGroupContainer">
-								<input name="password" placeholder="Password" class="form-control" type="password" />
-						  	</div>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-sm btn-block">Login</button>
-						</div>
-						<% if (loginMessage.length > 0) { %>
-						<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
-						<% } %>
-					</form>
-				</div>			
-			</div>
+				<div class='row'>
+					<div class='col-md-4 col-md-offset-4'>
+						<form class="form-horizontal" action="/login" method="post">
+							<div class="form-group">
+							<h4 class='text-center'></h4>
+								<div class="inputGroupContainer">
+									<input name="email" placeholder="Email" class="form-control" type="text" />
+							  </div>
+							</div>
+							<div class="form-group">
+								<div class="inputGroupContainer">
+									<input name="password" placeholder="Password" class="form-control" type="password" />
+							  	</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-default btn-sm btn-block">Login</button>
+							</div>
+							<% if (loginMessage.length > 0) { %>
+							<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
+							<% } %>
+						</form>
+					</div>			
+				</div>
+			</div>	
 		</div>
 	</body>
 </html>
