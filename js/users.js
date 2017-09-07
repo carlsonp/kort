@@ -7,10 +7,12 @@ $( document ).ready(function() {
 		"pagingType": "numbers",
 		"pageLength": 10,
 		"info":     true,
-		"searching": false,
+		"searching": true,
 		 "language": {
 	        "emptyTable": "No users found, create one using the button above.",
 	        "info":           "Showing _START_ - _END_ of _TOTAL_ entries",
+	        "search": "_INPUT_",
+        	"searchPlaceholder": "Search",
 	    },
 		"columns": [
 		    null,
