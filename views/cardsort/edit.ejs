@@ -14,12 +14,7 @@
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
-		 <%if (singleStudy.completeResponses.length > 0) { %>
-		<div class="alert alert-danger">
-			<h4><strong>Responses have been recieved!</strong></h4>
-			<p>Making changes to study content may lead in inconsistent results.</p>
-		</div>
-		<% } %>
+		 <%- include('../partials/editwarning.ejs') %>
 		<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 		<h1><%= title %> Card Sort</h1>
 		<hr>
