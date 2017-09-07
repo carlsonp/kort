@@ -1,17 +1,17 @@
 <p><label>Participant Links (URLs)</label></p>
 
 <%if (!singleStudy.private) { %>
-<div class="radio-inline">
+<div class="radio">
 	<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
 </div>
-<div class="radio-inline">
+<div class="radio">
 	<label><input type="radio" name="private" value='true'>Unique link for each participant</label>
 </div>
 <% } else { %>
-<div class="radio-inline">
+<div class="radio">
 	<label><input type="radio" name="private" value='false'>All participants use same link</label>
 </div>
-<div class="radio-inline">
+<div class="radio">
 	<label><input type="radio" name="private" value='true' checked>Unique link for each participant</label>
 </div>
 <% } %>
