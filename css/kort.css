@@ -13,6 +13,9 @@ h3 {
 }
 h3.header {
     /*color:#5cb85c;*/
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 .background-gray {
     background-color: #607D8B;
