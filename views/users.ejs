@@ -35,17 +35,17 @@
 					<table id="userstable" class='table'>
 						<thead>
 							<tr class='active'>
-							<th>Email</th>
-							<th></th>
-						
+								<th>Email</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<% for(var i=0; i<users.length; i++) {%>
 							<tr>
 								<td><%= users[i].email %></td>
-								<td><a data-email="<%= users[i].email %>" data-userid="<%= users[i]._id %>" class='text-danger' href="">Delete</a> | <a data-email="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
-								
+								<td><a data-email="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
+								<td><a data-email="<%= users[i].email %>" data-userid="<%= users[i]._id %>" class='text-danger' href="">Delete</a></td>
 							</tr>
 							<% } %>
 						</tbody>
