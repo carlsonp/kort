@@ -52,13 +52,13 @@ module.exports = function(app, passport, flash) {
 	app.get('/msg/:cm', function (req, res) {
 		switch(req.params.cm) {
 		    case "thanks":
-		        res.render('msg.ejs', {titleline: "Thanks!", msg: "Your response has been recorded"});
+		        res.render('msg.ejs', {titleline: "Thank you.", msg: "Your response has been recorded."});
 		        break;
 		    case "study404":
 		        res.render('msg.ejs', {titleline: "Can't find the study. Sorry :(", msg: "Your study couldn't be found."});
 		        break;
 			case "notactive":
-		        res.render('msg.ejs', {titleline: "Sorry. The study isn't accepting responses.", msg: "Contact your study coordinator."});
+		        res.render('msg.ejs', {titleline: "Sorry. The study isn't accepting responses.", msg: "The study may be over or has yet to start. Contact your study coordinator or try again later."});
 		        break;
 		    default:
 		        res.redirect('/');
