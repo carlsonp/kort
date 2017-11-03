@@ -25,6 +25,7 @@ const connection = mongoose.connect(mongoURL, { useMongoClient: true });
 //load in models
 require('./models/user');
 require('./models/study');
+require('./models/upload');
 
 //setup a default admin account in Mongo
 require('./server/createadmin_user')(adminUser, adminPassword);
