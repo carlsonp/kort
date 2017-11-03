@@ -5,11 +5,48 @@ var treetest = require('./treetest_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 var response = require('./response_server');
+var upload = require('./upload_server');
+var mongoose = require('mongoose');
+
+const multer = require('multer');
+const multerConf = {
+	storage: multer.diskStorage({
+		destination: function(req, file, next){
+			next(null,'./uploads/images');
+		},
+		filename: function(req, file, next){
+			const ext = file.mimetype.split('/')[1];
+			next(null,file.fieldname + '-' + Date.now() + '.' + ext);
+		}
+	}),
+	fileFilter: function(req, file, next){
+		if(!file){
+			next()
+		}
+		const image = file.mimetype.startsWith('image');
+		if(image){
+			next(null,true);
+		} else {
+			next({message: "File not supported"},false);
+		}
+	}
+};
 
 module.exports = function(app, passport, flash) {
 
 	app.get('/', function (req, res) {
 		res.render('index.ejs', { loginMessage: req.flash('loginMessage') });
+	});
+
+	//upload routes
+	app.post('/upload', multer(multerConf).single('photo'), upload.create);
+	//todo
+	// app.post('/api/uploaddelete', multer(multerConf).single('photo'), upload.create);
+	// app.post('/upload/getPath', multer(multerConf).single('photo'), upload.create);
+	
+	//sample page for upload testing
+	app.get('/uploadtest', function (req, res) {
+		res.render('upload.ejs',{imgpath: ""});
 	});
 
 	//card sort routes

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form action='/upload' method="POST" enctype="multipart/form-data">
+			<input type="file" name="photo" id="photo">
+			<input type="submit" value="upload image">
+		</form>
+		<img src="<%= imgpath %>">
+	</body>
+</html>

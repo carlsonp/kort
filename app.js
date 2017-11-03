@@ -40,6 +40,7 @@ app.use(flash());
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
 //https://expressjs.com/en/starter/static-files.html
 app.use('/css', express.static(__dirname + '/css/'));
+app.use('/uploads', express.static(__dirname + '/uploads/'));
 app.use('/js', express.static(__dirname + '/js/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/clipboard', express.static(__dirname + '/node_modules/clipboard/dist/'));
