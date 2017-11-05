@@ -36,6 +36,7 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "font-awesome": "^4.7.0",
+    "fs": "0.0.1-security",
     "jquery": "^3.2.1",
     "mongoose": "^4.11.7",
     "morgan": "^1.8.2",
