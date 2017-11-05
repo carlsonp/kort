@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<form action='/upload' method="POST" enctype="multipart/form-data">
-			<input type="file" name="photo" id="photo">
-			<input type="submit" value="upload image">
-		</form>
-		<img src="<%= imgpath %>">
-	</body>
+	<head>
+		<%- include('partials/header.ejs') %>
+		<title>Kort: Uploads Test Page</title>
+
+	<script>
+		$( document ).ready(function() {
+			$('#uploadForm').submit(function() {
+		        $(this).ajaxSubmit({
+		            error: function(xhr) {
+		        		status('Error: ' + xhr.status);
+		            },
+		            success: function(response) {
+		        		$(`<img data-img-id="`+response._id+`" src="`+response.path+`">`).appendTo($('body'));
+		                console.log(response.path,response._id);
+		            }
+		    	});
+		    return false;
+		    }); 
+
+		 });
+	</script>
+
+	</head>
+	 <body>
+      <form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post">
+      <input type="file" name="photo" />
+      <input type="submit" value="Upload Image" name="submit">
+      <span id = "status"></span>
+    </form>
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 </html>
