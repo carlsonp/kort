@@ -3,7 +3,17 @@
 	<head>
 		<%- include('partials/header.ejs') %>
 		<title>Kort: Uploads Test Page</title>
-
+	<style type="text/css">
+		input[type="file"] {
+			display: none;
+		}
+		.custom-file-upload {
+		    border: 1px solid #ccc;
+		    display: inline-block;
+		    padding: 6px 12px;
+		    cursor: pointer;
+		}
+	</style>
 	<script>
 		$( document ).ready(function() {
 			$('#uploadForm').submit(function() {
@@ -12,24 +22,45 @@
 		        		status('Error: ' + xhr.status);
 		            },
 		            success: function(response) {
-		        		$(`<img data-img-id="`+response._id+`" src="`+response.path+`">`).appendTo($('body'));
-		                console.log(response.path,response._id);
+		            	console.log(response.path,response._id);
+		        		$(`<div><img data-img-id="`+response._id+`" src="`+response.path+`"><a class="delIMG" href="#" data-img-id="`+response._id+`">Delete</a></div>`).appendTo($('#imgArea'));
+
 		            }
 		    	});
-		    return false;
+		    	return false;
 		    }); 
+		    $('#imgArea').on("click",'.delIMG', function(event) {
+				$.ajax({
+			        url: '/delupload/'+$(event.target).data('img-id'),
+			        type: "POST",
+			        data: {title: "title"},
+			        success: function(response) {
+			        	if(response){
+			        		$(event.target).parent().remove();	
+			        	}
+			        },
+			        error:   function(xhr, text, err) {
+			      		console.log("Response: Please check ajax request");
+			        }
+			  	});
+		    });
 
+		    $("#openFileDialog").change(function () {
+				$("#uploadForm").submit();
+			});
 		 });
 	</script>
 
 	</head>
 	 <body>
-      <form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post">
-      <input type="file" name="photo" />
-      <input type="submit" value="Upload Image" name="submit">
-      <span id = "status"></span>
-    </form>
+		<form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post">
+			<label class="custom-file-upload">
+				<input id="openFileDialog" type="file" name="photo"/>
+	    		Add Image
+			</label>
+    	</form>
   </body>
+  <div id="imgArea"></div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 </html>

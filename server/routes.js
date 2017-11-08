@@ -40,7 +40,7 @@ module.exports = function(app, passport, flash) {
 
 	//upload routes
 	app.post('/upload', multer(multerConf).single('photo'), upload.create);
-	app.get('/delupload/:id', upload.delete);
+	app.post('/delupload/:id', upload.delete);
 	//todo
 	// app.post('/api/uploaddelete', multer(multerConf).single('photo'), upload.create);
 	app.post('/upload/getPath', upload.getPathById);
