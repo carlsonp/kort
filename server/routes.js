@@ -39,14 +39,14 @@ module.exports = function(app, passport, flash) {
 	});
 
 	//upload routes
-	app.post('/upload', multer(multerConf).single('photo'), upload.create);
-	app.post('/delupload/:id', upload.delete);
+	app.post('/upload', isLoggedIn, multer(multerConf).single('photo'), upload.create);
+	app.post('/delupload/:id', isLoggedIn, upload.delete);
 	//todo
-	// app.post('/api/uploaddelete', multer(multerConf).single('photo'), upload.create);
-	app.post('/upload/getPath', upload.getPathById);
-	
+	// app.post('/api/uploaddelete', isLoggedIn, multer(multerConf).single('photo'), upload.create);
+	app.post('/upload/getPath', isLoggedIn, upload.getPathById);
+
 	//sample page for upload testing
-	app.get('/uploadtest', function (req, res) {
+	app.get('/uploadtest', isLoggedIn, function (req, res) {
 		res.render('upload.ejs',{imgpath: ""});
 	});
 
