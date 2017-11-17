@@ -7,7 +7,7 @@ A web application for
 [card sorting](https://en.wikipedia.org/wiki/Card_sorting),
 [tree testing](https://en.wikipedia.org/wiki/Tree_testing),
 and [product reaction cards](https://en.wikipedia.org/wiki/Microsoft_Reaction_Card_Method_(Desirability_Testing)).
-
+See the linked [website for screenshots and additional details.](https://carlsonp.github.io/kort/)
 
 ### Install
 
