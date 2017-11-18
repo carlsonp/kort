@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Upload = mongoose.model('Upload');
 var fs = require("fs")
+var path = require('path');
 
 module.exports = {
     create: function(req,res){
@@ -9,20 +10,16 @@ module.exports = {
                     title: req.file.filename,
                     path: req.file.path,
             });
-            //create new file path
-            var pathToArray = req.file.path.split('\\');
-            var dir = pathToArray[0]+'\\'+pathToArray[1]+"\\";
-            var ext = pathToArray[2].split('.')[1];
-            var newFileName = upload._id+"."+ext;
-
-            fs.rename(req.file.path, dir+newFileName, function (err) {
+            var filepath = path.parse(req.file.path);
+            var newFileName = filepath.dir+filepath.sep+upload._id+filepath.ext;
+            fs.rename(req.file.path, newFileName, function (err) {
               if (err) throw err;
-              console.log('renamed complete');
+              console.log('upload_server.js: rename complete');
             });
-            upload.path = dir+newFileName;
+            upload.path = newFileName;
             upload.save(function (err) {
                 if(err){
-                    console.log('cardsort_server.js: Error creating new cardsort via POST.');
+                    console.log('upload_server.js: Error creating new upload.');
                     res.status(504);
                     res.end(err);
                 } else {
