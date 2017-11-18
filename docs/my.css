@@ -74,3 +74,12 @@ a:hover {
 	color: #ECEFF1;
 }
 
+.modal-dialog {
+  width: 85%;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
