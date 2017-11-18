@@ -1,6 +1,6 @@
 package-lock.json
 
-uploads/images/*
+uploads/*
 
 # Logs
 logs
