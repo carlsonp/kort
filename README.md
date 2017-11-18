@@ -11,17 +11,23 @@ See the linked [website for screenshots and additional details.](https://carlson
 
 ### Install
 
-1. Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
-by editing the `app.js` file.
+1. Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`) or [download a release](https://github.com/carlsonp/kort/releases).
 
-2. Edit the secretHash value in `app.js` and provide your own unique value.
+2. Install [Node.js](https://nodejs.org)
 
-3. Run `npm install` on the commandline.  This will install the dependencies.
+3. Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
+by editing the `app.js` file and setting the `mongoURL`.
 
-4. Run `node app.js` from the main directory.  This will start the NodeJS server
+4. Edit the `secretHash` value in `app.js` and provide your own unique value.
+
+5. Edit the `adminPassword` value in `app.js`.
+
+6. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
+
+7. Run `node app.js` from the main directory.  This will start the NodeJS server
 on the default port 3000.  You can connect via http://localhost:3000
 
-5. The default admin user in `app.js` will be created upon first launch.
+8. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
 
 
 ### Support
