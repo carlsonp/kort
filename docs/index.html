@@ -7,9 +7,16 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="my.css" />
+		<script type="text/javascript">
+			$(function() {
+				$('.pop').on('click', function() {
+					$('.imagepreview').attr('src', $(this).find('img').attr('src'));
+					$('#imagemodal').modal('show');   
+				});		
+			});
+		</script>
 	</head>
 	<body>
-		
 		<div class="header">
 			<div class="container">
 				<h1 class="title">KORT</h1>
@@ -29,17 +36,18 @@
 			</div>
 			<div class="row section">
 				<div class="col-sm-6">
-						<p>Card sorting is a method for learning how people group concepts. There are two primary types: <i>open</i> and <i>closed</i> card sorts. In <i>open</i> card sorts, participants are asked to group a set of concepts using their own created groups. In <i>closed</i> card sorts, participants must organize a set of concepts with a predefined set of groups.</p>
-						<p>Learn more:</p>
-						<ul>
-							<li><a target="_blank" href="https://en.wikipedia.org/wiki/Card_sorting">Card Sorting - Wikipedia</a></li>
-							<li><a target="_blank" href="https://www.usability.gov/how-to-and-tools/methods/card-sorting.html">Card Sorting - Usability.gov</a></li>
-							<li><a target="_blank" href="https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed/card-sorting">Card Sorting - Interaction Design Foundation</a></li>
-						</ul>
-					
+					<p>Card sorting is a method for learning how people group concepts. There are two primary types: <i>open</i> and <i>closed</i> card sorts. In <i>open</i> card sorts, participants are asked to group a set of concepts using their own created groups. In <i>closed</i> card sorts, participants must organize a set of concepts with a predefined set of groups.</p>
+					<p>Learn more:</p>
+					<ul>
+						<li><a target="_blank" href="https://en.wikipedia.org/wiki/Card_sorting">Card Sorting - Wikipedia</a></li>
+						<li><a target="_blank" href="https://www.usability.gov/how-to-and-tools/methods/card-sorting.html">Card Sorting - Usability.gov</a></li>
+						<li><a target="_blank" href="https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed/card-sorting">Card Sorting - Interaction Design Foundation</a></li>
+					</ul>
 				</div>
 				<div class="col-sm-6">
-					<img class="img-responsive" src="cs.png">
+					<a href="#" class="pop">
+						<img class="img-responsive" src="cs.png">
+					</a>
 				</div>
 			</div>
 			
@@ -59,7 +67,9 @@
 					</ul>
 				</div>
 				<div class="col-sm-6">
-					<img class="img-responsive" src="tt.png">
+					<a href="#" class="pop">
+						<img class="img-responsive" src="tt.png">
+					</a>
 				</div>
 			</div>
 			
@@ -79,14 +89,28 @@
 					</ul>
 				</div>
 				<div class="col-sm-6">
-					<img class="img-responsive" src="prc.png">
+					<a href="#" class="pop">
+						<img class="img-responsive" src="prc.png">
+					</a>
 				</div>
 			</div>
 		</div>	
 		<div class="row">
-				<div class="footer">
-					<span class="text-center">Kort is licensed under the <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPLv3</a>. Need support? Submit a <a target="_blank" href="https://github.com/carlsonp/kort/issues">Github issue</a>.</span>
-				</div>
+			<div class="footer">
+				<span class="text-center">Kort is licensed under the <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPLv3</a>. Need support? Submit a <a target="_blank" href="https://github.com/carlsonp/kort/issues">Github issue</a>.</span>
 			</div>
+		</div>
+
+		<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		    	<div class="modal-content">              
+		      		<div class="modal-body">
+			      		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        	<img src="" class="imagepreview" style="width: 100%;" >
+			      	</div>
+			    </div>
+			</div>
+		</div>
+
 	</body>	
 </html>
