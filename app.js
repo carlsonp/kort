@@ -3,6 +3,7 @@ const mongoURL = 'mongodb://127.0.0.1/kort'
 const adminUser = "admin";
 const adminPassword = "admin";
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
+const uploadDir = './uploads/images';
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -58,7 +59,7 @@ app.use('/public', express.static(__dirname + '/public/'));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
- 
+
 app.use(session({
     secret: secretHash,
     store: new MongoStore({ mongooseConnection: connection,
@@ -77,9 +78,8 @@ require('./server/passport')(passport, flash);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport, flash);
+require('./server/routes.js')(app, passport, flash, uploadDir);
 
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
 });
-
