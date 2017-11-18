@@ -5,13 +5,35 @@ $(document).ready(function() {
 		onStageTwo: false,
 		selectedNum: 0,
 	}
+
+	function shuffle(array) {
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+	}
+
 	function loadDatafromDB(){
 		pc.words = $('#hiddenWords').val().split(";").map(function(item) {
 			  return item.trim();
 		}).filter(function(n) {
 			return n != ''
 		});
-
+		if ($('#hiddenRandomize').val() == "on") {
+			pc.words = shuffle(pc.words)
+		}
 		pc.responseID = $('#resid').val();
 		
 		for (var i = 0; i < pc.words.length; i++) {
@@ -32,6 +54,7 @@ $(document).ready(function() {
 		}
 		$('#hiddenWords').remove();
 		$('#hiddenStatus').remove();
+		$('#hiddenRandomize').remove();
 	}
 	function enableButton(buttonID){
 		$(buttonID).removeClass('btn-default')
