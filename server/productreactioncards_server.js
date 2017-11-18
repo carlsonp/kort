@@ -13,6 +13,7 @@ module.exports = {
             type: "productreactioncards",
             data: {
                 words: ['Accessible', 'Advanced', 'Annoying', 'Appealing', 'Approachable', 'Attractive', 'Boring', 'Business-like', 'Busy', 'Calm', 'Clean', 'Clear', 'Collaborative', 'Comfortable', 'Compatible', 'Compelling', 'Complex', 'Comprehensive', 'Confident', 'Confusing', 'Connected', 'Consistent', 'Controllable', 'Convenient', 'Creative', 'Customizable', 'Cutting edge', 'Dated', 'Desirable', 'Difficult', 'Disconnected', 'Disruptive', 'Distracting', 'Dull', 'Easy to use', 'Effective', 'Efficient', 'Effortless', 'Empowering', 'Energetic', 'Engaging', 'Entertaining', 'Enthusiastic', 'Essential', 'Exceptional', 'Exciting', 'Expected', 'Familiar', 'Fast', 'Flexible', 'Fragile', 'Fresh', 'Friendly', 'Frustrating','Fun', 'Gets in the way', 'Hard to Use', 'Helpful', 'High quality', 'Impersonal', 'Impressive', 'Incomprehensible', 'Inconsistent', 'Ineffective', 'Innovative', 'Inspiring', 'Integrated', 'Intimidating', 'Intuitive', 'Inviting', 'Irrelevant', 'Low Maintenance', 'Meaningful', 'Motivating', 'Not Secure', 'Not Valuable', 'Novel', 'Old', 'Optimistic', 'Ordinary', 'Organized', 'Overbearing', 'Overwhelming', 'Patronizing', 'Personal', 'Poor quality', 'Powerful', 'Predictable', 'Professional', 'Relevant', 'Reliable', 'Responsive', 'Rigid', 'Satisfying', 'Secure', 'Simplistic', 'Slow', 'Sophisticated', 'Stable', 'Sterile', 'Stimulating', 'Straight Forward', 'Stressful', 'Time-consuming', 'Time-Saving', 'Too Technical', 'Trustworthy', 'Unapproachable', 'Unattractive', 'Uncontrollable', 'Unconventional', 'Understandable', 'Undesirable', 'Unpredictable', 'Unrefined', 'Usable', 'Useful', 'Valuable'],
+                randomize: true,
             },
             status: 'closed',
             ownerID: req.user._id,
@@ -87,6 +88,7 @@ module.exports = {
 				study.title = req.body.title;
                 study.data = {
                     words: words,
+                    randomize: req.body.randomize,
                 };
 				study.status = req.body.status;
                 study.private = req.body.private;

@@ -20,6 +20,19 @@
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
 					<%- include('../partials/study_options/status.ejs') %>
+
+					<div class="well">
+						<label>Options</label>
+					    <%if (singleStudy.data.randomize) { %>
+					    <div class="checkbox">
+					      <label><input type="checkbox" name="randomize" checked>Randomize word order</label>
+					    </div>
+					    <% } else { %>
+					   <div class="checkbox">
+					      <label><input type="checkbox" name="randomize">Randomize word order</label>
+					    </div>
+					    <% } %>
+					</div>
 				</div>
 				<div class='col-sm-8'>
 					<div class="well">
