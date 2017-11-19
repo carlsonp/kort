@@ -65,9 +65,9 @@ module.exports = {
                     }
                 }
 
-				var matrix = new Array(sum_groups.length);
-				for (var i = 0; i < sum_groups.length; i++) {
-					matrix[i] = new Array(study.data.cards.length);
+				var matrix = new Array(study.data.cards.length);
+				for (var i = 0; i < study.data.cards.length; i++) {
+					matrix[i] = new Array(sum_groups.length);
 					matrix[i].fill(0);
 				}
 
@@ -78,7 +78,7 @@ module.exports = {
 							var groupIndex = sum_groups.indexOf(response[j].groupname);
                             for (var k = 0; k < response[j].cards.length; k++) {
                                 var cardIndex = study.data.cards.indexOf(response[j].cards[k]);
-                                matrix[groupIndex][cardIndex]+=1;
+                                matrix[cardIndex][groupIndex]+=1;
                             }
                         }
                     }
