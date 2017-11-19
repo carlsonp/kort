@@ -1,6 +1,16 @@
 Kort
 ===========
 
+#### Table of Contents  
+[About](#About)  
+[Screenshots](#Screenshots)  
+[Install](#Install)  
+[Support](#Support)  
+[License](#License)
+
+
+<a name="About"/>
+
 ### About
 
 A web application for
@@ -8,6 +18,18 @@ A web application for
 [tree testing](https://en.wikipedia.org/wiki/Tree_testing),
 and [product reaction cards](https://en.wikipedia.org/wiki/Microsoft_Reaction_Card_Method_(Desirability_Testing)).
 See the linked [website for screenshots and additional details.](https://carlsonp.github.io/kort/)
+
+<a name="Screenshots"/>
+
+### Screenshots
+
+![Card Sort](/docs/cs.png)
+
+![Tree Test](/docs/tt.png)
+
+![Product Reaction Cards](/docs/prc.png)
+
+<a name="Install"/>
 
 ### Install
 
@@ -29,10 +51,13 @@ on the default port 3000.  You can connect via http://localhost:3000
 
 8. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
 
+<a name="Support"/>
 
 ### Support
 
 Open a [Github issue](https://github.com/carlsonp/kort/issues).
+
+<a name="License"/>
 
 ### License
 
