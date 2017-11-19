@@ -23,11 +23,9 @@ See the linked [website for screenshots and additional details.](https://carlson
 
 ### Screenshots
 
-![Card Sort](/docs/cs.png)
-
-![Tree Test](/docs/tt.png)
-
-![Product Reaction Cards](/docs/prc.png)
+<img src="/docs/cs.png" width="400"/>
+<img src="/docs/tt.png" width="400"/>
+<img src="/docs/prc.png" width="400"/>
 
 <a name="Install"/>
 
