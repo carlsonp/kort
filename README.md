@@ -38,7 +38,33 @@ See the linked [website for screenshots and additional details.](https://carlson
 2. Install [Node.js](https://nodejs.org)
 
 3. Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
-by editing the `app.js` file and setting the `mongoURL`.
+by editing the `app.js` file and setting the `mongoURL`.  To optionally [secure your MongoDB with a username
+and password](https://stackoverflow.com/questions/4881208/how-to-secure-mongodb-with-username-and-password/19768877),
+create a user for the `kort` database by doing the following:
+
+    Open a Mongo commandline shell:
+    ```
+    mongo --port 27017
+    ```
+
+    Select the database:
+    ```
+    use kort
+    ```
+
+    Create the new user:
+    ```
+    db.createUser(
+       {
+         user: "kort",
+         pwd: "123",
+        roles: [ { role: "readWrite", db: "kort" } ]
+       }
+    )
+    ```
+
+    Then edit `/etc/mongodb.conf` and enable `auth=true`.  Restart the service.  Make sure to set
+    the `mongoURL` with the appropriate username and password.
 
 4. Edit the `secretHash` value in `app.js` and provide your own unique value.
 
