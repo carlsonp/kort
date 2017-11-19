@@ -22,7 +22,7 @@
 		        		status('Error: ' + xhr.status);
 		            },
 		            success: function(response) {
-		            	console.log(response.path,response._id);
+		            	// console.log(response.path,response._id);
 		        		$(`<div><img data-img-id="`+response._id+`" src="`+response.path+`"><a class="delIMG" href="#" data-img-id="`+response._id+`">Delete</a></div>`).appendTo($('#imgArea'));
 
 		            }

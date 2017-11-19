@@ -1,28 +1,24 @@
 var mongoose = require('mongoose');
 var Upload = mongoose.model('Upload');
 var fs = require("fs")
+var path = require('path');
 
 module.exports = {
     create: function(req,res){
         if(req.file) {
             var upload = new Upload({
-                    title: req.file.filename,
-                    path: req.file.path,
+                title: req.file.filename,
+                path: req.file.path,
             });
-            //create new file path
-            var pathToArray = req.file.path.split('\\');
-            var dir = pathToArray[0]+'\\'+pathToArray[1]+"\\";
-            var ext = pathToArray[2].split('.')[1];
-            var newFileName = upload._id+"."+ext;
-
-            fs.rename(req.file.path, dir+newFileName, function (err) {
-              if (err) throw err;
-              console.log('renamed complete');
+            var filepath = path.parse(req.file.path);
+            var newFileName = filepath.dir+path.sep+upload._id+filepath.ext;
+            fs.rename(req.file.path, newFileName, function (err) {
+                if (err) throw err;
             });
-            upload.path = dir+newFileName;
+            upload.path = newFileName;
             upload.save(function (err) {
                 if(err){
-                    console.log('cardsort_server.js: Error creating new cardsort via POST.');
+                    console.log('upload_server.js: Error creating new upload.');
                     res.status(504);
                     res.end(err);
                 } else {
@@ -40,24 +36,28 @@ module.exports = {
                 console.log(err);
                 req.end();
             } else {
+                //if file (not db doc) exists remove it
                 fs.stat(doc.path, function (err, stats) {
                    if (err) {
                        return console.error(err);
                    }
                    fs.unlink(doc.path,function(err){
-                        if(err) return console.log(err);
-                        console.log(doc.path+' deleted successfully');
-                   });  
+                        if (err) {
+                            return console.log(err);
+                        } else {
+                            //remove document from collection (not file)
+                            doc.remove(function (err) {
+                                if (err) {
+                                    console.log(err);
+                                    res.end(err);
+                                } else {
+                                    res.send(true);
+                                    res.end();
+                                }
+                            });
+                        } 
+                    });  
                 });
-            }
-        }).remove(function (err) {
-            if (err) {
-                console.log(err);
-                res.end(err);
-            } else {
-                console.log("document removed from db");
-                res.send(true);
-                res.end();
             }
         });
     },

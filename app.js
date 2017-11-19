@@ -7,6 +7,7 @@ const mongoURL = 'mongodb://127.0.0.1/kort' //with a username and password: 'mon
 const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
+const uploadDir = './uploads/images';
 
 //------------------------------------------------------------------
 
@@ -83,7 +84,7 @@ require('./server/passport')(passport, flash);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport, flash);
+require('./server/routes.js')(app, passport, flash, uploadDir);
 
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
