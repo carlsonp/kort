@@ -2,14 +2,14 @@ Kort
 ===========
 
 #### Table of Contents  
-[About](#about)  
-[Screenshots](#screenshots)  
+[About](#About)  
+[Screenshots](#Screenshots)  
 [Install](#Install)  
 [Support](#Support)  
 [License](#License)
 
 
-<a name="about"/>
+<a name="About"/>
 
 ### About
 
@@ -19,7 +19,7 @@ A web application for
 and [product reaction cards](https://en.wikipedia.org/wiki/Microsoft_Reaction_Card_Method_(Desirability_Testing)).
 See the linked [website for screenshots and additional details.](https://carlsonp.github.io/kort/)
 
-<a name="screenshots"/>
+<a name="Screenshots"/>
 
 ### Screenshots
 
@@ -29,7 +29,7 @@ See the linked [website for screenshots and additional details.](https://carlson
 
 ![Product Reaction Cards](/docs/prc.png)
 
-<a name="install"/>
+<a name="Install"/>
 
 ### Install
 
@@ -51,13 +51,13 @@ on the default port 3000.  You can connect via http://localhost:3000
 
 8. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
 
-<a name="support"/>
+<a name="Support"/>
 
 ### Support
 
 Open a [Github issue](https://github.com/carlsonp/kort/issues).
 
-<a name="license"/>
+<a name="License"/>
 
 ### License
 
