@@ -1,5 +1,6 @@
 const port = process.env.PORT || 3000;
-const mongoURL = 'mongodb://127.0.0.1/kort'
+//https://docs.mongodb.com/manual/reference/connection-string/
+const mongoURL = 'mongodb://127.0.0.1/kort' //with a username and password: 'mongodb://kort:123@127.0.0.1/kort'
 const adminUser = "admin";
 const adminPassword = "admin";
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
@@ -58,7 +59,7 @@ app.use('/public', express.static(__dirname + '/public/'));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
- 
+
 app.use(session({
     secret: secretHash,
     store: new MongoStore({ mongooseConnection: connection,
@@ -82,4 +83,3 @@ require('./server/routes.js')(app, passport, flash);
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
 });
-
