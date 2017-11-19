@@ -23,10 +23,9 @@ See the linked [website for screenshots and additional details.](https://carlson
 
 ### Screenshots
 
-<img src="/docs/cs.png" style="width: 300px;"/>
-<img src="/docs/tt.png" style="width: 300px;"/>
-<img src="/docs/prc.png" style="width: 300px;"/>
-
+<img src="/docs/cs.png" width="200"/>
+<img src="/docs/tt.png" width="200"/>
+<img src="/docs/prc.png" width="200"/>
 
 <a name="Install"/>
 
