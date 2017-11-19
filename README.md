@@ -20,14 +20,16 @@ by editing the `app.js` file and setting the `mongoURL`.
 
 4. Edit the `secretHash` value in `app.js` and provide your own unique value.
 
-5. Edit the `adminPassword` value in `app.js`.
+5. Optionally edit the `adminUser` and set your own username.
 
-6. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
+6. Edit the `adminPassword` value in `app.js`.
 
-7. Run `node app.js` from the main directory.  This will start the NodeJS server
+7. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
+
+8. Run `node app.js` from the main directory.  This will start the NodeJS server
 on the default port 3000.  You can connect via http://localhost:3000
 
-8. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
+9. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
 
 
 ### Support

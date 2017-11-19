@@ -1,8 +1,13 @@
+// User defined settings -------------------------------------------
+
 const port = process.env.PORT || 3000;
 const mongoURL = 'mongodb://127.0.0.1/kort'
-const adminUser = "admin";
-const adminPassword = "admin";
+//the admin user is created upon launching the application for the first time
+const adminUser = "admin"; //optionally change this
+const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
+
+//------------------------------------------------------------------
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -58,7 +63,7 @@ app.use('/public', express.static(__dirname + '/public/'));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
- 
+
 app.use(session({
     secret: secretHash,
     store: new MongoStore({ mongooseConnection: connection,
@@ -82,4 +87,3 @@ require('./server/routes.js')(app, passport, flash);
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
 });
-
