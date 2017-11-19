@@ -1,9 +1,14 @@
+// User defined settings -------------------------------------------
+
 const port = process.env.PORT || 3000;
 //https://docs.mongodb.com/manual/reference/connection-string/
 const mongoURL = 'mongodb://127.0.0.1/kort' //with a username and password: 'mongodb://kort:123@127.0.0.1/kort'
-const adminUser = "admin";
-const adminPassword = "admin";
+//the admin user is created upon launching the application for the first time
+const adminUser = "admin";  //optionally change this
+const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
+
+//------------------------------------------------------------------
 
 const express = require('express');
 const mongoose = require('mongoose');
