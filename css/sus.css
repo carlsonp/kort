@@ -14,7 +14,9 @@ body {
 body {
    background-color:#455A64;
 }
-
+.question {
+    margin-bottom: 30px;
+}
 .sus_topbar {
     background-color: #607D8B;
 }
@@ -22,24 +24,25 @@ body {
 .sus_topbar .navbar-brand {
     color: white;
 }
-
+.sus_topbar .navbar-brand:hover {
+    color: white;
+}
 
 #submitForm {
     float:left;
     font-size: 14px;
-    margin-top: 25px;
 }
 
 /*labels for agree/disagree*/
 label {
 	font-weight: normal;
 	font-size: 12px;
+    font-style: italic;
 }
 
 /*sus statements/questions*/
 p {
-	font-size: 16px;
-	margin-top: 20px;
+	font-size: 15px;
 }
 
 /*custom radio buttons style*/
