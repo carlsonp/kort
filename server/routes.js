@@ -2,6 +2,7 @@
 var study = require('./study_server');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
+var sus = require('./sus_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 var response = require('./response_server');
@@ -50,6 +51,15 @@ module.exports = function(app, passport, flash, uploadDir, version) {
 	app.get('/uploadtest', isLoggedIn, function (req, res) {
 		res.render('upload.ejs',{imgpath: ""});
 	});
+
+	//sus routes
+	app.get('/createsus', isLoggedIn, sus.create);
+	app.get('/editsus/:id', isLoggedIn, sus.edit);
+	app.get('/sus/:id', study.view);
+	app.get('/sus/preview/:id', isLoggedIn, study.preview);
+	app.get('/sus/:id/:resid', study.view);
+	app.get('/susresults/:id', isLoggedIn, sus.results);
+	app.post('/updatesus', isLoggedIn, sus.update);
 
 	//card sort routes
 	app.get('/createcardsort', isLoggedIn, cardsort.create);
