@@ -1,0 +1,29 @@
+body {
+    color: white;
+}
+
+.navbar {
+    border: 0px !important;
+    margin-bottom: 0px;
+}
+
+.container{
+    width: 95%;
+}
+
+body {
+   background-color:#455A64;
+}
+
+.sus_topbar {
+    background-color: #607D8B;
+}
+
+.sus_topbar .navbar-brand {
+    color: white;
+}
+
+.btn-right {
+    float:right;
+    font-size: 18px;
+}
