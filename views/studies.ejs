@@ -21,6 +21,7 @@
 				      <li><a href="/createcardsort">Card Sort</a></li>
 				      <li><a href="/createtreetest">Tree Test</a></li>
 				      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
+				      <li><a href="/createsus">System Usability Scale (SUS)</a></li>
 				    </ul>
 			  	</div>
 			</div>
@@ -75,6 +76,15 @@
 								<% } %>
 								<td><a class="btn btn-link" href="/editproductreactioncards/<%= studies[i]._id %>">Edit</a></td>
 								<td><a class="btn btn-link" href="/productreactioncards/preview/<%= studies[i]._id %>">Preview</a></td>								
+						<% } %>
+						<%if (studies[i].type == 'sus') { %>
+								<%if (studies[i].completeResponses.length > 0) { %>									
+									<td><a class="btn btn-link" href="/susresults/<%= studies[i]._id %>">Results</a></td>
+								<% } else { %>
+									<td></td>
+								<% } %>
+								<td><a class="btn btn-link" href="/editsus/<%= studies[i]._id %>">Edit</a></td>
+								<td><a class="btn btn-link" href="/sus/preview/<%= studies[i]._id %>">Preview</a></td>
 						<% } %>
 						<td>
 							<div class="btn-group">
