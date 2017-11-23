@@ -50,7 +50,56 @@ module.exports = {
                 console.log("sus_server.js: Error getting study to see results.");
                 res.end(err);
             } else {
-				res.render('sus/results.ejs',{study: study, email: req.user.email});
+
+                var questions = ['I think that I would like to use this system frequently',
+                    'I found the system unnecessarily complex',
+                    'I thought the system was easy to use',
+                    'I think that I would need the support of a technical person to be able to use this system',
+                    'I found the various functions in this system were well integrated',
+                    'I thought there was too much inconsistency in this system',
+                    'I would imagine that most people would learn to use this system very quickly',
+                    'I found the system very cumbersome to use',
+                    'I felt very confident using the system',
+                    'I needed to learn a lot of things before I could get going with this system'];
+                var rawResponses = study.completeResponses;
+                var adjustedResponses = [];
+                var calcScores = [];
+                var averageResponse = [];
+                for (var i = 0; i < study.completeResponses.length; i++) {
+                    var adjusted_response = []
+                    adjusted_response.push(study.completeResponses[i].data[0]-1);
+                    adjusted_response.push(5-study.completeResponses[i].data[1]);
+                    adjusted_response.push(study.completeResponses[i].data[2]-1);
+                    adjusted_response.push(5-study.completeResponses[i].data[3]);
+                    adjusted_response.push(study.completeResponses[i].data[4]-1);
+                    adjusted_response.push(5-study.completeResponses[i].data[5]);
+                    adjusted_response.push(study.completeResponses[i].data[6]-1);
+                    adjusted_response.push(5-study.completeResponses[i].data[7]);
+                    adjusted_response.push(study.completeResponses[i].data[8]-1);
+                    adjusted_response.push(5-study.completeResponses[i].data[9]);
+                    score = adjusted_response.reduce(function(a,b){return a+b},0)*2.5;
+                    calcScores.push(score);
+                    adjustedResponses.push(adjusted_response);
+                }
+
+                for (var i = 0; i < 10; i++) {
+                    var sum = 0;
+                    for (var j = 0; j < adjustedResponses.length; j++) {
+                        sum+=adjustedResponses[j][i];
+                    }
+                    averageResponse.push(sum/adjustedResponses.length);
+                }
+
+                var averageSUS = calcScores.reduce(function(a,b){return a+b},0)/study.completeResponses.length;
+
+				res.render('sus/results.ejs',{study: study, 
+                                            questions: questions,
+                                            rawResponses: rawResponses,
+                                            adjustedResponses: adjustedResponses,
+                                            averageResponse: averageResponse,
+                                            calcScores: calcScores,
+                                            averageSUS: averageSUS,    
+                                            email: req.user.email});
             }
         });
     },

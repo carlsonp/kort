@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/header.ejs') %>
+		<%- include('../partials/datatables.ejs') %>
+		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
+		<script type="text/javascript" src="/js/sus-results.js"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="/css/progressBarAsChart.css"/> -->
+
+
+		<title>System Usability Scale Results</title>
+	</head>
+	<body>
+		<%- include('../partials/admin_header.ejs') %>
+		<div class='container'>
+			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+			<h1>Results for <%= study.title %></h1>
+			<br>
+			<div class="well">
+				<h3>Raw Scores by Response</h3>
+				<hr>
+				<table id='raw_results_table'>
+					<thead>
+						<tr>
+							<th>Response #</th>
+							<th>Title / Name</th>
+							<th>Date Submitted</th>
+							<th>Q1</th>
+							<th>Q2</th>
+							<th>Q3</th>
+							<th>Q4</th>
+							<th>Q5</th>
+							<th>Q6</th>
+							<th>Q7</th>
+							<th>Q8</th>
+							<th>Q9</th>
+							<th>Q10</th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<rawResponses.length; i++) {%>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= rawResponses[i].title %></td>
+							<td><%= rawResponses[i].date.toLocaleDateString() %> (<%= rawResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<rawResponses[i].data.length; j++) {%>
+								<td><%= JSON.stringify(Number(rawResponses[i].data[j])) %></td>
+							<% } %>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+			<div class="well">
+				<h3>Adjusted Responses with Scores by Response</h3>
+				<hr>
+				<table id='results_table_adjusted'>
+					<thead>
+						<tr>
+							<th>Response #</th>
+							<th>Title / Name</th>
+							<th>Date Submitted</th>
+							<th>Q1</th>
+							<th>Q2</th>
+							<th>Q3</th>
+							<th>Q4</th>
+							<th>Q5</th>
+							<th>Q6</th>
+							<th>Q7</th>
+							<th>Q8</th>
+							<th>Q9</th>
+							<th>Q10</th>
+							<th>Score</th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<rawResponses.length; i++) {%>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= rawResponses[i].title %></td>
+							<td><%= rawResponses[i].date.toLocaleDateString() %> (<%= rawResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<rawResponses[i].data.length; j++) {%>
+								<td><%= JSON.stringify(adjustedResponses[i][j]) %></td>
+							<% } %>
+							<td><%= calcScores[i] %></td>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+			<div class="well" >
+				<h3>Question Averages</h3>
+				<hr>
+				<table class="table" id="averages">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Question</th>
+							<th>Average Score</th>
+						</tr>
+					</thead>
+				<% for(var i=0; i<questions.length; i++) {%>
+					<tr>
+						<td><%= Number(i+1) %></td>
+						<td><%= questions[i] %></td>
+						<td><%= Math.round(averageResponse[i]*100)/100 %></td>
+					</tr>
+				<% } %>
+				</table>
+			</div>
+			<div class="well" id="averageSUS">
+				<h3>Average Score</h3>
+				<hr>
+				<%= Math.round(averageSUS * 100) / 100 %>
+			</div>
+		</div>
+	</body>
+</html>
