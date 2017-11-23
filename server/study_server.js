@@ -131,7 +131,6 @@ module.exports = {
                     res.end();
                 } else {
                     //find the response object and updated it
-                    console.log(req.body.resid);
                     var response = study.incompleteResponses.id(req.body.resid);
                     response.complete = true;
                     response.date = new Date(Date.now());
