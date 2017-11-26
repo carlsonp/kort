@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 
 const multer = require('multer');
 
-module.exports = function(app, passport, flash, uploadDir, version) {
+module.exports = function(app, passport, flash, uploadDir) {
 
 	const multerConf = {
 		storage: multer.diskStorage({
@@ -37,7 +37,8 @@ module.exports = function(app, passport, flash, uploadDir, version) {
 	};
 
 	app.get('/', function (req, res) {
-		res.render('index.ejs', { loginMessage: req.flash('loginMessage'),version: version });
+		require('pkginfo')(module, 'version');
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage'),version: module.exports.version });
 	});
 
 	//upload routes

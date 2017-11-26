@@ -8,7 +8,6 @@ const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
 const uploadDir = './uploads/images';
-const version = '1.0-prerelease'
 
 //------------------------------------------------------------------
 
@@ -21,6 +20,8 @@ const bodyParser= require('body-parser');
 var app = express();
 const async = require('async');
 const flash = require('connect-flash');
+require('pkginfo')(module, 'version');
+console.log("Kort version: ", module.exports.version);
 
 //use default ES6 for promises, potential for using bluebird for increased performance
 //https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
@@ -86,7 +87,7 @@ require('./server/passport')(passport, flash);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport, flash, uploadDir, version);
+require('./server/routes.js')(app, passport, flash, uploadDir);
 
 app.listen(port, function () {
 	console.log('Kort running on port: ' + port);
