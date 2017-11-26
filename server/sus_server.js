@@ -107,7 +107,8 @@ module.exports = {
 
                 var curved_grading_table_idx = 0;
                 for (var i = 0; i < curved_grading_table.length; i++) {
-                    if (curved_grading_table[i][1] > averageSUS > curved_grading_table[i][0]){
+                     if (curved_grading_table[i][1] > averageSUS && averageSUS > curved_grading_table[i][0]){
+                        
                         curved_grading_table_idx = i;
                     }
                 }
