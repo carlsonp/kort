@@ -1,0 +1,68 @@
+body {
+    color: white;
+}
+
+.navbar {
+    border: 0px !important;
+    margin-bottom: 0px;
+}
+
+.container{
+    width: 95%;
+    margin-top: 2.5%;
+}
+
+body {
+   background-color:#455A64;
+}
+
+.sus_topbar {
+    background-color: #607D8B;
+}
+
+.sus_topbar .navbar-brand {
+    color: white;
+}
+.sus_topbar .navbar-brand:hover {
+    color: white;
+}
+
+#submitForm {
+    float:left;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+p {
+	font-size: 16px;
+}
+
+.question {
+    margin-bottom: 25px;
+}
+.question table td {
+    /*border: 1px solid yellow;*/
+    padding-left:30px;
+}
+/*custom radio buttons style*/
+input[type='radio']:after {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    top: -6px;
+    left: -1px;
+    position: relative;
+    background-color: #607D8B;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    background-color: #FFC107;
+}
+
+input[type='radio']:hover:after {
+    background-color: #FFC107;
+}

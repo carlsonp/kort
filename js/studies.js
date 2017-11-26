@@ -2,6 +2,7 @@ $(document).ready(function() {
 	//update names of study types in table
 	$('td[data-type="cardsort"]').html('Card Sort');
 	$('td[data-type="treetest"]').html('Tree Test');
+	$('td[data-type="sus"]').html('System Usability Scale');
 	$('td[data-type="productreactioncards"]').html('Product Reaction Cards');
 	$('td[data-status="open"]').html('Accepting Responses');
 	$('td[data-status="closed"]').html('Not Accepting Responses');

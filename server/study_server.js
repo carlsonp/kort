@@ -5,6 +5,9 @@ var resp = require('./response_server');
 
 function renderPages(study,responseID,responseObj){
     switch(study.type) {
+        case 'sus':
+            responseObj.render('sus/view.ejs',{singleStudy: study, response: responseID});
+            break;
         case 'cardsort':
             responseObj.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             break;
@@ -15,7 +18,7 @@ function renderPages(study,responseID,responseObj){
             responseObj.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
             break;
         default:
-            console.log('study-server.js - renderPages - default switch case');
+            console.log('study-server.js: renderPages function - default switch case');
             res.redirect('/study404');
             break;
     }
