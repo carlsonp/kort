@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('#submitForm').click(function(event) {
 		event.preventDefault();
-		var result = [$('input[name=1]:checked').val()&&
+		var result = [$('input[name=1]:checked').val(),
 				  $('input[name=2]:checked').val(),
 				  $('input[name=3]:checked').val(),
 				  $('input[name=4]:checked').val(),
