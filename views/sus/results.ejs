@@ -68,7 +68,7 @@
 							<th>Q8</th>
 							<th>Q9</th>
 							<th>Q10</th>
-							<th>Score</th>
+							<th>SUS Score</th>
 						</tr>
 					</thead>
 					<% for(var i=0; i<rawResponses.length; i++) {%>
@@ -104,10 +104,52 @@
 				<% } %>
 				</table>
 			</div>
-			<div class="well" id="averageSUS">
-				<h3>Average Score</h3>
+			<div class="well">
+				<h3>Curved Grading Scale Interpretation of SUS Scores</h3>
+				<p>Average SUS Score: <%= Math.round(averageSUS * 100) / 100 %></p>
 				<hr>
-				<%= Math.round(averageSUS * 100) / 100 %>
+				<table id='curved_grading_table' class="table table-condensed">
+					<thead>
+						<tr>
+							<th>SUS Score Range</th>
+							<th>Grade</th>
+							<th>Percentile Range</th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<curved_grading_table.length; i++) {%>
+						<%if (curved_grading_table_idx == i) { %>
+						<tr bgcolor="yellow">
+						<% } else { %>
+						<tr>
+						<% } %>
+							<td><%= curved_grading_table[i][0] %> - <%= curved_grading_table[i][1] %></td>
+							<td><%= curved_grading_table[i][2] %></td>
+							<td><%= curved_grading_table[i][3] %></td>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+			<div class="well">
+				<h3>Percentile Ranks for Raw SUS Scores</h3>
+				<hr>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Raw SUS Score</th>
+							<th>Percentile Rank</th>
+						</tr>
+					</thead>
+					<% for(var i=0; i<raw_percentile_ranks.length; i++) {%>
+						<%if (raw_percentile_ranks_idx == i) { %>
+						<tr bgcolor="yellow">
+						<% } else { %>
+						<tr>
+						<% } %>
+							<td><%= raw_percentile_ranks[i][0] %></td>
+							<td><%= raw_percentile_ranks[i][1] %></td>
+						</tr>
+					<% } %>
+				</table>
 			</div>
 		</div>
 	</body>
