@@ -13,12 +13,14 @@ h1.title {
 
 .amber {
 	color: #FFC107;
+	font-size: 22px;
+	text-align: center;
 }
 
 .topText {
 	color:#cfd8dc;
 	font-weight: 300;
-	font-size: 38px;
+	font-size: 30px;
 	margin-top: 20px;
 }
 
