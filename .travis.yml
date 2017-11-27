@@ -5,6 +5,9 @@ sudo: required
 os:
   - linux
 
+notifications:
+  email: false
+
 cache:
   directories:
   - node_modules
