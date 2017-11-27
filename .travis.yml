@@ -11,6 +11,9 @@ cache:
   - $HOME/.cache
   - $HOME/.npm
 
+services:
+  - mongodb
+
 node_js:
   - "8"
 
