@@ -11,7 +11,7 @@ const uploadDir = './uploads/images';
 
 //------------------------------------------------------------------
 
-const express = require('express';
+const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieParser = require('cookie-parser')
