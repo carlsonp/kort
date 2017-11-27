@@ -24,4 +24,5 @@ install:
     - npm install
 
 script:
-    - node app.js
+    - node app.js &
+    - sleep 6
