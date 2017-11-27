@@ -11,7 +11,11 @@
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
 		<%- include('../partials/editwarning.ejs') %>
+		<%if (title == 'Edit') { %>
 		<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+		<% } else {%>
+		<a href="/deletestudy/<%= singleStudy._id %>"><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+		<% } %>
 		<h1><%= title %> Tree Test</h1>
 		<hr>
 		<form method="POST" action="/updatetreetest">
