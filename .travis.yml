@@ -16,7 +16,6 @@ node_js:
 
 before_install:
   - npm install -g bower
-  - bower install
 
 install:
     - npm install
