@@ -8,6 +8,13 @@ $( document ).ready(function() {
 	  $("#responseSingleArea").toggle();
 	});
 
+	$('#newResponseInput').keypress(function (e) {
+		if(e.which == 13) {
+	    	$('#addResponseBtn').click();
+	    	return false;  
+  		}
+	}); 
+
  	//bind response add button
  	$('#addResponseBtn').click(function(){
  		var studyID = $(this).data("studyid");
