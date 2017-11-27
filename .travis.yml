@@ -30,7 +30,8 @@ install:
     - npm install
 
 script:
-    - node app.js
+	# & means run in the background
+    - node app.js &
     # wait for the app to load
     - sleep 6
     # a simple way of checking if nodejs is running?

@@ -19,7 +19,7 @@ const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
 const async = require('async');
-const flash = require('connect-flash';
+const flash = require('connect-flash');
 require('pkginfo')(module, 'version');
 console.log("Kort version: ", module.exports.version);
 
