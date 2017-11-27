@@ -1,0 +1,42 @@
+# .travis.yml validator: http://lint.travis-ci.org/
+
+language: node_js
+
+sudo: required
+
+os:
+  - linux
+
+#https://docs.travis-ci.com/user/notifications/#Configuring-email-notifications
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache
+  - $HOME/.npm
+
+#https://docs.travis-ci.com/user/database-setup/#MongoDB
+services:
+  - mongodb
+
+#https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+node_js:
+  - "8"
+
+before_install:
+  - npm install -g bower
+
+install:
+    - npm install
+
+# ampersand means run in the background
+# sleep and wait for the app to load
+# use curl as a simple way of checking if nodejs is running? is there a better way?
+script:
+    - node app.js &
+    - sleep 6
+    - curl localhost:3000 > /dev/null
