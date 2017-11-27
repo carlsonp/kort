@@ -30,7 +30,7 @@ install:
     - npm install
 
 script:
-	# & means run in the background
+	# ampersand means run in the background
     - node app.js &
     # wait for the app to load
     - sleep 6
