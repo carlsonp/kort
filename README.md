@@ -1,6 +1,8 @@
 Kort
 ===========
 
+[![Build Status](https://travis-ci.org/carlsonp/kort.svg?branch=master)](https://travis-ci.org/carlsonp/kort)
+
 #### Table of Contents  
 [About](#About)  
 [Screenshots](#Screenshots)  
