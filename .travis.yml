@@ -39,4 +39,4 @@ install:
 script:
     - node app.js &
     - sleep 6
-    - curl localhost:3000
+    - curl localhost:3000 > /dev/null
