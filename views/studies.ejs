@@ -5,6 +5,13 @@
 		<%- include('partials/datatables.ejs') %>
 		<title>Kort: Studies</title>
 	 	<script type="text/javascript" src="/js/studies.js"></script>
+	 	<% if (locals.new) { %>
+	 	<style type="text/css">
+	 		.highlight-first-row {
+			    background-color: #dff0d8 !important;
+			}
+	 	</style>
+	 	<% } %>
 	</head>
 	<body class="background-white">
 	<%- include('partials/admin_header.ejs') %>
