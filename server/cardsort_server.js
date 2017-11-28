@@ -28,7 +28,8 @@ module.exports = {
             } else {
                 console.log('cardsort_server.js: Created new cardsort via POST successfully.');
                 var fullUrl = req.protocol + '://' + req.get('host')
-                res.redirect('/editcardsort/'+newStudy._id+'?new=New');
+                // res.redirect('/editcardsort/'+newStudy._id+'?new=New');
+                 res.redirect('/studies/new');
                 res.end();
             }
         });

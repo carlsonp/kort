@@ -26,7 +26,7 @@ module.exports = {
             } else {
                 console.log('sus_server.js: Created new sus via POST successfully.');
                 var fullUrl = req.protocol + '://' + req.get('host')
-                res.redirect('/editsus/'+newStudy._id+'?new=New');
+                res.redirect('/studies/new');
                 res.end();
             }
         });
