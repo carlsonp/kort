@@ -7,10 +7,11 @@ $(document).ready(function() {
 	$('td[data-status="open"]').html('Accepting Responses');
 	$('td[data-status="closed"]').html('Not Accepting Responses');
 
-	studies_table = $('#studies_table').DataTable({
+	var studies_table = $('#studies_table').DataTable({
 		"bLengthChange": false,
 		"pagingType": "numbers",
 		"pageLength": 10,
+		"order": [[ 1, "desc" ]],
 		"info":     true,
 		"searching": true,
 		
@@ -34,6 +35,8 @@ $(document).ready(function() {
 			{ "orderable": false },
 		]
 	});
+
+	$( studies_table.row( [studies_table.rows().count()-1] ).nodes() ).addClass( 'highlight-first-row' );
 
 	$('#studies_table_body').on( "click",'.text-danger', function(event) {
 		event.preventDefault();

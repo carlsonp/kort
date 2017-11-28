@@ -91,6 +91,7 @@ module.exports = function(app, passport, flash, uploadDir) {
 
 	//study routes
 	app.get('/studies', isLoggedIn, study.home);
+	app.get('/studies/new', isLoggedIn, study.homenew);
 	app.get('/study/:id', study.view);
 	app.get('/study/copy/:id', study.copy);
 	app.get('/study/:id/:resid', study.view);
