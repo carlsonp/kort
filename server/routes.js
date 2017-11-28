@@ -96,7 +96,7 @@ module.exports = function(app, passport, flash, uploadDir) {
 	app.get('/study/:id/:resid', study.view);
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);
-	app.get('/deletestudy/:id', isLoggedIn, study.delete);
+	app.post('/deletestudy/:id', isLoggedIn, study.delete);
 	app.get('/clearstudy/:id', isLoggedIn, study.clearResponses);
 
 	app.get('/msg/:cm', function (req, res) {

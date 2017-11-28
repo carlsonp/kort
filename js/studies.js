@@ -48,7 +48,17 @@ $(document).ready(function() {
 			},
 			callback: function (result) {
 				if(result){
-					window.location.href = '/deletestudy/'+studyID
+					$.ajax({
+				        url: '/deletestudy/'+studyID,
+				        type: "POST",
+				        data: {title: title},
+				        success: function(response) {
+				          	studies_table.row( $(event.target).parents('tr') ).remove().draw();
+				        },
+				        error:   function(xhr, text, err) {
+				      		console.log("Error deleting study via ajax");
+				        }
+				  	});
 				}
 			}
 		});

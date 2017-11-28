@@ -113,7 +113,7 @@ module.exports = {
                 console.log(err);
                 res.end(err);
             } else {
-                res.redirect('/studies');
+                res.send(true);
                 res.end();
             }
         });
