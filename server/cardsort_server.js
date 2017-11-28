@@ -27,9 +27,8 @@ module.exports = {
                 res.end(err);
             } else {
                 console.log('cardsort_server.js: Created new cardsort via POST successfully.');
-                var fullUrl = req.protocol + '://' + req.get('host')
-                // res.redirect('/editcardsort/'+newStudy._id+'?new=New');
-                 res.redirect('/studies/new');
+                //var fullUrl = req.protocol + '://' + req.get('host')
+                res.redirect('/studies/new');
                 res.end();
             }
         });
@@ -42,7 +41,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('cardsort/edit.ejs',{title: req.query.new || "Edit",singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });
     },
