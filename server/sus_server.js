@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
+var logger = require('./logger.js');
 
 module.exports = {
      create: function (req, res) {
@@ -20,11 +21,11 @@ module.exports = {
         });
         newStudy.save(function (err) {
             if (err) {
-                console.log('sus_server.js: Error creating new cardsort via POST.');
+                logger.error('sus_server.js: Error creating new SUS via POST:', err);
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('sus_server.js: Created new sus via POST successfully.');
+                logger.info('sus_server.js: Created new SUS via POST successfully.');
                 res.redirect('/studies/new');
                 res.end();
             }
@@ -34,7 +35,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
-                console.log("sus_server.js: Error edit sus.");
+                logger.error("sus_server.js: Error in edit SUS:", err);
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
@@ -46,7 +47,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("sus_server.js: Error getting study to see results.");
+                logger.error("sus_server.js: Error getting SUS study to see results:", err);
                 res.end(err);
             } else {
                 var raw_percentile_ranks = [[5,0.3],[10,0.4],[15,0.7],[20,1.0],[25,1.5],[30,2],[35,4],[40,6],[45,8],[50,13],[55,17],[60,29],[65,41],[66,44],[67,47],[68,50],[69,53],[70,56],[71,60],[72,63],[73,67],[74,70],[75,73],[76,77],[77,80],[78,83],[79,86],[80,88],[85,97],[90,99.80],[95,99.99],[100,100]];
@@ -142,7 +143,7 @@ module.exports = {
             function (err, study) {
             if (err) {
                 res.status(504);
-                console.log('sus_server.js: error updating sus');
+                logger.error('sus_server.js: error updating SUS:', err);
                 res.end(err);
             }
             else {

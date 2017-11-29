@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
+var logger = require('./logger.js');
 
 function renderPages(study,responseID,responseObj){
     switch(study.type) {
@@ -18,7 +19,7 @@ function renderPages(study,responseID,responseObj){
             responseObj.render('productreactioncards/view.ejs',{singleStudy: study, response: responseID});
             break;
         default:
-            console.log('study-server.js: renderPages function - default switch case');
+            logger.error('study_server.js: renderPages function - default switch case');
             res.redirect('/study404');
             break;
     }
@@ -29,7 +30,7 @@ module.exports = {
         Study.find({ownerID: req.user._id}, function (err, studies) {
             if (err) {
                 res.status(504);
-                console.log("study_server.js: Error edit cardsort.");
+                logger.error("study_server.js: home section error:", err);
                 res.end(err);
             } else {
                 res.render("studies.ejs", {studies: studies, email: req.user.email});
@@ -40,7 +41,7 @@ module.exports = {
         Study.find({ownerID: req.user._id}, function (err, studies) {
             if (err) {
                 res.status(504);
-                console.log("study_server.js: Error edit cardsort.");
+                logger.error("study_server.js: homenew section error:", err);
                 res.end(err);
             } else {
                 res.render("studies.ejs", {new: true,studies: studies, email: req.user.email});
@@ -51,7 +52,7 @@ module.exports = {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("study_server.js: Error copying study.");
+                logger.error("study_server.js: Error copying study:", err);
                 res.end(err);
             } else {
                 var newStudy = new Study({
@@ -71,7 +72,7 @@ module.exports = {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("study_server.js: Error viewing study.");
+                logger.error("study_server.js: Error viewing study:", err);
                 res.end(err);
             } else {
 				if (study.status == "open") {
@@ -80,6 +81,7 @@ module.exports = {
 							var response = study.incompleteResponses.id(req.params.resid);
 							renderPages(study,req.params.resid,res)
 						} else {
+							logger.error("study_server.js: Error viewing study, 404.");
 							res.redirect('/msg/study404');
 						}
 					} else {
@@ -91,6 +93,7 @@ module.exports = {
                             renderPages(study,response._id,res)
                         } else {
                             //if response id was sent - send error page
+                            logger.error("study_server.js: Error viewing study, 404.");
                             res.redirect('/msg/study404');
                         }
 					}
@@ -104,7 +107,7 @@ module.exports = {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error previewing cardsort.");
+                logger.error("study_server.js: Error previewing study:", err);
                 res.end(err);
             } else {
                 renderPages(study,"preview",res)
@@ -115,13 +118,12 @@ module.exports = {
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err) {
             if (err) {
                 req.status(504);
-                console.log("study_server.js: Cannot find study to delete:" + req.params.id);
-                console.log(err);
+                logger.error("study_server.js: Error, cannot find study to delete:", err);
                 req.end();
             }
         }).remove(function (err) {
             if (err) {
-                console.log(err);
+                logger.error("study_server.js: Error, cannot remove study:", err);
                 res.end(err);
             } else {
                 res.send(true);
@@ -133,7 +135,7 @@ module.exports = {
          Study.findOne({_id: req.body.id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("study_server.js: Error viewing cardsort.");
+                logger.error("study_server.js: Error in submit result:", err);
                 res.end(err);
             } else {
                 //if the study is being previewed, don't record the response
@@ -163,8 +165,7 @@ module.exports = {
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err, study) {
             if (err) {
                 req.status(504);
-                console.log("study_server.js: Cannot find study to clear responses:" + req.params.id);
-                console.log(err);
+                logger.error("study_server.js: Cannot find study to clear responses:", err);
                 req.end();
             } else {
                 //clear participant responses

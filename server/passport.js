@@ -1,5 +1,6 @@
 require('mongoose').model('User');
 var mongoose = require('mongoose');
+var logger = require('./logger.js');
 
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -69,6 +70,7 @@ module.exports = function(passport, flash) {
         User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err){
+				logger.error("passport.js: Error in passport user check:", err);
                 return done(err);
             }
             // if no user is found, return the message

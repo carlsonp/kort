@@ -20,8 +20,11 @@ const bodyParser= require('body-parser');
 var app = express();
 const async = require('async');
 const flash = require('connect-flash');
+var logger = require('./server/logger.js');
+
+
 require('pkginfo')(module, 'version');
-console.log("Kort version: ", module.exports.version);
+logger.info("Kort version: ", module.exports.version);
 
 //use default ES6 for promises, potential for using bluebird for increased performance
 //https://stackoverflow.com/questions/38138445/node3341-deprecationwarning-mongoose-mpromise
@@ -90,5 +93,5 @@ app.use(bodyParser.json());
 require('./server/routes.js')(app, passport, flash, uploadDir);
 
 app.listen(port, function () {
-	console.log('Kort running on port: ' + port);
+	logger.info('Kort running on port: ' + port);
 });
