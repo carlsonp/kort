@@ -21,7 +21,7 @@ var app = express();
 const async = require('async');
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
-
+const path = require('path');
 
 require('pkginfo')(module, 'version');
 logger.info("Kort version: ", module.exports.version);
@@ -51,23 +51,23 @@ app.use(flash());
 
 //https://stackoverflow.com/questions/14264429/how-to-use-jquery-installed-with-npm-in-express-app
 //https://expressjs.com/en/starter/static-files.html
-app.use('/css', express.static(__dirname + '/css/'));
-app.use('/opensans', express.static(__dirname + '/node_modules/npm-font-open-sans/'));
-app.use('/uploads', express.static(__dirname + '/uploads/'));
-app.use('/js', express.static(__dirname + '/js/'));
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use('/clipboard', express.static(__dirname + '/node_modules/clipboard/dist/'));
-app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
-app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox/'));
-app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
-app.use('/dragula', express.static(__dirname + '/node_modules/dragula/dist/'));
-app.use('/bootstrap-treeview', express.static(__dirname + '/node_modules/bootstrap-treeview/dist/'));
-app.use('/plotlyjs', express.static(__dirname + '/node_modules/plotly.js/dist/'));
-app.use('/datatables', express.static(__dirname + '/node_modules/datatables.net/js/'));
-app.use('/datatables', express.static(__dirname + '/node_modules/datatables.net-dt/'));
-app.use('/datatables-buttons', express.static(__dirname + '/node_modules/datatables.net-buttons/js/'));
-app.use('/datatables-buttons', express.static(__dirname + '/node_modules/datatables.net-buttons-dt/css/'));
-app.use('/public', express.static(__dirname + '/public/'));
+app.use('/css', express.static(path.join(__dirname, '/css/')));
+app.use('/opensans', express.static(path.join(__dirname, '/node_modules/npm-font-open-sans/')));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads/')));
+app.use('/js', express.static(path.join(__dirname, '/js/')));
+app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist/')));
+app.use('/clipboard', express.static(path.join(__dirname, '/node_modules/clipboard/dist/')));
+app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/')));
+app.use('/bootbox', express.static(path.join(__dirname, '/node_modules/bootbox/')));
+app.use('/font-awesome', express.static(path.join(__dirname, '/node_modules/font-awesome/')));
+app.use('/dragula', express.static(path.join(__dirname, '/node_modules/dragula/dist/')));
+app.use('/bootstrap-treeview', express.static(path.join(__dirname, '/node_modules/bootstrap-treeview/dist/')));
+app.use('/plotlyjs', express.static(path.join(__dirname, '/node_modules/plotly.js/dist/')));
+app.use('/datatables', express.static(path.join(__dirname, '/node_modules/datatables.net/js/')));
+app.use('/datatables', express.static(path.join(__dirname, '/node_modules/datatables.net-dt/')));
+app.use('/datatables-buttons', express.static(path.join(__dirname, '/node_modules/datatables.net-buttons/js/')));
+app.use('/datatables-buttons', express.static(path.join(__dirname, '/node_modules/datatables.net-buttons-dt/css/')));
+app.use('/public', express.static(path.join(__dirname, '/public/')));
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
