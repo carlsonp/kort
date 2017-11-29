@@ -42,9 +42,8 @@
 				<th>Name</th>
 				<th>URL</th>
 				<th>Copy to Clipboard</th>
-				<th>Delete <% if (singleStudy.getAllResponses().length > 0) { %>
-					<a href="#" class='clear-responses text-danger' data-studyid="<%= singleStudy._id %>" data-title="<%= singleStudy.title %>">(Delete All)</a>
-					<% } %>
+				<th>Delete
+					(<a href="#" class='clear-responses text-danger' data-studyid="<%= singleStudy._id %>" data-title="<%= singleStudy.title %>">Delete All</a>)
 				</th>
 			</tr>
 		</thead>
