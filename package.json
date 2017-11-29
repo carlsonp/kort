@@ -44,7 +44,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pkginfo": "^0.4.1",
-    "plotly.js": "^1.31.2"
+    "plotly.js": "^1.31.2",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^4.12.0",

@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
+var logger = require('./logger.js');
 
 module.exports = {
     create: function (req, res) {
@@ -21,11 +22,11 @@ module.exports = {
         });
         newStudy.save(function (err) {
             if (err) {
-                console.log('productreactioncards_server.js: Error creating new.');
+                logger.error('productreactioncards_server.js: Error creating new study:', err);
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('productreactioncards_server.js: Created new cardsort via POST successfully.');
+                logger.info('productreactioncards_server.js: Created new product reaction cards study via POST successfully.');
                 res.redirect('/studies/new');
                 res.end();
             }
@@ -35,7 +36,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("cardsort_server.js: Error edit cardsort.");
+                logger.error("productreactioncards_server.js: Error in edit product reaction cards:", err);
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
@@ -47,7 +48,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("productreactioncards_server.js: Error getting study to see results.");
+                logger.error("productreactioncards_server.js: Error getting study to see results:", err);
                 res.end(err);
             } else {
                 //gather all words from all responses and put into single array
@@ -81,7 +82,7 @@ module.exports = {
             function (err, study) {
             if (err) {
                 res.status(504);
-                console.log('productreactioncards_server.js: error updating');
+                logger.error('productreactioncards_server.js: error updating:', err);
                 res.end(err);
             }
             else {

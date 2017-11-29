@@ -165,7 +165,6 @@ $(document).ready(function() {
 				updateProgressBar();
 			} else {				
 				$('#hiddenResults').val(JSON.stringify(getAllHistoryAsText()));
-				console.log(JSON.stringify(getAllHistoryAsText()))
 				$('#submitForm').click();
 			}
 			if (this.idx == this.list.length-1){

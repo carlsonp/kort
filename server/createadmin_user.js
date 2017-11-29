@@ -1,5 +1,6 @@
 require('mongoose').model('User');
 var mongoose = require('mongoose');
+var logger = require('./logger.js');
 
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -12,8 +13,10 @@ module.exports = function(adminEmail, adminPassword) {
 
 	User.findOne({ 'email' :  adminEmail }, function(err, user) {
 		// if there are any errors, return the error
-		if (err)
+		if (err) {
+			logger.error("creatadmin_user.js: Error running find query:", err);
 			return done(err);
+		}
 
 		// check to see if theres already a user with that email
 		if (!user) {
@@ -21,7 +24,7 @@ module.exports = function(adminEmail, adminPassword) {
 			admin_user.save(function(err) {
 				if (err)
 					throw err;
-				console.log("createadmin_user.js: Default admin user created.");
+				logger.info("createadmin_user.js: Default admin user created.");
 			});
 		}
 	});

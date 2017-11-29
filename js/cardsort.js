@@ -3,15 +3,6 @@ $(document).ready(function() {
 	cs.groupNum = 0;
 	cs.zoneNum = 5;
 
-	function readInResults(){
-		for (var i = 0; i < stuff.length; i++) {
-			console.log(stuff[i].groupname+': ------');
-			for (var j = 0; j < stuff[i].cards.length; j++) {
-				console.log(stuff[i].cards[j]);
-			}
-		}
-	}
-
 	function updateGroupArray(){
 		cs.groups = [];
 		$('.group').each(function(index) {
