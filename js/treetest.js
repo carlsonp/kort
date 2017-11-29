@@ -77,16 +77,28 @@ $(document).ready(function() {
 			});
 		});
 	}
+
+	function enableButton(buttonID){
+		$(buttonID).removeClass('disabled');
+		$(buttonID).addClass('btn-amber');
+	}
+
+	function disableButton(buttonID){
+		$(buttonID).removeClass('btn-amber');
+		$(buttonID).addClass('disabled');
+		
+	}	
+
 	function bindNodeSelection(){
 		//When node is selected (clicked), write full path of node ids
 		$('#tree').on('nodeSelected', function(event, data) {
 			var node = $('#tree').treeview('getNode', data.nodeId);
 			tasks.answers[tasks.idx] = setHistory(node).concat([node.nodeId]); 
-			$('#nextTaskButton').removeClass('disabled')
+			enableButton('#nextTaskButton');
 		});
 
 		$('#tree').on('nodeUnselected', function(event, data) {
-			$('#nextTaskButton').addClass('disabled')
+			disableButton('#nextTaskButton');
 		});
 	}
 	//--------------------Treeview Functions (manual)--------------------
@@ -110,7 +122,7 @@ $(document).ready(function() {
 		selectedNodes.forEach(function(element){
 			$('#tree').treeview('toggleNodeSelected', [ element.nodeId, { silent: true } ]);
 		});
-		$('#nextTaskButton').addClass('disabled');
+		disableButton('#nextTaskButton');
 	}
 	function setHistory(node){
 		var parent = $('#tree').treeview('getParent', node);
@@ -220,7 +232,7 @@ $(document).ready(function() {
 	}
 	loadDatafromDB();
 	tasks.set(0);
-	$('#nextTaskButton').addClass('disabled')
+	disableButton('#nextTaskButton');
 	//-----------------------------Task List-----------------------------
 	$("#nextTaskButton" ).click(function() {
 		if (!$('#nextTaskButton').hasClass('disabled')){

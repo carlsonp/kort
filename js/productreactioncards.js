@@ -57,14 +57,13 @@ $(document).ready(function() {
 		$('#hiddenRandomize').remove();
 	}
 	function enableButton(buttonID){
-		$(buttonID).removeClass('btn-default')
-		$(buttonID).removeClass('disabled')
-		$(buttonID).addClass('btn-default');
+		$(buttonID).removeClass('disabled');
+		$(buttonID).addClass('btn-amber');
 	}
 
 	function disableButton(buttonID){
-		$(buttonID).removeClass('btn-default')
-		$(buttonID).addClass('disabled','btn-default');
+		$(buttonID).addClass('disabled');
+		$(buttonID).removeClass('btn-amber');
 	}
 
 	function setInstructions(str){
