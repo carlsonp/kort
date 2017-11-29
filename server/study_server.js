@@ -36,6 +36,17 @@ module.exports = {
             }
         });
     },
+    homenew: function (req, res, next) {
+        Study.find({ownerID: req.user._id}, function (err, studies) {
+            if (err) {
+                res.status(504);
+                console.log("study_server.js: Error edit cardsort.");
+                res.end(err);
+            } else {
+                res.render("studies.ejs", {new: true,studies: studies, email: req.user.email});
+            }
+        });
+    },
     copy: function (req, res, next) {
         Study.findOne({_id: req.params.id}, function (err, study) {
             if (err) {
