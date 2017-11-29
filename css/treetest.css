@@ -86,3 +86,8 @@ body {
     height: 15px;
     width: 7px;
 }
+
+.btn-amber {
+    background-color: #FFC107 !important;
+    color: black !important;
+}
