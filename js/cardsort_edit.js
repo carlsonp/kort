@@ -75,6 +75,42 @@ function addGroupsFromDialog(){
 }
 
 
+
+function deleteAllCards(){
+	bootbox.confirm({
+			size: 'small',
+			closeButton: false,
+			message: "Delete all cards?",
+			buttons: {confirm: {label: 'Delete All Cards',className: 'btn-danger'},
+			cancel: {label: 'Cancel',className: 'btn-link'}
+		},
+		callback: function (result) {
+			if(result){
+				cards_table.clear().draw();
+				updateInputArrays();
+			}
+		}
+	});
+}
+
+function deleteAllGroups(){
+	bootbox.confirm({
+			size: 'small',
+			closeButton: false,
+			message: "Delete all groups?",
+			buttons: {confirm: {label: 'Delete All Groups',className: 'btn-danger'},
+			cancel: {label: 'Cancel',className: 'btn-link'}
+		},
+		callback: function (result) {
+			if(result){
+				groups_table.clear().draw();
+				updateInputArrays();
+			}
+		}
+	});
+}
+
+
 //removes a list item (card) from the cards_table datatable
 function deleteCard(target){
 	var row = $(target).parent().parent();
