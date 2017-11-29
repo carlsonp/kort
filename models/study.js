@@ -30,6 +30,12 @@ Study.methods.getAllResponses = function() {
   return this.completeResponses.concat(this.incompleteResponses);
 };
 
+Study.methods.getDateStr = function() {
+	var d = this._id.getTimestamp(); 
+	var minutes = (d.getMinutes()<10?'0':'') + d.getMinutes();
+	return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate() + " (" + d.getHours() + ":" + minutes + ")";
+};
+
 module.exports = mongoose.model('Study', Study);
 
 

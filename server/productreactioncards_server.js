@@ -26,7 +26,7 @@ module.exports = {
                 res.end(err);
             } else {
                 console.log('productreactioncards_server.js: Created new cardsort via POST successfully.');
-                res.redirect('/editproductreactioncards/'+newStudy._id+'?new=New');
+                res.redirect('/studies/new');
                 res.end();
             }
         });
