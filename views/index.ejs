@@ -15,7 +15,7 @@
 				</div>
 				<div class="row">
 					<div class='col-md-12'>
-						<div class="siteSubtitle text-center ">Card Sorting, Tree Testing, and Product Reaction Cards</div>
+						<div class="siteSubtitle text-center">Card Sorting, Tree Testing, and Product Reaction Cards</div>
 					</div>
 				</div>
 				<div class='row'>
@@ -33,13 +33,17 @@
 							  	</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default btn-sm btn-block">Login</button>
+								<button type="submit" class="btn btn-primary btn-block">Login</button>
 							</div>
 							<% if (loginMessage.length > 0) { %>
 							<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
 							<% } %>
 						</form>
-					</div>			
+						<br>
+						<% if (allowGoogleAuth) { %>
+							<a href="/auth/google" class="btn btn-danger center-block">Login or Register via Google <span class="fa fa-google-plus"></span></a>
+						<% } %>
+					</div>
 				</div>
 			</div>	
 			<% if (version.length > 0) { %>

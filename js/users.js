@@ -16,6 +16,7 @@ $( document ).ready(function() {
 	    },
 		"columns": [
 		    null,
+		    null,
 		    { "orderable": false },
 		    { "orderable": false },
 		],
