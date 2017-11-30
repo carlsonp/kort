@@ -164,27 +164,27 @@ $(document).ready(function() {
 			}
 		}
 
-		if(cs.status == 'open'){
+		// if(cs.status == 'open'){
 			//dragula event to check for empty intial list on 'drop' actions
-			drake.on("drop", function(event){
-				$('#hiddenResults').val(JSON.stringify(getResults()));
-				if (($('#initialColumn').children().length == 1)){
-					$('#done').show();
-				} else {
-					$('#done').hide();
-				}
-			});
+		drake.on("drop", function(event){
+			$('#hiddenResults').val(JSON.stringify(getResults()));
+			if (($('#initialColumn').children().length == 1)){
+				$('#done').show();
+			} else {
+				$('#done').hide();
+			}
+		});
 
-			$('#newGroupButton').click(function() {
+		$('#newGroupButton').click(function() {
 			for (var i = 1; i < 1000; i++) {
-				var newName = "Group "+i;
-				if (!groupNameExists(newName)){
+			var newName = "Group "+i;
+			if (!groupNameExists(newName)){
 					createGroup(newName, true);
 					break;
 				} 
 			}
 		});
-		}
+		// }
 		$('#done').hide();
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
