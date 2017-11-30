@@ -54,9 +54,6 @@ $(document).ready(function() {
 
 	function createGroup(groupname, focus_on_creation = false){
 		cs.groupNum+=1;
-		// if (cs.studyType == 'open'){
-		// 	setLocationNewGroupButton();
-		// }
 		var group = $("<div class='group'></div>");
 		var groupTitle = $("<div class='title' contenteditable='false'>"+groupname+"</div>");
 		var closeIcon = $("<i class='fa fa-times closeicon' aria-hidden='true'></i>");
@@ -164,8 +161,7 @@ $(document).ready(function() {
 			}
 		}
 
-		// if(cs.status == 'open'){
-			//dragula event to check for empty intial list on 'drop' actions
+		//dragula event to check for empty intial list on 'drop' actions
 		drake.on("drop", function(event){
 			$('#hiddenResults').val(JSON.stringify(getResults()));
 			if (($('#initialColumn').children().length == 1)){
@@ -184,7 +180,7 @@ $(document).ready(function() {
 				} 
 			}
 		});
-		// }
+
 		$('#done').hide();
 		$('#hiddenGroups').remove();
 		$('#hiddenCards').remove();
