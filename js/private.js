@@ -108,8 +108,18 @@ $( document ).ready(function() {
 		    },
 		    callback: function (result) {
 		    	if(result){
-		    		window.location.href = '/clearstudy/'+studyID
-		    	}
+		    		$.ajax({
+						url:  "/clearstudy/"+studyID,
+						type: "GET",
+						contentType: "application/json",
+						success: function(data) {
+		  	    			$("#responses_table_body tr").remove(); 
+						},
+						error:   function(xhr, text, err) {
+						  console.log("private.ejs: clearstudy ajax error");
+						}
+					});
+		    	} 
 		    }
 		});
 	});
