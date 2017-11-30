@@ -29,26 +29,23 @@ $(document).ready(function() {
 		if ($('#hiddenRandomize').val() == "on") {
 			pc.words = shuffle(pc.words)
 		}
-
-		pc.responseID = $('#resid').val();
 		
 		for (var i = 0; i < pc.words.length; i++) {
 			$('#cardArea').append("<li>"+pc.words[i]+"</li>");
 		}
 
-		if($('#hiddenStatus').val() == 'open'){
-			$("#done").click(function() {
-				if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
-					pc.results = [];
-					$('#cardArea li.selected').each(function(idx,word){
-						pc.results.push($(word).text());
-					});
-					$('#hiddenResults').val(JSON.stringify(pc.results));
-					console.log('here')
-					$('#submitForm').click();
-				}
-			});	
-		}
+		$("#done").click(function() {
+			if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
+				pc.results = [];
+				$('#cardArea li.selected').each(function(idx,word){
+					pc.results.push($(word).text());
+				});
+				$('#hiddenResults').val(JSON.stringify(pc.results));
+				console.log('here')
+				$('#submitForm').click();
+			}
+		});	
+		
 		$('#hiddenWords').remove();
 		$('#hiddenStatus').remove();
 		$('#hiddenRandomize').remove();
