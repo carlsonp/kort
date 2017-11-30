@@ -9,17 +9,6 @@ body {
     background-color:#FFC107;
 }
 
-.navbar {
-    border: 0px !important;
-    margin-bottom: 0px;
-}
-.treetest_topbar {
-     background-color: #607D8B;
-}
-.treetest_topbar .navbar-brand {
-    color: white;
-}
-
 #taskDesc {
     font-size: 22px;
     width: 100%;

@@ -1,7 +1,4 @@
-.navbar {
-    border: 0px !important;
-    margin-bottom: 0px;
-}
+
 
 .container{
     width: 95%;
@@ -11,13 +8,6 @@ body {
    background-color:#455A64;
 }
 
-.productreactioncards_topbar {
-    background-color: #607D8B;
-}
-
-.productreactioncards_topbar .navbar-brand {
-    color: white;
-}
 
 #textArea {
     margin: 15px;
@@ -59,9 +49,4 @@ body {
     content: "\f00c";
     font-family: FontAwesome;
     padding-right: 10px;
-}
-
-.btn-right {
-    float:right;
-    font-size: 18px;
 }
