@@ -8,10 +8,6 @@ body {
    background-color:#455A64;
 }
 
-.productreactioncards_topbar {
-    background-color: #607D8B;
-}
-
 
 #textArea {
     margin: 15px;
@@ -53,9 +49,4 @@ body {
     content: "\f00c";
     font-family: FontAwesome;
     padding-right: 10px;
-}
-
-.btn-right {
-    float:right;
-    font-size: 18px;
 }
