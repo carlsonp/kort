@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/header.ejs') %>
+
+		<link rel="stylesheet" type="text/css" href="/css/surveys.css" />
+
+		<nav  style='margin-bottom: 0px;' class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid custom_topbar">
+				<span class='navbar-brand'><%= singleStudy.title %></span>
+			    <ul class='nav navbar-nav'></ul>
+			</div>
+		</nav>
+	</head>
+	<body>		
+		<script type="text/javascript" src="/js/nps.js"/></script>
+
+		<div class='container'>
+			<form method="POST" id="npsForm" action="/submitResult">
+				<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
+				<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
+				<input name="result" id='hiddenResults' type='text' hidden>
+				<div class="question">
+					<p>On a scale of 0-10, how likely are you to recommend this product or service to a friend or colleague?</p>
+					<table>
+						<tr>
+							<td>0<input class="radio-inline" type="radio" name="1" value=0></td>
+							<td>1<input class="radio-inline" type="radio" name="1" value=1></td>
+							<td>2<input class="radio-inline" type="radio" name="1" value=2></td>
+							<td>3<input class="radio-inline" type="radio" name="1" value=3></td>
+							<td>4<input class="radio-inline" type="radio" name="1" value=4></td>
+							<td>5<input class="radio-inline" type="radio" name="1" value=5></td>
+							<td>6<input class="radio-inline" type="radio" name="1" value=6></td>
+							<td>7<input class="radio-inline" type="radio" name="1" value=7></td>
+							<td>8<input class="radio-inline" type="radio" name="1" value=8></td>
+							<td>9<input class="radio-inline" type="radio" name="1" value=9></td>
+							<td>10<input class="radio-inline" type="radio" name="1" value=10></td>
+						</tr>
+					</table>	
+				</div>
+			</form>
+			<button type="button" id="submitForm" class="btn btn-default disabled">Submit</button>
+		</div>
+	</body>
+</html>

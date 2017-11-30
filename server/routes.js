@@ -3,6 +3,7 @@ var study = require('./study_server');
 var cardsort = require('./cardsort_server');
 var treetest = require('./treetest_server');
 var sus = require('./sus_server');
+var nps = require('./nps_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 var response = require('./response_server');
@@ -52,6 +53,15 @@ module.exports = function(app, passport, flash, uploadDir) {
 	app.get('/uploadtest', isLoggedIn, function (req, res) {
 		res.render('upload.ejs',{imgpath: ""});
 	});
+
+	//nps routes
+	app.get('/createnps', isLoggedIn, nps.create);
+	app.get('/editnps/:id', isLoggedIn, nps.edit);
+	app.get('/nps/:id', study.view);
+	app.get('/nps/preview/:id', isLoggedIn, study.preview);
+	app.get('/nps/:id/:resid', study.view);
+	app.get('/npsresults/:id', isLoggedIn, nps.results);
+	app.post('/updatenps', isLoggedIn, nps.update);
 
 	//sus routes
 	app.get('/createsus', isLoggedIn, sus.create);

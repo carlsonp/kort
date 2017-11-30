@@ -11,7 +11,6 @@ body {
    background-color: #455A64;
 }
 
-
 #submitForm {
     float:left;
     font-size: 14px;
@@ -26,9 +25,13 @@ p {
     margin-bottom: 25px;
 }
 .question table td {
-    /*border: 1px solid yellow;*/
     padding-left:30px;
 }
+
+input[type='radio'] {
+    margin-left: 10px;
+}
+
 /*custom radio buttons style*/
 input[type='radio']:after {
     width: 20px;

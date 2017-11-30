@@ -9,6 +9,9 @@ function renderPages(study,responseID,responseObj){
         case 'sus':
             responseObj.render('sus/view.ejs',{singleStudy: study, response: responseID});
             break;
+        case 'nps':
+            responseObj.render('nps/view.ejs',{singleStudy: study, response: responseID});
+            break;
         case 'cardsort':
             responseObj.render('cardsort/view.ejs',{singleStudy: study, response: responseID});
             break;
