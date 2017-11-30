@@ -172,7 +172,7 @@ module.exports = {
                 study.incompleteResponses = [];
                 study.completeResponses = [];
                 study.save();
-                res.redirect('/studies');
+                res.send(true);
                 res.end();
             }
         });
