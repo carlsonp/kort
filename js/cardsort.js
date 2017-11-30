@@ -168,7 +168,7 @@ $(document).ready(function() {
 			//dragula event to check for empty intial list on 'drop' actions
 			drake.on("drop", function(event){
 				$('#hiddenResults').val(JSON.stringify(getResults()));
-				if (($('#initialColumn').children().length == 1) && (cs.responseID != 'preview')){
+				if (($('#initialColumn').children().length == 1)){
 					$('#done').show();
 				} else {
 					$('#done').hide();
