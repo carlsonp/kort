@@ -81,7 +81,7 @@ module.exports = {
                 // Calculate NPS based on promoters and detractors
                 npsScore = ((promoters - detractors) / respondents) * 100;
 
-				res.render('nps/results.ejs',{study: study, 
+                res.render('nps/results.ejs',{study: study, 
                                             questions: questions,
                                             rawResponses: rawResponses,
                                             npsResults: npsResults,
@@ -99,10 +99,10 @@ module.exports = {
                 res.end(err);
             }
             else {
-				study.title = req.body.title;
-				study.status = req.body.status;
+                study.title = req.body.title;
+                study.status = req.body.status;
                 study.private = req.body.private;
-				study.save();
+                study.save();
                 res.redirect('/studies');
                 res.end();
             }
