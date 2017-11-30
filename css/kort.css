@@ -17,6 +17,12 @@ h3.header {
     font-size: 14px;
     text-transform: uppercase;
 }
+
+.btn-amber {
+    background-color: #FFC107 !important;
+    color:black !important;
+}
+
 .background-gray {
     background-color: #607D8B;
 }
