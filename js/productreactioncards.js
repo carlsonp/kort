@@ -41,11 +41,10 @@ $(document).ready(function() {
 					pc.results.push($(word).text());
 				});
 				$('#hiddenResults').val(JSON.stringify(pc.results));
-				console.log('here')
 				$('#submitForm').click();
 			}
 		});	
-		
+
 		$('#hiddenWords').remove();
 		$('#hiddenStatus').remove();
 		$('#hiddenRandomize').remove();
