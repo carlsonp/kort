@@ -19,11 +19,12 @@ Kort
 
 ### About
 
-A web application supporting multiple user experience research methods.
-*[Card Sorting](https://en.wikipedia.org/wiki/Card_sorting)
-*[Tree Testing](https://en.wikipedia.org/wiki/Tree_testing)
-*[Product Reaction Cards](https://en.wikipedia.org/wiki/Microsoft_Reaction_Card_Method_(Desirability_Testing))
-*[System Usability Scale (SUS)](https://en.wikipedia.org/wiki/System_usability_scale)
+A web application supporting multiple user experience (UX) research methods.
+
+* [Card Sorting](https://en.wikipedia.org/wiki/Card_sorting)
+* [Tree Testing](https://en.wikipedia.org/wiki/Tree_testing)
+* [Product Reaction Cards](https://en.wikipedia.org/wiki/Microsoft_Reaction_Card_Method_%28Desirability_Testing%29)
+* [System Usability Scale (SUS)](https://en.wikipedia.org/wiki/System_usability_scale)
 
 See the [website](https://carlsonp.github.io/kort/) for more information.
 
