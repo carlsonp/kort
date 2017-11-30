@@ -2,11 +2,6 @@ body {
     color: white;
 }
 
-.navbar {
-    border: 0px !important;
-    margin-bottom: 0px;
-}
-
 .container{
     width: 95%;
     margin-top: 2.5%;
@@ -20,12 +15,6 @@ body {
     background-color: #607D8B;
 }
 
-.sus_topbar .navbar-brand {
-    color: white;
-}
-.sus_topbar .navbar-brand:hover {
-    color: white;
-}
 
 #submitForm {
     float:left;

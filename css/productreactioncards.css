@@ -1,7 +1,4 @@
-.navbar {
-    border: 0px !important;
-    margin-bottom: 0px;
-}
+
 
 .container{
     width: 95%;
@@ -15,9 +12,6 @@ body {
     background-color: #607D8B;
 }
 
-.productreactioncards_topbar .navbar-brand {
-    color: white;
-}
 
 #textArea {
     margin: 15px;

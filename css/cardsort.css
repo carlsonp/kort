@@ -2,23 +2,8 @@
 	padding-right: 10px;
 }
 
-.navbar {
-	border: 0px !important;
-	margin-bottom: 0px;
-}
-.cardsort_topbar {
-	 background-color: #607D8B;
-
-}
 #done{
     width: 95%;
-}
-
-.cardsort_topbar .navbar-brand {
-	color: white;
-}
-
-#done {
 	margin: 5px;
 }
 
