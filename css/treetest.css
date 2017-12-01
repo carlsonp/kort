@@ -1,9 +1,7 @@
-body {
-    background-color:#455A64;
-}
-.progress {
+#progress {
     height: 5px;
 }
+
 #progressbar {
     background-image: none;
     background-color:#FFC107;
@@ -31,6 +29,7 @@ body {
     height: auto;
 }
 
+/*for boostrap treeview*/
 .node-disabled {
     display: none;
 }

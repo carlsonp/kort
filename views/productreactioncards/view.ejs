@@ -12,7 +12,7 @@
 			</div>
 		</nav>
 	</head>
-	<body>
+	<body class="background-darkbluegray">
 		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.data.words.length; i++) {%><%= singleStudy.data.words[i] %>;<% } %>">
 		<input id='hiddenStatus' type='text' value="<%= singleStudy.status %>">
 		<input id='hiddenRandomize' type='text' value="<%= singleStudy.data.randomize %>">
@@ -25,11 +25,11 @@
 			<input name="result" id='hiddenResults' type='text' hidden />
 			<button type="submit" id='submitForm' hidden>Submit</button>
 		</form>
-		<div class='container'>
+		<div class='container-wide'>
 			<div id="textArea">Select at least 10 cards that represent your experience with the system.</div>
 			<div id="cardArea"></div>
-			<button class='btn btn-right' id='nextBtn'>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-			<button class='btn btn-lg btn-right' id='done'>Finish</button>
+			<button class='btn pull-right' id='nextBtn'>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			<button class='btn btn-lg pull-right' id='done'>Finish</button>
 		</div>
 	</body>
 </html>

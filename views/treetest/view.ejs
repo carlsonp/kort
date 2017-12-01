@@ -10,7 +10,7 @@
 		<title>Kort Treetest</title>
 	</head>
 	
-	<body>
+	<body class="background-darkbluegray">
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">
 		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.data.selectableParents %>">
@@ -35,9 +35,9 @@
 			<div class="row">
 				<div id="taskNum"></div>
 				<div id="taskDesc"></div>
-				<div class="progress">
+				<div id="progress">
 				  <div id='progressbar' class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-				    60%
+				    
 				  </div>
 				</div>
 
