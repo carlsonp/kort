@@ -5,9 +5,9 @@
 		<title>Kort</title>
 		<script type="text/javascript" src="/js/index.js"></script>
 	</head>
-	<body class="background-gray">
+	<body class="background-white">
 		<div class="container">
-			<div id="bgcontainer">
+			<div class="well">
 				<div class='row'>
 					<div class='col-md-12'>
 						<div id="siteTitle" class='text-center'>KORT</div>
@@ -19,13 +19,20 @@
 					</div>
 				</div>
 				<div class='row'>
-					<div class='col-md-4 col-md-offset-4'>
+					<% if (allowGoogleAuth) { %>
+					<div class='col-md-4 col-md-offset-1'>
+					<% } else { %>
+					<div class='col-md-4 col-md-offset-4' >
+					<% } %>
+						
 						<form class="form-horizontal" action="/login" method="post">
+
 							<div class="form-group">
-							<h4 class='text-center'></h4>
+								<h4>Login with a local account</h4>
+								<h4 class='text-center'></h4>
 								<div class="inputGroupContainer">
-									<input name="email" placeholder="Email" class="form-control" type="text" />
-							  </div>
+									<input name="email" placeholder="Email or Username" class="form-control" type="text" />
+							  	</div>
 							</div>
 							<div class="form-group">
 								<div class="inputGroupContainer">
@@ -39,11 +46,16 @@
 							<div class="alert alert-danger loginMessage"><%= loginMessage %></div>
 							<% } %>
 						</form>
-						<br>
-						<% if (allowGoogleAuth) { %>
-							<a href="/auth/google" class="btn btn-danger center-block">Login or Register via Google <span class="fa fa-google-plus"></span></a>
-						<% } %>
 					</div>
+					<% if (allowGoogleAuth) { %>
+					<div class='col-md-2'>
+						<div class="vl"></div>
+					</div>
+					<div class='col-md-4' >
+						<h4>Or login with Google</h4>
+						<a href="/auth/google" class="btn btn-success center-block">Login with Google <span class="fa fa-google-plus"></span></a>
+					</div>
+					<% } %>
 				</div>
 			</div>	
 			<% if (version.length > 0) { %>
