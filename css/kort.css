@@ -18,6 +18,15 @@ h3.header {
     text-transform: uppercase;
 }
 
+#version  {
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+}
+#version:hover  {
+    text-decoration: underline;
+}
+
 .navbar {
     border: 0px !important;
     margin-bottom: 0px;
@@ -54,6 +63,7 @@ h3.header {
 .icon-sm{
     font-size: 10px;
 }
+
 .radio-inline label {
     font-weight: normal;
 }
