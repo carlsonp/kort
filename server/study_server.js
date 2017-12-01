@@ -145,17 +145,22 @@ module.exports = {
                 } else {
                     //find the response object and updated it
                     var response = study.incompleteResponses.id(req.body.resid);
-                    response.complete = true;
-                    response.date = new Date(Date.now());
-                    response.data = JSON.parse(req.body.result);
-                    //move response object from incompleteResponses to completeResponses
-                    study.completeResponses.push(response);
-                    var respIdx = study.incompleteResponses.indexOf(response);
-                    study.incompleteResponses.splice(respIdx,1);
-                    //save the study object (which will save the child objects)
-                    study.save();
-                    res.redirect('/msg/thanks');
-                    res.end();
+                    if (response == null){
+                        res.redirect('/msg/nomore');
+                        res.end();
+                    } else {
+                        response.complete = true;
+                        response.date = new Date(Date.now());
+                        response.data = JSON.parse(req.body.result);
+                        //move response object from incompleteResponses to completeResponses
+                        study.completeResponses.push(response);
+                        var respIdx = study.incompleteResponses.indexOf(response);
+                        study.incompleteResponses.splice(respIdx,1);
+                        //save the study object (which will save the child objects)
+                        study.save();
+                        res.redirect('/msg/thanks');
+                        res.end();
+                    }
                 }
                
             }
