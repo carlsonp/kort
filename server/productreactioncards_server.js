@@ -40,7 +40,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('productreactioncards/edit.ejs',{title:  req.query.new || "Edit",singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('productreactioncards/edit.ejs', {singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },
