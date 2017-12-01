@@ -16,9 +16,11 @@ $(document).ready(function() {
     // this is one way to do validation
     $("input").change(function(){
         if ($('input[name=1]:checked').val()) {
-            $('#submitForm').removeClass("disabled");
+            $('#submitForm').removeClass('disabled');
+            $('#submitForm').addClass('btn-amber');
         } else {
-            $('#submitForm').addClass("disabled");
+            $('#submitForm').removeClass('btn-amber');
+            $('#submitForm').addClass('disabled');
         }
     });
 });

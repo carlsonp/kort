@@ -71,6 +71,11 @@ h3.header {
 .btn-amber {
     background-color: #FFC107 !important;
     color:black !important;
+    font-size: 16px;
+}
+.btn.disabled {
+    font-size: 16px !important;
+    color:black !important;
 }
 
 .icon-sm{

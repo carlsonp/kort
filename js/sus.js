@@ -25,19 +25,21 @@ $(document).ready(function() {
 	// once all items have answers, enable the submit button
 	// this is one way to do validation
 	$("input").change(function(){
-    	if ($('input[name=1]:checked').val() &&
-		  $('input[name=2]:checked').val()&&
-		  $('input[name=3]:checked').val()&&
-		  $('input[name=4]:checked').val()&&
-		  $('input[name=5]:checked').val()&&
-		  $('input[name=6]:checked').val()&&
-		  $('input[name=7]:checked').val()&&
-		  $('input[name=8]:checked').val()&&
-		  $('input[name=9]:checked').val()&&
-		  $('input[name=10]:checked').val()) {
-    		$('#submitForm').removeClass("disabled");
+    	if ($('input[name=1]:checked').val()&&
+			$('input[name=2]:checked').val()&&
+			$('input[name=3]:checked').val()&&
+			$('input[name=4]:checked').val()&&
+			$('input[name=5]:checked').val()&&
+			$('input[name=6]:checked').val()&&
+			$('input[name=7]:checked').val()&&
+			$('input[name=8]:checked').val()&&
+			$('input[name=9]:checked').val()&&
+			$('input[name=10]:checked').val()) {
+    			$('#submitForm').removeClass('disabled');
+				$('#submitForm').addClass('btn-amber');
     	} else {
-    		$('#submitForm').addClass("disabled");
+			$('#submitForm').removeClass('btn-amber');
+			$('#submitForm').addClass('disabled');
     	}
 	});
 });
