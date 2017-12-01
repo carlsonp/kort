@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
+var logger = require('./logger.js');
+
 
 module.exports = {
      create: function (req, res) {
@@ -20,11 +22,11 @@ module.exports = {
         });
         newStudy.save(function (err) {
             if (err) {
-                console.log('nps_server.js: Error creating new NPS test via POST.');
+                logger.error('nps_server.js: Error creating new NPS test via POST:', err);
                 res.status(504);
                 res.end(err);
             } else {
-                console.log('nps_server.js: Created new NPS test via POST successfully.');
+                logger.info('nps_server.js: Created new NPS test via POST successfully.');
                 var fullUrl = req.protocol + '://' + req.get('host')
                 res.redirect('/editnps/'+newStudy._id+'?new=New');
                 res.end();
@@ -35,7 +37,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
             if (err) {
                 res.status(504);
-                console.log("nps_server.js: Error edit NPS.");
+                logger.error("nps_server.js: Error in edit NPS:", err);
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
@@ -47,7 +49,7 @@ module.exports = {
         Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
-                console.log("nps_server.js: Error getting study to see results.");
+                logger.error("nps_server.js: Error getting NPS study to see results:", err);
                 res.end(err);
             } else {
                 const PROMOTER_SCORE_MIN = 9;
@@ -95,7 +97,7 @@ module.exports = {
             function (err, study) {
             if (err) {
                 res.status(504);
-                console.log('nps_server.js: error updating nps');
+                logger.error('nps_server.js: error updating NPS:', err);
                 res.end(err);
             }
             else {
