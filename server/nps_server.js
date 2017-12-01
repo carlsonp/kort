@@ -27,7 +27,7 @@ module.exports = {
                 res.end(err);
             } else {
                 logger.info('nps_server.js: Created new NPS test via POST successfully.');
-                res.redirect('/editnps/'+newStudy._id+'?new=New');
+                res.redirect('/studies/new');
                 res.end();
             }
         });
