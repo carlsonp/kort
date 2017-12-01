@@ -3,11 +3,6 @@ body {
     background-color: #455A64;
 }
 
-.container{
-    width: 95%;
-    margin-top: 2.5%;
-}
-
 #submitForm {
     float:left;
     font-size: 14px;
@@ -21,6 +16,7 @@ p {
 .question {
     margin-bottom: 25px;
 }
+
 .question table td {
     padding-left:30px;
 }

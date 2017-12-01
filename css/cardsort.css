@@ -1,13 +1,9 @@
-#hamburger{
-	padding-right: 10px;
-}
-
 #done{
     width: 95%;
 	margin: 5px;
 }
 
-#newGroupButton{
+#newGroupButton {
 	background-color: #FFC107;
     opacity: 0.7;
 }
@@ -16,7 +12,7 @@
 	 opacity: 1;
 }
 
-.custom-row {
+#dropZoneParent {
     height: 100%;
 }
 
@@ -31,7 +27,6 @@
 	height: calc(100vh - 50px);
 	background-color:#455A64;
 	padding-right: 15px !important;
-	/*padding-left: 7px !important;*/
 	margin-left: 0px !important;
 }
 
@@ -72,6 +67,7 @@
 	float: right;
 	margin: 5px;
 }
+
 .group .closeicon:hover {
 	color: black;
 }

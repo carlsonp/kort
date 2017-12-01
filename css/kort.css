@@ -1,18 +1,32 @@
-html,body {
+html, body {
     height:100%;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
 }
+
+body.background-gray {
+    background-color: #607D8B;
+}
+
+body.background-white {
+    background-color: white;
+}
+
+body.background-darkbluegray {
+    background-color: #455A64;
+}
+
 h1, h2 {
     font-weight: 300;
     color: black;
 }
+
 h3 {
     margin-top: 0px;
     font-weight: 400;
 }
+
 h3.header {
-    /*color:#5cb85c;*/
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
@@ -27,9 +41,23 @@ h3.header {
     text-decoration: underline;
 }
 
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.container-wide{
+    width: 95%;
+    margin-top: 2.5%;
+}
+
 .navbar {
     border: 0px !important;
     margin-bottom: 0px;
+}
+
+.custom_topbar {
+    background-color: #607D8B;
 }
 
 .custom_topbar .navbar-brand {
@@ -40,26 +68,11 @@ h3.header {
     color: white !important;
 }
 
-.custom_topbar {
-    background-color: #607D8B;
-}
-
-.btn-right {
-    float:right;
-    font-size: 18px;
-}
-
 .btn-amber {
     background-color: #FFC107 !important;
     color:black !important;
 }
 
-.background-gray {
-    background-color: #607D8B;
-}
-.background-white {
-    background-color: white;
-}
 .icon-sm{
     font-size: 10px;
 }
@@ -67,48 +80,40 @@ h3.header {
 .radio-inline label {
     font-weight: normal;
 }
+
 .well {
     background: #F8F8F8;
     border-radius: 1px;
     border: 0px;
     border-bottom: 3px solid gray;
 }
-.studyTitle {
-    font-size: 20px;
-}
 
-.errorMessage, .successMessage {
-    display:none;
-}
-.loginMessage {
+/*dropdown messages are hidden by default*/
+.errorMessage, .successMessage, .loginMessage {
     display:none;
 }
 
-.bgcontainer {
+/*index.ejs specific styles*/
+#bgcontainer {
     background-color:#546E7A;
     border-radius: 2px;
     padding:25px;
 }
-.siteTitle {
+
+#siteTitle {
     font-size: 80px;
     color: #FFC107;
     margin-bottom: 20px;
     font-weight: 300;
     letter-spacing: 14px;
 }
-.siteSubtitle {
+#siteSubtitle {
     font-size: 25px;
     margin-bottom: 30px;
     color:white;
 }
-.container {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
 
-.float-right {
-    float: right;
-}
+/*datatable specifc styles*/
 table.dataTable tbody td {
     vertical-align: middle;
 }
