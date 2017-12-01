@@ -112,7 +112,7 @@ module.exports = function(app, passport, flash, uploadDir) {
 		        res.render('msg.ejs', {titleline: "Sorry. The study isn't accepting responses.", msg: "The study may be over or has yet to start. Contact your study coordinator or try again later."});
 		        break;
 		    case "nomore":
-		        res.render('msg.ejs', {titleline: "Submission already recieved.", msg: "No more submissions allowed."});
+		        res.render('msg.ejs', {titleline: "Submission already received.", msg: "No more submissions allowed."});
 		        break;   
 		    default:
 		        res.redirect('/');
