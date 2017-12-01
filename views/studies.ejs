@@ -30,6 +30,7 @@
 				      <li><a href="/createtreetest">Tree Test</a></li>
 				      <li><a href="/createproductreactioncards">Product Reaction Cards</a></li>
 				      <li><a href="/createsus">System Usability Scale (SUS)</a></li>
+				      <li><a href="/createnps">Net Promoter Score (NPS)</a></li>
 				    </ul>
 			  	</div>
 			</div>
@@ -94,6 +95,15 @@
 								<td><a class="btn btn-link" href="/editsus/<%= studies[i]._id %>">Edit</a></td>
 								<td><a class="btn btn-link" href="/sus/preview/<%= studies[i]._id %>">Preview</a></td>
 						<% } %>
+						<%if (studies[i].type == 'nps') { %>
+								<%if (studies[i].completeResponses.length > 0) { %>									
+									<td><a class="btn btn-link" href="/npsresults/<%= studies[i]._id %>">Results</a></td>
+								<% } else { %>
+									<td></td>
+								<% } %>
+								<td><a class="btn btn-link" href="/editnps/<%= studies[i]._id %>">Edit</a></td>
+								<td><a class="btn btn-link" href="/nps/preview/<%= studies[i]._id %>">Preview</a></td>
+						<% } %>	
 						<td>
 							<div class="btn-group">
 							    <button type="button" style="color:darkgray" class=" btn btn-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-ellipsis-h" aria-hidden="true"></i></button>
