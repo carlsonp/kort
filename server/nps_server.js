@@ -27,7 +27,6 @@ module.exports = {
                 res.end(err);
             } else {
                 logger.info('nps_server.js: Created new NPS test via POST successfully.');
-                var fullUrl = req.protocol + '://' + req.get('host')
                 res.redirect('/editnps/'+newStudy._id+'?new=New');
                 res.end();
             }
@@ -41,7 +40,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('nps/edit.ejs',{title: req.query.new || "Edit",singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('nps/edit.ejs', {singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });
     },

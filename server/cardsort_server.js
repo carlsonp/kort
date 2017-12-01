@@ -28,7 +28,6 @@ module.exports = {
                 res.end(err);
             } else {
                 logger.info('cardsort_server.js: Created new cardsort via POST successfully.');
-                //var fullUrl = req.protocol + '://' + req.get('host')
                 res.redirect('/studies/new');
                 res.end();
             }

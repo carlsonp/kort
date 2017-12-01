@@ -39,7 +39,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('sus/edit.ejs',{title: req.query.new || "Edit",singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('sus/edit.ejs', {singleStudy: docs, email: req.user.email, url: fullUrl});
             }
         });
     },
