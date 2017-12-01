@@ -1,12 +1,5 @@
 body {
     color: white;
-    background-color: #455A64;
-}
-
-#submitForm {
-    float:left;
-    font-size: 14px;
-    margin-bottom: 20px;
 }
 
 p {
@@ -21,11 +14,19 @@ p {
     padding-left:30px;
 }
 
+/*custom radio buttons style*/
 input[type='radio'] {
     margin-left: 10px;
 }
 
-/*custom radio buttons style*/
+input[type='radio']:checked:after {
+    background-color: #FFC107;
+}
+
+input[type='radio']:hover:after {
+    background-color: #FFC107;
+}
+
 input[type='radio']:after {
     width: 20px;
     height: 20px;
@@ -40,10 +41,4 @@ input[type='radio']:after {
     border: 2px solid white;
 }
 
-input[type='radio']:checked:after {
-    background-color: #FFC107;
-}
 
-input[type='radio']:hover:after {
-    background-color: #FFC107;
-}

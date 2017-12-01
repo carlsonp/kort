@@ -86,7 +86,6 @@ $(document).ready(function() {
 	function disableButton(buttonID){
 		$(buttonID).removeClass('btn-amber');
 		$(buttonID).addClass('disabled');
-		
 	}	
 
 	function bindNodeSelection(){
