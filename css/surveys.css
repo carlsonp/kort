@@ -1,14 +1,11 @@
 body {
     color: white;
+    background-color: #455A64;
 }
 
 .container{
     width: 95%;
     margin-top: 2.5%;
-}
-
-body {
-   background-color: #455A64;
 }
 
 #submitForm {
