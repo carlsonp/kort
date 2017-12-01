@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/header.ejs') %>
+        <%- include('../partials/datatables.ejs') %>
+        <script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
+        <script type="text/javascript" src="/js/sus-results.js"></script>
+        <title>Net Promoter Score Results</title>
+    </head>
+    <body>
+        <%- include('../partials/admin_header.ejs') %>
+        <div class='container'>
+            <a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
+            <h1>Results for <%= study.title %></h1>
+            <br>
+            <div class="well">
+                <h3>Net Promotor Score: <strong><%= npsScore.toFixed(1) %></strong></h3>
+            </div>
+            <div class="well">
+                <h3>Scores by Response</h3>
+                <hr>
+                <table id='raw_results_table'>
+                    <thead>
+                        <tr>
+                            <th>Response #</th>
+                            <th>Title / Name</th>
+                            <th>Date Submitted</th>
+                            <th>Response</th>
+                            <th>Calculated Result</th>
+                        </tr>
+                    </thead>
+                    <% for(var i=0; i<rawResponses.length; i++) {%>
+                        <tr>
+                            <td><%= i+1 %></td>
+                            <td><%= rawResponses[i].title %></td>
+                            <td><%= rawResponses[i].date.toLocaleDateString() %> (<%= rawResponses[i].date.toLocaleTimeString() %>)</td>
+                            <% for(var j=0; j<rawResponses[i].data.length; j++) {%>
+                                <td><%= JSON.stringify(Number(rawResponses[i].data[j])) %></td>
+                            <% } %>
+                            <td><%= npsResults[i] %></td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>			
+        </div>
+    </body>
+</html>

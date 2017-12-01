@@ -73,7 +73,6 @@ module.exports = {
                 res.end(err);
             } else {
                 logger.info('treetest_server.js: Created new treetest via POST successfully.');
-                var fullUrl = req.protocol + '://' + req.get('host');
                 res.redirect('/studies/new');
                 res.end();
             }
@@ -87,7 +86,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('treetest/edit.ejs',{title: req.query.new || "Edit", singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('treetest/edit.ejs', {singleStudy: study, email: req.user.email, url: fullUrl});
             }
         });
     },
