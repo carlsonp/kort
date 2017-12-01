@@ -10,6 +10,7 @@ module.exports = function(adminEmail, adminPassword) {
 	var admin_user = new User();
 	admin_user.email = adminEmail;
 	admin_user.password = admin_user.generateHash(adminPassword);
+	admin_user.type = "local";
 
 	User.findOne({ 'email' :  adminEmail }, function(err, user) {
 		// if there are any errors, return the error

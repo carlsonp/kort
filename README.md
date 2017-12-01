@@ -80,12 +80,14 @@ create a user for the `kort` database by doing the following:
 
 6. Edit the `adminPassword` value in `app.js`.
 
-7. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
+7. Optionally setup Google authentication.  [See the wiki for details](https://github.com/carlsonp/kort/wiki/Setting-up-Google-Authentication).
 
-8. Run `node app.js` from the main directory.  This will start the NodeJS server
+8. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
+
+9. Run `node app.js` from the main directory.  This will start the NodeJS server
 on the default port 3000.  You can connect via http://localhost:3000
 
-9. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
+10. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
 
 <a name="Support"/>
 

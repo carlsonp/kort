@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 
 const multer = require('multer');
 
-module.exports = function(app, passport, flash, uploadDir) {
+module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 
 	const multerConf = {
 		storage: multer.diskStorage({
@@ -39,7 +39,7 @@ module.exports = function(app, passport, flash, uploadDir) {
 
 	app.get('/', function (req, res) {
 		require('pkginfo')(module, 'version');
-		res.render('index.ejs', { loginMessage: req.flash('loginMessage'),version: module.exports.version });
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
 	});
 
 	//upload routes
@@ -133,7 +133,6 @@ module.exports = function(app, passport, flash, uploadDir) {
 	app.post('/createresponse_ajax/:studyID', isLoggedIn, response.create_ajax);
 	app.post('/deleteresponse/:studyID/:resid', isLoggedIn, response.delete);
 
-	//???
 	app.get('/overview', isLoggedIn, function (req, res) {
 		res.render('overview.ejs', {email: req.user.email});
 	});
@@ -141,23 +140,33 @@ module.exports = function(app, passport, flash, uploadDir) {
 	//user routes
 	app.get('/users', isLoggedIn, user.UserManagement);
 	app.post('/createuser', isLoggedIn, passport.authenticate('local-signup', {
-		successRedirect : '/users',
-		failureRedirect : '/users',
-		failureFlash : true
+		successRedirect: '/users',
+		failureRedirect: '/users',
+		failureFlash: true
 	}));
 	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
 	app.post('/resetpassword', isLoggedIn, user.resetPassword);
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/overview',
+		successRedirect: '/overview',
 		failureRedirect: '/',
-		failureFlash : true
+		failureFlash: true
 	}));
+	
+	if (allowGoogleAuth) {
+		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+		// the callback after google has authenticated the user
+		app.get('/auth/google/callback', passport.authenticate('google', {
+			successRedirect: '/overview',
+			failureRedirect: '/',
+			failureFlash: true
+		}));
+	}
+	
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
 		res.redirect('/');
 	});
-
 }
 
 function isLoggedIn(req, res, next) {

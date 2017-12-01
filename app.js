@@ -8,6 +8,13 @@ const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
 const uploadDir = './uploads/images';
+const allowGoogleAuth = false;
+
+//Google Authentication (via OAuth2) (Optional)
+const googleClientID = '';
+const googleClientSecret = ''; //DO NOT SHARE THIS!
+const googleCallbackURL = 'http://127.0.0.1:'+port+'/auth/google/callback'; //only change the port and anything before it
+
 
 //------------------------------------------------------------------
 
@@ -85,12 +92,12 @@ app.use(session({
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
-require('./server/passport')(passport, flash);
+require('./server/passport')(passport, flash, allowGoogleAuth, googleClientID, googleClientSecret, googleCallbackURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport, flash, uploadDir);
+require('./server/routes.js')(app, passport, flash, uploadDir, allowGoogleAuth);
 
 app.listen(port, function () {
 	logger.info('Kort running on port: ' + port);
