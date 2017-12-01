@@ -146,7 +146,7 @@ module.exports = {
                     //find the response object and updated it
                     var response = study.incompleteResponses.id(req.body.resid);
                     if (response == null){
-                        res.redirect('/msg/thanks');
+                        res.redirect('/msg/nomore');
                         res.end();
                     } else {
                         response.complete = true;
