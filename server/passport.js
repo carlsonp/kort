@@ -9,7 +9,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = mongoose.model('User');
 
 
-module.exports = function(passport, flash, googleClientID, googleClientSecret, googleCallbackURL) {
+module.exports = function(passport, flash, allowGoogleAuth, googleClientID, googleClientSecret, googleCallbackURL) {
 	
 	// used to serialize the user for the session
     passport.serializeUser(function(user, done) {
@@ -93,51 +93,53 @@ module.exports = function(passport, flash, googleClientID, googleClientSecret, g
 	}));
 	
 	
-	//https://scotch.io/tutorials/easy-node-authentication-google
-	passport.use('google', new GoogleStrategy({
-        clientID        : googleClientID,
-        clientSecret    : googleClientSecret,
-        callbackURL     : googleCallbackURL,
-    },
-    function(token, refreshToken, profile, done) {
+	if (allowGoogleAuth) {
+		//https://scotch.io/tutorials/easy-node-authentication-google
+		passport.use('google', new GoogleStrategy({
+			clientID        : googleClientID,
+			clientSecret    : googleClientSecret,
+			callbackURL     : googleCallbackURL,
+		},
+		function(token, refreshToken, profile, done) {
 
-        // asynchronous
-        // User.findOne won't fire until we have all our data back from Google
-        process.nextTick(function() {
+			// asynchronous
+			// User.findOne won't fire until we have all our data back from Google
+			process.nextTick(function() {
 
-            // try to find the user by email
-            // TODO: Google accounts can have multiple email addresses, do we need additional checking here?
-            User.findOne({ 'email' : profile.emails[0].value, 'type': 'Google' }, function(err, user) {
-                if (err) {
-					logger.error("passport.js: Error in Google strategy on user lookup:", err);
-                    return done(err);
-				}
+				// try to find the user by email
+				// TODO: Google accounts can have multiple email addresses, do we need additional checking here?
+				User.findOne({ 'email' : profile.emails[0].value, 'type': 'Google' }, function(err, user) {
+					if (err) {
+						logger.error("passport.js: Error in Google strategy on user lookup:", err);
+						return done(err);
+					}
 
-                if (user) {
-					// an existing Google user is found, log them in
-					return done(null, user);
-                } else {
-                    // if the user is not in the database, create a new user
-                    var newUser = new User();
+					if (user) {
+						// an existing Google user is found, log them in
+						return done(null, user);
+					} else {
+						// if the user is not in the database, create a new user
+						var newUser = new User();
 
-                    // set all of the relevant information
-                    newUser.token = token;
-                    newUser.name = profile.displayName;
-                    newUser.email = profile.emails[0].value; // pull the first email
-                    newUser.type = 'Google';
+						// set all of the relevant information
+						newUser.token = token;
+						newUser.name = profile.displayName;
+						newUser.email = profile.emails[0].value; // pull the first email
+						newUser.type = 'Google';
 
-                    // save the user
-                    newUser.save(function(err) {
-                        if (err) {
-							logger.error("passport.js: Error in Google strategy on user save:", err);
-                            throw err;
-						}
-						logger.info("passport.js: Google account merged in and created successfully for:", newUser.email);
-                        return done(null, newUser);
-                    });
-                }
-            });
-        });
+						// save the user
+						newUser.save(function(err) {
+							if (err) {
+								logger.error("passport.js: Error in Google strategy on user save:", err);
+								throw err;
+							}
+							logger.info("passport.js: Google account merged in and created successfully for:", newUser.email);
+							return done(null, newUser);
+						});
+					}
+				});
+			});
 
-    }));
+		}));
+	}
 };

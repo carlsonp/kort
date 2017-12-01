@@ -141,19 +141,22 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 		failureRedirect: '/',
 		failureFlash: true
 	}));
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    // the callback after google has authenticated the user
-    app.get('/auth/google/callback', passport.authenticate('google', {
-        successRedirect: '/overview',
-		failureRedirect: '/',
-		failureFlash: true
-    }));
+	
+	if (allowGoogleAuth) {
+		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+		// the callback after google has authenticated the user
+		app.get('/auth/google/callback', passport.authenticate('google', {
+			successRedirect: '/overview',
+			failureRedirect: '/',
+			failureFlash: true
+		}));
+	}
+	
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
 		res.redirect('/');
 	});
-
 }
 
 function isLoggedIn(req, res, next) {

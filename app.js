@@ -92,7 +92,7 @@ app.use(session({
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
-require('./server/passport')(passport, flash, googleClientID, googleClientSecret, googleCallbackURL);
+require('./server/passport')(passport, flash, allowGoogleAuth, googleClientID, googleClientSecret, googleCallbackURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
