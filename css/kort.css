@@ -27,6 +27,10 @@ h3.header {
     color: white;
 }
 
+.custom_topbar .navbar-brand:hover {
+    color: white !important;
+}
+
 .custom_topbar {
     background-color: #607D8B;
 }
@@ -62,9 +66,7 @@ h3.header {
 .studyTitle {
     font-size: 20px;
 }
-.navbar-brand:hover {
-    color: white !important;
-}
+
 .errorMessage, .successMessage {
     display:none;
 }
