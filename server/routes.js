@@ -39,7 +39,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 
 	app.get('/', function (req, res) {
 		require('pkginfo')(module, 'version');
-		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), logout: req.query.logout, version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
 	});
 
 	//upload routes
@@ -165,7 +165,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
-		res.redirect('/');
+		res.redirect('/?logout=true');
 	});
 }
 
