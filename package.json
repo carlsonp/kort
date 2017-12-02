@@ -49,7 +49,7 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
-    "eslint": "^4.12.0",
+    "eslint": "^4.12.1",
     "nodemon": "^1.12.1"
   },
   "scripts": {
