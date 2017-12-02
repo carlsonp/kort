@@ -6,7 +6,7 @@
 		<script type="text/javascript" src="/js/users.js"></script>
 	</head>
 	<body class="background-white">
-	<%- include('partials/admin_header.ejs') %>
+	<%- include('partials/admin_header.ejs', {admin: admin}) %>
 		<div class="container">
 			<% if (createUserErrorMessage.length > 0) { %>
 			<div class="alert alert-danger errorMessage">
@@ -37,6 +37,7 @@
 							<tr class='active'>
 								<th>Email</th>
 								<th>Type</th>
+								<th>Admin</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -46,6 +47,11 @@
 							<tr>
 								<td><%= users[i].email %></td>
 								<td><%= users[i].type %></td>
+								<td>
+									<% if (users[i].admin) { %>
+										yes
+									<% } %>
+								</td>
 								<% if (users[i].type == 'local') { %>
 									<td><a data-email="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
 								<% } else { %>

@@ -7,6 +7,7 @@ var User = new mongoose.Schema({
 	type: String, //"local" or "Google"
 	name: String, //for Google
 	token: String, //for Google
+	admin: Boolean,
 });
 
 // generating a hash

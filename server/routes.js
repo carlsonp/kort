@@ -39,7 +39,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 
 	app.get('/', function (req, res) {
 		require('pkginfo')(module, 'version');
-		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), logout: req.query.logout, version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
 	});
 
 	//upload routes
@@ -134,18 +134,18 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 	app.post('/deleteresponse/:studyID/:resid', isLoggedIn, response.delete);
 
 	app.get('/overview', isLoggedIn, function (req, res) {
-		res.render('overview.ejs', {email: req.user.email});
+		res.render('overview.ejs', {email: req.user.email, admin: req.session.admin});
 	});
 
 	//user routes
-	app.get('/users', isLoggedIn, user.UserManagement);
-	app.post('/createuser', isLoggedIn, passport.authenticate('local-signup', {
+	app.get('/users', isAdminLoggedIn, user.UserManagement);
+	app.post('/createuser', isAdminLoggedIn, passport.authenticate('local-signup', {
 		successRedirect: '/users',
 		failureRedirect: '/users',
 		failureFlash: true
 	}));
-	app.get('/deleteuser/:id', isLoggedIn, user.deleteUser);
-	app.post('/resetpassword', isLoggedIn, user.resetPassword);
+	app.get('/deleteuser/:id', isAdminLoggedIn, user.deleteUser);
+	app.post('/resetpassword', isAdminLoggedIn, user.resetPassword);
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/overview',
 		failureRedirect: '/',
@@ -165,12 +165,18 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
-		res.redirect('/');
+		res.redirect('/?logout=true');
 	});
 }
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
+        return next();
+    res.redirect('/');
+}
+
+function isAdminLoggedIn(req, res, next) {
+	if (req.isAuthenticated() && req.session.admin)
         return next();
     res.redirect('/');
 }

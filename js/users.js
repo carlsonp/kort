@@ -17,6 +17,7 @@ $( document ).ready(function() {
 		"columns": [
 		    null,
 		    null,
+		    null,
 		    { "orderable": false },
 		    { "orderable": false },
 		],
@@ -28,6 +29,8 @@ $( document ).ready(function() {
 			message: "<h3>Add User</h3><form id='newUserForm' action='/createuser' method='post'>\
 		    <input id='email' name='email' autocomplete='off' placeholder='Email Address' class='form-control' type='text' /><br/>\
 		    <input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
+		    <br>\
+		    <input id='admin' name='admin' type='checkbox'> Admin\
 		    </form>",
 			closeButton: false,
 		    buttons: {confirm: {label: 'Add User',className: 'btn-success'},
