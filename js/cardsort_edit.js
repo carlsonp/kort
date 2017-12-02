@@ -21,7 +21,7 @@ function createCard(str){
 
 function createGroup(str){
 	if (!str == '') {
-		var deleteLink = "<td><a class='text-danger' href='#' onclick='deleteCard(this)'>Delete</a></td>";
+		var deleteLink = "<td><a class='text-danger' href='#' onclick='deleteGroup(this)'>Delete</a></td>";
 		groups_table.row.add([str,deleteLink]).draw(false);
 		$('#newGroupInput').val('');
 		updateInputArrays();
