@@ -4,7 +4,9 @@
 	    <ul class='nav navbar-nav'>
 	    	<li><a href='/overview'><i class="fa fa-home" aria-hidden="true"></i>  Overview</a></li>
 	    	<li><a href='/studies'><i class="fa fa-list-alt" aria-hidden="true"></i>  Studies</a></li>
-	    	<li><a href='/users'><i class="fa fa-users" aria-hidden="true"></i>  Users</a></li>
+	    	<% if (admin) { %>
+				<li><a href='/users'><i class="fa fa-users" aria-hidden="true"></i>  Users</a></li>
+			<% } %>
 		</ul>
 		<ul class='nav navbar-nav' style='float:right'>
 			<li><a href='/logout'><i class="fa fa-sign-out" aria-hidden="true"></i> Logout (<%= email %>)</a></li>

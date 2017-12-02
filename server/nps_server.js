@@ -40,7 +40,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('nps/edit.ejs', {singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('nps/edit.ejs', {singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
             }
         });
     },
@@ -87,7 +87,8 @@ module.exports = {
                                             rawResponses: rawResponses,
                                             npsResults: npsResults,
                                             npsScore: npsScore,    
-                                            email: req.user.email});
+                                            email: req.user.email,
+                                            admin: req.session.admin});
             }
         });
     },

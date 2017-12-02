@@ -55,6 +55,11 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 					newUser.email = email;
 					newUser.password = newUser.generateHash(password);
 					newUser.type = "local";
+					if (req.body.admin == 'on') {
+						newUser.admin = true;
+					} else {
+						newUser.admin = false;
+					}
 					// save the user
 					newUser.save(function(err) {
 						if (err) {
@@ -87,6 +92,8 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
             if (!user || !user.validPassword(password)){
                 return done(null, false, req.flash('loginMessage', 'Wrong email or password.')); // req.flash is the way to set flashdata using connect-flash
             }
+            // store the admin flag in the session
+            req.session.admin = user.admin;
             // all is well, return successful user
             return done(null, user);
         });
@@ -115,6 +122,8 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 					}
 
 					if (user) {
+						// store the admin flag in the session
+						req.session.admin = user.admin;
 						// an existing Google user is found, log them in
 						return done(null, user);
 					} else {
@@ -133,6 +142,8 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 								logger.error("passport.js: Error in Google strategy on user save:", err);
 								throw err;
 							}
+							// store the admin flag in the session
+							req.session.admin = newUser.admin;
 							logger.info("passport.js: Google account merged in and created successfully for:", newUser.email);
 							return done(null, newUser);
 						});
