@@ -3,7 +3,8 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<%- include('../partials/datatables.ejs') %>
-		<script type="text/javascript" src="/js/results.js"></script>
+		<script type="text/javascript" src="/js/resultstable.js"></script>
+		<script type="text/javascript" src="/js/treetest-results.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/progressBarAsChart.css"/>
 		<title>Tree Test Results</title>
 	</head>
@@ -13,10 +14,13 @@
 			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 			<h1>Results for <%= study.title %></h1>
 			<br>
+			 <div class="well">
+                <%- include('../partials/resultstable.ejs') %>
+            </div>
 			<div class="well">
 				<h3>Data by Response</h3>
 				<hr>
-				<table id='results_table'>
+				<table id='treetest_results_table'>
 					<thead>
 						<tr>
 							<th>Response #</th>
@@ -27,13 +31,13 @@
 							<% } %>
 						</tr>
 					</thead>
-					<% for(var i=0; i<study.completeResponses.length; i++) {%>
+					<% for(var i=0; i<completeResponses.length; i++) {%>
 						<tr>
 							<td><%= i+1 %></td>
-							<td><%= study.completeResponses[i].title %></td>
-							<td><%= study.completeResponses[i].date.toLocaleDateString() %> (<%= study.completeResponses[i].date.toLocaleTimeString() %>)</td>
-							<% for(var j=0; j<study.completeResponses[i].data.length; j++) {%>
-							<td><%= study.completeResponses[i].data[j].toString().replace(/[',]+/g, '/') %></td>
+							<td><%= completeResponses[i].title %></td>
+							<td><%= completeResponses[i].date.toLocaleDateString() %> (<%= completeResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<completeResponses[i].data.length; j++) {%>
+							<td><%= completeResponses[i].data[j].toString().replace(/[',]+/g, '/') %></td>
 							<% } %>
 						</tr>
 					<% } %>
@@ -61,7 +65,7 @@
 									<td class="no-border"><%= taskSet[i][j] %></td>
 									<td class="no-border" style="width:75%;">
 										<div class="progress">
-											<div class="progress-bar" role="progressbar" style="width:<%= (taskCount[i][j]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= taskCount[i][j] %> of <%= study.completeResponses.length %> (<%= Math.floor((taskCount[i][j]/study.completeResponses.length)*100) %>%)</div>
+											<div class="progress-bar" role="progressbar" style="width:<%= (taskCount[i][j]/completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= taskCount[i][j] %> of <%= completeResponses.length %> (<%= Math.floor((taskCount[i][j]/completeResponses.length)*100) %>%)</div>
 										</div>
 									</td>
 								</tr>

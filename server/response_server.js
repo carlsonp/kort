@@ -30,7 +30,7 @@ module.exports = {
                 logger.error("response_server.js: Error creating response:", err);
                 res.end(err);
             } else {
-            	study.incompleteResponses.push(response);
+            	study.incompleteResponses.push(response._id);
                 study.save();
             }
                 

@@ -97,8 +97,23 @@ module.exports = {
                 logger.error("treetest_server.js: Error getting study to see results:", err);
                 res.end(err);
             } else {
-                var responses = gatherResponses(study.data.tasks, study.completeResponses)
-                res.render('treetest/results.ejs',{study: study, email: req.user.email, admin: req.session.admin, taskSet: responses[0], taskCount: responses[1]});
+                Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                        var responses = gatherResponses(study.data.tasks, completeResponses)
+                        res.render('treetest/results.ejs',{study: study, 
+                                                            completeResponses:completeResponses,
+                                                            email: req.user.email, 
+                                                            admin: req.session.admin, 
+                                                            taskSet: responses[0], 
+                                                            taskCount: responses[1]
+                                                        });
+                    }
+                });
+                
             }
         });
     },

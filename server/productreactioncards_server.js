@@ -51,26 +51,42 @@ module.exports = {
                 logger.error("productreactioncards_server.js: Error getting study to see results:", err);
                 res.end(err);
             } else {
-                //gather all words from all responses and put into single array
-                var allWords = []
-                for (var i = 0; i < study.completeResponses.length; i++) {
-                    var response = study.completeResponses[i].data;
-                    for (var j = 0; j < response.length; j++) {
-                        allWords.push(response[j]);
-                    }
-                }
-                var combined = allWords.reduce(function (acc, curr) {
-                  if (typeof acc[curr] == 'undefined') {acc[curr] = 1;}
-                  else {acc[curr] += 1;}
-                  return acc;
-                }, {});
-                var words = Object.keys(combined);
-                var counts = [];
-                for (var i = 0; i < words.length; i++) {
-                    counts.push(combined[words[i]]);
-                }
+                Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                         //gather all words from all responses and put into single array
+                        var allWords = []
+                        for (var i = 0; i < completeResponses.length; i++) {
+                            var response = completeResponses[i].data;
+                            for (var j = 0; j < response.length; j++) {
+                                allWords.push(response[j]);
+                            }
+                        }
+                        var combined = allWords.reduce(function (acc, curr) {
+                          if (typeof acc[curr] == 'undefined') {acc[curr] = 1;}
+                          else {acc[curr] += 1;}
+                          return acc;
+                        }, {});
+                        var words = Object.keys(combined);
+                        var counts = [];
+                        for (var i = 0; i < words.length; i++) {
+                            counts.push(combined[words[i]]);
+                        }
 
-                res.render('productreactioncards/results.ejs',{study: study, words: words, counts: counts, email: req.user.email, admin: req.session.admin});
+                        res.render('productreactioncards/results.ejs',{ study: study, 
+                                                                        completeResponses:completeResponses,
+                                                                        words: words, 
+                                                                        counts: counts, 
+                                                                        email: req.user.email, 
+                                                                        admin: req.session.admin
+                                                                    });
+
+                    }
+                });
+               
             }
         });
     },

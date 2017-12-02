@@ -53,37 +53,49 @@ module.exports = {
                 res.end(err);
             } else {
 				//collect all group names
-                sum_groups = []
-                for (var i = 0; i < study.completeResponses.length; i++) {
-                    if (study.completeResponses[i].complete == true){
-                        var response = study.completeResponses[i].data;
-                        for (var j = 0; j < response.length; j++) {
-							if(sum_groups.indexOf(response[j].groupname) == -1){
-								sum_groups.push(response[j].groupname);
-							}
-                        }
-                    }
-                }
-
-				var matrix = new Array(study.data.cards.length);
-				for (var i = 0; i < study.data.cards.length; i++) {
-					matrix[i] = new Array(sum_groups.length);
-					matrix[i].fill(0);
-				}
-
-                for (var i = 0; i < study.completeResponses.length; i++) {
-                    if (study.completeResponses[i].complete == true){
-                        var response = study.completeResponses[i].data;
-                        for (var j = 0; j < response.length; j++) {
-							var groupIndex = sum_groups.indexOf(response[j].groupname);
-                            for (var k = 0; k < response[j].cards.length; k++) {
-                                var cardIndex = study.data.cards.indexOf(response[j].cards[k]);
-                                matrix[cardIndex][groupIndex]+=1;
+                
+                Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                        sum_groups = []
+                        for (var i = 0; i < completeResponses.length; i++) {
+                            if (completeResponses[i].complete == true){
+                                var response = completeResponses[i].data;
+                                for (var j = 0; j < response.length; j++) {
+                                    if(sum_groups.indexOf(response[j].groupname) == -1){
+                                        sum_groups.push(response[j].groupname);
+                                    }
+                                }
                             }
                         }
+
+                        var matrix = new Array(study.data.cards.length);
+                        for (var i = 0; i < study.data.cards.length; i++) {
+                            matrix[i] = new Array(sum_groups.length);
+                            matrix[i].fill(0);
+                        }
+
+                        for (var i = 0; i < completeResponses.length; i++) {
+                            if (completeResponses[i].complete == true){
+                                var response = completeResponses[i].data;
+                                for (var j = 0; j < response.length; j++) {
+                                    var groupIndex = sum_groups.indexOf(response[j].groupname);
+                                    for (var k = 0; k < response[j].cards.length; k++) {
+                                        var cardIndex = study.data.cards.indexOf(response[j].cards[k]);
+                                        matrix[cardIndex][groupIndex]+=1;
+                                    }
+                                }
+                            }
+                        }
+                        // var fullUrl = req.protocol + '://' + req.get('host');
+                        // res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
+                        res.render('cardsort/results.ejs',{completeResponses: completeResponses, groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix, email: req.user.email, admin: req.session.admin});
                     }
-                }
-				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix, email: req.user.email, admin: req.session.admin});
+                });
+				
             }
         });
     },
