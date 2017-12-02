@@ -94,7 +94,7 @@ h3.header {
 }
 
 /*dropdown messages are hidden by default*/
-.errorMessage, .successMessage, .loginMessage {
+.errorMessage, .successMessage, .loginMessage, .logoutMessage {
     display:none;
 }
 
