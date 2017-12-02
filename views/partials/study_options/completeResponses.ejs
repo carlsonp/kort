@@ -1,0 +1,23 @@
+<label for="groups">Completed Responses (<%= singleStudy.completeResponses.length %>)</label>
+<table id="complete_responses_table" class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>URL</th>
+			<th>Copy to Clipboard</th>
+			<th>Delete
+				<!-- (<a href="#" class='clear-responses text-danger' data-studyid="<%= singleStudy._id %>" data-title="<%= singleStudy.title %>">Delete All</a>) -->
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% for(var z=0; z < singleStudy.completeResponses.length; z++) {%>
+		<tr>
+			<td><%= singleStudy.completeResponses[z].title %></a></td>
+			<td><a target="_blank" href='<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.completeResponses[z]._id %>'><%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.completeResponses[z]._id %></a></td>
+			<td><a href="" class="copyText" data-placement="right" data-clipboard-text="<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.completeResponses[z]._id %>" data-toggle="tooltip" title="Copied!">Copy</a></td>
+			<td><a class='text-danger' data-studyid="<%= singleStudy._id %>" data-resid="<%= singleStudy.completeResponses[z]._id %>" href="">Delete</a></td>
+		</tr>
+	<% } %>
+	</tbody>
+</table>

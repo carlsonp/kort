@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="/js/private.js"></script>
 
 	</head>
-	<body>
+	<body class="background-white">
 	<%- include('../partials/admin_header.ejs') %>
 	<div class="container">
 	 	<%- include('../partials/editwarning.ejs') %>
@@ -45,7 +45,11 @@
 						    </div></p>
 					    <% } %>
 					</div>
+					
+					<%- include('../partials/study_options/status.ejs') %>
+				
 				</div>
+
 				<div class='col-sm-4'>
 					<div class="well">
 						<label for="cards">Cards</label>
@@ -113,16 +117,13 @@
 				</div>	
 			</div>
 			<div class='row'>
-				<div class="col-sm-3">
-					<%- include('../partials/study_options/status.ejs') %>
-				</div>
-				<div class="col-sm-9">
+				
+				<div class="col-sm-12">
 					<div class="well">
 						<%- include('../partials/study_options/private.ejs') %>
 					</div>
 				</div>
 			</div>
-
 			<div class='row'>
 				<div class='col-sm-4'>
 					<button type="submit" class="btn btn-primary">Save</button>
