@@ -40,7 +40,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('productreactioncards/edit.ejs', {singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('productreactioncards/edit.ejs', {singleStudy: study, email: req.user.email, admin: req.session.admin, url: fullUrl});
             }
         });
     },
@@ -70,7 +70,7 @@ module.exports = {
                     counts.push(combined[words[i]]);
                 }
 
-                res.render('productreactioncards/results.ejs',{study: study, words: words, counts: counts, email: req.user.email});
+                res.render('productreactioncards/results.ejs',{study: study, words: words, counts: counts, email: req.user.email, admin: req.session.admin});
             }
         });
     },

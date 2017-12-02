@@ -15,6 +15,7 @@ module.exports = {
             } else {
                 res.render("users.ejs", {users: docs,
 										email: req.user.email,
+										admin: req.session.admin,
                                         createUserErrorMessage: req.flash('createUserErrorMessage'), 
                                         createUserSuccessMessage: req.flash('createUserSuccessMessage')});
             }

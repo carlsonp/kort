@@ -36,7 +36,7 @@ module.exports = {
                 logger.error("study_server.js: home section error:", err);
                 res.end(err);
             } else {
-                res.render("studies.ejs", {studies: studies, email: req.user.email});
+                res.render("studies.ejs", {studies: studies, email: req.user.email, admin: req.session.admin});
             }
         });
     },
@@ -47,7 +47,7 @@ module.exports = {
                 logger.error("study_server.js: homenew section error:", err);
                 res.end(err);
             } else {
-                res.render("studies.ejs", {new: true,studies: studies, email: req.user.email});
+                res.render("studies.ejs", {new: true,studies: studies, email: req.user.email, admin: req.session.admin});
             }
         });
     },

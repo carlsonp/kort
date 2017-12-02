@@ -41,7 +41,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
             }
         });
     },
@@ -83,7 +83,7 @@ module.exports = {
                         }
                     }
                 }
-				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix,email: req.user.email});
+				res.render('cardsort/results.ejs',{groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix, email: req.user.email, admin: req.session.admin});
             }
         });
     },

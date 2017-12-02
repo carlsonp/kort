@@ -11,6 +11,7 @@ module.exports = function(adminEmail, adminPassword) {
 	admin_user.email = adminEmail;
 	admin_user.password = admin_user.generateHash(adminPassword);
 	admin_user.type = "local";
+	admin_user.admin = true;
 
 	User.findOne({ 'email' :  adminEmail }, function(err, user) {
 		// if there are any errors, return the error
