@@ -86,7 +86,7 @@ module.exports = {
                 res.end(err);
             } else {
 				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('treetest/edit.ejs', {singleStudy: study, email: req.user.email, url: fullUrl});
+                res.render('treetest/edit.ejs', {singleStudy: study, email: req.user.email, admin: req.session.admin, url: fullUrl});
             }
         });
     },
@@ -98,7 +98,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var responses = gatherResponses(study.data.tasks, study.completeResponses)
-                res.render('treetest/results.ejs',{study: study, email: req.user.email, taskSet: responses[0], taskCount: responses[1]});
+                res.render('treetest/results.ejs',{study: study, email: req.user.email, admin: req.session.admin, taskSet: responses[0], taskCount: responses[1]});
             }
         });
     },

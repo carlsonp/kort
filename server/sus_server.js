@@ -39,7 +39,7 @@ module.exports = {
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('sus/edit.ejs', {singleStudy: docs, email: req.user.email, url: fullUrl});
+                res.render('sus/edit.ejs', {singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
             }
         });
     },
@@ -134,7 +134,8 @@ module.exports = {
                                             curved_grading_table_idx: curved_grading_table_idx,
                                             raw_percentile_ranks:raw_percentile_ranks,
                                             raw_percentile_ranks_idx: raw_percentile_ranks_idx,
-                                            email: req.user.email});
+                                            email: req.user.email,
+                                            admin: req.session.admin});
             }
         });
     },
