@@ -30,6 +30,12 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
+		if (password.length <= 0) {
+			return done(null, false, req.flash('createUserErrorMessage', 'Password field is blank.'));
+		} else if (email.length <= 0) {
+			return done(null, false, req.flash('createUserErrorMessage', 'Email field is blank.'));
+		}
+
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -44,10 +50,6 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 				// check to see if theres already a user with that email
 				if (user) {
 					return done(null, false, req.flash('createUserErrorMessage', 'Email is already taken.'));
-				} else if (password.length < 1) {
-					return done(null, false, req.flash('createUserErrorMessage', 'Password field is blank.'));
-				} else if (email.length < 0) {
-					return done(null, false, req.flash('createUserErrorMessage', 'Email field is blank.'));
 				} else {
 					// if there is no user with that email, create new user
 					var newUser = new User();
@@ -55,7 +57,7 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 					newUser.email = email;
 					newUser.password = newUser.generateHash(password);
 					newUser.type = "local";
-					if (req.body.admin == 'on') {
+					if (req.body.admin == 'on' && req.path == '/createuser') {
 						newUser.admin = true;
 					} else {
 						newUser.admin = false;
@@ -122,8 +124,6 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 					}
 
 					if (user) {
-						// store the admin flag in the session
-						req.session.admin = user.admin;
 						// an existing Google user is found, log them in
 						return done(null, user);
 					} else {
@@ -135,6 +135,7 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 						newUser.name = profile.displayName;
 						newUser.email = profile.emails[0].value; // pull the first email
 						newUser.type = 'Google';
+						newUser.admin = false;
 
 						// save the user
 						newUser.save(function(err) {
@@ -142,8 +143,6 @@ module.exports = function(passport, flash, allowGoogleAuth, googleClientID, goog
 								logger.error("passport.js: Error in Google strategy on user save:", err);
 								throw err;
 							}
-							// store the admin flag in the session
-							req.session.admin = newUser.admin;
 							logger.info("passport.js: Google account merged in and created successfully for:", newUser.email);
 							return done(null, newUser);
 						});
