@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 
 const multer = require('multer');
 
-module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
+module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allowUserRegistration) {
 
 	const multerConf = {
 		storage: multer.diskStorage({
@@ -39,7 +39,13 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 
 	app.get('/', function (req, res) {
 		require('pkginfo')(module, 'version');
-		res.render('index.ejs', { loginMessage: req.flash('loginMessage'), logout: req.query.logout, version: module.exports.version, allowGoogleAuth: allowGoogleAuth });
+		res.render('index.ejs', { loginMessage: req.flash('loginMessage'),
+									logout: req.query.logout,
+									version: module.exports.version,
+									allowGoogleAuth: allowGoogleAuth,
+									allowUserRegistration: allowUserRegistration,
+									createUserErrorMessage: req.flash('createUserErrorMessage'),
+                                    createUserSuccessMessage: req.flash('createUserSuccessMessage') });
 	});
 
 	//upload routes
@@ -152,7 +158,15 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth) {
 		failureFlash: true
 	}));
 	
-	if (allowGoogleAuth) {
+	if (allowUserRegistration) {
+		app.post('/localregistration', passport.authenticate('local-signup', {
+			successRedirect: '/',
+			failureRedirect: '/',
+			failureFlash: true
+		}));
+	}
+	
+	if (allowGoogleAuth && allowUserRegistration) {
 		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 		// the callback after google has authenticated the user
 		app.get('/auth/google/callback', passport.authenticate('google', {
