@@ -8,6 +8,12 @@ var Response = new mongoose.Schema({
 	complete: Boolean,
 });
 
+Response.methods.getDateStr = function() {
+	var d = this.date; 
+	var minutes = (d.getMinutes()<10?'0':'') + d.getMinutes();
+	return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate() + " (" + d.getHours() + ":" + minutes + ")";
+};
+
 module.exports = mongoose.model('Response', Response);
 
 var Study = new mongoose.Schema({
