@@ -80,7 +80,8 @@ module.exports = {
             } else {
 				if (study.status == "open") {
 				   if (study.private){
-                        if (req.params.resid && (study.incompleteResponses.indexOf(req.params.resid) > -1) != null){
+                        var con2 = (study.incompleteResponses.indexOf(req.params.resid) != -1);
+                        if (req.params.resid && con2){
 							renderPages(study,req.params.resid,res)
 						} else {
 							logger.error("study_server.js: Error viewing study, 404.");

@@ -50,12 +50,12 @@
 			</tr>
 		</thead>
 		<tbody id="responses_table_body">
-		<% for(var z=0; z < singleStudy.incompleteResponses.length; z++) {%>
+		<% for(var z=0; z < incompleteResponses.length; z++) {%>
 			<tr>
-				<td><%= singleStudy.incompleteResponses[z].title %></a></td>
-				<td ><a target="_blank"  href='<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>'><%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %></a></td>
-				<td><a href="" class="copyText" data-placement="right" data-clipboard-text="<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= singleStudy.incompleteResponses[z]._id %>" data-toggle="tooltip" title="Copied!">Copy</a></td>
-				<td><a class='text-danger' data-studyid="<%= singleStudy._id %>" data-resid="<%= singleStudy.incompleteResponses[z]._id %>" href="">Delete</a></td>
+				<td><%= incompleteResponses[z].title %></a></td>
+				<td ><a target="_blank"  href='<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= incompleteResponses[z]._id %>'><%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= incompleteResponses[z]._id %></a></td>
+				<td><a href="" class="copyText" data-placement="right" data-clipboard-text="<%= url %>/<%= singleStudy.type %>/<%= singleStudy._id %>/<%= incompleteResponses[z]._id %>" data-toggle="tooltip" title="Copied!">Copy</a></td>
+				<td><a class='text-danger' data-studyid="<%= singleStudy._id %>" data-resid="<%= incompleteResponses[z]._id %>" href="">Delete</a></td>
 			</tr>
 		<% } %>
 		</tbody>

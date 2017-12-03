@@ -34,14 +34,27 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 logger.error("cardsort_server.js: Error in edit cardsort:", err);
                 res.end(err);
             } else {
                 var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('cardsort/edit.ejs',{singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
+                Response.find({_id: {$in: study.incompleteResponses}}, function (err, incompleteResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                        res.render('cardsort/edit.ejs',{singleStudy: study,
+                                                        incompleteResponses: incompleteResponses, 
+                                                        email: req.user.email, 
+                                                        admin: req.session.admin, 
+                                                        url: fullUrl});
+                    }
+                });
+                
             }
         });
     },

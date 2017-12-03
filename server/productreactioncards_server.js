@@ -39,8 +39,20 @@ module.exports = {
                 logger.error("productreactioncards_server.js: Error in edit product reaction cards:", err);
                 res.end(err);
             } else {
-				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('productreactioncards/edit.ejs', {singleStudy: study, email: req.user.email, admin: req.session.admin, url: fullUrl});
+                Response.find({_id: {$in: study.incompleteResponses}}, function (err, incompleteResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {   
+        				var fullUrl = req.protocol + '://' + req.get('host');
+                        res.render('productreactioncards/edit.ejs', {singleStudy: study, 
+                                                                    incompleteResponses: incompleteResponses,
+                                                                    email: req.user.email, 
+                                                                    admin: req.session.admin, 
+                                                                    url: fullUrl});
+                    }
+                });
             }
         });
     },

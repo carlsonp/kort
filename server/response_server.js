@@ -54,8 +54,11 @@ module.exports = {
                 logger.error("response_server.js: Cannot find study to delete:", err);
                 req.end();
             } else {
-                study.incompleteResponses.pull(req.params.resid);
-                study.completeResponses.pull(req.params.resid);
+                var respIdx1 = study.completeResponses.indexOf(req.body.resid);
+                study.completeResponses.splice(respIdx1,1);
+                var respIdx2 = study.incompleteResponses.indexOf(req.body.resid);
+                study.incompleteResponses.splice(respIdx2,1);
+
             	study.save();
                 Response.findOne({ _id: req.params.resid}, function(err,response) {
                     if (err) {
