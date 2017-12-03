@@ -215,7 +215,7 @@ $(document).ready(function() {
 		//create treeview structure from database information
 		var myTree = createTreeViewStructure()
 		//parents are selectable by default, only disable when value is false
-		if(!$('#hiddenSelectableParents').val()){
+		if($('#hiddenSelectableParents').val() != 'on'){
 			disableSelectableOnParents(myTree);
 		}
 		initializeTreeViewObject(myTree);
