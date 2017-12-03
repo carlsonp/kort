@@ -42,10 +42,13 @@ $( document ).ready(function() {
 						type: "POST",
 						contentType: "application/json",
 						success: function(data) {
-		  	    			parentRow.remove()
+		  	    			parentRow.remove();
 		  	    			if ($('#results_table_body tr').length < 1){
 		  	    				window.location.href = "/studies"
-	    					}	
+	    					} else {
+	    						$('#responsesNum').html($('#results_table_body tr').length);
+	    					}
+
 						},
 						error:   function(xhr, text, err) {
 						  console.log("private.ejs: delete Response ajax error");

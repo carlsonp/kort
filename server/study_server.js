@@ -181,8 +181,8 @@ module.exports = {
                                        } 
                                 });
                                 //move response object from incompleteResponses to completeResponses
-                                study.completeResponses.push(req.body.resid);
                                 var respIdx = study.incompleteResponses.indexOf(req.body.resid);
+                                study.completeResponses.push(study.incompleteResponses[respIdx]);
                                 study.incompleteResponses.splice(respIdx,1);
                                 //save the study object (which will save the child objects)
                                 study.save();
