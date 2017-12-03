@@ -35,8 +35,8 @@ install:
 
 # ampersand means run in the background
 # sleep and wait for the app to load
-# use curl as a simple way of checking if nodejs is running? is there a better way?
+# start running casperjs tests
 script:
     - node app.js &
     - sleep 6
-    - curl localhost:3000 > /dev/null
+    - npm test
