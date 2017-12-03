@@ -104,7 +104,12 @@ module.exports = {
                             }
                         }
                        
-                        res.render('cardsort/results.ejs',{completeResponses: completeResponses, groups: sum_groups, cards: study.data.cards, study: study, matrix: matrix, email: req.user.email, admin: req.session.admin});
+                        res.render('cardsort/results.ejs',{completeResponses: completeResponses, 
+                                                            groups: sum_groups, 
+                                                            cards: study.data.cards, 
+                                                            study: study, matrix: matrix, 
+                                                            email: req.user.email, 
+                                                            admin: req.session.admin});
                     }
                 });
 				
