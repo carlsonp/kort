@@ -77,7 +77,7 @@ module.exports = {
                 res.status(504);
                 logger.error("study_server.js: Error viewing study:", err);
                 res.end(err);
-            } else {
+            } else if (study) {
 				if (study.status == "open") {
 				   if (study.private){
                         var con2 = (study.incompleteResponses.indexOf(req.params.resid) != -1);
@@ -103,6 +103,8 @@ module.exports = {
 				} else {
 					res.redirect('/msg/notactive');
 				}
+            } else {
+                res.redirect('/msg/study404');
             }
         });
     },
