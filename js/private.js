@@ -8,6 +8,10 @@ $( document ).ready(function() {
 	  $("#responseSingleArea").toggle();
 	});
 
+	if ($('#responses_table_body tr').length < 1){
+		$('#responses_table').hide();
+	}	
+
 	$('#newResponseInput').keypress(function (e) {
 		if(e.which == 13) {
 	    	$('#addResponseBtn').click();
@@ -35,6 +39,7 @@ $( document ).ready(function() {
 						<td><a href="" class="copyText" data-placement="right" data-clipboard-text="`+url+`/`+studyType+`/`+studyID+`/`+response._id+`" data-toggle="tooltip" title="Copied!">Copy</a></td>
 						<td><a class='text-danger' data-studyid="`+studyID+`" data-resid="`+response._id+`" href="">Delete</a></td>
 					</tr>`).appendTo($('#responses_table_body'));
+	          	$('#responses_table').show();
 	        },
 	        error:   function(xhr, text, err) {
 	      		console.log("Response: Please check ajax request");
@@ -73,8 +78,8 @@ $( document ).ready(function() {
 	    bootbox.confirm({
 	    	size: 'small',
 	    	closeButton: false,
-		    message: "<b>Delete Response?</b><br>This cannot be undone.",
-		    buttons: {confirm: {label: 'Delete Response',className: 'btn-danger'},
+		    message: "<b>Delete link?</b><br>This cannot be undone.",
+		    buttons: {confirm: {label: 'Delete link',className: 'btn-danger'},
 	        		  cancel: {label: 'Cancel',className: 'btn-link'}
 		    },
 		    callback: function (result) {
@@ -84,7 +89,10 @@ $( document ).ready(function() {
 						type: "POST",
 						contentType: "application/json",
 						success: function(data) {
-		  	    			parentRow.remove()
+		  	    			parentRow.remove();
+		  	    			if ($('#responses_table_body tr').length < 1){
+		  	    				$('#responses_table').hide();
+	    					}	
 						},
 						error:   function(xhr, text, err) {
 						  console.log("private.ejs: delete Response ajax error");
@@ -102,8 +110,8 @@ $( document ).ready(function() {
 	    bootbox.confirm({
 	    	size: 'small',
 	    	closeButton: false,
-		    message: "<b>Delete all responses for "+title+"?</b><br>This will delete all responses.",
-		    buttons: {confirm: {label: 'Delete All Responses',className: 'btn-danger'},
+		    message: "<b>Delete all links for "+title+"?</b><br>This cannot be undone.",
+		    buttons: {confirm: {label: 'Delete All Links',className: 'btn-danger'},
 	        		  cancel: {label: 'Cancel',className: 'btn-link'}
 		    },
 		    callback: function (result) {
@@ -114,6 +122,7 @@ $( document ).ready(function() {
 						contentType: "application/json",
 						success: function(data) {
 		  	    			$("#responses_table_body tr").remove(); 
+		  	    			$('#responses_table').hide();
 						},
 						error:   function(xhr, text, err) {
 						  console.log("private.ejs: clearstudy ajax error");

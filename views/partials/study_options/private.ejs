@@ -4,14 +4,14 @@
 <% } %>
 <%if (!singleStudy.private) { %>
 <div class="radio">
-	<label><input type="radio" name="private" value='false' checked>All participants use same link</label>
+	<label><input type="radio" name="private" value='false' checked>Same linke for all participants</label>
 </div>
 <div class="radio">
 	<label><input type="radio" name="private" value='true'>Unique link for each participant</label>
 </div>
 <% } else { %>
 <div class="radio">
-	<label><input type="radio" name="private" value='false'>All participants use same link</label>
+	<label><input type="radio" name="private" value='false'>Same linke for all participants</label>
 </div>
 <div class="radio">
 	<label><input type="radio" name="private" value='true' checked>Unique link for each participant</label>
@@ -61,7 +61,7 @@
 		</tbody>
 	</table>
 	<div class="input-group">
-		<input id='newResponseInput' type="text" class="form-control" placeholder="Enter participant name or id">
+		<input id='newResponseInput' type="text" class="form-control" placeholder="Enter participant identifier (name, id, etc.)">
 		<span class="input-group-btn">
 			<button data-studytype='<%= singleStudy.type %>' data-studyid='<%= singleStudy._id %>' data-url='<%= url %>' id='addResponseBtn' class="btn btn-default" type="button">Add</button>
 		</span>
