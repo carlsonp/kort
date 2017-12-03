@@ -30,7 +30,7 @@ casper.test.begin('Main Test Suite', function suite(test) {
 		
 		//http://docs.casperjs.org/en/latest/modules/casper.html#thenbypass
 		//uncomment this to skip the 404 link checks
-		//casper.thenBypass(1);
+		casper.thenBypass(1);
 		
 		//https://stackoverflow.com/questions/29325617/scrape-link-from-element-that-has-no-class-or-id-casperjs
 		//https://stackoverflow.com/questions/31786354/how-to-check-broken-links-in-a-webpage-using-casperjs
