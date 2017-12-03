@@ -109,7 +109,7 @@ $( document ).ready(function() {
 		    callback: function (result) {
 		    	if(result){
 		    		$.ajax({
-						url:  "/clearstudy/"+studyID,
+						url:  "/deleteAllIncompleteResponses/"+studyID,
 						type: "GET",
 						contentType: "application/json",
 						success: function(data) {

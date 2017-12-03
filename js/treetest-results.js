@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#results_table').DataTable({
+	$('#treetest_results_table').DataTable({
 		dom: 'Bfrtip',
 		bPaginate: false,
 		bInfo: false,

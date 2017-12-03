@@ -20,8 +20,8 @@ var Study = new mongoose.Schema({
 	title: String,
 	type: String,
 	dateCreated: Date,
-	completeResponses: [Response],
-	incompleteResponses: [Response],
+	completeResponses: [],
+	incompleteResponses: [],
 	status: {
 		type: String,
 		enum: ['open', 'closed'],

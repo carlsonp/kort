@@ -5,6 +5,7 @@
 		<%- include('../partials/datatables.ejs') %>
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
 		<script type="text/javascript" src="/js/productreactioncards-results.js"></script>
+		<script type="text/javascript" src="/js/resultstable.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/progressBarAsChart.css"/>
 
 
@@ -16,10 +17,13 @@
 			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 			<h1>Results for <%= study.title %></h1>
 			<br>
+			 <div class="well">
+                <%- include('../partials/resultstable.ejs') %>
+            </div>
 			<div class="well">
 				<h3>Words by Response</h3>
 				<hr>
-				<table id='results_table'>
+				<table id='prc_results_table'>
 					<thead>
 						<tr>
 							<th>Response #</th>
@@ -32,13 +36,13 @@
 							<th></th>
 						</tr>
 					</thead>
-					<% for(var i=0; i<study.completeResponses.length; i++) {%>
+					<% for(var i=0; i<completeResponses.length; i++) {%>
 						<tr>
 							<td><%= i+1 %></td>
-							<td><%= study.completeResponses[i].title %></td>
-							<td><%= study.completeResponses[i].date.toLocaleDateString() %> (<%= study.completeResponses[i].date.toLocaleTimeString() %>)</td>
-							<% for(var j=0; j<study.completeResponses[i].data.length; j++) {%>
-								<td><%= JSON.stringify(study.completeResponses[i].data[j]).replace(/['"]+/g, '') %></td>
+							<td><%= completeResponses[i].title %></td>
+							<td><%= completeResponses[i].date.toLocaleDateString() %> (<%= completeResponses[i].date.toLocaleTimeString() %>)</td>
+							<% for(var j=0; j<completeResponses[i].data.length; j++) {%>
+								<td><%= JSON.stringify(completeResponses[i].data[j]).replace(/['"]+/g, '') %></td>
 							<% } %>
 						</tr>
 					<% } %>
@@ -52,7 +56,7 @@
 						<tr>
 							<th>#</th>
 							<th>Word</th>
-							<th># of selections<br>(<%= study.completeResponses.length %> responses total)</th>
+							<th># of selections<br>(<%= completeResponses.length %> responses total)</th>
 							<th>Percentage</th>
 							<th>Bargraph</th>
 						</tr>
@@ -63,10 +67,10 @@
 						<td><%= i+1 %></td>
 						<td><%= words[i] %></td>
 						<td><%= counts[i] %></td>
-						<td><%= Math.floor((counts[i]/study.completeResponses.length)*100) %>%</td>
+						<td><%= Math.floor((counts[i]/completeResponses.length)*100) %>%</td>
 						<td style="width:50%">
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" style="width:<%= (counts[i]/study.completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar" role="progressbar" style="width:<%= (counts[i]/completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>	
 						</td>
 					</tr>

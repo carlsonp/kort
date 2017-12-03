@@ -114,7 +114,8 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 	app.get('/study/preview/:id', isLoggedIn, study.preview);
 	app.post('/submitResult', isLoggedIn, study.submitResult);
 	app.post('/deletestudy/:id', isLoggedIn, study.delete);
-	app.get('/clearstudy/:id', isLoggedIn, study.clearResponses);
+	app.get('/deleteAllIncompleteResponses/:id', isLoggedIn, study.deleteAllIncompleteResponses);
+	app.get('/deleteAllCompleteResponses/:id', isLoggedIn, study.deleteAllCompleteResponses);
 
 	app.get('/msg/:cm', function (req, res) {
 		switch(req.params.cm) {

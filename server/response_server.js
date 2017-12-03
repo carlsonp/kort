@@ -30,7 +30,7 @@ module.exports = {
                 logger.error("response_server.js: Error creating response:", err);
                 res.end(err);
             } else {
-            	study.incompleteResponses.push(response);
+            	study.incompleteResponses.push(response._id);
                 study.save();
             }
                 
@@ -54,20 +54,23 @@ module.exports = {
                 logger.error("response_server.js: Cannot find study to delete:", err);
                 req.end();
             } else {
-                study.incompleteResponses.pull(req.params.resid);
-                study.completeResponses.pull(req.params.resid);
+                var respIdx1 = study.completeResponses.indexOf(req.body.resid);
+                study.completeResponses.splice(respIdx1,1);
+                var respIdx2 = study.incompleteResponses.indexOf(req.body.resid);
+                study.incompleteResponses.splice(respIdx2,1);
+
             	study.save();
-                res.end();
-            }
-        });
-        Response.findOne({ _id: req.params.resid}, function(err,response) {
-            if (err) {
-                req.status(504);
-                logger.error("response_server.js: Cannot find study responses to delete:", error);
-                req.end();
-            } else {
-                response.remove();
-                res.end();
+                Response.findOne({ _id: req.params.resid}, function(err,response) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        response.remove();
+                        res.send(true);
+                        res.end();
+                    }
+                });
             }
         });
     },
