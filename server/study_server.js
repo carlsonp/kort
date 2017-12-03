@@ -201,17 +201,18 @@ module.exports = {
                 logger.error("study_server.js: Cannot find study to clear responses:", err);
                 req.end();
             } else {
-                for (var i = 0; i < study.incompleteResponses.length; i++) {
-                    Response.findOne({ _id: study.incompleteResponses[i]}, function(err,response) {
-                        if (err) {
-                            req.status(504);
-                            logger.error("response_server.js: Cannot find study responses to delete:", error);
-                            req.end();
-                        } else {
-                            response.remove();
+                Response.find({complete: false, studyID: study._id}, function(err,responses) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        for (var i = 0; i < responses.length; i++) {
+                            responses[i].remove();
                         }
-                    });
-                }
+                    }
+                });
+                
                 study.incompleteResponses = [];
                 study.save();
                 res.send(true);
@@ -226,17 +227,17 @@ module.exports = {
                 logger.error("study_server.js: Cannot find study to clear responses:", err);
                 req.end();
             } else {
-                for (var i = 0; i < study.completeResponses.length; i++) {
-                    Response.findOne({ _id: study.completeResponses[i]}, function(err,response) {
-                        if (err) {
-                            req.status(504);
-                            logger.error("response_server.js: Cannot find study responses to delete:", error);
-                            req.end();
-                        } else {
-                            response.remove();
+                Response.find({complete: true, studyID: study._id}, function(err,responses) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        for (var i = 0; i < responses.length; i++) {
+                            responses[i].remove();
                         }
-                    });
-                }
+                    }
+                });
                 study.completeResponses = [];
                 study.save();
                 res.redirect('/studies');

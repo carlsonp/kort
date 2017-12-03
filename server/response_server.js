@@ -57,17 +57,17 @@ module.exports = {
                 study.incompleteResponses.pull(req.params.resid);
                 study.completeResponses.pull(req.params.resid);
             	study.save();
-                res.end();
-            }
-        });
-        Response.findOne({ _id: req.params.resid}, function(err,response) {
-            if (err) {
-                req.status(504);
-                logger.error("response_server.js: Cannot find study responses to delete:", error);
-                req.end();
-            } else {
-                response.remove();
-                res.end();
+                Response.findOne({ _id: req.params.resid}, function(err,response) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        response.remove();
+                        res.send(true);
+                        res.end();
+                    }
+                });
             }
         });
     },
