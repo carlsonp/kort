@@ -51,10 +51,11 @@
   "devDependencies": {
     "casperjs": "^1.1.4",
     "eslint": "^4.12.1",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "phantomjs-prebuilt": "^2.1.7"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "casperjs test ./tests/main.js"
   },
   "author": "Patrick Carlson and Leif Berg",
   "license": "GPL-3.0"
