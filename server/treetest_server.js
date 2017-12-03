@@ -85,8 +85,20 @@ module.exports = {
                 logger.error("treetest_server.js: Error in edit treetest:", err);
                 res.end(err);
             } else {
-				var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('treetest/edit.ejs', {singleStudy: study, email: req.user.email, admin: req.session.admin, url: fullUrl});
+                 Response.find({_id: {$in: study.incompleteResponses}}, function (err, incompleteResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {   
+        				var fullUrl = req.protocol + '://' + req.get('host');
+                        res.render('treetest/edit.ejs', {singleStudy: study, 
+                                                        incompleteResponses: incompleteResponses,
+                                                        email: req.user.email, 
+                                                        admin: req.session.admin, 
+                                                        url: fullUrl});
+                    }
+                });
             }
         });
     },
@@ -97,8 +109,23 @@ module.exports = {
                 logger.error("treetest_server.js: Error getting study to see results:", err);
                 res.end(err);
             } else {
-                var responses = gatherResponses(study.data.tasks, study.completeResponses)
-                res.render('treetest/results.ejs',{study: study, email: req.user.email, admin: req.session.admin, taskSet: responses[0], taskCount: responses[1]});
+                Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                        var responses = gatherResponses(study.data.tasks, completeResponses)
+                        res.render('treetest/results.ejs',{study: study, 
+                                                            completeResponses:completeResponses,
+                                                            email: req.user.email, 
+                                                            admin: req.session.admin, 
+                                                            taskSet: responses[0], 
+                                                            taskCount: responses[1]
+                                                        });
+                    }
+                });
+                
             }
         });
     },

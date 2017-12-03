@@ -1,20 +1,25 @@
-<h3>Raw Data by Response</h3>
+<h3>Responses (<%= completeResponses.length %>)</h3>
+<a href="#" id="deleteAll" class='text-danger' data-studyid="<%= study._id %>" data-title="<%= study.title %>">Delete All Responses</a>
 <hr>
 <table id='results_table'>
 	<thead>
 		<tr>
 			<th>Response #</th>
-			<th>Title / Name</th>
-			<th>Date Submitted</th>
+			<th>Name</th>
+			<th>Submitted</th>
 			<th>Data</th>
+			<th>Delete</th>
 		</tr>
 	</thead>
-	<% for(var i=0; i<study.completeResponses.length; i++) {%>
+	<tbody id="results_table_body">
+	<% for(var i=0; i<completeResponses.length; i++) {%>
 		<tr>
 			<td><%= i+1 %></td>
-			<td><%= study.completeResponses[i].title %></td>
-			<td><%= study.completeResponses[i].getDateStr() %></td>
-			<td><%= JSON.stringify(study.completeResponses[i].data) %>;</td>
+			<td><%= completeResponses[i].title %></td>
+			<td><%= completeResponses[i].getDateStr() %></td>
+			<td><%= JSON.stringify(completeResponses[i].data) %>;</td>
+			<td><a class='text-danger' data-studyid="<%= study._id %>" data-resid="<%= completeResponses[i]._id %>" href="">Delete</a></td>
 		</tr>
 	<% } %>
+	</tbody>
 </table>

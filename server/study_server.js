@@ -77,11 +77,11 @@ module.exports = {
                 res.status(504);
                 logger.error("study_server.js: Error viewing study:", err);
                 res.end(err);
-            } else {
+            } else if (study) {
 				if (study.status == "open") {
 				   if (study.private){
-						if (req.params.resid && study.incompleteResponses.id(req.params.resid) != null){
-							var response = study.incompleteResponses.id(req.params.resid);
+                        var con2 = (study.incompleteResponses.indexOf(req.params.resid) != -1);
+                        if (req.params.resid && con2){
 							renderPages(study,req.params.resid,res)
 						} else {
 							logger.error("study_server.js: Error viewing study, 404.");
@@ -91,7 +91,7 @@ module.exports = {
                         //if a response id was not passed, create a response and render page
                         if (req.params.resid == null) {
                             var response = resp.createResponse(req.params.id,"Anonymous");
-                            study.incompleteResponses.push(response);
+                            study.incompleteResponses.push(response._id);
                             study.save();
                             renderPages(study,response._id,res)
                         } else {
@@ -103,6 +103,8 @@ module.exports = {
 				} else {
 					res.redirect('/msg/notactive');
 				}
+            } else {
+                res.redirect('/msg/study404');
             }
         });
     },
@@ -123,6 +125,18 @@ module.exports = {
                 req.status(504);
                 logger.error("study_server.js: Error, cannot find study to delete:", err);
                 req.end();
+            } else {
+                Response.find({ studyID: req.params.id}, function(err,responses) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        for (var i = 0; i < responses.length; i++) {
+                            responses[i].remove();
+                        }
+                    }
+                });
             }
         }).remove(function (err) {
             if (err) {
@@ -146,41 +160,90 @@ module.exports = {
                     res.redirect('/studies');
                     res.end();
                 } else {
-                    //find the response object and updated it
-                    var response = study.incompleteResponses.id(req.body.resid);
-                    if (response == null){
-                        res.redirect('/msg/nomore');
-                        res.end();
-                    } else {
-                        response.complete = true;
-                        response.date = new Date(Date.now());
-                        response.data = JSON.parse(req.body.result);
-                        //move response object from incompleteResponses to completeResponses
-                        study.completeResponses.push(response);
-                        var respIdx = study.incompleteResponses.indexOf(response);
-                        study.incompleteResponses.splice(respIdx,1);
-                        //save the study object (which will save the child objects)
-                        study.save();
-                        res.redirect('/msg/thanks');
-                        res.end();
-                    }
+                    Response.findOne({ _id: req.body.resid}, function(err,response) {
+                        if (err) {
+                            req.status(504);
+                            logger.error("response_server.js: Cannot find study responses to delete:", error);
+                            req.end();
+                        } else {
+                            if (response.complete){
+                                res.redirect('/msg/nomore');
+                                res.end();
+                            } else {
+                                 Response.findOneAndUpdate({ "_id": req.body.resid }, 
+                                    { "$set": { "complete": true, 
+                                                "date": new Date(Date.now()), 
+                                                "data": JSON.parse(req.body.result)}
+                                    }).exec(function(err, book){
+                                       if(err) {
+                                           console.log(err);
+                                           res.status(500).send(err);
+                                       } 
+                                });
+                                //move response object from incompleteResponses to completeResponses
+                                study.completeResponses.push(req.body.resid);
+                                var respIdx = study.incompleteResponses.indexOf(req.body.resid);
+                                study.incompleteResponses.splice(respIdx,1);
+                                //save the study object (which will save the child objects)
+                                study.save();
+                                res.redirect('/msg/thanks');
+                                res.end();
+                            }
+                        }
+                    });
+        
                 }
                
             }
         });
     },
-    clearResponses: function(req, res, next) {
+    deleteAllIncompleteResponses: function(req, res, next) {
         Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err, study) {
             if (err) {
                 req.status(504);
                 logger.error("study_server.js: Cannot find study to clear responses:", err);
                 req.end();
             } else {
-                //clear participant responses
+                Response.find({complete: false, studyID: study._id}, function(err,responses) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        for (var i = 0; i < responses.length; i++) {
+                            responses[i].remove();
+                        }
+                    }
+                });
+                
                 study.incompleteResponses = [];
-                study.completeResponses = [];
                 study.save();
                 res.send(true);
+                res.end();
+            }
+        });
+    },
+    deleteAllCompleteResponses: function(req, res, next) {
+        Study.findOne({ _id: req.params.id, ownerID: req.user._id}, function(err, study) {
+            if (err) {
+                req.status(504);
+                logger.error("study_server.js: Cannot find study to clear responses:", err);
+                req.end();
+            } else {
+                Response.find({complete: true, studyID: study._id}, function(err,responses) {
+                    if (err) {
+                        req.status(504);
+                        logger.error("response_server.js: Cannot find study responses to delete:", error);
+                        req.end();
+                    } else {
+                        for (var i = 0; i < responses.length; i++) {
+                            responses[i].remove();
+                        }
+                    }
+                });
+                study.completeResponses = [];
+                study.save();
+                res.redirect('/studies');
                 res.end();
             }
         });

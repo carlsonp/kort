@@ -33,14 +33,26 @@ module.exports = {
         });
     },
     edit: function (req, res, next) {
-        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, docs) {
+        Study.findOne({_id: req.params.id, ownerID: req.user._id}, function (err, study) {
             if (err) {
                 res.status(504);
                 logger.error("nps_server.js: Error in edit NPS:", err);
                 res.end(err);
             } else {
-                var fullUrl = req.protocol + '://' + req.get('host');
-                res.render('nps/edit.ejs', {singleStudy: docs, email: req.user.email, admin: req.session.admin, url: fullUrl});
+                Response.find({_id: {$in: study.incompleteResponses}}, function (err, incompleteResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
+                    } else {
+                        var fullUrl = req.protocol + '://' + req.get('host');
+                        res.render('nps/edit.ejs', {singleStudy: study, 
+                                                    incompleteResponses: incompleteResponses,
+                                                    email: req.user.email, 
+                                                    admin: req.session.admin, 
+                                                    url: fullUrl});
+                    }
+                });
             }
         });
     },
@@ -51,44 +63,55 @@ module.exports = {
                 logger.error("nps_server.js: Error getting NPS study to see results:", err);
                 res.end(err);
             } else {
-                const PROMOTER_SCORE_MIN = 9;
-                const DETRACTOR_SCORE_MAX = 6;
 
-                var questions = ['On a scale of 0-10, how likely are you to recommend this product or service to a friend or colleague?'];
-                var rawResponses = study.completeResponses;
-                var npsResults = [];
-
-                var npsScore = 0;
-                var promoters = 0;
-                var detractors = 0;
-                var respondents = study.completeResponses.length;
-
-                // Count the number of promoters and detractors and
-                // add a token denoting the sentiment of each response value
-                study.completeResponses.forEach(function(element) {
-                    let response = element.data[0];
-
-                    if (response <= DETRACTOR_SCORE_MAX) {
-                        detractors += 1;
-                        npsResults.push('Detractor'); 
-                    } else if (response >= PROMOTER_SCORE_MIN) {
-                        promoters += 1;
-                        npsResults.push('Promoter');
+                Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
+                    if (err) {
+                        res.status(504);
+                        logger.error("cardsort_server.js: Error in edit cardsort:", err);
+                        res.end(err);
                     } else {
-                        npsResults.push('Neutral');
+                        const PROMOTER_SCORE_MIN = 9;
+                        const DETRACTOR_SCORE_MAX = 6;
+
+                        var questions = ['On a scale of 0-10, how likely are you to recommend this product or service to a friend or colleague?'];
+                        var rawResponses = completeResponses;
+                        var npsResults = [];
+
+                        var npsScore = 0;
+                        var promoters = 0;
+                        var detractors = 0;
+                        var respondents = completeResponses.length;
+
+                        // Count the number of promoters and detractors and
+                        // add a token denoting the sentiment of each response value
+                        completeResponses.forEach(function(element) {
+                            let response = element.data[0];
+
+                            if (response <= DETRACTOR_SCORE_MAX) {
+                                detractors += 1;
+                                npsResults.push('Detractor'); 
+                            } else if (response >= PROMOTER_SCORE_MIN) {
+                                promoters += 1;
+                                npsResults.push('Promoter');
+                            } else {
+                                npsResults.push('Neutral');
+                            }
+                        });
+
+                        // Calculate NPS based on promoters and detractors
+                        npsScore = ((promoters - detractors) / respondents) * 100;
+
+                        res.render('nps/results.ejs',{study: study, 
+                                                    completeResponses: completeResponses,
+                                                    questions: questions,
+                                                    rawResponses: rawResponses,
+                                                    npsResults: npsResults,
+                                                    npsScore: npsScore,    
+                                                    email: req.user.email,
+                                                    admin: req.session.admin});
                     }
                 });
 
-                // Calculate NPS based on promoters and detractors
-                npsScore = ((promoters - detractors) / respondents) * 100;
-
-                res.render('nps/results.ejs',{study: study, 
-                                            questions: questions,
-                                            rawResponses: rawResponses,
-                                            npsResults: npsResults,
-                                            npsScore: npsScore,    
-                                            email: req.user.email,
-                                            admin: req.session.admin});
             }
         });
     },

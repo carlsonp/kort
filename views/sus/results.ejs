@@ -5,7 +5,7 @@
 		<%- include('../partials/datatables.ejs') %>
 		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
 		<script type="text/javascript" src="/js/sus-results.js"></script>
-		<!-- <link rel="stylesheet" type="text/css" href="/css/progressBarAsChart.css"/> -->
+		<script type="text/javascript" src="/js/resultstable.js"></script>
 
 
 		<title>System Usability Scale Results</title>
@@ -16,6 +16,9 @@
 			<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 			<h1>Results for <%= study.title %></h1>
 			<br>
+			<div class="well">
+                <%- include('../partials/resultstable.ejs') %>
+            </div>
 			<div class="well">
 				<h3>Raw Scores by Response</h3>
 				<hr>
