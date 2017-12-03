@@ -153,6 +153,8 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 	}));
 	app.get('/deleteuser/:id', isAdminLoggedIn, user.deleteUser);
 	app.post('/resetpassword', isAdminLoggedIn, user.resetPassword);
+	app.get('/grantadmin/:id', isAdminLoggedIn, user.grantadmin);
+	app.get('/revokeadmin/:id', isAdminLoggedIn, user.revokeadmin);
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/overview',
 		failureRedirect: '/',

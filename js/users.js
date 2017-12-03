@@ -20,6 +20,7 @@ $( document ).ready(function() {
 		    null,
 		    { "orderable": false },
 		    { "orderable": false },
+		    { "orderable": false },
 		],
 	});
 
@@ -43,6 +44,18 @@ $( document ).ready(function() {
 			}
 		});
 	});
+	$('#userstable').on( "click",'.grant-admin', function(event) {
+		event.preventDefault();
+		var userID = $(this).data("userid");
+		window.location.href = '/grantadmin/'+userID+'/'
+	});
+
+	$('#userstable').on( "click",'.revoke-admin', function(event) {
+		event.preventDefault();
+		var userID = $(this).data("userid");
+		window.location.href = '/revokeadmin/'+userID+'/'
+	});
+
     //bind delete user link
 	$('#userstable').on( "click",'.text-danger', function(event) {
 		event.preventDefault();
