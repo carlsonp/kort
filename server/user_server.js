@@ -60,6 +60,32 @@ module.exports = {
                 res.end();
 			}
         });
-    }
+    },
+    grantadmin: function(req, res, next) {
+        User.findOneAndUpdate({ "_id": req.params.id }, 
+            { "$set": { "admin": true }
+            }).exec(function(err, book){
+               if(err) {
+                   console.log(err);
+                   res.status(500).send(err);
+               } else {
+               	res.redirect('/users');
+               	res.end();
+               }
+        });
+    },
+    revokeadmin: function(req, res, next) {
+        User.findOneAndUpdate({ "_id": req.params.id }, 
+            { "$set": { "admin": false }
+            }).exec(function(err, book){
+               if(err) {
+                   console.log(err);
+                   res.status(500).send(err);
+               } else {
+               	res.redirect('/users');
+               	res.end();
+               }
+        });
+    },
 }
 
