@@ -19,7 +19,6 @@
 			<div class='row'>
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
-
 					<div class="well">
 						<label>Options</label>
 					    <%if (singleStudy.data.randomize) { %>
@@ -32,9 +31,7 @@
 					    </div>
 					    <% } %>
 					</div>
-									<!-- <div class="col-sm-3"> -->
 					<%- include('../partials/study_options/status.ejs') %>
-				<!-- </div> -->
 				</div>
 				<div class='col-sm-8'>
 					<div class="well">
@@ -56,9 +53,7 @@
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
-
 		</form>
 	</div>			
-	<%- include('../partials/footer.ejs') %>
 	</body>
 </html>
