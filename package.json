@@ -49,6 +49,7 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
+    "casperjs": "^1.1.4",
     "eslint": "^4.12.1",
     "nodemon": "^1.12.1"
   },
