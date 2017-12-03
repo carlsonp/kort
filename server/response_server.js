@@ -54,11 +54,17 @@ module.exports = {
                 logger.error("response_server.js: Cannot find study to delete:", err);
                 req.end();
             } else {
-                var respIdx1 = study.completeResponses.indexOf(req.body.resid);
-                study.completeResponses.splice(respIdx1,1);
-                var respIdx2 = study.incompleteResponses.indexOf(req.body.resid);
-                study.incompleteResponses.splice(respIdx2,1);
+                var resid_obj = mongoose.Types.ObjectId(req.params.resid);
+                var completeIdx = study.completeResponses.indexOf(resid_obj);
+                var incompleteIdx = study.incompleteResponses.indexOf(resid_obj);
 
+                if (completeIdx > -1) {
+                    study.completeResponses.splice(completeIdx,1);    
+                }
+                if (incompleteIdx > -1) {
+                    study.incompleteResponses.splice(incompleteIdx,1);    
+                }              
+                
             	study.save();
                 Response.findOne({ _id: req.params.resid}, function(err,response) {
                     if (err) {
