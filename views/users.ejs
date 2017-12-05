@@ -65,7 +65,7 @@
 									<% } %>
 								</td>
 								<% if (users[i].type == 'local') { %>
-									<td><a data-email="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
+									<td><a data-email="<%= users[i].email %>" data-id="<%= users[i]._id %>" href="" class='passwordreset'>Reset Password</a></td>
 								<% } else { %>
 									<td></td>
 								<% } %>

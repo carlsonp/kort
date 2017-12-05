@@ -27,11 +27,11 @@ $( document ).ready(function() {
     //bind new user button
     $('#newUserBtn').click(function(){
 		bootbox.confirm({
-			message: "<h3>Add User</h3><form id='newUserForm' action='/createuser' method='post'>\
-		    <input id='email' name='email' autocomplete='off' placeholder='Email Address' class='form-control' type='text' /><br/>\
-		    <input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
+			message: "<h3>Add a new user</h3><hr><form id='newUserForm' action='/createuser' method='post'>\
+		     <label for='email'>Email Address</label><input id='email' name='email' autocomplete='off' placeholder='you@server.com' class='form-control' type='text' /><br/>\
+		     <label for='password'>Password</label><input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
 		    <br>\
-		    <input id='admin' name='admin' type='checkbox'> Admin\
+		    <input id='admin' name='admin' type='checkbox' style='margin-right:10px'>Admin\
 		    </form>",
 			closeButton: false,
 		    buttons: {confirm: {label: 'Add User',className: 'btn-success'},
@@ -78,10 +78,12 @@ $( document ).ready(function() {
 	//bind password reset link
 	$('#userstable').on( "click",'.passwordreset', function(event) {
 		event.preventDefault();
-		var userid = $(this).data("email");
-		bootbox.prompt({
-			title: "New password",
-			inputType: "password",
+		var userid = $(this).data("id");
+		var email = $(this).data("email");
+		bootbox.confirm({
+			message: "<h3>Reset password</h3><hr>\
+		     <label for='password1'>New Password</label><input id='password1' name='password1' autocomplete='off' class='form-control' type='password' />\
+		     <br/>",
 			buttons: {
 				confirm: {
 					label: 'Reset Password',
@@ -89,27 +91,28 @@ $( document ).ready(function() {
 				},
 				cancel: {
 					label: 'Cancel',
-					className: 'btn-default'
+					className: 'btn-link'
 				}
 			},
+			backdrop: true,
+			closeButton: false,
 			callback: function(result) {
 				if(result){
 					$.post({
 						url: "/resetpassword",
 						type: "POST",
-						data: JSON.stringify({userid: userid, password: result}),
+						data: JSON.stringify({userid: userid, password: $('password1').val()}),
 						contentType: "application/json",
 		                success: function (data) {
 		                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
 								$("#password-reset-success").slideUp(500);
-		                    });
+		                    	});
 		                }
 					});
 				} else if (result == null) {
-					//do nothing if cancel was clicked
+					//dismissed
 				} else {
 					//send up an alert if change button was pressed, but password was empty
-					alert("Password cannot be empty");
 				}
 			}
 		});
