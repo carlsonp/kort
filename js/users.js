@@ -80,41 +80,45 @@ $( document ).ready(function() {
 		event.preventDefault();
 		var userid = $(this).data("id");
 		var email = $(this).data("email");
-		bootbox.confirm({
+		bootbox.dialog({
 			message: "<h3>Reset password</h3><hr>\
-		     <label for='password1'>New Password</label><input id='password1' name='password1' autocomplete='off' class='form-control' type='password' />\
+		     <label for='password1'>New Password</label><br>\
+		     <span id='noblank' class='text-danger' hidden>Password cannot be blank.</span><br>\
+		     <input id='password1' name='password1' autocomplete='off' class='form-control' type='password' />\
 		     <br/>",
+ 			backdrop: true,
+			closeButton: false,
 			buttons: {
 				confirm: {
 					label: 'Reset Password',
-					className: 'btn-warning'
+					className: 'btn-warning pull-right',
+					callback: function() {
+						if(!$('#password1').val()== ''){
+							$.post({
+								url: "/resetpassword",
+								type: "POST",
+								data: JSON.stringify({userid: userid, password: $('password1').val()}),
+								contentType: "application/json",
+				                success: function (data) {
+				                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
+										$("#password-reset-success").slideUp(500);
+				                    	});
+				                }
+							});
+						} else {
+							$('#noblank').show();
+							return false;
+						}
+					}
 				},
 				cancel: {
 					label: 'Cancel',
-					className: 'btn-link'
+					className: 'btn-link',
+					callback: function() {
+						return;
+					}
 				}
 			},
-			backdrop: true,
-			closeButton: false,
-			callback: function(result) {
-				if(result){
-					$.post({
-						url: "/resetpassword",
-						type: "POST",
-						data: JSON.stringify({userid: userid, password: $('password1').val()}),
-						contentType: "application/json",
-		                success: function (data) {
-		                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
-								$("#password-reset-success").slideUp(500);
-		                    	});
-		                }
-					});
-				} else if (result == null) {
-					//dismissed
-				} else {
-					//send up an alert if change button was pressed, but password was empty
-				}
-			}
 		});
 	});
 
