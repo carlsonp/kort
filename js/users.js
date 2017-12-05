@@ -23,25 +23,42 @@ $( document ).ready(function() {
 		    { "orderable": false },
 		],
 	});
+			
 
     //bind new user button
     $('#newUserBtn').click(function(){
-		bootbox.confirm({
+		bootbox.dialog({
 			message: "<h3>Add a new user</h3><hr><form id='newUserForm' action='/createuser' method='post'>\
-		     <label for='email'>Email Address</label><input id='email' name='email' autocomplete='off' placeholder='you@server.com' class='form-control' type='text' /><br/>\
-		     <label for='password'>Password</label><input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
+		     <label for='email'>Email Address</label><br><span id='noblankemail' class='text-danger' hidden>Email cannot be blank.</span><br><input id='email' name='email' autocomplete='off' placeholder='you@server.com' class='form-control' type='text' /><br/>\
+		     <label for='password'>Password</label><br><span id='noblankpassword' class='text-danger' hidden>Password cannot be blank.</span><br><input id='password' name='password' autocomplete='off' placeholder='Password' class='form-control' type='password' />\
 		    <br>\
 		    <input id='admin' name='admin' type='checkbox' style='margin-right:10px'>Admin\
 		    </form>",
 			closeButton: false,
-		    buttons: {confirm: {label: 'Add User',className: 'btn-success'},
-	        		  cancel: {label: 'Cancel',className: 'btn-link'}
-		    },
-			callback: function (result) {
-				if(result){
-					$('#newUserForm').submit();
+			buttons: {
+				confirm: {
+					label: 'Add User',
+					className: 'btn-success pull-right',
+					callback: function() {
+						var emailEmpty = $('#email').val() == '';
+						var passwordEmpty = $('#password').val() == '';
+						if(!emailEmpty && !passwordEmpty){					
+	                    	$('#newUserForm').submit();
+						} else {
+							emailEmpty ? $('#noblankemail').show() : $('#noblankemail').hide(); 
+							passwordEmpty ? $('#noblankpassword').show() : $('#noblankpassword').hide(); 
+							return false;
+						}
+					}
+				},
+				cancel: {
+					label: 'Cancel',
+					className: 'btn-link',
+					callback: function() {
+						return;
+					}
 				}
-			}
+			},
 		});
 	});
 	$('#userstable').on( "click",'.grant-admin', function(event) {
@@ -100,9 +117,7 @@ $( document ).ready(function() {
 								data: JSON.stringify({userid: userid, password: $('password1').val()}),
 								contentType: "application/json",
 				                success: function (data) {
-				                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500, function(){
-										$("#password-reset-success").slideUp(500);
-				                    	});
+				                    	$("#password-reset-success").fadeTo(2750, 500).slideUp(500);
 				                }
 							});
 						} else {
