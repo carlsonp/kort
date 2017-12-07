@@ -34,15 +34,7 @@ $( document ).ready(function() {
 						return;
 					}
 				}
-			},
-		 //    buttons: {confirm: {label: 'Sign Up',className: 'btn-success'},
-	  //       		  cancel: {label: 'Cancel',className: 'btn-link'}
-		 //    },
-			// callback: function (result) {
-			// 	if(result){
-			// 		$('#newLocalUserForm').submit();
-			// 	}
-			// }
+			}
 		});
 	});
 });
