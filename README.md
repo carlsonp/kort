@@ -10,7 +10,9 @@ Kort
 #### Table of Contents  
 [About](#About)  
 [Screenshots](#Screenshots)  
-[Install](#Install)  
+[Install via Docker](#InstallDocker)  
+[Install via Source](#InstallSource)  
+[After Install](#AfterInstall)  
 [Support](#Support)  
 [License](#License)
 
@@ -39,15 +41,43 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 <img src="/docs/sus.png" width="250"/>
 <img src="/docs/nps.png" width="250"/>
 
-<a name="Install"/>
 
-### Install
+<a name='InstallDocker'/>
+
+### Install via Docker
+
+1. [Install Docker](https://docs.docker.com/install/)
+
+2. [Install docker-compose](https://docs.docker.com/compose/install/)
+
+3. Build the containers
+
+    ```
+    docker-compose build
+    ```
+
+4. Start the containers (use -d to run in detached mode)
+
+    ```
+    docker-compose up
+    ```
+
+5. Stop the containers (when using detached mode)
+
+    ```
+    docker-compose down
+    ```
+
+
+<a name="InstallSource"/>
+
+### Install via Source
 
 1. Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`) or [download a release](https://github.com/carlsonp/kort/releases).
 
 2. Install [Node.js](https://nodejs.org)
 
-3. Install [MongoDB](https://www.mongodb.com/) or provide a connection to an existing server
+3. Install [MongoDB](https://www.mongodb.com/) ([3.0 or higher](http://mongoosejs.com/docs/compatibility.html)) or provide a connection to an existing server
 by editing the `app.js` file and setting the `mongoURL`.  To optionally [secure your MongoDB with a username
 and password](https://stackoverflow.com/questions/4881208/how-to-secure-mongodb-with-username-and-password/19768877),
 create a user for the `kort` database by doing the following:
@@ -89,9 +119,16 @@ create a user for the `kort` database by doing the following:
 9. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
 
 10. Run `node app.js` from the main directory.  This will start the NodeJS server
-on the default port 3000.  You can connect via http://localhost:3000
+on the default port 3000.
 
-11. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
+<a name='AfterInstall'/>
+
+### After Install
+
+1. You can connect via [http://localhost:3000](http://localhost:3000)
+
+2. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
+
 
 <a name="Support"/>
 

@@ -2,7 +2,12 @@
 
 const port = process.env.PORT || 3000;
 //https://docs.mongodb.com/manual/reference/connection-string/
-const mongoURL = 'mongodb://127.0.0.1/kort' //with a username and password: 'mongodb://kort:123@127.0.0.1/kort'
+//with a username and password: 'mongodb://kort:123@127.0.0.1/kort'
+var mongoURL = 'mongodb://127.0.0.1/kort';
+if (process.env.mongoHost){
+    //if we're launched from Docker
+    mongoURL = 'mongodb://'+process.env.mongoHost+'/kort';
+}
 //the admin user is created upon launching the application for the first time
 const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
@@ -40,7 +45,9 @@ logger.info("Kort version: ", module.exports.version);
 mongoose.Promise = global.Promise;
 //https://stackoverflow.com/questions/23293202/export-and-reuse-my-mongoose-connection-across-multiple-models
 //https://stackoverflow.com/questions/44749700/how-to-set-usemongoclient-mongoose-4-11-0
-const connection = mongoose.connect(mongoURL, { useMongoClient: true });
+//setting useMongoClient: true is no longer necessary in Mongoose 5.X
+//https://github.com/Automattic/mongoose/blob/master/migrating_to_5.md
+const connection = mongoose.connect(mongoURL);
 
 
 //load in models
@@ -83,12 +90,12 @@ const MongoStore = require('connect-mongo')(session);
 
 app.use(session({
     secret: secretHash,
-    store: new MongoStore({ mongooseConnection: connection,
+    store: new MongoStore({ mongooseConnection: mongoose.connection,
           collection: 'session',
 		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
 		}),
-	resave: false,
-	saveUninitialized: false
+	resave: false, // don't save session if unmodified
+	saveUninitialized: false // don't create session until something stored
 }));
 
 // Initialize Passport and restore authentication state, if any, from the session.
