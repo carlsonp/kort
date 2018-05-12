@@ -32,6 +32,10 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
+//https://expressjs.com/en/advanced/best-practice-security.html
+//https://helmetjs.github.io/docs/
+var helmet = require('helmet')
+app.use(helmet())
 const async = require('async');
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
