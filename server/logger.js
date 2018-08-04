@@ -1,7 +1,7 @@
 var winston = require('winston');
 const tsFormat = () => (new Date()).toLocaleTimeString();
 
-var logger = new (winston.Logger)({  
+var logger = winston.createLogger({  
     transports: [
         new (winston.transports.Console)({
 			timestamp: tsFormat,
