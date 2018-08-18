@@ -25,6 +25,7 @@ const googleCallbackURL = 'http://127.0.0.1:'+port+'/auth/google/callback'; //on
 
 //------------------------------------------------------------------
 
+const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -64,6 +65,8 @@ require('./models/upload');
 require('./server/createadmin_user')(adminUser, adminPassword);
 
 app.set('view engine', 'ejs');
+
+app.use(compression());
 
 //app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
