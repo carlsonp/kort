@@ -51,7 +51,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "pkginfo": "^0.4.1",
-    "plotly.js": "^1.40.0",
+    "plotly.js": "^1.40.1",
     "winston": "^3.0.0"
   },
   "devDependencies": {
