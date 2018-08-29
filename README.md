@@ -10,8 +10,7 @@ Kort
 #### Table of Contents  
 [About](#About)  
 [Screenshots](#Screenshots)  
-[Install via Docker](#InstallDocker)  
-[Install via Source](#InstallSource)  
+[Installation and Setup](#Installation)  
 [After Install](#AfterInstall)  
 [Support](#Support)  
 [License](#License)
@@ -42,42 +41,31 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 <img src="/docs/nps.png" width="250"/>
 
 
-<a name='InstallDocker'/>
+<a name="Installation"/>
 
-### Install via Docker
-
-1. [Install Docker](https://docs.docker.com/install/)
-
-2. [Install docker-compose](https://docs.docker.com/compose/install/)
-
-3. Build the containers
-
-    ```
-    docker-compose build
-    ```
-
-4. Start the containers (use -d to run in detached mode)
-
-    ```
-    docker-compose up
-    ```
-
-5. Stop the containers (when using detached mode)
-
-    ```
-    docker-compose down
-    ```
-
-
-<a name="InstallSource"/>
-
-### Install via Source
+### Installation and Setup
 
 1. Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`) or [download a release](https://github.com/carlsonp/kort/releases).
 
-2. Install [Node.js](https://nodejs.org)
+2. Edit the `secretHash` value in `app.js` and provide your own unique value.
 
-3. Install [MongoDB](https://www.mongodb.com/) ([3.0 or higher](http://mongoosejs.com/docs/compatibility.html)) or provide a connection to an existing server
+3. Optionally edit the `adminUser` and set your own username.
+
+4. Edit the `adminPassword` value in `app.js`.
+
+5. Optionally set `allowUserRegistration` in `app.js` to allow users to register.  Otherwise users can only be created by accounts with 'admin' access.
+
+6. Optionally setup Google authentication.  [See the wiki for details](https://github.com/carlsonp/kort/wiki/Setting-up-Google-Authentication).
+
+7. Continue installation [via source](#ViaSource) or
+[via Docker](#ViaDocker).
+
+<a name="ViaSource"/>
+#### Via Source
+
+1. Install [Node.js](https://nodejs.org)
+
+2. Install [MongoDB](https://www.mongodb.com/) ([3.0 or higher](http://mongoosejs.com/docs/compatibility.html)) or provide a connection to an existing server
 by editing the `app.js` file and setting the `mongoURL`.  To optionally [secure your MongoDB with a username
 and password](https://stackoverflow.com/questions/4881208/how-to-secure-mongodb-with-username-and-password/19768877),
 create a user for the `kort` database by doing the following:
@@ -106,20 +94,36 @@ create a user for the `kort` database by doing the following:
     Then edit `/etc/mongodb.conf` and enable `auth=true`.  Restart the service.  Make sure to set
     the `mongoURL` with the appropriate username and password.
 
-4. Edit the `secretHash` value in `app.js` and provide your own unique value.
+3. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
 
-5. Optionally edit the `adminUser` and set your own username.
-
-6. Edit the `adminPassword` value in `app.js`.
-
-7. Optionally set `allowUserRegistration` in `app.js` to allow users to register.  Otherwise users can only be created by accounts with 'admin' access.
-
-8. Optionally setup Google authentication.  [See the wiki for details](https://github.com/carlsonp/kort/wiki/Setting-up-Google-Authentication).
-
-9. Run `npm install` on the commandline.  This will install the dependencies into the `node_modules` folder.
-
-10. Run `node app.js` from the main directory.  This will start the NodeJS server
+4. Run `node app.js` from the main directory.  This will start the NodeJS server
 on the default port 3000.
+
+<a name="ViaDocker"/>
+#### Via Docker
+
+1. [Install Docker](https://docs.docker.com/install/)
+
+2. [Install docker-compose](https://docs.docker.com/compose/install/)
+
+3. Build the containers
+
+    ```
+    docker-compose build
+    ```
+
+4. Start the containers (use -d to run in detached mode)
+
+    ```
+    docker-compose up
+    ```
+
+5. Stop the containers (when using detached mode)
+
+    ```
+    docker-compose down
+    ```
+
 
 <a name='AfterInstall'/>
 
@@ -127,7 +131,7 @@ on the default port 3000.
 
 1. You can connect via [http://localhost:3000](http://localhost:3000)
 
-2. The default admin user in `app.js` will be created upon first launch.  Use this user to login.
+2. The `adminUser` and `adminPassword` that is set in `app.js` is the username and password for the account that will be created upon first launch.  Use this to login.
 
 
 <a name="Support"/>
