@@ -1,0 +1,22 @@
+version: "3"
+services:
+  kort:
+    container_name: kort
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    # this makes sure mongo is up before kort starts, apparently this feature may be removed in tbe future
+    # https://docs.docker.com/compose/compose-file/#links
+    links:
+      - mongo
+    # https://stackoverflow.com/questions/40873165/use-docker-run-command-to-pass-arguments-to-cmd-in-dockerfile
+    environment:
+      - mongoHost=mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
