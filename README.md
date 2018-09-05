@@ -61,6 +61,7 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 [via Docker](#ViaDocker).
 
 <a name="ViaSource"/>
+
 #### Via Source
 
 1. Install [Node.js](https://nodejs.org)
@@ -100,6 +101,7 @@ create a user for the `kort` database by doing the following:
 on the default port 3000.
 
 <a name="ViaDocker"/>
+
 #### Via Docker
 
 1. [Install Docker](https://docs.docker.com/install/)
