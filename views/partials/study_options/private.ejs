@@ -21,7 +21,7 @@
 <%if (singleStudy.private == false) { %>
 <div id='responseSingleArea'>
 <% } else { %>
-<div id='responseSingleArea' hidden>
+<div id='responseSingleArea' style="display:none;">
 <% } %>
 	<table class="table">
 		<tbody>
@@ -34,9 +34,9 @@
 </div>
 
 <%if (singleStudy.private == true) { %>
-<div id='responseListArea' >
+<div id='responseListArea'>
 <% } else { %>
-<div id='responseListArea' hidden>
+<div id='responseListArea' style="display:none;">
 <% } %>
 	<table id="responses_table" class="table">
 		<thead>
@@ -63,7 +63,7 @@
 	<div class="input-group">
 		<input id='newResponseInput' type="text" class="form-control" placeholder="Enter participant identifier (name, id, etc.)">
 		<span class="input-group-btn">
-			<button data-studytype='<%= singleStudy.type %>' data-studyid='<%= singleStudy._id %>' data-url='<%= url %>' id='addResponseBtn' class="btn btn-default" type="button">Add</button>
+			<button data-studytype='<%= singleStudy.type %>' data-studyid='<%= singleStudy._id %>' data-url='<%= url %>' id='addResponseBtn' class="btn btn-secondary" type="button">Add</button>
 		</span>
 	</div>
 </div>
