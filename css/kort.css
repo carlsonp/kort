@@ -99,6 +99,8 @@ h3.header {
     border-radius: 1px;
     border: 0px;
     border-bottom: 3px solid gray;
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
 /*dropdown messages are hidden by default*/

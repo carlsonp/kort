@@ -1,15 +1,24 @@
-<nav class="navbar navbar-default navbar-static-top">
-	<div class="container-fluid">
-	<a  class='navbar-brand'>Kort</a>
-	    <ul class='nav navbar-nav'>
-	    	<li><a href='/overview'><i class="fa fa-home" aria-hidden="true"></i>  Overview</a></li>
-	    	<li><a href='/studies'><i class="fa fa-list-alt" aria-hidden="true"></i>  Studies</a></li>
-	    	<% if (admin) { %>
-				<li><a href='/users'><i class="fa fa-users" aria-hidden="true"></i>  Users</a></li>
-			<% } %>
-		</ul>
-		<ul class='nav navbar-nav' style='float:right'>
-			<li><a href='/logout'><i class="fa fa-sign-out" aria-hidden="true"></i> Logout (<%= email %>)</a></li>
-		</ul>
-	</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Kort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href='/overview'><i class="fa fa-home" aria-hidden="true"></i>  Overview</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href='/studies'><i class="fa fa-list-alt" aria-hidden="true"></i>  Studies</a>
+      </li>
+	  <% if (admin) { %>
+	  <li class="nav-item active">
+        <a class="nav-link" href='/users'><i class="fa fa-users" aria-hidden="true"></i>  Users</a>
+      </li>
+	  <% } %>
+	  <li class="nav-item active">
+        <a class="nav-link" href='/logout'><i class="fa fa-sign-out" aria-hidden="true"></i> Logout (<%= email %>)</a>
+      </li>
+    </ul>
+  </div>
 </nav>

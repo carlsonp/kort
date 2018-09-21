@@ -25,7 +25,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "bootbox": "^4.4.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.1.3",
     "bootstrap-treeview": "^1.2.0",
     "clipboard": "^2.0.1",
     "compression": "^1.7.3",
@@ -52,6 +52,7 @@
     "passport-local": "^1.0.0",
     "pkginfo": "^0.4.1",
     "plotly.js": "^1.40.1",
+    "popper.js": "^1.14.4",
     "winston": "^3.0.0"
   },
   "devDependencies": {
