@@ -1,10 +1,10 @@
 $( document ).ready(function() {
 	//create clipboard object
+	//TODO: fix clipboard
 	//var clip = new Clipboard('.copyText');
 
     //toggles between link and links for responses
  	$("[name='private']").change(function() {
- 		console.log('sdfsdf');
 	  $("#responseListArea").toggle();
 	  $("#responseSingleArea").toggle();
 	});
