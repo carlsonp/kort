@@ -111,7 +111,7 @@
 								<button style="color:darkgray" class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-ellipsis-h" aria-hidden="true"></i></button>
 							    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 							    	<a class="dropdown-item" href="/study/copy/<%= studies[i]._id %>">Copy</a>
-							    	<a class="dropdown-item" href='#' data-studyid="<%= studies[i]._id %>" data-title="<%=studies[i].title %>" class="text-danger">Delete</a>
+							    	<a class="dropdown-item text-danger" href="/deletestudy/<%= studies[i]._id %>" data-studyid="<%= studies[i]._id %>" data-title="<%=studies[i].title %>">Delete</a>
 						    	</div>
 					  		</div>
 				  		</td>
