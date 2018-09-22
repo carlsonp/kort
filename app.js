@@ -87,7 +87,6 @@ app.use('/jstree', express.static(path.join(__dirname, '/node_modules/jstree/dis
 app.use('/bootbox', express.static(path.join(__dirname, '/node_modules/bootbox/')));
 app.use('/font-awesome', express.static(path.join(__dirname, '/node_modules/font-awesome/')));
 app.use('/dragula', express.static(path.join(__dirname, '/node_modules/dragula/dist/')));
-app.use('/bootstrap-treeview', express.static(path.join(__dirname, '/node_modules/bootstrap-treeview/dist/')));
 app.use('/plotlyjs', express.static(path.join(__dirname, '/node_modules/plotly.js/dist/')));
 app.use('/datatables', express.static(path.join(__dirname, '/node_modules/datatables.net/js/')));
 app.use('/datatables', express.static(path.join(__dirname, '/node_modules/datatables.net-dt/')));
