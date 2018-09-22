@@ -83,8 +83,7 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dis
 app.use('/clipboard', express.static(path.join(__dirname, '/node_modules/clipboard/dist/')));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/')));
 app.use('/popperjs', express.static(path.join(__dirname, '/node_modules/popper.js/dist/umd/')));
-
-
+app.use('/jstree', express.static(path.join(__dirname, '/node_modules/jstree/dist/')));
 app.use('/bootbox', express.static(path.join(__dirname, '/node_modules/bootbox/')));
 app.use('/font-awesome', express.static(path.join(__dirname, '/node_modules/font-awesome/')));
 app.use('/dragula', express.static(path.join(__dirname, '/node_modules/dragula/dist/')));

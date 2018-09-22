@@ -3,34 +3,34 @@ $(document).ready(function() {
 	function createTreeViewStructure(){
 		function addNodeByPath(myroot,path){
 			if (path.length == 1){
-				myroot.nodes.push({text: path[0], nodes: []})
+				myroot.children.push({text: path[0], state: {disabled: false}, children: []})
 			} else {
 				var next = path.shift();
-				for (var i = 0; i < myroot.nodes.length; i++) {
-					if (myroot.nodes[i].text == next){
-						addNodeByPath(myroot.nodes[i],path)
+				for (var i = 0; i < myroot.children.length; i++) {
+					if (myroot.children[i].text == next){
+						addNodeByPath(myroot.children[i],path)
 					}
 				}
 			}
 		}
 		function removeEmptyLists(myroot){
-			for (var i = 0; i < myroot.nodes.length; i++) {
-				if (myroot.nodes[i].nodes.length == 0){
-					delete myroot.nodes[i].nodes
+			for (var i = 0; i < myroot.children.length; i++) {
+				if (myroot.children[i].children.length == 0){
+					delete myroot.children[i].children
 				} else {
-					removeEmptyLists(myroot.nodes[i])
+					removeEmptyLists(myroot.children[i])
 				}
 			}
 		}   
 		function makeTree(myroot){
 			var newTree = [];
-			for (var i = 0; i < root.nodes.length; i++) {
-			  newTree.push(root.nodes[i]);
+			for (var i = 0; i < root.children.length; i++) {
+			  newTree.push(root.children[i]);
 			}
 			return newTree;
 		}
 
-		var root = {text: 'root', nodes: []}
+		var root = {text: 'root', children: []}
 		var nodes = $('#hiddenTree').val().split(";").map(function(item) {
 			  return item.trim();
 		});
@@ -44,25 +44,22 @@ $(document).ready(function() {
 		var myTree = makeTree(root)
 		return myTree;
 	}
-	
 	function initializeTreeViewObject(treeStructure){
-		$('#tree').treeview({
-			data: treeStructure,
-			collapseIcon: "glyphicon glyphicon-menu-down",
-			expandIcon:"glyphicon glyphicon-menu-right",
-			selectedBackColor: "#FFD54F",
-			selectedColor: "black",
-			onhoverColor: "white",
-			borderColor: 'lightgray',
+		$('#tree').jstree({
+			"core" : {
+				"animation" : 0,
+				"check_callback" : true,
+				"themes" : { "stripes" : true },
+				"data": treeStructure,		
+			}
 		});
-		resetTree();
 	}
-
 	//--------------------Treeview Event Handlers---------------------
 	function bindToHideSiblings(){
 		//Hide sibling nodes when node expands
-		$('#tree').on('nodeExpanded', function(event, data) {
-			var node = $('#tree').treeview('getNode', data.nodeId);
+		open_node.jstree
+		$('#tree').on('open_node.jstree', function(e, data) {
+			var node = data.node
 		  	var siblings = $('#tree').treeview('getSiblings', node);
 		  	siblings.forEach(function(element) {
 			    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
@@ -87,17 +84,15 @@ $(document).ready(function() {
 		$(buttonID).removeClass('btn-amber');
 		$(buttonID).addClass('disabled');
 	}	
-
 	function bindNodeSelection(){
+		console.log("here")
 		//When node is selected (clicked), write full path of node ids
-		$('#tree').on('nodeSelected', function(event, data) {
-			var node = $('#tree').treeview('getNode', data.nodeId);
-			tasks.answers[tasks.idx] = setHistory(node).concat([node.nodeId]); 
-			enableButton('#nextTaskButton');
+		$('#tree').on("select_node.jstree", function (e, data) {
+		  tasks.answers[tasks.idx] = setHistory(data.node)
+		  	enableButton('#nextTaskButton');
 		});
-
-		$('#tree').on('nodeUnselected', function(event, data) {
-			disableButton('#nextTaskButton');
+		$('#tree').on("deselect_node.jstree", function (e, data) {
+		  disableButton('#nextTaskButton');
 		});
 	}
 	//--------------------Treeview Functions (manual)--------------------
@@ -115,45 +110,34 @@ $(document).ready(function() {
 		}
 	}
 	function resetTree(){
-		$('#tree').treeview('collapseAll', { silent: true });
-		$('#tree').treeview('enableAll', { silent: true });
-		var selectedNodes = $('#tree').treeview('getSelected');
-		selectedNodes.forEach(function(element){
-			$('#tree').treeview('toggleNodeSelected', [ element.nodeId, { silent: true } ]);
-		});
+		$('#tree').jstree('close_all');
 		disableButton('#nextTaskButton');
 	}
 	function setHistory(node){
-		var parent = $('#tree').treeview('getParent', node);
-		if (parent.hasOwnProperty('text')){
-			return setHistory(parent).concat([parent.nodeId]);
-		} else {
-			return [];	
-		}
+		var path = $('#tree').jstree('get_path',node);
+		return path;
 	}
 	function disableSelectableOnParents(tree) {
-		for (var i = 0; i < tree.length; i++) { 
-			if('nodes' in tree[i]){
-				tree[i].selectable = false;	
-				disableSelectableOnParents(tree[i].nodes);
+		for (var i = 0; i < Object.keys(tree).length; i++) { 
+			if('children' in tree[i]){
+				tree[i].state.disabled = true;
+				disableSelectableOnParents(tree[i].children);
 			} 
 		}	
 	}
-
 	function getAllHistoryAsText(){
 		var textAnswers = [];
 		for (var i = 0; i < tasks.answers.length; i++) {
 			var taskNodeIds = tasks.answers[i];
 			var textTask = [];
 			for (var j = 0; j < taskNodeIds.length; j++) {
-				var node = $('#tree').treeview('getNode', taskNodeIds[j]);
+				var node = $('#tree').treeview('get_node', taskNodeIds[j]);
 				textTask.push(node.text);
 			}
 			textAnswers.push(textTask)
 		}
 		return textAnswers;
 	}
-
 	function updateProgressBar(){
 		var status = ((tasks.idx/tasks.list.length)*100)+'%';
 		$('#progressbar').css("width", status);
@@ -175,7 +159,7 @@ $(document).ready(function() {
 				this.set(this.idx);
 				updateProgressBar();
 			} else {				
-				$('#hiddenResults').val(JSON.stringify(getAllHistoryAsText()));
+				$('#hiddenResults').val(JSON.stringify(tasks.answers));
 				$('#submitForm').click();
 			}
 			if (this.idx == this.list.length-1){

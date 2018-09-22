@@ -2,14 +2,14 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-		<!-- Include Bootstrap Treeview -->
-		<link rel="stylesheet" type="text/css" href="/bootstrap-treeview/bootstrap-treeview.min.css"/>
-		<script type="text/javascript" src="/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
+		<!-- Include jsTree -->
+		<script type="text/javascript" src="/jstree/jstree.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/jstree/themes/default/style.min.css" />
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="/css/treetest.css" />
 		<title>Kort Treetest</title>
 	</head>
-	
+
 	<body class="background-darkbluegray">
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">
@@ -40,10 +40,9 @@
 				</div>
 
 			</div>
-			
-			<div class="row">
-				<div id="treeArea">
-					<div id="tree"></div>
+			<div class="row" style="background: white">
+				<div id="tree">
+
 				</div>
 			</div>
 			<div class="row">
