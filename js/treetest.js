@@ -11,26 +11,6 @@ $(document).ready(function() {
 			}
 		});
 	}
-	//--------------------Treeview Event Handlers---------------------
-	// function bindToHideSiblings(){
-	// 	//Hide sibling nodes when node expands
-	// 	open_node.jstree
-	// 	$('#tree').on('open_node.jstree', function(e, data) {
-	// 		var node = data.node
-	// 	  	var siblings = $('#tree').treeview('getSiblings', node);
-	// 	  	siblings.forEach(function(element) {
-	// 		    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
-	// 		});
-	// 	});
-	// 	//Show sibling nodes when node collapses
-	// 	$('#tree').on('nodeCollapsed', function(event, data) {
-	// 		var node = $('#tree').treeview('getNode', data.nodeId);
-	// 	  	var siblings = $('#tree').treeview('getSiblings', node);
-	// 	  	siblings.forEach(function(element) {
-	// 		    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
-	// 		});
-	// 	});
-	// }
 
 	function enableButton(buttonID){
 		$(buttonID).removeClass('disabled');
@@ -52,20 +32,6 @@ $(document).ready(function() {
 		  disableButton('#nextTaskButton');
 		});
 	}
-	//--------------------Treeview Functions (manual)--------------------
-	// function expandToNode(history){
-	// 	if(history.length > 1){
-	// 		thisNodeId = history.shift(); 
-	// 		$('#tree').treeview('expandNode', [ thisNodeId, {silent: true } ]);
-	// 		var siblings = $('#tree').treeview('getSiblings', thisNodeId);
-	//   		siblings.forEach(function(sibling) {
-	// 	    	$('#tree').treeview('disableNode', [ sibling.nodeId, { silent: true } ]);
-	// 		});
-	// 		expandToNode(history);
-	// 	} else {
-	// 		$('#tree').treeview('selectNode', [ history.shift(), { silent: true } ]);
-	// 	}
-	// }
 	function resetTree(){
 		$('#tree').jstree('close_all');
 		disableButton('#nextTaskButton');
@@ -82,19 +48,6 @@ $(document).ready(function() {
 			} 
 		}	
 	}
-	// function getAllHistoryAsText(){
-	// 	var textAnswers = [];
-	// 	for (var i = 0; i < tasks.answers.length; i++) {
-	// 		var taskNodeIds = tasks.answers[i];
-	// 		var textTask = [];
-	// 		for (var j = 0; j < taskNodeIds.length; j++) {
-	// 			var node = $('#tree').treeview('get_node', taskNodeIds[j]);
-	// 			textTask.push(node.text);
-	// 		}
-	// 		textAnswers.push(textTask)
-	// 	}
-	// 	return textAnswers;
-	// }
 	function updateProgressBar(){
 		var status = ((tasks.idx/tasks.list.length)*100)+'%';
 		$('#progressbar').css("width", status);
@@ -154,16 +107,8 @@ $(document).ready(function() {
 			}
 		}
 		//create treeview structure from database information
-		//parents are selectable by default, only disable when value is false
-		// if($('#hiddenSelectableParents').val() != 'on'){
-		// 	disableSelectableOnParents(myTree);
-		// }
 		initializeTreeViewObject($('#treedata').val());
 		bindNodeSelection();
-		//initialize treeview event after treeview object created
-		// if($('#hiddenShowSiblings').val()){
-		// 	bindToHideSiblings()
-		// }
 		$('#hiddenTasks').remove();
 		$('#hiddenTree').remove();
 		$('#treedata').remove();

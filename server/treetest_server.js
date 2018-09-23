@@ -59,7 +59,7 @@ module.exports = {
             data: {
                 showSiblings: true,
                 selectableParents: true,
-                tasks: ['Where is the Apple?','Where is the Steak?','Where is the Wine?'],
+                tasks: ['Where is the Apple?','Where is the Bacon?'],
                 tree: "[{text:'Fruits',children:['Apple','Banana']},{text:'Meats',children:['Bacon','Turkey']}]"
             },
             status: 'closed',
@@ -133,9 +133,7 @@ module.exports = {
         var tasks = req.body.tasks.split(/\r?\n/).map(function(item) {
              return item.trim();
         }).filter(function(n){ return n != '' });
-        // var tree = req.body.tree.split(/\r?\n/).map(function(item) {
-        //      return item.trim();
-        // }).filter(function(n){ return n != '' });
+
         Study.findOne({_id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
@@ -144,7 +142,6 @@ module.exports = {
                 res.end(err);
             }
             else {
-                console.log(req.body.treedata)
 				study.title = req.body.title;
                 study.data = {
                     tasks: tasks,
