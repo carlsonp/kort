@@ -3,9 +3,39 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<title>Edit Tree Test</title>
+		<!-- Include jsTree -->
+		<script type="text/javascript" src="/jstree/jstree.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/jstree/themes/default/style.min.css" />
 		<!-- Include javascript for private.ejs -->
 		<script src="/clipboard/clipboard.min.js"></script>
 		<script type="text/javascript" src="/js/private.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			    $('#tree').jstree({
+				  "core" : {
+				    "animation" : 0,
+				    "check_callback" : true,
+				    "themes" : { "stripes" : true },
+				    'data' :<%- singleStudy.data.tree %>
+				  },
+				  "plugins" : [
+				    "contextmenu", "dnd", "search",
+				    "state"
+				  ]
+				});
+			    $("#createNewNode").click(function() {
+				  	$('#tree').jstree().create_node("#" ,  "New Item", "last");
+				});
+			    $("#expandAll").click(function() {
+				  	$("#tree").jstree('open_all');
+				});
+			    $('#tree').on("redraw.jstree",function(e,data) {
+			    	var treedata = JSON.stringify($('#tree').jstree(true).get_json('#', {flat:true}));
+			    	$('#treedata').val(treedata);
+				});;
+			});
+			
+		</script>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -15,7 +45,8 @@
 		<h1>Edit Tree Test</h1>
 		<hr>
 		<form method="POST" action="/updatetreetest">
-			<input hidden name='id' value='<%= singleStudy._id %>' />
+			<input hidden name='id' value='<%= singleStudy._id %>'/>
+			<input name='treedata', id='treedata'/>
 			<div class='row'>
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
@@ -58,9 +89,10 @@
 			<div class='row'>
 				<div class='col-md-12'>
 					<div class="well">
-						<p><label for="tree">Tree Structure</label>
-						<br>One tree node per line. Use '/' to build structure.</p>
-						<textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.data.tree.length; j++) {%><%= singleStudy.data.tree[j]+'\n' %><% } %></textarea>
+						<p><label for="tree">Tree Structure</label><button type="button" class="btn btn-secondary  btn-sm float-right" id="createNewNode">Add Item</button>
+							<button type="button" class="btn btn-link  btn-sm float-right" id="expandAll">Expand All</button></p>
+						<p>Right click on each node to create new, rename, or delete. Drop and drag the nodes to change order and hierarchy.
+						<div id="tree" name="tree"></div>
 					</div>
 				</div>	
 			</div>

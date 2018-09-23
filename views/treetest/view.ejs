@@ -21,6 +21,7 @@
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
+			<input name="treedata" id='treedata' type='text' value="<%= singleStudy.data.tree %>" />
 			<input name="result" id='hiddenResults' type='text' hidden />
 			<button type="submit" id='submitForm' hidden>Add</button>
 		</form>

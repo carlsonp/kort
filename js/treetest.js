@@ -1,79 +1,36 @@
 $(document).ready(function() {
 	//--------------------Initialize Treeview Object---------------------
-	function createTreeViewStructure(){
-		function addNodeByPath(myroot,path){
-			if (path.length == 1){
-				myroot.children.push({text: path[0], state: {disabled: false}, children: []})
-			} else {
-				var next = path.shift();
-				for (var i = 0; i < myroot.children.length; i++) {
-					if (myroot.children[i].text == next){
-						addNodeByPath(myroot.children[i],path)
-					}
-				}
-			}
-		}
-		function removeEmptyLists(myroot){
-			for (var i = 0; i < myroot.children.length; i++) {
-				if (myroot.children[i].children.length == 0){
-					delete myroot.children[i].children
-				} else {
-					removeEmptyLists(myroot.children[i])
-				}
-			}
-		}   
-		function makeTree(myroot){
-			var newTree = [];
-			for (var i = 0; i < root.children.length; i++) {
-			  newTree.push(root.children[i]);
-			}
-			return newTree;
-		}
 
-		var root = {text: 'root', children: []}
-		var nodes = $('#hiddenTree').val().split(";").map(function(item) {
-			  return item.trim();
-		});
-		for (var i = 0; i < nodes.length; i++) {
-			var nodepath = nodes[i].split("/").map(function(item) {
-			  return item.trim();
-			}).filter(function(n){ return n != '' });
-			addNodeByPath(root,nodepath);
-		}
-		removeEmptyLists(root)
-		var myTree = makeTree(root)
-		return myTree;
-	}
 	function initializeTreeViewObject(treeStructure){
 		$('#tree').jstree({
 			"core" : {
 				"animation" : 0,
 				"check_callback" : true,
 				"themes" : { "stripes" : true },
-				"data": treeStructure,		
+				"data": JSON.parse(treeStructure),		
 			}
 		});
 	}
 	//--------------------Treeview Event Handlers---------------------
-	function bindToHideSiblings(){
-		//Hide sibling nodes when node expands
-		open_node.jstree
-		$('#tree').on('open_node.jstree', function(e, data) {
-			var node = data.node
-		  	var siblings = $('#tree').treeview('getSiblings', node);
-		  	siblings.forEach(function(element) {
-			    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
-			});
-		});
-		//Show sibling nodes when node collapses
-		$('#tree').on('nodeCollapsed', function(event, data) {
-			var node = $('#tree').treeview('getNode', data.nodeId);
-		  	var siblings = $('#tree').treeview('getSiblings', node);
-		  	siblings.forEach(function(element) {
-			    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
-			});
-		});
-	}
+	// function bindToHideSiblings(){
+	// 	//Hide sibling nodes when node expands
+	// 	open_node.jstree
+	// 	$('#tree').on('open_node.jstree', function(e, data) {
+	// 		var node = data.node
+	// 	  	var siblings = $('#tree').treeview('getSiblings', node);
+	// 	  	siblings.forEach(function(element) {
+	// 		    $('#tree').treeview('disableNode', [ element.nodeId, { silent: true } ]);
+	// 		});
+	// 	});
+	// 	//Show sibling nodes when node collapses
+	// 	$('#tree').on('nodeCollapsed', function(event, data) {
+	// 		var node = $('#tree').treeview('getNode', data.nodeId);
+	// 	  	var siblings = $('#tree').treeview('getSiblings', node);
+	// 	  	siblings.forEach(function(element) {
+	// 		    $('#tree').treeview('enableNode', [ element.nodeId, { silent: true } ]);
+	// 		});
+	// 	});
+	// }
 
 	function enableButton(buttonID){
 		$(buttonID).removeClass('disabled');
@@ -96,19 +53,19 @@ $(document).ready(function() {
 		});
 	}
 	//--------------------Treeview Functions (manual)--------------------
-	function expandToNode(history){
-		if(history.length > 1){
-			thisNodeId = history.shift(); 
-			$('#tree').treeview('expandNode', [ thisNodeId, {silent: true } ]);
-			var siblings = $('#tree').treeview('getSiblings', thisNodeId);
-	  		siblings.forEach(function(sibling) {
-		    	$('#tree').treeview('disableNode', [ sibling.nodeId, { silent: true } ]);
-			});
-			expandToNode(history);
-		} else {
-			$('#tree').treeview('selectNode', [ history.shift(), { silent: true } ]);
-		}
-	}
+	// function expandToNode(history){
+	// 	if(history.length > 1){
+	// 		thisNodeId = history.shift(); 
+	// 		$('#tree').treeview('expandNode', [ thisNodeId, {silent: true } ]);
+	// 		var siblings = $('#tree').treeview('getSiblings', thisNodeId);
+	//   		siblings.forEach(function(sibling) {
+	// 	    	$('#tree').treeview('disableNode', [ sibling.nodeId, { silent: true } ]);
+	// 		});
+	// 		expandToNode(history);
+	// 	} else {
+	// 		$('#tree').treeview('selectNode', [ history.shift(), { silent: true } ]);
+	// 	}
+	// }
 	function resetTree(){
 		$('#tree').jstree('close_all');
 		disableButton('#nextTaskButton');
@@ -125,19 +82,19 @@ $(document).ready(function() {
 			} 
 		}	
 	}
-	function getAllHistoryAsText(){
-		var textAnswers = [];
-		for (var i = 0; i < tasks.answers.length; i++) {
-			var taskNodeIds = tasks.answers[i];
-			var textTask = [];
-			for (var j = 0; j < taskNodeIds.length; j++) {
-				var node = $('#tree').treeview('get_node', taskNodeIds[j]);
-				textTask.push(node.text);
-			}
-			textAnswers.push(textTask)
-		}
-		return textAnswers;
-	}
+	// function getAllHistoryAsText(){
+	// 	var textAnswers = [];
+	// 	for (var i = 0; i < tasks.answers.length; i++) {
+	// 		var taskNodeIds = tasks.answers[i];
+	// 		var textTask = [];
+	// 		for (var j = 0; j < taskNodeIds.length; j++) {
+	// 			var node = $('#tree').treeview('get_node', taskNodeIds[j]);
+	// 			textTask.push(node.text);
+	// 		}
+	// 		textAnswers.push(textTask)
+	// 	}
+	// 	return textAnswers;
+	// }
 	function updateProgressBar(){
 		var status = ((tasks.idx/tasks.list.length)*100)+'%';
 		$('#progressbar').css("width", status);
@@ -197,19 +154,19 @@ $(document).ready(function() {
 			}
 		}
 		//create treeview structure from database information
-		var myTree = createTreeViewStructure()
 		//parents are selectable by default, only disable when value is false
-		if($('#hiddenSelectableParents').val() != 'on'){
-			disableSelectableOnParents(myTree);
-		}
-		initializeTreeViewObject(myTree);
+		// if($('#hiddenSelectableParents').val() != 'on'){
+		// 	disableSelectableOnParents(myTree);
+		// }
+		initializeTreeViewObject($('#treedata').val());
 		bindNodeSelection();
 		//initialize treeview event after treeview object created
-		if($('#hiddenShowSiblings').val()){
-			bindToHideSiblings()
-		}
+		// if($('#hiddenShowSiblings').val()){
+		// 	bindToHideSiblings()
+		// }
 		$('#hiddenTasks').remove();
 		$('#hiddenTree').remove();
+		$('#treedata').remove();
 		$('#hiddenSelectableParents').remove();
 		$('#hiddenShowSiblings').remove();
 	}
