@@ -23,16 +23,26 @@
 				    "state"
 				  ]
 				});
+			    $("#createNewRootNode").click(function() {
+				  	$('#tree').jstree().create_node("#" ,  "New Root Item", "last");
+				});
 			    $("#createNewNode").click(function() {
-				  	$('#tree').jstree().create_node("#" ,  "New Item", "last");
+				  	var selectedParent = $("#tree").jstree("get_selected");
+				  	$('#tree').jstree().create_node(selectedParent ,  "New Item", "last");
+				  	//expand parent node when child is created
+				  	$("#tree").jstree("open_node", selectedParent);
 				});
 			    $("#expandAll").click(function() {
-				  	$("#tree").jstree('open_all');
+			    	$("#tree").jstree('open_all');
+				});
+				$('#tree').on("rename_node.jstree", function (node, ref) {
+					//manually call redraw once a node is renamed
+					$('#tree').jstree(true).redraw(true);
 				});
 			    $('#tree').on("redraw.jstree",function(e,data) {
 			    	var treedata = JSON.stringify($('#tree').jstree(true).get_json('#', {flat:true}));
 			    	$('#treedata').val(treedata);
-				});;
+				});
 			});
 			
 		</script>
@@ -89,9 +99,11 @@
 			<div class='row'>
 				<div class='col-md-12'>
 					<div class="well">
-						<p><label for="tree">Tree Structure</label><button type="button" class="btn btn-secondary  btn-sm float-right" id="createNewNode">Add Item</button>
-							<button type="button" class="btn btn-link  btn-sm float-right" id="expandAll">Expand All</button></p>
-						<p>Right click on each node to create new, rename, or delete. Drop and drag the nodes to change order and hierarchy.
+						<p><label for="tree">Tree Structure</label></p>
+						<p>Right click on each node to create new, rename, or delete. Drop and drag the nodes to change order and hierarchy.</p>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="createNewNode">+ Add Child to Selected Node</button>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="createNewRootNode">+ Add Root Node</button>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="expandAll">[+] Expand All Nodes</button>
 						<div id="tree" name="tree"></div>
 					</div>
 				</div>	
