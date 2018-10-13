@@ -60,7 +60,7 @@ module.exports = {
                 showSiblings: true,
                 selectableParents: true,
                 tasks: ['Where is the Apple?','Where is the Bacon?'],
-                tree: "[{text:'Fruits',children:['Apple','Banana']},{text:'Meats',children:['Bacon','Turkey']}]"
+                tree: JSON.stringify([{text:'Fruits',children:['Apple','Banana']},{text:'Meats',children:['Bacon','Turkey']}])
             },
             status: 'closed',
             ownerID: req.user._id,

@@ -26,6 +26,9 @@
 			    $("#createNewRootNode").click(function() {
 				  	$('#tree').jstree().create_node("#" ,  "New Root Item", "last");
 				});
+				$("#tree").click(function() {
+				  	$('#tree').jstree(true).redraw(true);
+				});
 			    $("#createNewNode").click(function() {
 				  	var selectedParent = $("#tree").jstree("get_selected");
 				  	$('#tree').jstree().create_node(selectedParent ,  "New Item", "last");

@@ -10,6 +10,11 @@ $(document).ready(function() {
 				"data": JSON.parse(treeStructure),		
 			}
 		});
+
+		$("#tree").on('ready.jstree', function() {
+			$("#tree").jstree('close_all');
+		});
+		
 	}
 
 	function enableButton(buttonID){
@@ -22,7 +27,6 @@ $(document).ready(function() {
 		$(buttonID).addClass('disabled');
 	}	
 	function bindNodeSelection(){
-		console.log("here")
 		//When node is selected (clicked), write full path of node ids
 		$('#tree').on("select_node.jstree", function (e, data) {
 		  tasks.answers[tasks.idx] = setHistory(data.node)
