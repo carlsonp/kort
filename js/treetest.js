@@ -3,7 +3,7 @@
 function bindNextButton(){
 	$("#nextTaskButton" ).click(function() {
 		if (!$('#nextTaskButton').hasClass('disabled')){
-			tasks.next();	
+			tasks.next();
 		}
 	});
 }
@@ -12,13 +12,20 @@ function initializeTreeViewObject(treeStructure){
 		"core" : {
 			"animation" : 0,
 			"check_callback" : true,
-			"themes" : { "stripes" : true },
+			"themes" : { "stripes" : true, "variant": "large" },
 			"data": JSON.parse(treeStructure)
-		}
+		},
+		"plugins" : [
+	    "wholerow"
+	  ]
 	});
 
 	$("#tree").on('ready.jstree', function() {
 		$("#tree").jstree('close_all');
+	});
+
+	$('#tree').on("changed.jstree", function (e, data) {
+		$("#tree").jstree("open_node", data.selected);
 	});
 }
 function enableButton(buttonID){
@@ -28,7 +35,7 @@ function enableButton(buttonID){
 function disableButton(buttonID){
 	$(buttonID).removeClass('btn-amber');
 	$(buttonID).addClass('disabled');
-}	
+}
 function bindNodeSelection(){
 	//When node is selected (clicked), write full path of node ids
 	$('#tree').on("select_node.jstree", function (e, data) {
@@ -48,12 +55,12 @@ function setHistory(node){
 	return path;
 }
 function disableSelectableOnParents(tree) {
-	for (var i = 0; i < Object.keys(tree).length; i++) { 
+	for (var i = 0; i < Object.keys(tree).length; i++) {
 		if('children' in tree[i]){
 			tree[i].state.disabled = true;
 			disableSelectableOnParents(tree[i].children);
-		} 
-	}	
+		}
+	}
 }
 function updateProgressBar(){
 	var status = ((tasks.idx/tasks.list.length)*100)+'%';
@@ -72,17 +79,17 @@ var tasks = {
 	},
 	next:function() {
 		if (!(this.idx == this.list.length-1)){
-			this.idx = this.idx + 1; 
+			this.idx = this.idx + 1;
 			this.set(this.idx);
 			updateProgressBar();
-		} else {				
+		} else {
 			$('#hiddenResults').val(JSON.stringify(tasks.answers));
 			$('#submitForm').click();
 		}
 		if (this.idx == this.list.length-1){
 			$('#nextTaskButton').html('Finish')
 		}
-		
+
 	},
 	prev:function() {
 	    if (this.idx === 0) {
@@ -92,7 +99,7 @@ var tasks = {
 	    this.set(this.idx);
 	},
 	set:function(number){
-		this.idx = number; 
+		this.idx = number;
 		$('#taskDesc').html(this.list[number]);
 		$('#taskNum').html("Task "+(number+1)+" of "+this.list.length);
 		resetTree();
@@ -110,7 +117,7 @@ function setup(input_tasks,input_tree){
 	});
 	for (var i = 0; i < tasksDB.length; i++) {
 		if (tasksDB[i] != ''){
-			tasks.add(tasksDB[i]);	
+			tasks.add(tasksDB[i]);
 		}
 	}
 	//create treeview structure from database information

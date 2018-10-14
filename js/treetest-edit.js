@@ -3,12 +3,11 @@ function init_jsTree(treedata){
 	  "core" : {
 	    "animation" : 0,
 	    "check_callback" : true,
-	    "themes" : { "stripes" : true },
+	    "themes" : { "stripes" : true, "variant": "large" },
 	    'data' : treedata
 	  },
 	  "plugins" : [
-	    "contextmenu", "dnd", "search",
-	    "state"
+	    "contextmenu", "dnd", "state", "wholerow"
 	  ]
 	});
 	bindFunctions();
@@ -21,18 +20,22 @@ function bindFunctions(){
     	$('#form').submit()
 	});
 
-    $("#createNewRootNode").click(function() {
-	  	$('#tree').jstree().create_node("#" ,  "New Root Item", "last");
+  $("#createNewRootNode").click(function() {
+  		$('#tree').jstree().create_node("#", "New Root Item", "last");
 	});
 
 	//expand parent node when child is created
-    $("#createNewNode").click(function() {
-	  	var selectedParent = $("#tree").jstree("get_selected");
-	  	$('#tree').jstree().create_node(selectedParent ,  "New Item", "last");
-	  	$("#tree").jstree("open_node", selectedParent);
+  $("#createNewNode").click(function() {
+  	var selectedParent = $("#tree").jstree("get_selected");
+  	$('#tree').jstree().create_node(selectedParent, "New Item", "last");
+  	$("#tree").jstree("open_node", selectedParent);
 	});
 
-    $("#expandAll").click(function() {
-    	$("#tree").jstree('open_all');
+  $("#expandAll").click(function() {
+  	$("#tree").jstree('open_all');
+	});
+
+	$('#tree').on("changed.jstree", function (e, data) {
+		$("#tree").jstree("open_node", data.selected);
 	});
 }
