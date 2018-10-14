@@ -14,7 +14,7 @@
 			$( document ).ready(function() {
 				var treeData = <%- singleStudy.data.tree %>;
 		   		init_jsTree(treeData);
-			});	
+			});
 		</script>
 	</head>
 	<body>
@@ -26,7 +26,7 @@
 		<hr>
 		<form id="form" method="POST" action="/updatetreetest">
 			<input hidden name='id' value='<%= singleStudy._id %>'/>
-			<input name='treedata', id='treedata'/>
+			<input hidden name='treedata' id='treedata'/>
 			<div class='row'>
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
@@ -76,7 +76,7 @@
 						<button type="button" class="btn btn-link  btn-sm float-left" id="expandAll">[+] Expand All Nodes</button>
 						<div id="tree" name="tree"></div>
 					</div>
-				</div>	
+				</div>
 			</div>
 
 			<div class='row'>
@@ -89,11 +89,11 @@
 
 			<div class='row'>
 				<div class='col-md-4'>
-					<button id="submitBtn" type="submit" class="btn btn-primary">Save</button>				
+					<button id="submitBtn" type="submit" class="btn btn-primary">Save</button>
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
 		</form>
-	</div>		
+	</div>
 	</body>
 </html>
