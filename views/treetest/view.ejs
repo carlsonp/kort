@@ -10,6 +10,16 @@
 		<title>Kort Treetest</title>
 	</head>
 
+	<script>
+		$(document).ready(function() {
+			var input_tasks = "<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>";
+			var treeData = $("#treedata").val();
+			var selectableParents = "<%= singleStudy.data.selectableParents %>";
+			var showSiblings = "<%= singleStudy.data.showSiblings %>";
+			setup(input_tasks,treeData,selectableParents,showSiblings);
+		});
+	</script>
+
 	<body class="background-darkbluegray">
 		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
 		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">

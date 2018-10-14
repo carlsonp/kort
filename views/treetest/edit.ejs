@@ -9,45 +9,12 @@
 		<!-- Include javascript for private.ejs -->
 		<script src="/clipboard/clipboard.min.js"></script>
 		<script type="text/javascript" src="/js/private.js"></script>
+		<script type="text/javascript" src="/js/treetest-edit.js"></script>
 		<script type="text/javascript">
 			$( document ).ready(function() {
-			    $('#tree').jstree({
-				  "core" : {
-				    "animation" : 0,
-				    "check_callback" : true,
-				    "themes" : { "stripes" : true },
-				    'data' :<%- singleStudy.data.tree %>
-				  },
-				  "plugins" : [
-				    "contextmenu", "dnd", "search",
-				    "state"
-				  ]
-				});
-			    $("#createNewRootNode").click(function() {
-				  	$('#tree').jstree().create_node("#" ,  "New Root Item", "last");
-				});
-				$("#tree").click(function() {
-				  	$('#tree').jstree(true).redraw(true);
-				});
-			    $("#createNewNode").click(function() {
-				  	var selectedParent = $("#tree").jstree("get_selected");
-				  	$('#tree').jstree().create_node(selectedParent ,  "New Item", "last");
-				  	//expand parent node when child is created
-				  	$("#tree").jstree("open_node", selectedParent);
-				});
-			    $("#expandAll").click(function() {
-			    	$("#tree").jstree('open_all');
-				});
-				$('#tree').on("rename_node.jstree", function (node, ref) {
-					//manually call redraw once a node is renamed
-					$('#tree').jstree(true).redraw(true);
-				});
-			    $('#tree').on("redraw.jstree",function(e,data) {
-			    	var treedata = JSON.stringify($('#tree').jstree(true).get_json('#', {flat:true}));
-			    	$('#treedata').val(treedata);
-				});
-			});
-			
+				var treeData = <%- singleStudy.data.tree %>;
+		   		init_jsTree(treeData);
+			});	
 		</script>
 	</head>
 	<body>
@@ -57,7 +24,7 @@
 		<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 		<h1>Edit Tree Test</h1>
 		<hr>
-		<form method="POST" action="/updatetreetest">
+		<form id="form" method="POST" action="/updatetreetest">
 			<input hidden name='id' value='<%= singleStudy._id %>'/>
 			<input name='treedata', id='treedata'/>
 			<div class='row'>
@@ -122,7 +89,7 @@
 
 			<div class='row'>
 				<div class='col-md-4'>
-					<button type="submit" class="btn btn-primary">Save</button>				
+					<button id="submitBtn" type="submit" class="btn btn-primary">Save</button>				
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
