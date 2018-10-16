@@ -7,6 +7,14 @@ function bindNextButton(){
 		}
 	});
 }
+function bindCloseSiblingsOnOpen(){
+	$('#tree').on("before_open.jstree", function (e, data) {
+		var siblings = $("#tree").jstree("get_node", data.node.parent).children;
+		siblings.forEach(function(element){
+			if(element != data.node.id) $("#tree").jstree("close_all", element);
+		})
+	});
+}
 function initializeTreeViewObject(treeStructure){
 	$('#tree').jstree({
 		"core" : {
@@ -22,10 +30,6 @@ function initializeTreeViewObject(treeStructure){
 
 	$("#tree").on('ready.jstree', function() {
 		$("#tree").jstree('close_all');
-	});
-
-	$('#tree').on("changed.jstree", function (e, data) {
-		$("#tree").jstree("open_node", data.selected);
 	});
 }
 function enableButton(buttonID){
@@ -54,13 +58,18 @@ function setHistory(node){
 	var path = $('#tree').jstree('get_path',node);
 	return path;
 }
-function disableSelectableOnParents(tree) {
-	for (var i = 0; i < Object.keys(tree).length; i++) {
-		if('children' in tree[i]){
-			tree[i].state.disabled = true;
-			disableSelectableOnParents(tree[i].children);
+function disableSelectableOnParents() {
+	$('#tree').on("changed.jstree", function (e, data) {
+		var node = $('#tree').jstree(true).get_node(data.selected);
+		if(node.children && node.children.length > 0){
+			$("#tree").jstree("deselect_node", data.selected);
 		}
-	}
+	});
+}
+function singleClickExpand() {
+	$('#tree').on("changed.jstree", function (e, data) {
+		$("#tree").jstree("toggle_node", data.selected);
+	});
 }
 function updateProgressBar(){
 	var status = ((tasks.idx/tasks.list.length)*100)+'%';
@@ -111,7 +120,7 @@ var tasks = {
 	}
 }
 //---------------------Task List Initialization----------------------
-function setup(input_tasks,input_tree){
+function setup(input_tasks,input_tree,input_selectableParents,input_closeSiblings){
 	var tasksDB = input_tasks.split(";").map(function(item) {
 		  return item.trim();
 	});
@@ -123,6 +132,14 @@ function setup(input_tasks,input_tree){
 	//create treeview structure from database information
 	initializeTreeViewObject(input_tree);
 	bindNodeSelection();
+	if(input_closeSiblings){
+		bindCloseSiblingsOnOpen();
+	}
+	if(!input_selectableParents){
+		disableSelectableOnParents();
+	}
+	singleClickExpand();
+	//TODO: remove these fields when we can
 	$('#hiddenTasks').remove();
 	$('#hiddenTree').remove();
 	$('#treedata').remove();

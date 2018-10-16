@@ -36,6 +36,6 @@ function bindFunctions(){
 	});
 
 	$('#tree').on("changed.jstree", function (e, data) {
-		$("#tree").jstree("open_node", data.selected);
+		$("#tree").jstree("toggle_node", data.selected);
 	});
 }

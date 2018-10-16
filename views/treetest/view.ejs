@@ -11,13 +11,13 @@
 	</head>
 
 	<script>
-		$(document).ready(function() {
-			var input_tasks = "<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>";
-			var treeData = $("#treedata").val();
-			var selectableParents = "<%= singleStudy.data.selectableParents %>";
-			var showSiblings = "<%= singleStudy.data.showSiblings %>";
-			setup(input_tasks,treeData,selectableParents,showSiblings);
-		});
+			$(document).ready(function() {
+				var input_tasks = "<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>";
+				var treeData = $("#treedata").val();
+				var selectableParents = "<%= singleStudy.data.selectableParents %>";
+				var showSiblings = "<%= singleStudy.data.showSiblings %>";
+				setup(input_tasks,treeData,selectableParents,showSiblings);
+			});
 	</script>
 
 	<body class="background-darkbluegray">
@@ -27,7 +27,7 @@
 		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.data.showSiblings %>">
 
 		<script type="text/javascript" src="/js/treetest.js"/></script>
-		
+
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
@@ -41,7 +41,7 @@
             <ul class='nav navbar-nav'></ul>
         </nav>
 
-		<div class='container'>	
+		<div class='container'>
 			<div class="row">
 				<div id="taskNum"></div>
 				<div id="taskDesc"></div>
