@@ -58,17 +58,15 @@ function setHistory(node){
 	var path = $('#tree').jstree('get_path',node);
 	return path;
 }
-function disableSelectableOnParents() {
-	$('#tree').on("changed.jstree", function (e, data) {
-		var node = $('#tree').jstree(true).get_node(data.selected);
-		if(node.children && node.children.length > 0){
-			$("#tree").jstree("deselect_node", data.selected);
-		}
-	});
-}
-function singleClickExpand() {
+function singleClickExpand(parents) {
 	$('#tree').on("changed.jstree", function (e, data) {
 		$("#tree").jstree("toggle_node", data.selected);
+		if (parents) {
+			var node = $('#tree').jstree(true).get_node(data.selected);
+			if(node.children && node.children.length > 0){
+				$("#tree").jstree("deselect_node", data.selected);
+			}
+		}
 	});
 }
 function updateProgressBar(){
@@ -135,16 +133,10 @@ function setup(input_tasks,input_tree,input_selectableParents,input_closeSibling
 	if(input_closeSiblings){
 		bindCloseSiblingsOnOpen();
 	}
-	if(!input_selectableParents){
-		disableSelectableOnParents();
-	}
-	singleClickExpand();
-	//TODO: remove these fields when we can
-	$('#hiddenTasks').remove();
+	//this parameter is whether or not parents can be selected when clicked
+	singleClickExpand(!input_selectableParents);
 	$('#hiddenTree').remove();
 	$('#treedata').remove();
-	$('#hiddenSelectableParents').remove();
-	$('#hiddenShowSiblings').remove();
 	tasks.set(0);
 	disableButton('#nextTaskButton');
 	bindNextButton();
