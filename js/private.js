@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 	//create clipboard object
-	var clip = new Clipboard('.copyText');
+	var clip = new ClipboardJS('.copyText');
 
     //toggles between link and links for responses
  	$("[name='private']").change(function() {

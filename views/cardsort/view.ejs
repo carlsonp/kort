@@ -26,16 +26,14 @@
 
 		<!-- starts Dragula object and adds onclick events for buttons -->
 		<script type="text/javascript" src="/js/cardsort.js"></script>
-
-		<nav class="navbar navbar-default">
-			<div class="container-fluid custom_topbar">
-				<span class='navbar-brand'><%= singleStudy.title %></span>
-				<%if (singleStudy.data.studyType == 'open') { %>
-				<ul class="navbar-nav" style="float:right">
-					<button id='newGroupButton' type="button" class="btn navbar-btn"><i class='fa fa-plus' aria-hidden='true'></i>  New Group</button>
-			    </ul>
-				<% } %>
-			</div>
+		
+		<nav class="navbar navbar-expand-lg navbar-light custom_topbar">
+			<span class='navbar-brand'><%= singleStudy.title %></span>
+			<%if (singleStudy.data.studyType == 'open') { %>
+			<ul class="navbar-nav">
+				<button id='newGroupButton' type="button" class="btn navbar-btn"><i class='fa fa-plus' aria-hidden='true'></i>  New Group</button>
+		    </ul>
+			<% } %>
 		</nav>
 		<div class="container-fluid">
 		<div id='dropZoneParent' class="row">	

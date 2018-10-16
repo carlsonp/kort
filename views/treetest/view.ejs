@@ -2,36 +2,43 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/header.ejs') %>
-		<!-- Include Bootstrap Treeview -->
-		<link rel="stylesheet" type="text/css" href="/bootstrap-treeview/bootstrap-treeview.min.css"/>
-		<script type="text/javascript" src="/bootstrap-treeview/bootstrap-treeview.min.js"/></script>
+		<!-- Include jsTree -->
+		<script type="text/javascript" src="/jstree/jstree.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/jstree/themes/default/style.min.css" />
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="/css/treetest.css" />
 		<title>Kort Treetest</title>
 	</head>
-	
+
+	<script>
+			$(document).ready(function() {
+				var input_tasks = "<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>";
+				var treeData = $("#treedata").val();
+				var selectableParents = "<%= singleStudy.data.selectableParents %>";
+				var showSiblings = "<%= singleStudy.data.showSiblings %>";
+				setup(input_tasks,treeData,selectableParents,showSiblings);
+			});
+	</script>
+
 	<body class="background-darkbluegray">
-		<input id='hiddenTasks' type='text' value="<% for(var i=0; i<singleStudy.data.tasks.length; i++) {%><%= singleStudy.data.tasks[i] %>;<% } %>">
-		<input id='hiddenTree' type='text' value="<% for(var i=0; i<singleStudy.data.tree.length; i++) {%><%= singleStudy.data.tree[i] %>;<% } %>">
-		<input id='hiddenSelectableParents' type='text' value="<%= singleStudy.data.selectableParents %>">
-		<input id='hiddenShowSiblings' type='text' value="<%= singleStudy.data.showSiblings %>">
+		<input id='hiddenTree' type='text' value="<%= singleStudy.data.tree %>">
 
 		<script type="text/javascript" src="/js/treetest.js"/></script>
-		
+
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
+			<input name="treedata" id='treedata' type='text' value="<%= singleStudy.data.tree %>" />
 			<input name="result" id='hiddenResults' type='text' hidden />
 			<button type="submit" id='submitForm' hidden>Add</button>
 		</form>
 
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container-fluid custom_topbar">
-				<span class='navbar-brand'><%= singleStudy.title %></span>
-			</div>
-		</nav>
+        <nav class="navbar navbar-expand-lg navbar-light custom_topbar">
+            <span class='navbar-brand'><%= singleStudy.title %></span>
+            <ul class='nav navbar-nav'></ul>
+        </nav>
 
-		<div class='container'>	
+		<div class='container'>
 			<div class="row">
 				<div id="taskNum"></div>
 				<div id="taskDesc"></div>
@@ -41,10 +48,9 @@
 				</div>
 
 			</div>
-			
-			<div class="row">
-				<div id="treeArea">
-					<div id="tree"></div>
+			<div class="row" style="background: white">
+				<div id="tree">
+
 				</div>
 			</div>
 			<div class="row">

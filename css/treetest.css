@@ -29,6 +29,10 @@
     height: auto;
 }
 
+#tree {
+  width: 100%;
+}
+
 /*for boostrap treeview*/
 .node-disabled {
     display: none;

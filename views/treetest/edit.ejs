@@ -3,9 +3,19 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<title>Edit Tree Test</title>
+		<!-- Include jsTree -->
+		<script type="text/javascript" src="/jstree/jstree.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/jstree/themes/default/style.min.css" />
 		<!-- Include javascript for private.ejs -->
 		<script src="/clipboard/clipboard.min.js"></script>
 		<script type="text/javascript" src="/js/private.js"></script>
+		<script type="text/javascript" src="/js/treetest-edit.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				var treeData = <%- singleStudy.data.tree %>;
+		   		init_jsTree(treeData);
+			});
+		</script>
 	</head>
 	<body>
 	<%- include('../partials/admin_header.ejs') %>
@@ -14,8 +24,9 @@
 		<a href='/studies'><i class="fa fa-chevron-left icon-sm" aria-hidden="true"></i> Back to Studies</a>
 		<h1>Edit Tree Test</h1>
 		<hr>
-		<form method="POST" action="/updatetreetest">
-			<input hidden name='id' value='<%= singleStudy._id %>' />
+		<form id="form" method="POST" action="/updatetreetest">
+			<input hidden name='id' value='<%= singleStudy._id %>'/>
+			<input hidden name='treedata' id='treedata'/>
 			<div class='row'>
 				<div class='col-sm-4'>
 					<%- include('../partials/study_options/title.ejs') %>
@@ -24,12 +35,12 @@
 					    <%if (singleStudy.data.selectableParents == 'on') { %>
 					    <div class="checkbox">
 					      <label><input type="checkbox" name="selectableParents" checked>Parents can be selected</label>
-					      <p>Elements with items nested under them may not be selected as answers.</p>
+					      <p>Elements with items nested under them may be selected as answers.</p>
 					    </div>
 					    <% } else { %>
 					   <div class="checkbox">
 					      <label><input type="checkbox" name="selectableParents">Parents can be selected</label>
-					       <p>Elements with items nested under them may not be selected as answers.</p>
+					       <p>Elements with items nested under them may be selected as answers.</p>
 					    </div>
 					    <% } %>
 
@@ -58,11 +69,14 @@
 			<div class='row'>
 				<div class='col-md-12'>
 					<div class="well">
-						<p><label for="tree">Tree Structure</label>
-						<br>One tree node per line. Use '/' to build structure.</p>
-						<textarea style='width:100%' name="tree" rows="15" cols="30" id="tree"><% for(var j=0; j<singleStudy.data.tree.length; j++) {%><%= singleStudy.data.tree[j]+'\n' %><% } %></textarea>
+						<p><label for="tree">Tree Structure</label></p>
+						<p>Right click on each node to create new, rename, or delete. Drop and drag the nodes to change order and hierarchy.</p>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="createNewNode">+ Add Child to Selected Node</button>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="createNewRootNode">+ Add Root Node</button>
+						<button type="button" class="btn btn-link  btn-sm float-left" id="expandAll">[+] Expand All Nodes</button>
+						<div id="tree" name="tree"></div>
 					</div>
-				</div>	
+				</div>
 			</div>
 
 			<div class='row'>
@@ -75,11 +89,11 @@
 
 			<div class='row'>
 				<div class='col-md-4'>
-					<button type="submit" class="btn btn-primary">Save</button>				
+					<button id="submitBtn" type="submit" class="btn btn-primary">Save</button>
 					<a href="/studies" class="btn btn-default" role="button">Cancel</a>
 				</div>
 			</div>
 		</form>
-	</div>		
+	</div>
 	</body>
 </html>
