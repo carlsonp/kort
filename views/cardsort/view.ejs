@@ -5,6 +5,8 @@
 		<!-- include Dragula CSS (makes ghosting work)-->
 		<script type="text/javascript" src="/dragula/dragula.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/dragula/dragula.min.css" />
+		<!-- starts Dragula object and adds onclick events for buttons -->
+		<script type="text/javascript" src="/js/cardsort.js"></script>
 		<!-- include custom global CSS -->
 		<link rel="stylesheet" type="text/css" href="/css/kort.css" />
 		<!-- include custom cardsort CSS -->
@@ -12,20 +14,26 @@
 
 		<title>Card Sort</title>
 	</head>
-	<body>
-		<input id='hiddenGroups' type='text' value="<% for(var i=0; i<singleStudy.data.groups.length; i++) {%><%= singleStudy.data.groups[i] %>;<% } %>">
-		<input id='hiddenCards' type='text' value="<% for(var i=0; i<singleStudy.data.cards.length; i++) {%><%= singleStudy.data.cards[i] %>;<% } %>">
-		<input id='hiddenType' type='text' value="<%= singleStudy.data.studyType %>">
-		<input id='hiddenActive' type='text' value="<%= singleStudy.status %>">
 
+	<script>
+		$(document).ready(function() {
+			var studyType = "<%= singleStudy.data.studyType %>";
+			var status = "<%= singleStudy.status %>";
+			var responseID = "<%= response %>";
+			var cards = "<% for(var i=0; i<singleStudy.data.cards.length; i++) {%><%= singleStudy.data.cards[i] %>;<% } %>";
+			var groups = "<% for(var i=0; i<singleStudy.data.groups.length; i++) {%><%= singleStudy.data.groups[i] %>;<% } %>";
+			setup(studyType,status,responseID,cards,groups);
+		});
+	</script>
+
+	<body>
 		<form id='resultsForm' method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
 			<input name="result" id='hiddenResults' type='text' hidden>
 		</form>
 
-		<!-- starts Dragula object and adds onclick events for buttons -->
-		<script type="text/javascript" src="/js/cardsort.js"></script>
+		
 		
 		<nav class="navbar navbar-expand-lg navbar-light custom_topbar">
 			<span class='navbar-brand'><%= singleStudy.title %></span>
