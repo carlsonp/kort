@@ -5,6 +5,8 @@ Kort
 [![Releases](https://img.shields.io/github/release/carlsonp/kort.svg)](https://github.com/carlsonp/kort/releases/latest)
 [![All Downloads](https://img.shields.io/github/downloads/carlsonp/kort/total.svg)](http://www.somsubhra.com/github-release-stats/?username=carlsonp&repository=kort)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Known Vulnerabilities](https://snyk.io/test/github/carlsonp/kort/badge.svg)](https://snyk.io/test/github/carlsonp/kort)
+
 
 
 #### Table of Contents  
