@@ -7,35 +7,9 @@ var nps = require('./nps_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 var response = require('./response_server');
-var upload = require('./upload_server');
 var mongoose = require('mongoose');
 
-const multer = require('multer');
-
-module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allowUserRegistration) {
-
-	const multerConf = {
-		storage: multer.diskStorage({
-			destination: function(req, file, next){
-				next(null, uploadDir);
-			},
-			filename: function(req, file, next){
-				const ext = file.mimetype.split('/')[1];
-				next(null,file.fieldname + '-' + Date.now() + '.' + ext);
-			}
-		}),
-		fileFilter: function(req, file, next){
-			if(!file){
-				next()
-			}
-			const image = file.mimetype.startsWith('image');
-			if(image){
-				next(null,true);
-			} else {
-				next({message: "File not supported"},false);
-			}
-		}
-	};
+module.exports = function(app, passport, flash, allowGoogleAuth, allowUserRegistration) {
 
 	app.get('/', function (req, res) {
 		require('pkginfo')(module, 'version');
@@ -46,18 +20,6 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 									allowUserRegistration: allowUserRegistration,
 									createUserErrorMessage: req.flash('createUserErrorMessage'),
                                     createUserSuccessMessage: req.flash('createUserSuccessMessage') });
-	});
-
-	//upload routes
-	app.post('/upload', isLoggedIn, multer(multerConf).single('photo'), upload.create);
-	app.post('/delupload/:id', isLoggedIn, upload.delete);
-	//todo
-	// app.post('/api/uploaddelete', isLoggedIn, multer(multerConf).single('photo'), upload.create);
-	app.post('/upload/getPath', isLoggedIn, upload.getPathById);
-
-	//sample page for upload testing
-	app.get('/uploadtest', isLoggedIn, function (req, res) {
-		res.render('upload.ejs',{imgpath: ""});
 	});
 
 	//nps routes
@@ -130,7 +92,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 		        break;
 		    case "nomore":
 		        res.render('msg.ejs', {titleline: "Submission already received.", msg: "No more submissions allowed."});
-		        break;   
+		        break;
 		    default:
 		        res.redirect('/');
 		}
@@ -160,7 +122,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 		failureRedirect: '/',
 		failureFlash: true
 	}));
-	
+
 	if (allowUserRegistration) {
 		app.post('/localregistration', passport.authenticate('local-signup', {
 			successRedirect: '/',
@@ -168,7 +130,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 			failureFlash: true
 		}));
 	}
-	
+
 	if (allowGoogleAuth && allowUserRegistration) {
 		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 		// the callback after google has authenticated the user
@@ -178,7 +140,7 @@ module.exports = function(app, passport, flash, uploadDir, allowGoogleAuth, allo
 			failureFlash: true
 		}));
 	}
-	
+
 	app.get('/logout', function(req, res) {
 		req.logout();
 		req.session.destroy();
