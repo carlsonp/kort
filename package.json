@@ -57,12 +57,14 @@
   "devDependencies": {
     "casperjs": "^1.1.4",
     "eslint": "^5.7.0",
+    "html-validator": "^3.0.6",
     "mongo-express": "^0.49.0",
     "nodemon": "^1.18.4",
-    "phantomjs-prebuilt": "^2.1.16"
+    "phantomjs-prebuilt": "^2.1.16",
+    "tap": "^12.0.1"
   },
   "scripts": {
-    "test": "casperjs test ./tests/main.js"
+    "test": "casperjs test ./tests/main.js && tap --reporter=spec ./tests/html-validation.js"
   },
   "author": "Patrick Carlson and Leif Berg",
   "license": "GPL-3.0"
