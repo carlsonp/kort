@@ -77,7 +77,6 @@ app.use(flash());
 //https://expressjs.com/en/starter/static-files.html
 app.use('/css', express.static(path.join(__dirname, '/css/')));
 app.use('/opensans', express.static(path.join(__dirname, '/node_modules/npm-font-open-sans/')));
-app.use('/uploads', express.static(path.join(__dirname, '/uploads/')));
 app.use('/js', express.static(path.join(__dirname, '/js/')));
 app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist/')));
 app.use('/clipboard', express.static(path.join(__dirname, '/node_modules/clipboard/dist/')));
