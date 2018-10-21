@@ -1,4 +1,3 @@
-
 var pc = {
 	secondSelectionLimit: 5,
 	firstSelectionLimit: 10,
@@ -6,38 +5,22 @@ var pc = {
 	selectedNum: 0,
 }
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
-
 function setup(input_words,input_randomize){
 	disableButton('#nextBtn');
 	disableButton('#done');
-	$('#done').hide();
-	
+	$('#done').hide();	
 	pc.words = input_words.split(";").map(function(item) {
 		  return item.trim();
 	}).filter(function(n) { return n != ''});
-
+	//shuffle the word order if randomize is checked
 	if (input_randomize == "on") {
 		pc.words = shuffle(pc.words)
 	}
-	
+	//add words to DOM
 	for (var i = 0; i < pc.words.length; i++) {
 		$('#cardArea').append("<li>"+pc.words[i]+"</li>");
 	}
-
+	//bind done action to submit study result
 	$("#done").click(function() {
 		if ($("#cardArea li.selected").length >= pc.secondSelectionLimit) {
 			pc.results = [];
@@ -48,11 +31,24 @@ function setup(input_words,input_randomize){
 			$('#submitForm').click();
 		}
 	});	
-
-	$('#hiddenWords').remove();
-	$('#hiddenStatus').remove();
-	$('#hiddenRandomize').remove();
-	createBindings();
+	//bind next button action function
+	$("#nextBtn").click(function() {
+		if ($("#cardArea li.selected").length >= pc.firstSelectionLimit) {
+			$( "#cardArea li:not(.selected)").each(function(index) {
+			$(this).remove();
+		});
+		$("#cardArea li.selected").toggleClass('selected');
+		pc.onStageTwo = true;
+		updateView();
+		$('#done').show();
+		$(this).remove();
+		}		
+	});
+	//bind card selection function
+	$("#cardArea li").click(function() {
+		$(this).toggleClass("selected");
+		updateView();
+	});
 }
 
 function enableButton(buttonID){
@@ -67,6 +63,18 @@ function disableButton(buttonID){
 
 function setInstructions(str){
 	$('#textArea').html(str);
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
 }
 
 function updateView(){
@@ -89,26 +97,3 @@ function updateView(){
 		}
 	}
 }
-
-function createBindings(){
-	$("#nextBtn").click(function() {
-		if ($("#cardArea li.selected").length >= pc.firstSelectionLimit) {
-			$( "#cardArea li:not(.selected)").each(function(index) {
-			$(this).remove();
-		});
-		$("#cardArea li.selected").toggleClass('selected');
-		pc.onStageTwo = true;
-		updateView();
-		$('#done').show();
-		$(this).remove();
-		}		
-	});
-
-	$("#cardArea li").click(function() {
-		$(this).toggleClass("selected");
-		updateView();
-	});
-}
-
-
-
