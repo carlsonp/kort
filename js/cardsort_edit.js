@@ -130,7 +130,6 @@ function deleteGroup(target){
 $( document ).ready(function() {
 	//toggles input area for groups based on studyType (open or closed)
     $("[name='studyType']").change(function() {
-    	console.log("fire")
 	  $("#groupInputArea").toggle();
 	});
 
