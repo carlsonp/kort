@@ -4,6 +4,7 @@
 		<%- include('partials/header.ejs') %>
 		<title>Kort</title>
 		<script type="text/javascript" src="/js/index.js"></script>
+		<meta name="Description" content="Kort login page">
 	</head>
 	<body class="background-white">
 		<div class="container">
@@ -41,14 +42,19 @@
 						<form class="form-horizontal" action="/login" method="post" id="login">
 							<div class="form-group">
 								<h4>Login</h4>
+								<br>
 								<h4 class='text-center'></h4>
 								<div class="inputGroupContainer">
-									<input name="email" placeholder="Email" class="form-control" type="text" autofocus="autofocus" />
+									<label>Email
+										<input name="email" placeholder="Email" class="form-control" type="text" autofocus="autofocus" />
+									</label>
 							  	</div>
 							</div>
 							<div class="form-group">
 								<div class="inputGroupContainer">
-									<input name="password" placeholder="Password" class="form-control" type="password" />
+									<label>Password
+										<input name="password" placeholder="Password" class="form-control" type="password" />
+									</label>
 							  	</div>
 							</div>
 							<div class="form-group">
