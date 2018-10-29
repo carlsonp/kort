@@ -9,15 +9,16 @@
             <span class='navbar-brand'><%= singleStudy.title %></span>
             <ul class='nav navbar-nav'></ul>
         </nav>
-
 	</head>
+	<script>
+		$(document).ready(function() {
+			var words = "<% for(var i=0; i<singleStudy.data.words.length; i++) {%><%= singleStudy.data.words[i] %>;<% } %>";
+			var randomize = "<%= singleStudy.data.randomize %>";
+			setup(words,randomize);
+		});
+	</script>
 	<body class="background-darkbluegray">
-		<input id='hiddenWords' type='text' value="<% for(var i=0; i<singleStudy.data.words.length; i++) {%><%= singleStudy.data.words[i] %>;<% } %>">
-		<input id='hiddenStatus' type='text' value="<%= singleStudy.status %>">
-		<input id='hiddenRandomize' type='text' value="<%= singleStudy.data.randomize %>">
-
 		<script type="text/javascript" src="/js/productreactioncards.js"/></script>
-
 		<form method="POST" action="/submitResult">
 			<input name="id" id='id' type='text' hidden value="<%= singleStudy._id %>" />
 			<input name="resid" id='resid' type='text' hidden value="<%= response %>" />
