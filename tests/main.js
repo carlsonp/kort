@@ -4,16 +4,46 @@
 //API docs:
 //http://docs.casperjs.org/en/latest/modules/index.html
 
-
+// const validator = require('html-validator');
+// var options = {
+//   format: 'text'
+// };
 
 //http://docs.casperjs.org/en/latest/modules/tester.html#begin
 casper.test.begin('Main Test Suite', function suite(test) {
 	casper.start('http://127.0.0.1:3000', function() {
-		
+
+		const validator = require('html-validator');
+
+		// var js = this.evaluate(function() {
+		// 	return document;
+		// });
+
+		//options.data = js.all[0].outerHTML;
+		//(function (foo, bar) { return this.example(bar, foo); }).bind(this)
+		//(function(error, data) { return this.validator(options); }).bind(this)
+
+		console.log(validator);
+		// validator(options, function(error, data) {
+		// 	if (error) {
+		// 		//console.error(error);
+		// 	}
+        //
+		// 	//console.log(data);
+		// });
+
+		// validator(options, (error, data) => {
+		// 	if (error) {
+		// 	  console.error(error);
+		// 	}
+        //
+		// 	console.log(data);
+		// });
+
 		//http://docs.casperjs.org/en/latest/modules/tester.html#assertexists
         test.assertExists('[name="email"]', 'email input exists');
 		test.assertExists('[name="password"]', 'password input exists');
-		
+
 		//https://stackoverflow.com/questions/18676549/how-to-login-by-filling-the-form-in-casperjs
 		//wait for the main login page to load
 		casper.waitForSelector("form input[name='email']", function() {
@@ -22,16 +52,16 @@ casper.test.begin('Main Test Suite', function suite(test) {
 				'input[name = password ]' : 'admin'
 			}, true);
 		});
-		
+
 		//wait for the overview page to load
 		casper.waitForSelector("#gostudies", function() {
 			test.assertTitle('Kort: Overview', 'Admin user logged in, can see the overview HTML title.');
 		});
-		
+
 		//http://docs.casperjs.org/en/latest/modules/casper.html#thenbypass
 		//uncomment this to skip the 404 link checks
 		casper.thenBypass(1);
-		
+
 		//https://stackoverflow.com/questions/29325617/scrape-link-from-element-that-has-no-class-or-id-casperjs
 		//https://stackoverflow.com/questions/31786354/how-to-check-broken-links-in-a-webpage-using-casperjs
 		//check all the outbound links for 404's
@@ -45,7 +75,7 @@ casper.test.begin('Main Test Suite', function suite(test) {
 				});
 			});
 			//urls.push("http://google.com/404"); //sanity check a known 404 page
-			
+
 			urls.forEach(function(link) {
 				casper.thenOpen(link, function(response) {
 					if (response == undefined || response.status >= 400) {
@@ -65,13 +95,13 @@ casper.test.begin('Main Test Suite', function suite(test) {
 		    //click on go to studies button
 			this.click('#gostudies');
 		});
-		
+
 		//wait for the studies page to load
 		casper.waitForSelector("#newstudy", function() {
 			test.assertTitle('Kort: Studies', 'Studies page rendered.');
 		});
-		
-		
+
+
 	}).run(function() {
 		test.done();
 	});
