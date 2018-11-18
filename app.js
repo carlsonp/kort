@@ -12,7 +12,6 @@ if (process.env.mongoHost){
 const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
 const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
-const uploadDir = './uploads/images';
 const allowGoogleAuth = false; //allowUserRegistration must be set to true as well to enable this
 const allowUserRegistration = false;
 
@@ -114,7 +113,7 @@ require('./server/passport')(passport, flash, allowGoogleAuth, googleClientID, g
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-require('./server/routes.js')(app, passport, flash, uploadDir, allowGoogleAuth, allowUserRegistration);
+require('./server/routes.js')(app, passport, flash, allowGoogleAuth, allowUserRegistration);
 
 app.listen(port, function () {
 	logger.info('Kort running on port: ' + port);
