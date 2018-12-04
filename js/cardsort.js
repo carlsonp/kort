@@ -166,9 +166,14 @@ function setup(input_studyType,input_status,input_responseID,input_cards,input_g
 		}
 	}
 
+	// override submit button action, write results to field and then submit
+	$('#done').click(function(){
+	  $('#hiddenResults').val(JSON.stringify(getResults()));
+	  $('#resultsForm').submit();
+  	});
+
 	//dragula event to check for empty intial list on 'drop' actions
 	drake.on("drop", function(event){
-		$('#hiddenResults').val(JSON.stringify(getResults()));
 		if (($('#initialColumn').children().length == 1)){
 			$('#done').show();
 		} else {
