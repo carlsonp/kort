@@ -71,37 +71,12 @@
 						<td style="width:50%">
 							<div class="progress">
 								<div class="progress-bar" role="progressbar" style="width:<%= (counts[i]/completeResponses.length)*100 %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>	
+							</div>
 						</td>
 					</tr>
 					<% } %>
 				</table>
 			</div>
 		</div>
-		<script>
-			// var data = [{
-			// 	type: 'bar',
-			// 	x: <%- JSON.stringify(counts) %>,
-			// 	y: <%- JSON.stringify(words) %>,
-			// 	orientation: 'h',
-			// 	marker: {
-			// 		color: '#337ab7',
-			//   	},
-			// }];
-			// var layout = {
-			// 	title: '',
-			// 	autosize: true,
-			// 	margin: {
-			// 		l: 150,
-			// 		pad: 5,
-			// 	},
-			// 	xaxis: {
-			// 		title: "Number of Selections",
-			// 	    dtick: 1,
-			//   	},
-			// };
-
-			// Plotly.newPlot('bargraph', data, layout, {staticPlot: false});
-		</script>
 	</body>
 </html>
