@@ -3,7 +3,6 @@
 	<head>
 		<%- include('../partials/header.ejs') %>
 		<%- include('../partials/datatables.ejs') %>
-		<script type="text/javascript" src="/plotlyjs/plotly.min.js"></script>
 		<script type="text/javascript" src="/js/resultstable.js"></script>
 		<title>Card Sort Results</title>
 	</head>
@@ -17,74 +16,54 @@
 				<%- include('../partials/resultstable.ejs') %>
 			</div>
 			<div class="well">
-				<h3>Heatmap</h3>
+				<h3>Response Matrix </h3>
 				<hr>
-				<div id='heatmap'></div>
+				<table id='results_matrix'>
+					<thead>
+						<tr>
+							<th></th>
+							<% for(var k=0; k<groups.length; k++) {%>
+							<th><%= groups[k] %></th>
+							<% } %>
+						</tr>
+					</thead>
+					<tbody id="results_table_body">
+					<% for(var i=0; i<cards.length; i++) {%>
+						<tr>
+							<td><%= cards[i] %></td>
+							<% for(var j=0; j<matrix[i].length; j++) {%>
+							<td><%= matrix[i][j] %></td>
+							<% } %>
+						</tr>
+					<% } %>
+					</tbody>
+				</table>
 			</div>
+ 			<script>
+ 				$( document ).ready(function() {
+					var table= $('#results_matrix').DataTable({
+						dom: 'Bfrtip',
+						bPaginate: false,
+						bInfo: false,
+					  	"scrollY": true,
+					  	"scrollX": true,
+				        scrollCollapse: true,
+				        paging: false,
+						language: {
+					        search: "Filter"
+					    },
+						buttons: [
+							{ extend: 'csvHtml5', text: 'Download CSV' }
+						]
 
-			<script>
-				//https://plot.ly/javascript/heatmaps/
-				var xValues = <%- JSON.stringify(groups) %>;
-				var yValues = <%- JSON.stringify(cards) %>;
-				var zValues = <%- JSON.stringify(matrix) %>;
-
-				var colorscaleValue = [
-				[0, '#ffffff'],
-				[1, '#337ab7']
-				];
-
-				var data = [{
-					x: xValues,
-					y: yValues,
-					z: zValues,
-					type: 'heatmap',
-					colorscale: colorscaleValue,
-					showscale: false,
-				}];
-
-				var layout = {
-					title: '',
-					annotations: [],
-					xaxis: {
-						ticks: '',
-						side: 'top',
-						fixedrange: true
-					},
-					yaxis: {
-						ticks: '',
-						fixedrange: true
-					}
-				};
-
-				for ( var i = 0; i < yValues.length; i++ ) {
-					for ( var j = 0; j < xValues.length; j++ ) {
-						var currentValue = zValues[i][j];
-						if (currentValue != 0.0) {
-							var textColor = 'white';
-						}else{
-							var textColor = 'black';
-						}
-						var result = {
-							xref: 'x1',
-							yref: 'y1',
-							x: xValues[j],
-							y: yValues[i],
-							text: zValues[i][j],
-							font: {
-								family: 'Open Sans',
-								size: 12,
-								color: 'rgb(50, 171, 96)'
-							},
-							showarrow: false,
-							font: {
-								color: textColor
-							}
-						};
-						layout.annotations.push(result);
-					}
-				}
-
-				Plotly.newPlot('heatmap', data, layout, {displayModeBar: false});
+					});
+ 
+					table.cells().every( function () {
+					    if ( this.data() > 0 ) {
+					       $(this.node()).css('background', '#ADD8E6')
+					    }
+					});
+				});
 			</script>
 		</div>
 	</body>
