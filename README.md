@@ -68,8 +68,8 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 
 1. Install [Node.js](https://nodejs.org)
 
-2. Install [MongoDB](https://www.mongodb.com/) ([3.0 or higher](http://mongoosejs.com/docs/compatibility.html)) or provide a connection to an existing server
-by editing the `app.js` file and setting the `mongoURL`.  To optionally [secure your MongoDB with a username
+2. Install [MongoDB](https://www.mongodb.com/) (3.0 or higher) or provide a connection to an existing server
+by editing the `app.js` file and setting the `mongoURL`.  Kort uses the Mongoose package To optionally [secure your MongoDB with a username
 and password](https://stackoverflow.com/questions/4881208/how-to-secure-mongodb-with-username-and-password/19768877),
 create a user for the `kort` database by doing the following:
 
