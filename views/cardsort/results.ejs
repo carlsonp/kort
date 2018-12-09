@@ -61,17 +61,17 @@
  					table.cells().every( function () {
  						if(!isNaN(this.data())){
  							vals.push(parseInt(this.data()))
-						}				    
+						}
 					});
 
-					mymin =  (Math.min(...vals) >= 1) ? Math.min(...vals) : 1;
+					mymin = Math.min(...vals)
 					mymax = Math.max(...vals)
 
 					table.cells().every( function () {
-					    if ( this.data() > 0 ) {
-					    	var alpha = ((parseInt(this.data()) - mymin)) / mymax
-					       $(this.node()).css('background', 'rgba(141,185,223,'+alpha+')')
-					    }
+						if (mymin != mymax) {
+							var alpha = (parseInt(this.data()) - mymin) / (mymax - mymin)
+							$(this.node()).css('background', 'rgba(141,185,223,'+alpha+')')
+						}
 					});
 				});
 			</script>
