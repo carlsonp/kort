@@ -46,7 +46,6 @@
 						bPaginate: false,
 						bInfo: false,
 					  	"scrollY": true,
-					  	"scrollX": true,
 				        scrollCollapse: true,
 				        paging: false,
 						language: {
@@ -57,11 +56,22 @@
 						]
 
 					});
- 
+ 					var vals = [];
+
+ 					table.cells().every( function () {
+ 						if(!isNaN(this.data())){
+ 							vals.push(parseInt(this.data()))
+						}
+					});
+
+					mymin = Math.min(...vals)
+					mymax = Math.max(...vals)
+
 					table.cells().every( function () {
-					    if ( this.data() > 0 ) {
-					       $(this.node()).css('background', '#ADD8E6')
-					    }
+						if (mymin != mymax) {
+							var alpha = (parseInt(this.data()) - mymin) / (mymax - mymin)
+							$(this.node()).css('background', 'rgba(141,185,223,'+alpha+')')
+						}
 					});
 				});
 			</script>
