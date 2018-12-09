@@ -46,7 +46,6 @@
 						bPaginate: false,
 						bInfo: false,
 					  	"scrollY": true,
-					  	"scrollX": true,
 				        scrollCollapse: true,
 				        paging: false,
 						language: {
@@ -63,6 +62,7 @@
  						if(!isNaN(this.data())){
  							vals.push(parseInt(this.data()))
 						}
+						vals.push(1)
 					    
 					});
 
