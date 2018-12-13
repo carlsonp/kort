@@ -135,7 +135,9 @@ function getResults(){
 			var cardname = $(this).text();
 			cards.push(cardname);
 		});
-		results.push({groupname,cards})
+		if ($(nestedArea).children().length > 0){
+			results.push({groupname,cards})
+		}
 	});
 	return results;
 }
