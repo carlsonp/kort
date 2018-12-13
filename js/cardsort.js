@@ -113,7 +113,6 @@ function createGroup(groupname, focus_on_creation = false){
 	
 	if (focus_on_creation) {
 		group.fadeIn();
-		//groupTitle.click()	
 	}
 	updateContainers();
 	updateGroupArray();
