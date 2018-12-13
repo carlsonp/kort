@@ -14,7 +14,7 @@ Kort
 [Screenshots](#Screenshots)  
 [Installation and Setup](#Installation)  
 [After Install](#AfterInstall)  
-[Support](#Support)  
+[Support / Improvement / Suggestions](#Support)  
 [License](#License)
 
 
