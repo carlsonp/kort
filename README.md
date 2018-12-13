@@ -140,7 +140,7 @@ on the default port 3000.
 
 <a name="Support"/>
 
-### Support
+### Support / Improvement / Suggestions
 
 Open a [Github issue](https://github.com/carlsonp/kort/issues).
 
