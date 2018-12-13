@@ -75,7 +75,7 @@ function createGroup(groupname, focus_on_creation = false){
 				if (!groupNameExists(newName)){
 					$(title).html(newName);
 				} else {
-					alert('group name already exists');
+					alert('Group name already exists.');
 					$(title).html(cs.lastChanged);
 				}
 			}
@@ -113,7 +113,6 @@ function createGroup(groupname, focus_on_creation = false){
 	
 	if (focus_on_creation) {
 		group.fadeIn();
-		groupTitle.click()	
 	}
 	updateContainers();
 	updateGroupArray();
@@ -135,7 +134,9 @@ function getResults(){
 			var cardname = $(this).text();
 			cards.push(cardname);
 		});
-		results.push({groupname,cards})
+		if ($(nestedArea).children().length > 0){
+			results.push({groupname,cards})
+		}
 	});
 	return results;
 }
@@ -182,13 +183,46 @@ function setup(input_studyType,input_status,input_responseID,input_cards,input_g
 		}
 	});
 	$('#newGroupButton').click(function() {
-		for (var i = 1; i < 1000; i++) {
-		var newName = "Group "+i;
-		if (!groupNameExists(newName)){
-				createGroup(newName, true);
-				break;
-			} 
-		}
+		var box = bootbox.dialog({
+			message: "<label for='groupname'>Enter the name of the group:</label><br><br>\
+		    <input id='groupname' name='groupname'  class='form-control' type='text' />\
+		    <br/>\
+		    <span id='noblankname' class='text-danger d-none'>Group name cannot be blank</span>\
+		    <span id='groupalreadyexisits' class='text-danger d-none'>Group already exists</span>\
+		    <script>document.getElementById('groupname').focus()</script>",
+			closeButton: false,
+			buttons: {
+				confirm: {
+					label: 'OK',
+					className: 'btn-success pull-right',
+					callback: function() {
+						updateGroupArray();
+						var groupname = $('#groupname').val();
+						if(groupname == ""){
+							console.log("Group name is blank.")
+							$('#noblankname').removeClass("d-none")
+							return false;
+						} else if (groupNameExists(groupname)) {
+							$('#groupalreadyexisits').removeClass("d-none")
+							return false;
+						} else {
+							createGroup(groupname, true);
+							return true;
+						}
+					}
+				},
+				cancel: {
+					label: 'Cancel',
+					className: 'btn-link',
+					callback: function() {
+						return;
+					}
+				}
+			}
+		});
+		box.on('shown.bs.modal',function(){
+		  $("#groupname").focus();
+		});
 	});
 
 	$('#done').hide();
