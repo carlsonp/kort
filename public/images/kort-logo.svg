@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="kort-logo.svg"
+   inkscape:export-filename="C:\Users\leifb\Desktop\kort-logo.png"
+   inkscape:export-xdpi="8.7875309"
+   inkscape:export-ydpi="8.7875309">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0761504"
+     inkscape:cx="245.84919"
+     inkscape:cy="561.25984"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#78909c;stroke-width:0.26458332;opacity:1;fill-opacity:0"
+       id="rect4534"
+       width="73.266556"
+       height="45.975994"
+       x="20.652319"
+       y="49.909767" />
+    <rect
+       style="opacity:1;fill:#78909c;fill-opacity:1;stroke-width:0.16214664"
+       id="rect4536"
+       width="30.032482"
+       height="36.609451"
+       x="79.658936"
+       y="105.2299"
+       inkscape:export-xdpi="10.575711"
+       inkscape:export-ydpi="10.575711" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4538"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
+       transform="matrix(1.0615265,0,0,1.279501,375.00968,-345.39413)"
+       inkscape:export-xdpi="10.575711"
+       inkscape:export-ydpi="10.575711"><flowRegion
+         id="flowRegion4540"
+         style="fill:#ffffff"><rect
+           id="rect4542"
+           width="95.711533"
+           height="155.18277"
+           x="-290.85153"
+           y="344.74734"
+           style="fill:#ffffff" /></flowRegion><flowPara
+         id="flowPara4544"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:roboto;-inkscape-font-specification:'roboto Bold';fill:#ffffff">K</flowPara></flowRoot>    <rect
+       style="opacity:0.672;fill:#78909c;fill-opacity:1;stroke-width:0.21587594"
+       id="rect4548"
+       width="8.359271"
+       height="36.609463"
+       x="71.828835"
+       y="105.2299"
+       inkscape:export-xdpi="10.575711"
+       inkscape:export-ydpi="10.575711" />
+    <rect
+       style="opacity:0.22600002;fill:#78909c;fill-opacity:0.53768843;stroke-width:0.26458332"
+       id="rect4550"
+       width="37.862583"
+       height="37.862583"
+       x="71.828835"
+       y="103.97678"
+       inkscape:export-xdpi="10.575711"
+       inkscape:export-ydpi="10.575711" />
+  </g>
+</svg>
