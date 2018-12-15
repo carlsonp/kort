@@ -14,7 +14,7 @@
    viewBox="0 0 40.000001 40"
    version="1.1"
    id="svg8"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="kort-logo.svg"
    inkscape:export-filename="/home/carlsonp/src/kort/public/images/l.png"
    inkscape:export-xdpi="27.906137"
@@ -29,16 +29,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.3046016"
-     inkscape:cx="-29.249598"
+     inkscape:cx="-66.999898"
      inkscape:cy="63.60461"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="990"
-     inkscape:window-x="0"
-     inkscape:window-y="33"
-     inkscape:window-maximized="1"
+     inkscape:window-width="716"
+     inkscape:window-height="405"
+     inkscape:window-x="1085"
+     inkscape:window-y="361"
+     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,7 +68,7 @@
        x="20.652319"
        y="49.909767" />
     <rect
-       style="opacity:1;fill:#78909c;fill-opacity:1;stroke-width:0.16214664"
+       style="opacity:1;fill:#78909c;fill-opacity:0.61809045;stroke-width:0.16214664"
        id="rect4536"
        width="31.211012"
        height="39.75647"
@@ -79,8 +79,8 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4538"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
-       transform="matrix(0.96211254,0,0,1.3894894,349.36898,-392.46613)"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
+       transform="matrix(0.96211254,0,0,1.3725813,347.89382,-381.28724)"
        inkscape:export-xdpi="63.888958"
        inkscape:export-ydpi="63.888958"><flowRegion
          id="flowRegion4540"
@@ -92,12 +92,12 @@
            y="344.74734"
            style="fill:#ffffff" /></flowRegion><flowPara
          id="flowPara4544"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:roboto;-inkscape-font-specification:'roboto Bold';fill:#ffffff">K</flowPara></flowRoot>    <rect
-       style="opacity:1;fill:#bcfdbc;fill-opacity:1;stroke-width:0.21587594"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';fill:#ffffff">K</flowPara></flowRoot>    <rect
+       style="opacity:1;fill:#78909c;fill-opacity:1;stroke-width:0.21587594"
        id="rect4548"
        width="8.6873045"
        height="39.756481"
-       x="71.828835"
+       x="71.865494"
        y="102.08288"
        inkscape:export-xdpi="63.888958"
        inkscape:export-ydpi="63.888958" />
