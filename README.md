@@ -1,6 +1,9 @@
 Kort
 ===========
 
+![Kort Icon](/public/images/logo-64.png)
+
+
 [![Build Status](https://travis-ci.org/carlsonp/kort.svg?branch=master)](https://travis-ci.org/carlsonp/kort)
 [![Releases](https://img.shields.io/github/release/carlsonp/kort.svg)](https://github.com/carlsonp/kort/releases/latest)
 [![All Downloads](https://img.shields.io/github/downloads/carlsonp/kort/total.svg)](http://www.somsubhra.com/github-release-stats/?username=carlsonp&repository=kort)
