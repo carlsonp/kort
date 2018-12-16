@@ -1,6 +1,6 @@
 {
-  "name": "Kort",
-  "version": "0.9.0",
+  "name": "@carlsonp/kort",
+  "version": "0.9.1",
   "description": "A web application that provides UX card sorting, tree testing, and more.",
   "keywords": [
     "UX",
