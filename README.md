@@ -1,7 +1,7 @@
 Kort
 ===========
 
-![Kort Icon](/public/images/logo-64.png)
+![Kort Icon](https://raw.githubusercontent.com/carlsonp/kort/master/public/images/logo-64.png)
 
 
 [![Build Status](https://travis-ci.org/carlsonp/kort.svg?branch=master)](https://travis-ci.org/carlsonp/kort)
@@ -39,18 +39,22 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 
 ### Screenshots
 
-<img src="/docs/cs.png" width="250"/>
-<img src="/docs/tt.png" width="250"/>
-<img src="/docs/prc.png" width="250"/>
-<img src="/docs/sus.png" width="250"/>
-<img src="/docs/nps.png" width="250"/>
+<img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/cs.png" width="250"/>
+<img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/tt.png" width="250"/>
+<img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/prc.png" width="250"/>
+<img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/sus.png" width="250"/>
+<img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/nps.png" width="250"/>
 
 
 <a name="Installation"/>
 
 ### Installation and Setup
 
-1. Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`) or [download a release](https://github.com/carlsonp/kort/releases).
+1. Use one of the following
+
+  * Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`)
+  * [Download a release archive](https://github.com/carlsonp/kort/releases) from Github
+  * Install from the published [npm package](https://www.npmjs.com/package/@carlsonp/kort) via `npm install @carlsonp/kort`
 
 2. Edit the `secretHash` value in `app.js` and provide your own unique value.
 
