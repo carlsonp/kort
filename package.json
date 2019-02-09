@@ -43,22 +43,22 @@
     "helmet": "^3.15.0",
     "jquery": "^3.3.1",
     "jstree": "^3.3.7",
-    "mongoose": "^5.4.6",
+    "mongoose": "^5.4.11",
     "morgan": "^1.9.1",
     "npm-font-open-sans": "^1.1.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "pkginfo": "^0.4.1",
-    "plotly.js": "^1.44.1",
-    "popper.js": "^1.14.6",
-    "winston": "^3.1.0"
+    "plotly.js": "^1.44.3",
+    "popper.js": "^1.14.7",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "casperjs": "^1.1.4",
-    "eslint": "^5.12.1",
+    "eslint": "^5.13.0",
     "mongo-express": "^0.51.1",
-    "nodemon": "^1.18.9",
+    "nodemon": "^1.18.10",
     "phantomjs-prebuilt": "^2.1.16"
   },
   "scripts": {
