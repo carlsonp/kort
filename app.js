@@ -54,7 +54,8 @@ mongoose.Promise = global.Promise;
 //https://stackoverflow.com/questions/50448272/avoid-current-url-string-parser-is-deprecated-warning-by-setting-usenewurlpars
 
 //https://mongoosejs.com/docs/deprecations.html#-findandmodify
-const connection = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false});
+//https://stackoverflow.com/questions/57895175/server-discovery-and-monitoring-engine-is-deprecated/57899638#57899638
+const connection = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
 
 
 //load in models
