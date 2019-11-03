@@ -52,7 +52,10 @@ mongoose.Promise = global.Promise;
 //setting useMongoClient: true is no longer necessary in Mongoose 5.X
 //https://github.com/Automattic/mongoose/blob/master/migrating_to_5.md
 //https://stackoverflow.com/questions/50448272/avoid-current-url-string-parser-is-deprecated-warning-by-setting-usenewurlpars
-const connection = mongoose.connect(mongoURL, {useNewUrlParser: true});
+
+//https://mongoosejs.com/docs/deprecations.html#-findandmodify
+//https://stackoverflow.com/questions/57895175/server-discovery-and-monitoring-engine-is-deprecated/57899638#57899638
+const connection = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
 
 
 //load in models
