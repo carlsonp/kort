@@ -57,7 +57,7 @@
   "devDependencies": {
     "casperjs": "^1.1.4",
     "eslint": "^6.5.1",
-    "mongo-express": "^0.53.0",
+    "mongo-express": "^0.54.0",
     "nodemon": "^1.19.4",
     "phantomjs-prebuilt": "^2.1.16"
   },
