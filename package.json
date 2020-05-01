@@ -52,7 +52,8 @@
     "pkginfo": "^0.4.1",
     "plotly.js": "^1.50.1",
     "popper.js": "^1.16.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "casperjs": "^1.1.4",
@@ -62,8 +63,11 @@
     "phantomjs-prebuilt": "^2.1.16"
   },
   "scripts": {
-    "test": "casperjs test ./tests/main.js"
+    "test": "casperjs test ./tests/main.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Patrick Carlson and Leif Berg",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "snyk": true
 }
