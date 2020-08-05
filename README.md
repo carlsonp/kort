@@ -9,8 +9,8 @@ Kort
 [![All Downloads](https://img.shields.io/github/downloads/carlsonp/kort/total.svg)](http://www.somsubhra.com/github-release-stats/?username=carlsonp&repository=kort)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Known Vulnerabilities](https://snyk.io/test/github/carlsonp/kort/badge.svg)](https://snyk.io/test/github/carlsonp/kort)
-
-
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/carlsonp/kort.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/carlsonp/kort/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/carlsonp/kort.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/carlsonp/kort/context:javascript)
 
 #### Table of Contents  
 [About](#About)  
