@@ -28,18 +28,27 @@ const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
 //https://expressjs.com/en/advanced/best-practice-security.html
 //https://helmetjs.github.io/docs/
-var helmet = require('helmet')
-app.use(helmet())
+var helmet = require('helmet');
+app.use(helmet());
 const async = require('async');
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
 const path = require('path');
+
+// set up rate limiter: maximum of 120 requests per 10 seconds
+var RateLimit = require('express-rate-limit');
+var limiter = new RateLimit({
+  windowMs: 1*10*1000, // 10 seconds
+  max: 120
+});
+// apply rate limiter to all requests
+app.use(limiter);
 
 require('pkginfo')(module, 'version');
 logger.info("Kort version: " + module.exports.version);
