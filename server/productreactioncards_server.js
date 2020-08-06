@@ -70,7 +70,7 @@ module.exports = {
                         res.end(err);
                     } else {
                          //gather all words from all responses and put into single array
-                        var allWords = []
+                        var allWords = [];
                         for (var i = 0; i < completeResponses.length; i++) {
                             var response = completeResponses[i].data;
                             for (var j = 0; j < response.length; j++) {

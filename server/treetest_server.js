@@ -147,8 +147,8 @@ module.exports = {
                     tasks: tasks,
                     tree: req.body.treedata,
                     selectableParents: req.body.selectableParents,
-                    showSiblings: req.body.showSiblings,
-                }
+                    showSiblings: req.body.showSiblings
+                };
 				study.status = req.body.status;
                 study.private = req.body.private;
 				study.save();
