@@ -146,7 +146,7 @@ module.exports = function(app, passport, flash, allowGoogleAuth, allowUserRegist
 		req.session.destroy();
 		res.redirect('/?logout=true');
 	});
-}
+};
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())

@@ -97,7 +97,7 @@ module.exports = {
                         var calcScores = [];
                         var averageResponse = [];
                         for (var i = 0; i < completeResponses.length; i++) {
-                            var adjusted_response = []
+                            var adjusted_response = [];
                             adjusted_response.push(completeResponses[i].data[0]-1);
                             adjusted_response.push(5-completeResponses[i].data[1]);
                             adjusted_response.push(completeResponses[i].data[2]-1);

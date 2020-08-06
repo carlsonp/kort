@@ -109,7 +109,7 @@ function createGroup(groupname, focus_on_creation = false){
 	group.append(groupTitle);
 	group.append(nestedArea);
 	group.append(grabIcon);
-	$('#dropZone'+((cs.zoneNum-1)+cs.groupNum)%cs.zoneNum).append(group)
+	$('#dropZone'+((cs.zoneNum-1)+cs.groupNum)%cs.zoneNum).append(group);
 	
 	if (focus_on_creation) {
 		group.fadeIn();

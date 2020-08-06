@@ -73,7 +73,7 @@ module.exports = {
                         logger.error("cardsort_server.js: Error in edit cardsort:", err);
                         res.end(err);
                     } else {
-                        sum_groups = []
+                        sum_groups = [];
                         for (var i = 0; i < completeResponses.length; i++) {
                             if (completeResponses[i].complete == true){
                                 var response = completeResponses[i].data;
@@ -130,8 +130,8 @@ module.exports = {
                 study.data = {
                     studyType: req.body.studyType,
                     cards: JSON.parse(req.body.cards),
-                    groups: JSON.parse(req.body.groups),
-                }
+                    groups: JSON.parse(req.body.groups)
+                };
 				study.status = req.body.status;
                 study.private = req.body.private;
 				study.save();
