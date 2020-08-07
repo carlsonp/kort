@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 services:
   kort:
     container_name: kort
@@ -13,10 +13,25 @@ services:
     # https://stackoverflow.com/questions/40873165/use-docker-run-command-to-pass-arguments-to-cmd-in-dockerfile
     environment:
       - mongoHost=mongo
+    # https://docs.docker.com/compose/compose-file/#healthcheck
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 3s
+
   mongo:
     container_name: mongo
+    restart: always
     image: mongo
     volumes:
       - ./data:/data/db
     ports:
       - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 5s

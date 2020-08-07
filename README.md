@@ -133,6 +133,7 @@ on the default port 3000.
     docker-compose down
     ```
 
+Data from MongoDB is persisted and mounted as a Docker volume in the `./data/` folder.
 
 <a name='AfterInstall'/>
 
