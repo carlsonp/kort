@@ -44,6 +44,7 @@
     "helmet": "^4.0.0",
     "jquery": "^3.5.1",
     "jstree": "^3.3.10",
+    "mongo-sanitize": "^1.1.0",
     "mongoose": "^5.9.27",
     "morgan": "^1.10.0",
     "npm-check-updates": "^7.0.2",

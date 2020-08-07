@@ -5,6 +5,8 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 var logger = require('./logger.js');
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 module.exports = {
      create: function (req, res) {
@@ -48,13 +50,13 @@ module.exports = {
                         res.end(err);
                     } else {
                         res.render('cardsort/edit.ejs',{singleStudy: study,
-                                                        incompleteResponses: incompleteResponses, 
-                                                        email: req.user.email, 
-                                                        admin: req.session.admin, 
+                                                        incompleteResponses: incompleteResponses,
+                                                        email: req.user.email,
+                                                        admin: req.session.admin,
                                                         url: fullUrl});
                     }
                 });
-                
+
             }
         });
     },
@@ -66,7 +68,7 @@ module.exports = {
                 res.end(err);
             } else {
 				//collect all group names
-                
+
                 Response.find({_id: {$in: study.completeResponses}}, function (err, completeResponses) {
                     if (err) {
                         res.status(504);
@@ -103,22 +105,24 @@ module.exports = {
                                 }
                             }
                         }
-                       
-                        res.render('cardsort/results.ejs',{completeResponses: completeResponses, 
-                                                            groups: sum_groups, 
-                                                            cards: study.data.cards, 
-                                                            study: study, matrix: matrix, 
-                                                            email: req.user.email, 
+
+                        res.render('cardsort/results.ejs',{completeResponses: completeResponses,
+                                                            groups: sum_groups,
+                                                            cards: study.data.cards,
+                                                            study: study, matrix: matrix,
+                                                            email: req.user.email,
                                                             admin: req.session.admin});
                     }
                 });
-				
+
             }
         });
     },
     update: function (req, res, next) {
+        var clean_id = sanitize(req.body.id);
+        var clean_ownerid = sanitize(req.user._id);
 
-        Study.findOne({ _id: req.body.id, ownerID: req.user._id},
+        Study.findOne({_id: clean_id, ownerID: clean_ownerid},
             function (err, study) {
             if (err) {
                 res.status(504);
