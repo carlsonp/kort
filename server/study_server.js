@@ -3,6 +3,8 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 var logger = require('./logger.js');
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 function renderPages(study,responseID,responseObj){
     switch(study.type) {
@@ -149,7 +151,9 @@ module.exports = {
         });
     },
     submitResult: function (req, res, next) {
-         Study.findOne({_id: req.body.id}, function (err, study) {
+        var clean_id = sanitize(req.body.id);
+
+         Study.findOne({_id: clean_id}, function (err, study) {
             if (err) {
                 res.status(504);
                 logger.error("study_server.js: Error in submit result:", err);
@@ -160,7 +164,9 @@ module.exports = {
                     res.redirect('/studies');
                     res.end();
                 } else {
-                    Response.findOne({ _id: req.body.resid}, function(err,response) {
+                    var clean_resid = sanitize(req.body.resid);
+
+                    Response.findOne({_id: clean_resid}, function(err,response) {
                         if (err) {
                             req.status(504);
                             logger.error("response_server.js: Cannot find study responses to delete:", error);
@@ -170,15 +176,15 @@ module.exports = {
                                 res.redirect('/msg/nomore');
                                 res.end();
                             } else {
-                                 Response.findOneAndUpdate({ "_id": req.body.resid }, 
-                                    { "$set": { "complete": true, 
-                                                "date": new Date(Date.now()), 
+                                 Response.findOneAndUpdate({"_id": clean_resid},
+                                    { "$set": { "complete": true,
+                                                "date": new Date(Date.now()),
                                                 "data": JSON.parse(req.body.result)}
                                     }).exec(function(err, book){
                                        if(err) {
                                            console.log(err);
                                            res.status(500).send(err);
-                                       } 
+                                       }
                                 });
                                 //move response object from incompleteResponses to completeResponses
                                 var respIdx = study.incompleteResponses.indexOf(req.body.resid);
@@ -191,9 +197,9 @@ module.exports = {
                             }
                         }
                     });
-        
+
                 }
-               
+
             }
         });
     },
@@ -215,7 +221,7 @@ module.exports = {
                         }
                     }
                 });
-                
+
                 study.incompleteResponses = [];
                 study.save();
                 res.send(true);
