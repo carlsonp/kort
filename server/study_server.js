@@ -68,7 +68,8 @@ module.exports = {
                     status: study.status,
                     ownerID: study.ownerID,
                     private: study.private,
-                }).save();
+                });
+                newStudy.save();
                 res.redirect('/studies');
             }
         });

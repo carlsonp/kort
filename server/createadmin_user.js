@@ -2,8 +2,6 @@ require('mongoose').model('User');
 var mongoose = require('mongoose');
 var logger = require('./logger.js');
 
-var LocalStrategy = require('passport-local').Strategy;
-
 var User = mongoose.model('User');
 
 module.exports = function(adminEmail, adminPassword) {
@@ -20,7 +18,7 @@ module.exports = function(adminEmail, adminPassword) {
 			return done(err);
 		}
 
-		// check to see if theres already a user with that email
+		// check to see if there's already a user with that email
 		if (!user) {
 			// save the user
 			admin_user.save(function(err) {

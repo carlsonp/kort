@@ -10,14 +10,14 @@ $( document ).ready(function() {
 
 	if ($('#responses_table_body tr').length < 1){
 		$('#responses_table').hide();
-	}	
+	}
 
 	$('#newResponseInput').keypress(function (e) {
 		if(e.which == 13) {
 	    	$('#addResponseBtn').click();
-	    	return false;  
+	    	return false;
   		}
-	}); 
+	});
 
  	//bind response add button
  	$('#addResponseBtn').click(function(){
@@ -48,11 +48,11 @@ $( document ).ready(function() {
  		$('#newResponseInput').val("");
  	});
 
- 	//bind tooltip objects for clipboar
+ 	//bind tooltip objects for clipboard
  	$('#responses_table_body').on( "click",'.copyText', function(event) {
 	    event.preventDefault();
 	    $('.copyText').tooltip({trigger: 'manual'});
-	    var tt = $(this); 
+	    var tt = $(this);
  		tt.tooltip("show");
  		setTimeout(function(){
 			tt.tooltip('hide');
@@ -62,14 +62,14 @@ $( document ).ready(function() {
  	$('#responseSingleArea').on( "click",'.copyText', function(event) {
 	    event.preventDefault();
 	    $('.copyText').tooltip({trigger: 'manual'});
-	    var tt = $(this); 
+	    var tt = $(this);
  		tt.tooltip("show");
  		setTimeout(function(){
 			tt.tooltip('hide');
 	    }, 1000);
 	});
-	
-	//bind delete response 
+
+	//bind delete response
 	$('#responses_table_body').on( "click",'.text-danger', function(event) {
 	    event.preventDefault();
 	    var studyID = $(this).data("studyid");
@@ -92,7 +92,7 @@ $( document ).ready(function() {
 		  	    			parentRow.remove();
 		  	    			if ($('#responses_table_body tr').length < 1){
 		  	    				$('#responses_table').hide();
-	    					}	
+	    					}
 						},
 						error:   function(xhr, text, err) {
 						  console.log("private.ejs: delete Response ajax error");
@@ -121,17 +121,15 @@ $( document ).ready(function() {
 						type: "GET",
 						contentType: "application/json",
 						success: function(data) {
-		  	    			$("#responses_table_body tr").remove(); 
+		  	    			$("#responses_table_body tr").remove();
 		  	    			$('#responses_table').hide();
 						},
 						error:   function(xhr, text, err) {
 						  console.log("private.ejs: clearstudy ajax error");
 						}
 					});
-		    	} 
+		    	}
 		    }
 		});
 	});
  });
-
-

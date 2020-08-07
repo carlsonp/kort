@@ -23,7 +23,7 @@ $( document ).ready(function() {
 		    { "orderable": false },
 		],
 	});
-			
+
 
     //bind new user button
     $('#newUserBtn').click(function(){
@@ -42,11 +42,11 @@ $( document ).ready(function() {
 					callback: function() {
 						var emailEmpty = $('#email').val() == '';
 						var passwordEmpty = $('#password').val() == '';
-						if(!emailEmpty && !passwordEmpty){					
+						if(!emailEmpty && !passwordEmpty){
 	                    	$('#newUserForm').submit();
 						} else {
-							emailEmpty ? $('#noblankemail').show() : $('#noblankemail').hide(); 
-							passwordEmpty ? $('#noblankpassword').show() : $('#noblankpassword').hide(); 
+							emailEmpty ? $('#noblankemail').show() : $('#noblankemail').hide();
+							passwordEmpty ? $('#noblankpassword').show() : $('#noblankpassword').hide();
 							return false;
 						}
 					}
@@ -96,7 +96,6 @@ $( document ).ready(function() {
 	$('#userstable').on( "click",'.passwordreset', function(event) {
 		event.preventDefault();
 		var userid = $(this).data("id");
-		var email = $(this).data("email");
 		bootbox.dialog({
 			message: "<h3>Reset password</h3><hr>\
 		     <label for='password1'>New Password</label><br>\
@@ -138,4 +137,3 @@ $( document ).ready(function() {
 	});
 
 });
-
