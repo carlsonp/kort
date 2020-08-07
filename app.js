@@ -29,14 +29,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 const bodyParser= require('body-parser');
 var app = express();
 //https://expressjs.com/en/advanced/best-practice-security.html
 //https://helmetjs.github.io/docs/
 var helmet = require('helmet');
 app.use(helmet());
-const async = require('async');
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
 const path = require('path');
@@ -64,8 +62,7 @@ mongoose.Promise = global.Promise;
 
 //https://mongoosejs.com/docs/deprecations.html#-findandmodify
 //https://stackoverflow.com/questions/57895175/server-discovery-and-monitoring-engine-is-deprecated/57899638#57899638
-const connection = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
-
+mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
 
 //load in models
 require('./models/user');
@@ -79,7 +76,10 @@ app.set('view engine', 'ejs');
 
 app.use(compression());
 
+// helpful for debugging
+//const morgan = require('morgan');
 //app.use(morgan('dev')); // log every request to the console
+
 app.use(cookieParser()); // read cookies (needed for auth)
 
 app.use(flash());
