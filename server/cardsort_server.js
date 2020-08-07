@@ -118,7 +118,7 @@ module.exports = {
     },
     update: function (req, res, next) {
 
-        Study.findOne({ _id: req.body.id, ownerID: req.user._id},
+        Study.findOne({_id: req.body.id, ownerID: req.user._id},
             function (err, study) {
             if (err) {
                 res.status(504);

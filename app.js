@@ -50,6 +50,10 @@ var limiter = new RateLimit({
 // apply rate limiter to all requests
 app.use(limiter);
 
+//https://www.npmjs.com/package/content-filter
+// helps with preventing injection attacks against MongoDB
+var filter = require('content-filter');
+
 require('pkginfo')(module, 'version');
 logger.info("Kort version: " + module.exports.version);
 
@@ -124,6 +128,8 @@ require('./server/passport')(passport, flash, allowGoogleAuth, googleClientID, g
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(filter());
 
 require('./server/routes.js')(app, passport, flash, allowGoogleAuth, allowUserRegistration);
 

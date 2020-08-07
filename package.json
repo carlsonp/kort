@@ -30,6 +30,7 @@
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
+    "content-filter": "^1.1.2",
     "cookie-parser": "^1.4.5",
     "datatables.net": "^1.10.21",
     "datatables.net-buttons": "^1.6.3",
