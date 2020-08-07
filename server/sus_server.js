@@ -110,7 +110,7 @@ module.exports = {
                             adjusted_response.push(5-completeResponses[i].data[7]);
                             adjusted_response.push(completeResponses[i].data[8]-1);
                             adjusted_response.push(5-completeResponses[i].data[9]);
-                            score = adjusted_response.reduce(function(a,b){return a+b},0)*2.5;
+                            var score = adjusted_response.reduce(function(a,b){return a+b},0)*2.5;
                             calcScores.push(score);
                             adjustedResponses.push(adjusted_response);
                         }

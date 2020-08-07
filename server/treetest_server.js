@@ -16,8 +16,8 @@ function convertResponseArrayToString(arr){
 }
 
 function countUniqueInstances(taskArray){
-    taskSets = []
-    taskCounts = []
+    var taskSets = []
+    var taskCounts = []
     for (var task = 0; task < taskArray.length; task++) {
         var taskSet = {}
         var singleTask = taskArray[task]

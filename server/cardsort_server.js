@@ -75,7 +75,7 @@ module.exports = {
                         logger.error("cardsort_server.js: Error in edit cardsort:", err);
                         res.end(err);
                     } else {
-                        sum_groups = [];
+                        var sum_groups = [];
                         for (var i = 0; i < completeResponses.length; i++) {
                             if (completeResponses[i].complete == true){
                                 var response = completeResponses[i].data;
