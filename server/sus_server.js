@@ -5,6 +5,8 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 var logger = require('./logger.js');
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 module.exports = {
      create: function (req, res) {
@@ -13,7 +15,7 @@ module.exports = {
             type: "sus",
             dateCreated: new Date(Date.now()),
             data: {
-                
+
             },
             status: 'closed',
             ownerID: req.user._id,
@@ -43,12 +45,12 @@ module.exports = {
                         res.status(504);
                         logger.error("cardsort_server.js: Error in edit cardsort:", err);
                         res.end(err);
-                    } else {   
+                    } else {
                         var fullUrl = req.protocol + '://' + req.get('host');
-                        res.render('sus/edit.ejs', {singleStudy: study, 
+                        res.render('sus/edit.ejs', {singleStudy: study,
                                                     incompleteResponses: incompleteResponses,
-                                                    email: req.user.email, 
-                                                    admin: req.session.admin, 
+                                                    email: req.user.email,
+                                                    admin: req.session.admin,
                                                     url: fullUrl});
                     }
                 });
@@ -127,7 +129,7 @@ module.exports = {
                         var curved_grading_table_idx = 0;
                         for (var i = 0; i < curved_grading_table.length; i++) {
                              if (curved_grading_table[i][1] > averageSUS && averageSUS > curved_grading_table[i][0]){
-                                
+
                                 curved_grading_table_idx = i;
                             }
                         }
@@ -142,14 +144,14 @@ module.exports = {
                             }
                         }
 
-                        res.render('sus/results.ejs',{study: study, 
+                        res.render('sus/results.ejs',{study: study,
                                                     completeResponses: completeResponses,
                                                     questions: questions,
                                                     rawResponses: rawResponses,
                                                     adjustedResponses: adjustedResponses,
                                                     averageResponse: averageResponse,
                                                     calcScores: calcScores,
-                                                    averageSUS: averageSUS,    
+                                                    averageSUS: averageSUS,
                                                     curved_grading_table: curved_grading_table,
                                                     curved_grading_table_idx: curved_grading_table_idx,
                                                     raw_percentile_ranks:raw_percentile_ranks,
@@ -159,12 +161,15 @@ module.exports = {
 
                     }
                 });
-                
+
             }
         });
     },
     update: function (req, res, next) {
-        Study.findOne({ _id: req.body.id, ownerID: req.user._id},
+        var clean_id = sanitize(req.body.id);
+        var clean_ownerid = sanitize(req.user._id);
+
+        Study.findOne({_id: clean_id, ownerID: clean_ownerid},
             function (err, study) {
             if (err) {
                 res.status(504);

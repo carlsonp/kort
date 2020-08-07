@@ -5,7 +5,8 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 var logger = require('./logger.js');
-
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 module.exports = {
      create: function (req, res) {
@@ -14,7 +15,7 @@ module.exports = {
             type: "nps",
             dateCreated: new Date(Date.now()),
             data: {
-                
+
             },
             status: 'closed',
             ownerID: req.user._id,
@@ -46,10 +47,10 @@ module.exports = {
                         res.end(err);
                     } else {
                         var fullUrl = req.protocol + '://' + req.get('host');
-                        res.render('nps/edit.ejs', {singleStudy: study, 
+                        res.render('nps/edit.ejs', {singleStudy: study,
                                                     incompleteResponses: incompleteResponses,
-                                                    email: req.user.email, 
-                                                    admin: req.session.admin, 
+                                                    email: req.user.email,
+                                                    admin: req.session.admin,
                                                     url: fullUrl});
                     }
                 });
@@ -89,7 +90,7 @@ module.exports = {
 
                             if (response <= DETRACTOR_SCORE_MAX) {
                                 detractors += 1;
-                                npsResults.push('Detractor'); 
+                                npsResults.push('Detractor');
                             } else if (response >= PROMOTER_SCORE_MIN) {
                                 promoters += 1;
                                 npsResults.push('Promoter');
@@ -101,12 +102,12 @@ module.exports = {
                         // Calculate NPS based on promoters and detractors
                         npsScore = ((promoters - detractors) / respondents) * 100;
 
-                        res.render('nps/results.ejs',{study: study, 
+                        res.render('nps/results.ejs',{study: study,
                                                     completeResponses: completeResponses,
                                                     questions: questions,
                                                     rawResponses: rawResponses,
                                                     npsResults: npsResults,
-                                                    npsScore: npsScore,    
+                                                    npsScore: npsScore,
                                                     email: req.user.email,
                                                     admin: req.session.admin});
                     }
@@ -116,7 +117,10 @@ module.exports = {
         });
     },
     update: function (req, res, next) {
-        Study.findOne({ _id: req.body.id, ownerID: req.user._id},
+        var clean_id = sanitize(req.body.id);
+        var clean_ownerid = sanitize(req.user._id);
+
+        Study.findOne({_id: clean_id, ownerID: clean_ownerid},
             function (err, study) {
             if (err) {
                 res.status(504);

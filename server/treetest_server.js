@@ -4,6 +4,8 @@ var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
 var resp = require('./response_server');
 var logger = require('./logger.js');
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 function convertResponseArrayToString(arr){
     var ret_str = "";
@@ -90,12 +92,12 @@ module.exports = {
                         res.status(504);
                         logger.error("cardsort_server.js: Error in edit cardsort:", err);
                         res.end(err);
-                    } else {   
+                    } else {
         				var fullUrl = req.protocol + '://' + req.get('host');
-                        res.render('treetest/edit.ejs', {singleStudy: study, 
+                        res.render('treetest/edit.ejs', {singleStudy: study,
                                                         incompleteResponses: incompleteResponses,
-                                                        email: req.user.email, 
-                                                        admin: req.session.admin, 
+                                                        email: req.user.email,
+                                                        admin: req.session.admin,
                                                         url: fullUrl});
                     }
                 });
@@ -116,16 +118,16 @@ module.exports = {
                         res.end(err);
                     } else {
                         var responses = gatherResponses(study.data.tasks, completeResponses)
-                        res.render('treetest/results.ejs',{study: study, 
+                        res.render('treetest/results.ejs',{study: study,
                                                             completeResponses:completeResponses,
-                                                            email: req.user.email, 
-                                                            admin: req.session.admin, 
-                                                            taskSet: responses[0], 
+                                                            email: req.user.email,
+                                                            admin: req.session.admin,
+                                                            taskSet: responses[0],
                                                             taskCount: responses[1]
                                                         });
                     }
                 });
-                
+
             }
         });
     },
@@ -134,7 +136,10 @@ module.exports = {
              return item.trim();
         }).filter(function(n){ return n != '' });
 
-        Study.findOne({_id: req.body.id, ownerID: req.user._id},
+        var clean_id = sanitize(req.body.id);
+        var clean_ownerid = sanitize(req.user._id);
+
+        Study.findOne({_id: clean_id, ownerID: clean_ownerid},
             function (err, study) {
             if (err) {
                 res.status(504);
