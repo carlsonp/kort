@@ -55,6 +55,7 @@
     "pkginfo": "^0.4.1",
     "plotly.js": "^1.54.7",
     "popper.js": "^1.16.1",
+    "uuid": "^8.3.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

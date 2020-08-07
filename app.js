@@ -11,10 +11,9 @@ if (process.env.mongoHost){
 //the admin user is created upon launching the application for the first time
 const adminUser = "admin";  //optionally change this
 const adminPassword = "admin"; //set this to something different and secure
-const secretHash = 'secret'; //change this to your own unique value (used for hash creation and salting)
+
 const allowGoogleAuth = false; //allowUserRegistration must be set to true as well to enable this
 const allowUserRegistration = false;
-
 
 //Google Authentication (via OAuth2) (Optional)
 const googleClientID = '';
@@ -23,6 +22,11 @@ const googleCallbackURL = 'http://127.0.0.1:'+port+'/auth/google/callback'; //on
 
 
 //------------------------------------------------------------------
+
+//used for hash creation and salting
+const { v4: uuidv4 } = require('uuid');
+var secretHash = uuidv4(); //use uuid as random secret hash for sessions
+//on restart, this will be regenerated and all user sessions will be reset
 
 const compression = require('compression');
 const express = require('express');

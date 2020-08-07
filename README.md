@@ -56,17 +56,15 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
   * [Download a release archive](https://github.com/carlsonp/kort/releases) from Github
   * Install from the published [npm package](https://www.npmjs.com/package/@carlsonp/kort) via `npm install @carlsonp/kort`
 
-2. Edit the `secretHash` value in `app.js` and provide your own unique value.
+2. Edit `app.js` and optionally set the `adminUser` and set your own username.
 
-3. Optionally edit the `adminUser` and set your own username.
+3. Edit the `adminPassword` value in `app.js`.
 
-4. Edit the `adminPassword` value in `app.js`.
+4. Optionally set `allowUserRegistration` in `app.js` to allow users to register.  Otherwise users can only be created by accounts with 'admin' access.
 
-5. Optionally set `allowUserRegistration` in `app.js` to allow users to register.  Otherwise users can only be created by accounts with 'admin' access.
+5. Optionally setup Google authentication.  [See the wiki for details](https://github.com/carlsonp/kort/wiki/Setting-up-Google-Authentication).
 
-6. Optionally setup Google authentication.  [See the wiki for details](https://github.com/carlsonp/kort/wiki/Setting-up-Google-Authentication).
-
-7. Continue installation [via source](#ViaSource) or
+6. Continue installation [via source](#ViaSource) or
 [via Docker](#ViaDocker).
 
 <a name="ViaSource"/>
