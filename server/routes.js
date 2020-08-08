@@ -7,7 +7,6 @@ var nps = require('./nps_server');
 var productreactioncards = require('./productreactioncards_server');
 var user = require('./user_server');
 var response = require('./response_server');
-var mongoose = require('mongoose');
 
 module.exports = function(app, passport, flash, allowGoogleAuth, allowUserRegistration) {
 

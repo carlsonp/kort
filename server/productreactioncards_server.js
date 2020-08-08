@@ -2,14 +2,12 @@ require('mongoose').model('Study');
 var mongoose = require('mongoose');
 var Study = mongoose.model('Study');
 var Response = mongoose.model('Response');
-var resp = require('./response_server');
 var logger = require('./logger.js');
 //https://github.com/vkarpov15/mongo-sanitize
 const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 module.exports = {
     create: function (req, res) {
-        var studyData = req.body;
         var newStudy = new Study({
             title: "Product Reaction Cards",
             dateCreated: new Date(Date.now()),
