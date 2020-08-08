@@ -25,7 +25,7 @@ const googleCallbackURL = 'http://127.0.0.1:'+port+'/auth/google/callback'; //on
 
 //used for hash creation and salting
 const { v4: uuidv4 } = require('uuid');
-var secretHash = uuidv4(); //use uuid as random secret hash for sessions
+const secretHash = uuidv4(); //use uuid as random secret hash for sessions
 //on restart, this will be regenerated and all user sessions will be reset
 
 const compression = require('compression');
@@ -37,7 +37,7 @@ const bodyParser= require('body-parser');
 var app = express();
 //https://expressjs.com/en/advanced/best-practice-security.html
 //https://helmetjs.github.io/docs/
-var helmet = require('helmet');
+const helmet = require('helmet');
 app.use(helmet());
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
