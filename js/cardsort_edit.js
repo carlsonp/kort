@@ -10,7 +10,7 @@ function updateInputArrays(){
 }
 
 function createCard(str){
-	if (!str == '') {
+	if (str !== '') {
 		var deleteLink = "<td><a class='text-danger' href='#' onclick='deleteCard(this)'>Delete</a></td>";
 		cards_table.row.add([str,deleteLink]).draw(false);
 		$('#newCardInput').val('');
@@ -20,7 +20,7 @@ function createCard(str){
 }
 
 function createGroup(str){
-	if (!str == '') {
+	if (str !== '') {
 		var deleteLink = "<td><a class='text-danger' href='#' onclick='deleteGroup(this)'>Delete</a></td>";
 		groups_table.row.add([str,deleteLink]).draw(false);
 		$('#newGroupInput').val('');
@@ -157,9 +157,9 @@ $( document ).ready(function() {
 	$('#newCardInput').keypress(function (e) {
 		if(e.which == 13) {
 	    	$('#addCardBtn').click();
-	    	return false;  
+	    	return false;
   		}
-	}); 
+	});
 
 
 	//initalize groups_table DataTable
@@ -178,7 +178,7 @@ $( document ).ready(function() {
 		deleteGroup(event.target);
 	});
 
-	//event listender for adding groups to the groups_table datatable
+	//event listener for adding groups to the groups_table datatable
 	$('#addGroupBtn').click(function(event){
 		createGroup($('#newGroupInput').val().trim());
 	});
@@ -187,9 +187,9 @@ $( document ).ready(function() {
 	$('#newGroupInput').keypress(function (e) {
 		if(e.which == 13) {
 	    	$('#addGroupBtn').click();
-	    	return false;  
+	    	return false;
   		}
-	}); 
+	});
 
 
 	//places existing cards and groups into input fields (so save works when no changes are made)
@@ -197,4 +197,3 @@ $( document ).ready(function() {
 	updateInputArrays();
 
 });
-

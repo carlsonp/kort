@@ -109,7 +109,7 @@ $( document ).ready(function() {
 					label: 'Reset Password',
 					className: 'btn-warning pull-right',
 					callback: function() {
-						if(!$('#password1').val()== ''){
+						if($('#password1').val() !== ''){
 							$.post({
 								url: "/resetpassword",
 								type: "POST",
