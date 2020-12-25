@@ -6,9 +6,6 @@ RUN mkdir -p /usr/src/kort
 WORKDIR /usr/src/kort
 # copy package.json and package-lock.json
 COPY package*.json /usr/src/kort/
-# https://github.com/bower/bower/issues/1752
-RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN npm install -g bower
 # the --only=production flag means this will not install the devDependencies
 RUN npm install --only=production
 COPY . /usr/src/kort
