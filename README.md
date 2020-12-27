@@ -1,5 +1,4 @@
-Kort
-===========
+# Kort
 
 ![Kort Icon](https://raw.githubusercontent.com/carlsonp/kort/master/public/images/logo-64.png)
 
@@ -11,7 +10,8 @@ Kort
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/carlsonp/kort.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/carlsonp/kort/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/carlsonp/kort.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/carlsonp/kort/context:javascript)
 
-#### Table of Contents  
+## Table of Contents
+
 [About](#About)  
 [Screenshots](#Screenshots)  
 [Installation and Setup](#Installation)  
@@ -19,10 +19,9 @@ Kort
 [Support / Improvement / Suggestions](#Support)  
 [License](#License)
 
-
 <a name="About"/>
 
-### About
+## About
 
 A web application supporting multiple user experience (UX) research methods.
 
@@ -36,7 +35,7 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 
 <a name="Screenshots"/>
 
-### Screenshots
+## Screenshots
 
 <img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/cs.png" width="250"/>
 <img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/tt.png" width="250"/>
@@ -44,16 +43,15 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 <img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/sus.png" width="250"/>
 <img src="https://raw.githubusercontent.com/carlsonp/kort/master/docs/nps.png" width="250"/>
 
-
 <a name="Installation"/>
 
-### Installation and Setup
+## Installation and Setup
 
-1. Use one of the following
+1. Use one of the following:
 
-  * Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`)
-  * [Download a release archive](https://github.com/carlsonp/kort/releases) from Github
-  * Install from the published [npm package](https://www.npmjs.com/package/@carlsonp/kort) via `npm install @carlsonp/kort`
+    1. Use [Git](https://git-scm.com/) to clone the code (`git clone https://github.com/carlsonp/kort.git`)
+    2. [Download a release archive](https://github.com/carlsonp/kort/releases) from Github
+    3. Install from the published [npm package](https://www.npmjs.com/package/@carlsonp/kort) via `npm install @carlsonp/kort`
 
 2. Edit `app.js` and optionally set the `adminUser` and set your own username.
 
@@ -68,7 +66,7 @@ See the [website](https://carlsonp.github.io/kort/) for more information.
 
 <a name="ViaSource"/>
 
-#### Via Source
+### Via Source
 
 1. Install [Node.js](https://nodejs.org)
 
@@ -78,17 +76,20 @@ and password](https://stackoverflow.com/questions/4881208/how-to-secure-mongodb-
 create a user for the `kort` database by doing the following:
 
     Open a Mongo commandline shell:
-    ```
+
+    ```shell
     mongo --port 27017
     ```
 
     Select the database:
-    ```
+
+    ```mongo
     use kort
     ```
 
     Create the new user:
-    ```
+
+    ```mongo
     db.createUser(
        {
          user: "kort",
@@ -108,7 +109,7 @@ on the default port 3000.
 
 <a name="ViaDocker"/>
 
-#### Via Docker
+### Via Docker
 
 1. [Install Docker](https://docs.docker.com/install/)
 
@@ -116,19 +117,19 @@ on the default port 3000.
 
 3. Build the containers
 
-    ```
+    ```shel
     docker-compose build
     ```
 
 4. Start the containers (use -d to run in detached mode)
 
-    ```
+    ```shell
     docker-compose up
     ```
 
 5. Stop the containers (when using detached mode)
 
-    ```
+    ```shell
     docker-compose down
     ```
 
@@ -142,15 +143,14 @@ Data from MongoDB is persisted and mounted as a Docker volume in the `./data/` f
 
 2. The `adminUser` and `adminPassword` that is set in `app.js` is the username and password for the account that will be created upon first launch.  Use this to login.
 
-
 <a name="Support"/>
 
-### Support / Improvement / Suggestions
+## Support / Improvement / Suggestions
 
 Open a [Github issue](https://github.com/carlsonp/kort/issues).
 
 <a name="License"/>
 
-### License
+## License
 
 Kort is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
