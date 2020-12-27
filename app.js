@@ -42,6 +42,7 @@ app.use(helmet());
 const flash = require('connect-flash');
 var logger = require('./server/logger.js');
 const path = require('path');
+const csrf = require("csurf");
 
 // set up rate limiter: maximum of 120 requests per 10 seconds
 var RateLimit = require('express-rate-limit');
@@ -126,8 +127,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./server/passport')(passport, flash, allowGoogleAuth, googleClientID, googleClientSecret, googleCallbackURL);
 
+app.use(csrf({cookie: true}));
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+// Make the token available to all views
+app.use(function (req, res, next){
+  res.locals._csrf = req.csrfToken();
+  next();
+});
 
 require('./server/routes.js')(app, passport, flash, allowGoogleAuth, allowUserRegistration);
 
