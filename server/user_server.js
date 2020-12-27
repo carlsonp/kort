@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Study = mongoose.model('Study');
 var logger = require('./logger.js');
+//https://github.com/vkarpov15/mongo-sanitize
+const sanitize = require('mongo-sanitize'); //helps with MongoDB injection attacks
 
 module.exports = {
 	UserManagement: function (req, res, next) {
@@ -23,8 +25,9 @@ module.exports = {
 	},
 	
 	deleteUser: function(req, res, next) {
+        var clean_id = sanitize(req.params.id);
 		//TODO: use MongoStore.destroy(id) to remove the session from the database
-        User.findById(req.params.id, function(err, user) {
+        User.findById(clean_id, function(err, user) {
             if (err) {
                 req.status(504);
                 logger.error('user_server.js: deleteUser error, 504: ', err);
@@ -47,7 +50,8 @@ module.exports = {
         });
     },
     resetPassword: function(req, res, next) {
-        User.findById( {_id: req.body.userid}, function(err, user) {
+        var clean_id = sanitize(req.body.userid);
+        User.findById( {_id: clean_id}, function(err, user) {
             if (err) {
                 req.status(504);
 				logger.error('user_server.js: resetPassword error, 504: ', err);
@@ -62,7 +66,8 @@ module.exports = {
         });
     },
     grantadmin: function(req, res, next) {
-        User.findOneAndUpdate({ "_id": req.params.id }, 
+        var clean_id = sanitize(req.params.id);
+        User.findOneAndUpdate({ "_id": clean_id },
             { "$set": { "admin": true }
             }).exec(function(err, book){
                if(err) {
@@ -75,7 +80,8 @@ module.exports = {
         });
     },
     revokeadmin: function(req, res, next) {
-        User.findOneAndUpdate({ "_id": req.params.id }, 
+        var clean_id = sanitize(req.params.id);
+        User.findOneAndUpdate({ "_id": clean_id },
             { "$set": { "admin": false }
             }).exec(function(err, book){
                if(err) {
