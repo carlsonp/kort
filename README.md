@@ -2,7 +2,7 @@
 
 ![Kort Icon](https://raw.githubusercontent.com/carlsonp/kort/master/public/images/logo-64.png)
 
-[![Actions Status](https://github.com/carlsonp/kort/workflows/github-actions/badge.svg?branch=master)](https://github.com/carlsonp/kort/actions)
+[![Build and Test](https://github.com/carlsonp/kort/workflows/Build%20and%20Test/badge.svg?branch=master)](https://github.com/carlsonp/kort/actions)
 [![Releases](https://img.shields.io/github/release/carlsonp/kort.svg)](https://github.com/carlsonp/kort/releases/latest)
 [![All Downloads](https://img.shields.io/github/downloads/carlsonp/kort/total.svg)](http://www.somsubhra.com/github-release-stats/?username=carlsonp&repository=kort)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
