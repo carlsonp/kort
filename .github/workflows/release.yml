@@ -57,7 +57,6 @@ jobs:
           # Specifies the registry, this field is required!
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm run build
       - name: Publish to npmjs.com
         run: npm publish
         env:
