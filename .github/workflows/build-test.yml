@@ -1,13 +1,12 @@
 # validate YAML
 # https://codebeautify.org/yaml-validator
 
-name: github-actions
-on:
-  push:
-  pull_request:
+name: Build and Test
+on: [push, pull_request]
+
 jobs:
-  build-check:
-    name: build-check
+  build-test:
+    name: build-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
