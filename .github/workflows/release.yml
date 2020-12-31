@@ -1,0 +1,61 @@
+# validate YAML
+# https://codebeautify.org/yaml-validator
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Generate release .zip file
+        run: zip -r kort-${{ github.ref }}.zip . -x ".git/*" ".github/*"
+      - name: Create Release
+        id: create_release
+        # https://github.com/marketplace/actions/create-a-release
+        uses: actions/create-release@v1
+        env:
+          # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        # https://github.com/actions/upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object,
+          # which include a `upload_url`. See this blog post for more
+          # info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./kort-${{ github.ref }}.zip
+          asset_name: kort-${{ github.ref }}.zip
+          asset_content_type: application/zip
+      # install Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          # Specifies the registry, this field is required!
+          registry-url: https://registry.npmjs.org/
+      # clean install of your projects' deps. We use "npm ci" to avoid package lock changes
+      - run: npm ci
+      - run: npm run build
+      - name: Publish to npmjs.com
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
