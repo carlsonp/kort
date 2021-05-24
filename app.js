@@ -66,7 +66,7 @@ mongoose.Promise = global.Promise;
 
 //https://mongoosejs.com/docs/deprecations.html#-findandmodify
 //https://stackoverflow.com/questions/57895175/server-discovery-and-monitoring-engine-is-deprecated/57899638#57899638
-mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
+const clientP = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true}).then(m => m.connection.getClient())
 
 //load in models
 require('./models/user');
@@ -109,13 +109,15 @@ app.use('/datatables-buttons', express.static(path.join(__dirname, '/node_module
 app.use('/public', express.static(path.join(__dirname, '/public/')));
 
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 app.use(session({
     secret: secretHash,
-    store: new MongoStore({ mongooseConnection: mongoose.connection,
-          collection: 'session',
-		  ttl: 4 * 60 * 60 // = 4 hours (in seconds)
+    store: MongoStore.create({
+        mongoUrl: mongoURL,
+        clientPromise: clientP,
+        collectionName: 'session',
+		    ttl: 4 * 60 * 60 // = 4 hours (in seconds)
 		}),
 	resave: false, // don't save session if unmodified
 	saveUninitialized: false // don't create session until something stored
