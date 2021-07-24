@@ -52,7 +52,7 @@
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "pkginfo": "^0.4.1",
-    "plotly.js": "^2.2.1",
+    "plotly.js": "^2.3.0",
     "popper.js": "^1.16.1",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
