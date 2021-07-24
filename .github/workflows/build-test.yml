@@ -45,3 +45,9 @@ jobs:
           # https://github.com/docker/build-push-action/blob/master/docs/advanced/cache.md
           cache-from: type=registry,ref=ghcr.io/carlsonp/kort:latest
           cache-to: type=inline
+      # https://github.com/snyk/actions/tree/master/node
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
