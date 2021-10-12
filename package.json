@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "casperjs": "^1.1.4",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "nodemon": "^2.0.12",
     "npm-check-updates": "^11.8.5",
     "phantomjs-prebuilt": "^2.1.16"
