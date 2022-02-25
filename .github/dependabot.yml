@@ -1,18 +1,18 @@
 # Set update schedule for GitHub Actions
 # https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot
 
-version: 2
-updates:
+# version: 2
+# updates:
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      # Check for updates to GitHub Actions every weekday
-      interval: "daily"
+#   - package-ecosystem: "github-actions"
+#     directory: "/"
+#     schedule:
+#       # Check for updates to GitHub Actions every weekday
+#       interval: "daily"
 
-  # https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
-  # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
+#   # https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
+#   # Maintain dependencies for npm
+#   - package-ecosystem: "npm"
+#     directory: "/"
+#     schedule:
+#       interval: "daily"
