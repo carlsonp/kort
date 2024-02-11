@@ -9,7 +9,7 @@ jobs:
     name: build-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs
       # https://github.com/actions/setup-node/
       - uses: actions/setup-node@v3
@@ -28,7 +28,7 @@ jobs:
       - run: sleep 6
       - run: npm test
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
