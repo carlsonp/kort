@@ -45,7 +45,7 @@
     "jquery": "^3.6.0",
     "jstree": "^3.3.12",
     "mongo-sanitize": "^1.1.0",
-    "mongoose": "^6.0.6",
+    "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
     "npm-font-open-sans": "^1.1.0",
     "passport": "^0.5.0",
