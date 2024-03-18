@@ -44,8 +44,8 @@ var logger = require('./server/logger.js');
 const path = require('path');
 
 // set up rate limiter: maximum of 120 requests per 10 seconds
-var RateLimit = require('express-rate-limit');
-var limiter = new RateLimit({
+var rateLimit = require('express-rate-limit');
+var limiter = rateLimit({
   windowMs: 1*10*1000, // 10 seconds
   max: 120
 });
@@ -66,7 +66,8 @@ mongoose.Promise = global.Promise;
 
 //https://mongoosejs.com/docs/deprecations.html#-findandmodify
 //https://stackoverflow.com/questions/57895175/server-discovery-and-monitoring-engine-is-deprecated/57899638#57899638
-const clientP = mongoose.connect(mongoURL, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true}).then(m => m.connection.getClient())
+//https://mongoosejs.com/docs/6.x/docs/migrating_to_6.html#no-more-deprecation-warning-options
+const clientP = mongoose.connect(mongoURL).then(m => m.connection.getClient())
 
 //load in models
 require('./models/user');
