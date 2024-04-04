@@ -135,17 +135,11 @@ app.use(bodyParser.json());
 require('./server/routes.js')(app, passport, flash, allowGoogleAuth, allowUserRegistration);
 
 const { createServer } = require('node:http');
-const { Server } = require('socket.io');
-const server = createServer(app);
-const socketIo = new Server(server);
+const httpServer = createServer(app);
 
-socketIo.on('connect', (socket) => {
-  console.debug('Socket connected: %s', socket.id);
-  socket.on('disconnect', () => {
-    console.debug('Socket disconnected: %s', socket.id);
-  });
-})
+const { setupSocketServer } = require('./server/socket.js');
+setupSocketServer(httpServer);
 
-server.listen(port, function () {
+httpServer.listen(port, function () {
 	logger.info('Kort running on port: ' + port);
 });
