@@ -130,6 +130,15 @@ var socket = {
 			})
 		})
 	},
+
+	emitPageLoadEvent: function() {
+		const data = {
+			id: crypto.randomUUID(),
+			timestamp: new Date().toISOString(),
+		};
+		const json = JSON.stringify(data);
+		this._socket.emit('page load', json);
+	},
 }
 
 //---------------------Task List Initialization----------------------
@@ -157,4 +166,5 @@ function setup(input_tasks,input_tree,input_selectableParents,input_closeSibling
 	bindNextButton();
 
 	socket.connect();
+	socket.emitPageLoadEvent();
 }
