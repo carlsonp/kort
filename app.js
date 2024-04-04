@@ -73,6 +73,7 @@ const clientP = mongoose.connect(mongoURL).then(m => m.connection.getClient())
 require('./models/user');
 require('./models/study');
 require('./models/upload');
+require('./models/event');
 
 //setup a default admin account in Mongo
 require('./server/createadmin_user')(adminUser, adminPassword);
