@@ -117,6 +117,21 @@ var tasks = {
 		}
 	}
 }
+
+var socket = {
+	_socket: null,
+
+	connect: function() {
+		this._socket = io();
+		this._socket.on('connect', () => {
+			console.debug('Socket connected');
+			this._socket.on('disconnect', () => {
+				console.debug('Socket disconnected');
+			})
+		})
+	},
+}
+
 //---------------------Task List Initialization----------------------
 function setup(input_tasks,input_tree,input_selectableParents,input_closeSiblings){
 	var tasksDB = input_tasks.split(";").map(function(item) {
@@ -140,4 +155,6 @@ function setup(input_tasks,input_tree,input_selectableParents,input_closeSibling
 	tasks.set(0);
 	disableButton('#nextTaskButton');
 	bindNextButton();
+
+	socket.connect();
 }
