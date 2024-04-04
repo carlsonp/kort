@@ -1,12 +1,13 @@
 const { Server } = require('socket.io');
+const logger = require('./logger.js');
 
 function setupSocketServer(httpServer) {
 	const socketIo = new Server(httpServer);
 
 	socketIo.on('connect', (socket) => {
-	  console.debug('Socket connected: %s', socket.id);
+	  logger.info('Socket connected: ' + socket.id);
 	  socket.on('disconnect', () => {
-	    console.debug('Socket disconnected: %s', socket.id);
+	    logger.info('Socket disconnected: ' + socket.id);
 	  });
 	})
 }
