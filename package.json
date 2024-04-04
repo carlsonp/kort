@@ -54,6 +54,7 @@
     "pkginfo": "^0.4.1",
     "plotly.js": "^2.5.1",
     "@popperjs/core": "^2.11.8",
+    "socket.io": "^4.7.5",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
